@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'go' ]
+        language: [ 'javascript', 'typescript', 'vue', 'css', 'html' ]
 
     steps:
     - name: Checkout repository

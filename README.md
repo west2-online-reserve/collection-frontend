@@ -1,10 +1,10 @@
-# Collection - golang
+# Collection - frontends
 
 这个仓库用作保存有志于加入west2-online的同学的代码/笔记, 这里记录了他们学习过程中的点点滴滴
 
 ## 作业仓库
 
-请访问: [golang作业与帮助资料](https://github.com/west2-online/learn-go)
+请访问: [frontends作业与帮助资料](https://github.com/west2-online/learn-frontends)
 
 这个作业与帮助资料是**不断迭代的**(也就是不断在更新, 可能你做了一半作业发现作业内容变了很多)
 

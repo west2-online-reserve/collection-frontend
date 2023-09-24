@@ -1,74 +1,147 @@
-# Golang 第二轮考核
+# Frontends 第二轮考核
 
 ## 目的
 
-- 学习并使⽤go module进⾏第三⽅库的安装
-- 了解http协议和web的⼯作原理
-- 静态数据与动态数据的爬取
-- 学习使⽤关系型数据库，如：MySQL（面向大二同学）
+- 使用WebAPI（DOMAPI和BOMAPI）操作网页
+- 掌握Javascript的条件，选择，循环语法
+- 掌握Javascript的数组，对象，函数
 
 ## 任务
 
-### 爬取福大通知、文件系统
+1. 柯南的手表
 
-> 爬取福州大学通知、文件系统 [点击访问](https://info22.fzu.edu.cn/lm_list.jsp?wbtreeid=1460)
+  - 要求看[demo1.html](../img/2-JS与WebAPI.md/demo1.html)
+  - 使用Date对象
+  - 效果参考![demo1.gif](../img/2-JS与WebAPI.md/效果1.gif)
 
-- 包含发布时间，作者，标题以及正文。
-- 可自动翻页（爬虫可以自动对后续页面进行爬取，而不需要我们指定第几页）
-- 范围：2020年1月1号 - 2021年9月1号（不要爬太多了）。
 
-#### Bonus
 
-1. 使用并发爬取，同时给出加速比（加速比：相较于普通爬取，快了多少倍）
-2. 搜集每个通知的访问人数
-3. 将爬取的数据存入数据库，原生SQL或ORM映射都可以
+2. 抓出章鱼哥
 
-### 爬取Bilibili视频评论
+  - 要求看[demo2.html](../img/2-JS与WebAPI.md/demo2.html)
+  - 掌握数组排序(sort)
+  - 效果看![demo2.gif](../img/2-JS与WebAPI.md/效果2.gif)
 
-> 爬取  [这个视频](https://www.bilibili.com/video/BV12341117rG) 的全部评论
+3. 蟹老板的秘方
 
-- 全部评论，包含子评论
+  - 详细要求看[demo3.html](../img/2-JS与WebAPI.md/demo3.html)
+  - 掌握循环和判断
+  - 效果参考![demo3.gif](../img/2-JS与WebAPI.md/效果3.gif)
 
-#### Bonus
+4. 切换框
 
-1. 给出Bilibili爬虫检测阈值（请求频率高于这个阈值将会被ban）
-2. 给出爬取的流程图，使用mermaid
-3. 给出接口返回的json中每个参数所代表的意义
+  - 页面自己设计，配色不要华丽花哨，让页面干净美观，内容无要求，切换效果实现即可
+  - 参考效果看![demo4.gif](../img/2-JS与WebAPI.md/效果4.gif)
 
-## 参考
+## Bouns
 
-- **请求库**
-  - `net/http`
-- **解析库**
-  - `github.com/PuerkitoBio/goquery`
-  - `github.com/antchfx/htmlquery`
-  - `re`
-- **数据库驱动**
-  - `github.com/go-sql-driver/mysql`
+1. 写一段js代码，获取页面中Dom出现次数最多的前3个名称
 
-- 抓包：Fiddler、Proxyman、Charles、浏览器F12自带的网络抓包等
-- Go Module : https://www.bilibili.com/video/BV1w64y197wo?spm_id_from=333.999.0.0
-- 国内代理：https://goproxy.cn/
-- B站黑马程序员**Go爬虫**：https://www.bilibili.com/video/BV1Nt411H7sP?p=1
-- Go爬虫知识总结：https://blog.csdn.net/weixin_45304503/article/details/120390989
-- Go爬虫基础系列文章：
-    - https://cuiqingcai.com/5465.html
-    - https://cuiqingcai.com/5476.html
-    - https://cuiqingcai.com/5484.html
-    - https://cuiqingcai.com/5487.html
-    - https://cuiqingcai.com/5491.html
-- Go语⾔中⽂⽹：https://studygolang.com
-- 深入浅出BloomFilter原理：https://zhuanlan.zhihu.com/p/140545941
+    - 尽可能使用ES6特性
+    - 不允许使用var，for关键字
 
-## 提示
+2. 实现一个函数get(obj, path, defaultValue)，具有以下功能
 
-- 本次考核难度较大，请**尽早开始学习**
-- 已经完成的同学可以先预习⼀下**gin**和**RESTful API**以及**数据库**
-- 请多多参考网络资料，爬虫部分网络资料非常多
+    - 参数obj: 任意类型的对象
 
-### 推荐上手顺序
+    - 参数path: 字符串，表示对象的属性路径
 
-1. 了解爬虫原理与网页结构（不需要了解太深）
-2. 根据参考中给的几个库，查找对应的使用方法
-3. 选择合适的库，或者择取其他你认为更优秀的库，来编写爬虫程序
+    - 参数defaultValue: 任意类型，表示路径不存在时的默认值
 
+    - 返回值: 按照路径取得的属性值，如果路径不存在，返回defaultValue
+
+    - 例如:
+
+        ```javascript
+        const obj = {
+          a: {
+            b: {
+              c: 1
+            }
+          }
+        };
+        get(obj, 'a.b.c', 2); // 返回 1
+        get(obj, 'a.b.d', 2); // 返回 2
+        get(obj, 'a.b.d.e.f.g', 2); // 返回 2
+        ```
+
+3. 实现一个对象obj，当访问obj中任意一个属性或者或者任意一个属性赋值时，自动在控制台中输出当前访问或者赋值的属性的值和之前的值
+
+    - 例如:
+
+        ```javascript
+        obj = {
+          a: 1,
+          b: 2
+        };
+        const a = obj.a // 控制台输出 1
+        obj.b = 3 // 控制台输出 2,3
+        ```
+
+4. 实现一个函数createElement，它可以用来创建虚拟dom，虚拟dom的定义是用js对象来描述一个dom节点，然后实现一个函数mount，它可以通过这个js对象来创建一个真实的dom节点
+
+    - createElement支持常用标签的创建，例如div，ul，li等
+
+    - createElement支持标签的属性设置，例如id，className，style等
+
+    - createElement可以嵌套创建，具体在children属性中描述
+
+    - mount函数可以将createElement创建的虚拟dom挂载到指定的dom节点上，第一个参数是虚拟dom，第二个参数是挂载到dom节点，例如document.body，#app等
+
+    - 例如:
+
+        ```javascript
+        const vdom = createElement('div', { id: 'container' }, [
+          createElement('ul', { id: 'list' }, [
+            createElement('li', { className: 'item' }, ['Item 1']),
+            createElement('li', { className: 'item' }, ['Item 2']),
+            createElement('li', { className: 'item' }, ['Item 3'])
+          ])
+        ])
+        // vdom的值如下
+        vdom = {
+          tag: 'div',
+          attrs: {
+            id: 'container'
+          },
+          children: [
+            {
+              tag: 'ul',
+              attrs: {
+                id: 'list'
+              },
+              children: [
+                {
+                  tag: 'li',
+                  attrs: {
+                    className: 'item'
+                  },
+                  children: ['Item 1']
+                },
+                {
+                  tag: 'li',
+                  attrs: {
+                    className: 'item'
+                  },
+                  children: ['Item 2']
+                },
+                {
+                  tag: 'li',
+                  attrs: {
+                    className: 'item'
+                  },
+                  children: ['Item 3']
+                }
+              ]
+            }
+          ]
+        };
+        mount(vdom, document.body);
+        // 挂载后，页面中将会有以下内容
+        <div id="container">
+          <ul id="list">
+            <li className="item">Item 1</li>
+            <li className="item">Item 2</li>
+            <li className="item">Item 3</li>
+        </div>
+        ```

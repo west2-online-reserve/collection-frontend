@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        p {
+            font-size: 20px;
+        }
+
+
+        .d2 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: relative;
+            top: 100px;
+            right: -100px;
+        }
+
+        .d1 {
+            position: static;
+            background-color: red;
+        }
+
+        .d3 {
+            width: 200px;
+            height: 200px;
+            background-color: #0000ff;
+            position: relative;
+            color: white;
+            font-size: 20px;
+            /* top: 10px; */
+            /* right: 100px; */
+            left: 50px;
+        }
+
+        .d31 {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+
+            left: -10px;
+            /* 左left优先级高 */
+            right: 10px;
+
+            top: 50px;
+            /* 上top优先级更高 */
+            bottom: 10px;
+        }
+
+        .d4 {
+            width: 200px;
+            height: 300px;
+            background-color: rgba(0, 0, 0, .7);
+            position: fixed;
+            right: 0;
+            top: 400px;
+            font-size: 25px;
+            color: white;
+            padding: 20px;
+        }
+
+        .d5 {
+            margin: 0 auto;
+            width: 1226px;
+            height: 300px;
+            background-color: rgba(0, 0, 0, .7);
+
+        }
+
+        .d51 {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(205, 16, 26, 0.7);
+            position: absolute;
+            left: 50%;
+            margin-left: 613px;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>定位模式</h1>
+    <h2>1.静态定位static</h2>
+    <p>选择器{position:static;}</p>
+    <p><strong>默认</strong>为静态定位，没有边偏移</p>
+    <br>
+    <br>
+    <br>
+    <h2>2.相对定位relative</h2>
+    <p>移动位置时，相对于<strong>自己原来的位置</strong>移动</p>
+    <p>移动后仍占有原来的位置</p>
+    <div class="d2">向右下移动分别100点</div>
+    <div class="d2 d1">默认</div>
+    <br>
+    <br>
+    <br>
+    <h2>3.绝对定位absolute</h2>
+    <p>移动时，<strong>相对于定位父元素（祖先元素）</strong>移动</p>
+    <p>没有祖先元素时，以浏览器为准</p>
+    <p>父元素（或祖先元素没定位时，仍以浏览器为准）</p>
+    <br>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⬇</p>
+    <p><strong>“子绝父相”</strong></p>
+    <br>
+    <div class="d3">
+        定位冲突时，左 和 上 优先级更高
+        <div class="d31"> </div>
+    </div>
+    <p><strong>定位只改变设置定位的方向，未设置的和原来标准流的位置保持一致</strong></p>
+    <br>
+    <p>所以，添加绝对定位时要给其所参考的元素添加（非静态）定位</p>
+    <p><strong>绝对定位和浮动一样会脱标！！！</strong></p>
+    <p>所以，使用 子绝父相，可以在不影响父元素标准流布局的情况下，使子元素自由地定位</p>
+    <br>
+    <br>
+    <br>
+    <h2>4.固定定位fixed</h2>
+    <p>可以固定于<strong>浏览器可视区</strong>的某一位置</p>
+    <p>
+        <strong>脱标</strong>
+    </p>
+    <div class="d4">固定于可视窗口的某一位置
+        <br><br>脱标
+    </div>
+    <br>
+    <h3>特殊应用：将盒子固定在版心右侧</h3>
+    <p>方法：定位在可视窗口左边的50%，再设置左边距为版心宽度的一半</p>
+
+    <div class="d5">
+        <div class="d51"></div>
+        版心
+        <div class="d51"></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <h2>5.n粘性定位sticky</h2>
+    <p>相对定位 和 固定定位 的混合</p>
+</body>
+
+</html>

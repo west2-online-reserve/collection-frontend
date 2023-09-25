@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            /* background-color: rgb(255, 0, 0); */
+            /* background-color: #ff0000; */
+            background-color: red;
+            color: aliceblue;
+        }
+
+        #zuo {
+            text-align: left;
+        }
+
+        #you {
+            text-align: right;
+        }
+
+        #zhong {
+            text-align: center;
+        }
+
+        #wu {
+            text-decoration: none;
+        }
+
+        #xia {
+            text-decoration: underline;
+        }
+
+        #shang {
+            text-decoration: overline;
+        }
+
+        #shan {
+            text-decoration: line-through;
+        }
+
+        #suo {
+            /* text-indent: 20px; */
+            text-indent: 2em;
+        }
+
+        .row {
+            font-size: 16px;
+            line-height: 10px;
+        }
+    </style>
+    <!-- 说明多个style能同时作用 -->
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1.文本(背景)颜色（background-）color</h1>
+    <div>我是文本</div>
+
+    <h1>1.文本对齐text-align</h1>
+    <p>文本有三种对齐方式，默认靠左</p>
+    <div id="zuo">左对齐</div>
+    <div id="you">右对齐</div>
+    <div id="zhong">居中</div>
+
+    <h1>3.文本装饰text-decoration</h1>
+    <div id="wu">默认为none，没有装饰线</div>
+    <div id="xia">下划线为underline，超链接a自带下划线</div>
+    <div id="shang">上划线为overline，不常用</div>
+    <div id="shan">删除线为line-through</div>
+
+    <h1>4.文本缩进text-indent</h1>
+    <p id="suo">
+        属性值就是缩进的像素值，且可以为负值<br>11111111111111111111111
+        <br>111111111111111111111111
+        <br>1111111111111111111111111
+        <br>1111111111111111111111111
+        <br>1111111111111111111111111
+    </p>
+
+    <h1>5.行间距line-height</h1>
+    <p class="row"> 行间距包括上下间距和字体高度
+        <br>1111111111111111111111112313252355
+        <br>111111111111111111111111
+        <br>1111111111111111111111111
+        <br>1111111111111111111111111
+        <br>行高属性值可为小数，表示为文字大小的倍数
+    </p>
+
+</body>
+
+</html>

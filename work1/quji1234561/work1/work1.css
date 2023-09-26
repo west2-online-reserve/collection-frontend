@@ -5,12 +5,9 @@
 }
 
 body {
-    background-color: #DCF3FF;
-}
-
-.w {
     width: 1430px;
     margin: 0 auto;
+    background-color: #DCF3FF;
 }
 
 /* 导航栏 */

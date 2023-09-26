@@ -1,0 +1,16 @@
+ body {
+     /* font-family: '宋体'; */
+     font-family: 'Microsoft YaHei';
+     font-size: 16px;
+     font-weight: 400;
+     font-style: normal;
+     /* 复合：font:italic 700 16px '微软雅黑'; */
+ }
+
+ #shiyan1 {
+     font: italic 19px 'Microsoft YaHei'
+ }
+
+ #shiyan2 {
+     font: 700 19px 'Microsoft YaHei'
+ }

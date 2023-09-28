@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #DEF3FE;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.box {
+    width: 1002px;
+    margin: 0 auto;
+}
+
+.nav {
+    position: relative;
+    height: 70px;
+}
+
+.nav ul {
+    /*第一次尝试flex布局，感觉还行*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav li {
+    width: 200px;
+    height: 80px;
+    text-align: center;
+}
+
+.nav li a {
+    display: block;
+    height: 25px;
+    width: 84px;
+    margin: 0 auto;
+    margin-top: 30px;
+    color: black;
+    font-size: 18px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.nav li a:hover {
+    background-color: #7296C5;
+    text-decoration-line: underline;
+    border-radius: 12px;
+}
+
+.jianjie {
+    position: relative;
+    height: 250px;
+    border: 1px solid #7296C5;
+    margin-top: 10px;
+    border-radius: 30px;
+}
+
+.jianjie .all {
+    float: left;
+    width: 300px;
+    height: 250px;
+}
+
+.jianjie .all img {
+    position: absolute;
+    top: 50%;
+    margin-top: -90px;
+    margin-left: 40px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.jianjie p {
+    float: right;
+    width: 670px;
+    height: 160px;
+    padding-top: 90px;
+    padding-right: 30px;
+    font-size: 18px;
+}
+
+.renwu {
+    height: 450px;
+    margin-top: 5px;
+}
+
+.renwu ul {
+    position: relative;
+}
+
+.renwu ul li {
+    position: absolute;
+    height: 450px;
+    width: 220px;
+}
+
+.renwu ul .zyg {
+    right: 0px;
+}
+
+.renwu ul .pdx {
+    left: 50%;
+    margin-left: -110px;
+}
+
+.renwu ul li div {
+    height: 140px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 30px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.renwu .hmbbjs {
+    background-color: #F6D04D;
+}
+
+.renwu .pdxjs {
+    background-color: #CC827B;
+}
+
+.renwu .zygjs {
+    background-color: #3B5F95;
+}
+
+.renwu ul img {
+    position: absolute;
+    width: 100%;
+    border-radius: 30px;
+    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+}
+
+.renwu ul img:hover {
+    width: 120%;
+    left: -20px;
+
+}
+
+.renwu h4 {
+    color: #fff;
+    text-align: center;
+}
+
+.renwu li div p {
+    margin-top: 18px;
+    color: #fff;
+}
+
+.seriestable {
+    margin-top: 30px;
+    height: 140px;
+}
+
+
+.xilie {
+    width: 600px;
+
+}
+
+.riqi {
+    width: 300px;
+}
+
+.jishu {
+    width: 100px;
+}
+
+.seriestable td {
+    text-align: center;
+}
+
+.td1 {
+    background-color: #9dcbfc;
+}
+
+.td2 {
+    background-color: #8dcde9;
+}
+
+.td3 {
+    background-color: #6a99c9;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.textt {
+    position: relative;
+    height: 400px;
+}
+
+.textt textarea {
+    width: 900px;
+    height: 200px;
+    background-color: #DEF3FE;
+    border: 3px solid #7296C5;
+    border-radius: 30px;
+    padding: 50px;
+    font-size: 18px;
+}
+
+.textt a {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    display: block;
+    width: 100px;
+    height: 40px;
+    background-color: #6890f5;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.textt a:hover {
+    background-color: #4a73db;
+}

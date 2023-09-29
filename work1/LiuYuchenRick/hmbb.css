@@ -45,7 +45,7 @@ a {
     margin-top: 30px;
     color: black;
     font-size: 18px;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-radius 0.3s ease-in-out, text-decoration-line 0.2s ease-in-out;
 }
 
 .nav li a:hover {
@@ -54,7 +54,7 @@ a {
     border-radius: 12px;
 }
 
-.jianjie {
+.introduction {
     position: relative;
     height: 250px;
     border: 1px solid #7296C5;
@@ -62,13 +62,13 @@ a {
     border-radius: 30px;
 }
 
-.jianjie .all {
+.introduction .all {
     float: left;
     width: 300px;
     height: 250px;
 }
 
-.jianjie .all img {
+.introduction .all img {
     position: absolute;
     top: 50%;
     margin-top: -90px;
@@ -79,7 +79,7 @@ a {
     overflow: hidden;
 }
 
-.jianjie p {
+.introduction p {
     float: right;
     width: 670px;
     height: 160px;
@@ -88,31 +88,31 @@ a {
     font-size: 18px;
 }
 
-.renwu {
+.Character {
     height: 450px;
     margin-top: 5px;
 }
 
-.renwu ul {
+.Character ul {
     position: relative;
 }
 
-.renwu ul li {
+.Character ul li {
     position: absolute;
     height: 450px;
     width: 220px;
 }
 
-.renwu ul .zyg {
+.Character ul .octopus {
     right: 0px;
 }
 
-.renwu ul .pdx {
+.Character ul .starfish {
     left: 50%;
     margin-left: -110px;
 }
 
-.renwu ul li div {
+.Character ul li div {
     height: 140px;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -122,37 +122,36 @@ a {
     padding-right: 10px;
 }
 
-.renwu .hmbbjs {
+.Character .SpongeBob-intro {
     background-color: #F6D04D;
 }
 
-.renwu .pdxjs {
+.Character .starfish-intro {
     background-color: #CC827B;
 }
 
-.renwu .zygjs {
+.Character .octopus-intro {
     background-color: #3B5F95;
 }
 
-.renwu ul img {
+.Character ul img {
     position: absolute;
     width: 100%;
     border-radius: 30px;
-    transition: width 0.4s ease-in-out, left 0.4s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
-.renwu ul img:hover {
-    width: 120%;
-    left: -20px;
+.Character ul img:hover {
+    transform: scale(1.4, 1.4);
 
 }
 
-.renwu h4 {
+.Character h4 {
     color: #fff;
     text-align: center;
 }
 
-.renwu li div p {
+.Character li div p {
     margin-top: 18px;
     color: #fff;
 }
@@ -163,16 +162,16 @@ a {
 }
 
 
-.xilie {
+.series {
     width: 600px;
 
 }
 
-.riqi {
+.date {
     width: 300px;
 }
 
-.jishu {
+.episode {
     width: 100px;
 }
 
@@ -197,22 +196,22 @@ table {
     border-spacing: 0;
 }
 
-.textt {
+.suggestion {
     position: relative;
     height: 400px;
 }
 
-.textt textarea {
-    width: 900px;
-    height: 200px;
+.suggestion textarea {
+    width: 940px;
+    height: 240px;
     background-color: #DEF3FE;
     border: 3px solid #7296C5;
     border-radius: 30px;
-    padding: 50px;
+    padding: 30px;
     font-size: 18px;
 }
 
-.textt a {
+.suggestion a {
     position: absolute;
     bottom: 30px;
     right: 20px;
@@ -228,6 +227,6 @@ table {
     transition: background-color 0.3s ease-in-out;
 }
 
-.textt a:hover {
+.suggestion a:hover {
     background-color: #4a73db;
 }

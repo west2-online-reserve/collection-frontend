@@ -1,0 +1,131 @@
+body {
+    background-color: rgb(220, 243, 255);
+    padding: 0rem 10rem 0rem 10rem;
+}
+
+nav {
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.description {
+    border: 2px solid rgb(113, 152, 201);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.circle_img {
+    border-radius: 50%;
+}
+
+.description_img {
+    width: 20rem;
+    height: 20rem;
+    padding-right: 2rem;
+}
+
+ul {
+    padding-inline-start: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.role {
+    width: 15rem;
+}
+
+.role_description {
+    height: 6rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin: 1rem 0 1rem 0;
+}
+
+p {
+    margin: 0;
+}
+
+.role_title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.haimianbaobao_description {
+    background-color: rgb(246, 206, 56);
+    color: white;
+}
+
+.paidaxing_description {
+    background-color: rgb(207, 129, 119);
+    color: white;
+}
+
+.zhangyuge_description {
+    background-color: rgb(55, 96, 152);
+    color: white;
+}
+
+.role_img {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 1rem;
+}
+
+td {
+    text-align: center;
+}
+
+td:first-child {
+    width: 808px;
+    background-color: rgb(153, 204, 255);
+}
+
+table {
+    /* 取消<td>之间的空隙 */
+    border-collapse: collapse;
+}
+
+td:nth-child(2) {
+    width: 522px;
+    background-color: rgb(135, 206, 235);
+}
+
+td:nth-child(3) {
+    width: 100px;
+    background-color: rgb(102, 153, 204);
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 10rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: rgb(220, 243, 255);
+    margin: 2rem 0 1rem 0;
+    border: 2px solid rgb(159, 216, 242);
+}
+
+textarea::placeholder {
+    color: black;
+}
+
+input[type="submit"] {
+    float: right;
+    background-color: rgb(100, 149, 237);
+    color: white;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+footer {
+    height: 5rem;
+}

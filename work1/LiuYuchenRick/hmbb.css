@@ -88,31 +88,31 @@ a {
     font-size: 18px;
 }
 
-.Character {
+.character {
     height: 450px;
     margin-top: 5px;
 }
 
-.Character ul {
+.character ul {
     position: relative;
 }
 
-.Character ul li {
+.character ul li {
     position: absolute;
     height: 450px;
     width: 220px;
 }
 
-.Character ul .octopus {
+.character ul .octopus {
     right: 0px;
 }
 
-.Character ul .starfish {
+.character ul .starfish {
     left: 50%;
     margin-left: -110px;
 }
 
-.Character ul li div {
+.character ul li div {
     height: 140px;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -122,36 +122,36 @@ a {
     padding-right: 10px;
 }
 
-.Character .SpongeBob-intro {
+.character .spongeBob-intro {
     background-color: #F6D04D;
 }
 
-.Character .starfish-intro {
+.character .starfish-intro {
     background-color: #CC827B;
 }
 
-.Character .octopus-intro {
+.character .octopus-intro {
     background-color: #3B5F95;
 }
 
-.Character ul img {
+.character ul img {
     position: absolute;
     width: 100%;
     border-radius: 30px;
     transition: transform 0.3s ease-in-out;
 }
 
-.Character ul img:hover {
+.character ul img:hover {
     transform: scale(1.4, 1.4);
 
 }
 
-.Character h4 {
+.character h4 {
     color: #fff;
     text-align: center;
 }
 
-.Character li div p {
+.character li div p {
     margin-top: 18px;
     color: #fff;
 }
@@ -209,6 +209,7 @@ table {
     border-radius: 30px;
     padding: 30px;
     font-size: 18px;
+
 }
 
 .suggestion a {

@@ -11,6 +11,22 @@ nav {
     padding: 1rem;
 }
 
+nav div {
+    width: 5rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav div:hover {
+    background-color: rgb(55, 96, 152);
+    text-decoration: underline;
+}
+
 .description {
     border: 2px solid rgb(113, 152, 201);
     border-radius: 1rem;
@@ -75,13 +91,20 @@ p {
     width: 15rem;
     height: 15rem;
     border-radius: 1rem;
+    transition: transform 0.3s;
+    /* 变换的基准点，两个center代表水平和垂直都以中间为基准 */
+    transform-origin: center center;
+}
+
+.role_img:hover {
+    transform: scale(1.2);
 }
 
 td {
     text-align: center;
 }
 
-td:first-child {
+td:nth-child(1) {
     width: 808px;
     background-color: rgb(153, 204, 255);
 }
@@ -124,6 +147,12 @@ input[type="submit"] {
     height: 3rem;
     border-radius: 0.5rem;
     border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(55, 96, 152);
 }
 
 footer {

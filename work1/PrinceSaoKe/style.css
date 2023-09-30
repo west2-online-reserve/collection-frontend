@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: rgb(220, 243, 255);
     padding: 0rem 10rem 0rem 10rem;
@@ -11,10 +15,12 @@ nav {
     padding: 1rem;
 }
 
-nav div {
+nav a {
     width: 5rem;
     height: 2rem;
     display: flex;
+    text-decoration: none;
+    color: black;
     justify-content: center;
     align-items: center;
     border-radius: 1rem;
@@ -22,7 +28,7 @@ nav div {
     transition: 0.3s;
 }
 
-nav div:hover {
+nav a:hover {
     background-color: rgb(55, 96, 152);
     text-decoration: underline;
 }

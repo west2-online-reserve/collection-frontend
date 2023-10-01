@@ -21,9 +21,10 @@ nav {
 }
 
 nav a {
-    display: inline-block;
-    width: 150px;
+    width: 250px;
     height: 50px;
+    display: flex;
+    justify-content: center;
     border-radius: 25px;
     font-size: 25px;
     color: black;
@@ -134,7 +135,7 @@ nav a:hover {
     background-size: contain;
 }
 
-#character #padaxing>div {
+#character #paidaxing>div {
     background-color: rgba(208, 128, 121);
 }
 
@@ -165,16 +166,14 @@ nav a:hover {
 
 #works table {
     height: 130px;
-    border-radius: 10px 10px 10px 10px;
-    border:0;
-    margin:0;
+    border-radius: 10px;
     /* 取消<td>之间的空隙 */
     border-collapse: collapse;
     
 }
 
 #works table td{
-    padding:0 px;
+    padding: 0px;
 }
 
 #works table td:nth-child(1) {

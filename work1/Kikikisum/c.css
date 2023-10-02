@@ -18,8 +18,8 @@ body {
 .nav ul {
     list-style: none;
     margin: 0;
-    padding: 0;
     width: 100%;
+    padding: 3px;
 }
 
 .nav li {
@@ -38,7 +38,7 @@ body {
 
 .nav a:hover {
     text-decoration: underline;
-    background-color:lightsteelblue;
+    background-color:gray;
     border-radius: 5px;
 }
 
@@ -69,6 +69,10 @@ body {
     transition: all 0.1s;
 }
 
+.content .all img:hover {
+    transform: scale(1.2);
+}
+
 /*设置简介垂直居中*/
 
 .content .introduction {
@@ -93,7 +97,7 @@ body {
     background-color: RGB(248,207,55);
 } 
 
-#figure .paidaxin .brief {
+#figure .paidaxing .brief {
     background-color: RGB(208, 128, 121);
 }
 
@@ -160,11 +164,12 @@ body {
 #advice textarea {
     font-size: 20px;
     margin-left: 13%;
-    width: 1245px;
+    width: 1210px;
     height: 200px;
     border-radius: 10px;
     border-color: RGB(171,222,245);
     background-color: RGB(220,243,255);
+    padding: 20px;
 }
 
 /*提交按钮的设置*/

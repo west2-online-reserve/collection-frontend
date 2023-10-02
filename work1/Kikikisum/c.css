@@ -1,0 +1,199 @@
+/*设置背景纯色*/
+
+body {
+    background-color: RGB(220,243,255);
+    margin: auto;
+    color: black;
+}
+
+/*导航栏*/
+
+.nav {
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    display: flex;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.nav li {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: black;
+    transition: all .1s;
+}
+
+/*处理鼠标移入移出的效果*/
+
+.nav a:hover {
+    text-decoration: underline;
+    background-color:lightsteelblue;
+    border-radius: 5px;
+}
+
+/*作品介绍的内容*/
+
+.content {
+    display: flex;
+    justify-content: center;
+    border: 1px solid RGB(102,143,195);
+    border-radius: 10px;
+    margin-left: 13%;
+    margin-right: 13%;
+    height: 250px;
+    position: relative;
+}
+
+/*把全家福弄成圆形*/
+
+.content .all img {
+    position: absolute;
+    border-radius: 50%;
+    height: 220px;
+    width: 220px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    float: left;
+    left: 10px;
+    transition: all 0.1s;
+}
+
+/*设置简介垂直居中*/
+
+.content .introduction {
+    float: left;
+    font-size: 20px;
+    margin-left: 250px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
+
+/*把人物介绍和上面的简介一样长和宽*/
+
+#figure {
+    justify-content: space-between;
+    display: flex;
+    margin-left: 13%;
+    margin-right: 13%;
+}
+
+#figure .haimian .brief {
+    background-color: RGB(248,207,55);
+} 
+
+#figure .paidaxin .brief {
+    background-color: RGB(208, 128, 121);
+}
+
+#figure .zhangyu .brief {
+    background-color: RGB(56, 95, 152);
+}
+
+#figure .picture img {
+    border-radius: 20px;
+    margin-top: 25px;
+    height: 250px;
+    transition: transform .4s;
+}
+
+#figure .picture img:hover {
+    transform: scale(1.2);
+}
+
+#figure .brief {
+    color: white;
+    border-radius: 20px;
+    width: 250px;
+    height: 120px;
+    text-align: center;
+    transition: transform .4s;
+}
+
+#series {
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 13%;
+    margin-right: 13%;
+    height: 120px;
+}
+
+
+#series table {
+    height: 120px;
+    border-collapse: collapse;
+}
+
+#series table td:nth-child(1) {
+    width: 700px;
+    background-color: RGB(153,204,255);
+}
+
+#series table td:nth-child(2) {
+    width: 500px;
+    background-color: RGB(135,206,235);
+}
+
+#series table td:nth-child(3) {
+    width: 60px;
+    background-color: RGB(102,153,204);
+}
+
+/*与我们相关*/
+
+#advice {
+    margin-top: 50px;
+    height: 200px;
+}
+
+#advice textarea {
+    font-size: 20px;
+    margin-left: 13%;
+    width: 1245px;
+    height: 200px;
+    border-radius: 10px;
+    border-color: RGB(171,222,245);
+    background-color: RGB(220,243,255);
+}
+
+/*提交按钮的设置*/
+
+#advice form #submit {
+    color: white;
+    background-color: RGB(100,149,237);
+    margin-left: 1395px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 75px;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color .1s;
+}
+
+#advice form #submit:hover {
+    background-color: RGB(72,117,212);
+}
+
+#advice form #submit:active {
+    border-style: inset;
+    background-color: RGB(72, 117, 212);
+}
+
+footer p {
+    margin-top: 50px;
+    margin-left: 13%;
+    font-size: 20px;
+    color: darkgrey;
+}

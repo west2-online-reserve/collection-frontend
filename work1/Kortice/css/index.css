@@ -1,0 +1,192 @@
+/* 清除样式 */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+a {
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+/* 基础设置 */
+
+/* 版心 */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+/* 背景颜色 */
+body {
+    background-color: #dcf3ff;
+}
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* #region 头部导航栏start */
+.topbar-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.topbar-nav li a {
+    padding: 10px;
+    font-size: 20px;
+    color: black;
+    transition: all 0.15s linear;
+}
+.topbar-nav li:hover a {
+    text-decoration: underline;
+    background-color: #376098;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px black;
+}
+/* #endregion 头部导航栏end */
+
+/* #region 简介start */
+.info {
+    margin-top: 20px;
+    font-size: 20px;
+}
+.info .container {
+    border: 2px solid #376098;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+.info-img {
+    width: 400px;
+    height: 400px;
+    background-image: url(../images/all.jpeg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    margin: 20px;
+}
+/* #endregion 简介end */
+
+/* #region 人物介绍start */
+.introduction {
+    margin-top: 40px;
+}
+.introduction .container {
+    display: flex;
+    justify-content: space-between;
+}
+.introduction .item {
+    color: white;
+}
+.introduction .item div {
+    width: 300px;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+.hmbb div {
+    background-color: #f8cf37;
+}
+.pdx div {
+    background-color: #d08079;
+}
+.zyg div {
+    background-color: #385f98;
+}
+.introduction .item div h2 {
+    text-align: center;
+    padding-top: 10px;
+}
+.introduction .item div span {
+    display: inline-block;
+    padding: 20px;
+    font-size: 20px;
+}
+.introduction img {
+    width: 300px;
+    border-radius: 20px;
+    transition: all 0.5s linear;
+}
+.introduction img:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 0px 20px black;
+}
+/* #endregion 人物介绍end */
+
+/* #region 系列作品start */
+.series-works {
+    margin-top: 40px;
+}
+.nav-list {
+    display: flex;
+    text-align: center;
+    font-size: 20px;
+}
+.nav-list span {
+    font-weight: bold;
+}
+.nav-list div:nth-child(1){
+    flex-grow: 8;
+}
+.nav-list div:nth-child(2){
+    flex-grow: 5;
+}
+.nav-list div:nth-child(3){
+    flex-grow: 1;
+}
+.series + div {
+    background-color: #99ccff;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.date + div {
+    background-color: #87ceeb;
+}
+.video-num + div {
+    background-color: #6699cc;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+/* #endregion 系列作品end */
+
+/* #region 我们相关start */
+.about-us {
+    margin-top: 40px;
+}
+.about-us form {
+    width: 100%;
+    position: relative;
+}
+.about-us form textarea {
+    width: 100%;
+    height: 400px;
+    background-color: transparent;
+    border: 2px solid #bbe5f8;
+    border-radius: 10px;
+    font-size: 20px;
+    resize: none;
+}
+.about-us form button {
+    width: 150px;
+    height: 50px;
+    margin-top: 30px;
+    color: white;
+    background-color: #6495ed;
+    border-radius: 10px;
+    position: absolute;
+    top: 400px;
+    left: calc(100% - 150px);
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+.about-us form button:hover {
+    background-color: #4b6fd4;
+}
+/* #endregion 我们相关end */
+
+/* 页面底部增加页脚继而添加高度从而可以看锚点的跳转效果 */
+footer {
+    height: 1000px;
+}

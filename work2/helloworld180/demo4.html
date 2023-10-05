@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         * {   margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: #dcf3ff;
+    }
+    .top {/*最上方盒子*/
+             margin: 0 auto;
+            width: 440px;
+            height: 50px;
+            line-height: 25px;
+        }
+    li {/*把li的点去掉*/
+            list-style: none;
+    }
+    .top .last {/*最后一个li靠右*/
+            margin-right: 0;
+        }
+        ul>li {/*每个li的参数*/
+            float: left;
+            text-align: center;
+            margin-top: 15px;
+            margin-left: 50px;
+            width: 80px;
+            height: 50px;
+            line-height: 25px; 
+            background-color: #5b95f8;
+            padding-top: 15px;
+        }
+        ul>li:hover {
+            color:black;
+            background-color: #00a3ff;
+            text-decoration: none;
+            cursor: pointer;
+            
+        }
+        .box1 {
+            margin: 0 auto;
+            width: 340px;
+            height: 300px;
+            margin-top: 29px;
+            background-color: #7cc4f2;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="top">
+        <ul>
+            <li id="com1"><a >海绵宝宝</a></li>
+            <li id="com2"><a>派大星</a></li>
+            <li class="last" id="com3"><a>章鱼哥</a></li>
+        </ul>
+    
+    </div>
+    <div class="box1">
+        <div id="cm1">是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐。</div>
+    </div>
+    <script>
+        var hmbb=document.getElementById('com1');
+        var pai=document.getElementById('com2');
+        var zyg=document.getElementById('com3');
+        var jieshao=document.getElementById('cm1');
+        hmbb.addEventListener('click',function(){
+            jieshao.innerText='是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐。';
+        })
+        pai.addEventListener('click',function(){
+            jieshao.innerText='粉红色的海星，很可爱，和海绵宝宝交情最好。';
+        })
+        zyg.addEventListener('click',function(){
+            jieshao.innerText='大鼻子章鱼，对艺术有执着的追求，本质上是一个善良且有正义感的章鱼。';
+        })
+    </script>
+</body>
+</html>

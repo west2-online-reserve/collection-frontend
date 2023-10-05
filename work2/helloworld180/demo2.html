@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>海绵宝宝抓章鱼</title>
+    </head>
+    <style>
+    *{
+        font-size: 30px;
+    }
+    </style>
+<body>
+    <p>海绵宝宝很爱抓章鱼,可爱的学长（出题人）把章鱼哥也混在里面了,尽管他也是章鱼，但是不能抓到他</p> 
+    <p>现在我们要将章鱼哥先从这些章鱼中脱离出来(即把这个节点从ul里面去掉),之后再抓章鱼</p>
+    <p>海绵宝宝抓章鱼喜欢先从重量小的开始抓，请帮助可爱的海绵宝宝和可爱的学长</p>
+   
+    <ul id="octopus">
+      <li><span class="name">章鱼一号</span><span class="weight">37.4kg</span></li>
+      <li><span class="name">章鱼二号</span><span class="weight">24.2kg</span></li>
+      <li><span class="name">章鱼三号</span><span class="weight">256.3kg</span></li>
+      <li><span class="name">章鱼四号</span><span class="weight">300.9kg</span></li>
+      <li><span class="name">章鱼五号</span><span class="weight">120.0kg</span></li>
+      <li><span class="name">章鱼六号</span><span class="weight">27.5kg</span></li>
+      <li><span class="name">章鱼七号</span><span class="weight">32.4kg</span></li>
+      <li><span class="name">章鱼哥</span><span class="weight">25.5kg</span></li>
+    </ul>
+
+    <ul id="octopus-sort">
+    <!--
+        <li>第一只章鱼：章鱼六号：27.5kg</li>
+     -->
+    </ul>
+    <button id="sort-btn">排序</button>
+
+    <!--
+        不可以修改上述代码内容，只能在script标签内填写代码
+    -->
+    
+    <script>
+	    
+          //把章鱼哥节点从ul列表中删除
+        function remove() {
+			//以下为你写的代码
+            
+            var ul=document.querySelector('ul');
+                ul.removeChild(ul.children[7]);
+                console.log(ul);
+            
+           return
+        }
+        
+        
+		
+        /*
+         *  读取id为octopus的列表，获取其中章鱼名字和体重
+         *  返回一个JSON数组，格式见函数中示例
+		 */
+        function getWeight () {
+            var ul=document.querySelector('ul');
+            //  row={
+            //      "name":null,
+            //      "weight":null
+            //    }
+            //  }
+            var a={name:"章鱼一号",weight:37.4,name:"章鱼二号",weight:24.2,name:"章鱼三号",weight:256,name:"章鱼四号",weight:300.9,name:"章鱼五号",weight:120.0,name:"章鱼六号",weight:32.4,name:"章鱼七号",weight:25.5};
+                console.log(a);
+                var row;
+                row=JSON.stringify(a);
+                console.log(row[3]);
+                /*ul.pop();
+                console.log(ul);*/
+        }
+        
+        //按章鱼重量，对data进行从小到大的排序,返回一个排序后的数组
+        function sortedOctopus (data) {
+            var b=document.querySelector('ul');
+            /*var c=document.getElementsByClassName("weight");
+            //c.remove
+            console.log(c);
+            c=parseFloat(c);
+            console.log(c[0]);*/
+            /*var c=[37.4,24.2,256.3,300.9,120.0,27.5,32.4];
+            c[1]=["章鱼一号","章鱼二号","章鱼三号","章鱼四号","章鱼五号","章鱼六号","章鱼七号"];
+            console.log(c);*/
+            var data=[];
+            data[0]=["章鱼一号",37.4];
+            data[1]=["章鱼二号",24.2];
+            data[2]=["章鱼三号",256.3];
+            data[3]=["章鱼四号",300.9];
+            data[4]=["章鱼五号",120.0];
+            data[5]=["章鱼六号",27.5];
+            data[6]=["章鱼七号",32.4];
+            console.log(data[0][1]);
+            var i;
+            var j;
+            for(i=0;i<7;i++){
+                for(j=0;j<7-i-1;j++){
+                    if(data[j][1]>data[j+1][1]){
+                        var count=data[j][1];
+                        var t=data[j][0];
+                        data[j][1]=data[j+1][1];
+                        data[j][0]=data[j+1][0];
+                        data[j+1][1]=count;
+                        data[j+1][0]=t;
+                    }
+                }
+            }
+            console.log(data);
+          return data;
+        }   
+        
+        //将排好序的章鱼朋友输出显示到id为octopus-sort的列表中,格式见ul中注释
+        function render (data) {
+          data=sortedOctopus ();
+            console.log(data);
+             var ul=document.getElementById("octopus-sort");
+             var li=[];
+         // var li=document.createElement('li');
+          for(let i=0;i<7;i++){
+            li[i]=document.createElement('li');
+            ul.appendChild(li[i]);
+          }
+          li[0].innerHTML='第一只章鱼:'+(data[0][0])+':'+(data[0][1])+'kg';
+          li[1].innerHTML='第二只章鱼:'+(data[1][0])+':'+(data[1][1])+'kg';
+          li[2].innerHTML='第三只章鱼:'+(data[2][0])+':'+(data[2][1])+'kg';
+          li[3].innerHTML='第四只章鱼:'+(data[3][0])+':'+(data[3][1])+'kg';
+          li[4].innerHTML='第五只章鱼:'+(data[4][0])+':'+(data[4][1])+'kg';
+          li[5].innerHTML='第六只章鱼:'+(data[5][0])+':'+(data[5][1])+'kg';
+          li[6].innerHTML='第七只章鱼:'+(data[6][0])+':'+(data[6][1])+'kg';
+          var shanchu=document.getElementById('octopus');
+          for(var j=0;j<8;j++){
+            shanchu.removeChild(shanchu.children[0]);
+          }
+        }
+		
+        //按钮点击函数
+
+        function handleButton() {
+            remove();
+            getWeight ();
+            sortedOctopus ();
+            render ();
+        }
+        var btn=document.getElementById('sort-btn');
+        btn.onclick=function(){
+            handleButton();
+        }
+       
+        // 给sort-btn 绑定一个点击事件，点击时触发handleButton函数
+        // 触发后在浏览器上可以看到结果        
+ 
+    </script>
+</body>
+</html>

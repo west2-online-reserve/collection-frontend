@@ -66,6 +66,7 @@ html {
     background-repeat: no-repeat;
     border-radius: 50%;
     margin: 20px;
+    flex-shrink: 0;
 }
 /* #endregion 简介end */
 
@@ -185,8 +186,3 @@ html {
     background-color: #4b6fd4;
 }
 /* #endregion 我们相关end */
-
-/* 页面底部增加页脚继而添加高度从而可以看锚点的跳转效果 */
-footer {
-    height: 1000px;
-}

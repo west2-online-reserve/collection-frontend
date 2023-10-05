@@ -1,7 +1,8 @@
 body{
-    background-color:rgb(197, 222, 240);
+    background-color:rgb(220,243,255);
+    margin-left: auto;
+     margin-right: auto;
 }
-
 #header1:hover {
     position:absolute;
     margin-left: 140px;
@@ -9,7 +10,7 @@ body{
     
     border-radius: 25px;
     background: #378cec;
- 
+   
     width: 80px;
     height: 40px; 
     text-decoration: underline;
@@ -48,22 +49,31 @@ body{
 }
 #header{
     display: flex;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #header1{
     position:absolute;
     margin-left: 150px;
     margin-top: 0px;
-   
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 30px; 
+     
 }
 #header2{
     position:absolute;
     margin-left: 570px;
     margin-top: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 30px; 
+  
 }
 #header3{
     position:absolute;
     margin-left: 1050px;
     margin-top: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 30px; 
+    
 }
 #intro{
     display: flex;
@@ -98,7 +108,7 @@ body{
     margin-left: 100px;
     padding-left: 10px;
     border-radius: 25px;
-    background: #d8de21;
+    background:rgb(248,207,55);
     width: 160px;
     height: 500spx; 
 }
@@ -107,7 +117,7 @@ body{
     margin-left: 500px;
     padding-left: 10px;
     border-radius: 25px;
-    background: #ed8362;
+    background: rgb(208,128,121);
     width: 160px;
     height: 250spx; 
 }
@@ -116,7 +126,7 @@ body{
     margin-left: 900px;
     padding-left: 10px;
     border-radius: 25px;
-    background: #0372f0;
+    background: rgb(56,95,152);
     width: 160px;
     height: 180spx; 
 }
@@ -131,6 +141,7 @@ body{
 }
 #input{
     background-color: rgb(120, 120, 222); width: 60px;
+    border-radius: 5px;
 }
 #tp1:hover{
     transform: scale(1.2);

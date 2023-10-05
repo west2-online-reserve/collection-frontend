@@ -3,312 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>海绵宝宝导航</title>
-    <style>
-        /*背景颜色*/
-        body{
-            background-color: #b8ebf5;
-        }
-/* =============================================================== */
-        /*导航栏*/
-        ul{
-            list-style-type: none;
-            margin: 0;              /* 外边距 */
-            padding: 0;             /* 内边距 */
-            /* box-sizing: border-box; 总宽度 */
-            width: device-wide;
-            height: 45px;           /* 导航栏高度 */
-            overflow: hidden;       /* 溢出隐藏 */
-            
-        }
-        /* li{
-            display: inline;        /* 水平导航栏方法一 
-        } */
-        a{
-            /* color: black;         设置字体颜色 */
-            display: inline;        /* 内联：就不会全部都是了 */
-            float: left;            /* 水平导航栏方法二 */        
-            border-radius: 25px;    /* 圆角 */
-            box-sizing: 1000px;     /* 设置总宽度:没用 */
-            margin-left:170px;      /* 设置外边距属性 */
-            margin-right: 100px;
-            padding: 10px 20px;     /* 内边距 */
-            text-decoration: none;  /* 无下划线 */
-            
-        }
-        a:link{
-            color: green;
-        }
-        a:visited{
-            color: grey;
-        }
-        a:hover{
-            background-color: #181fe7;  
-            color: white;
-        }
-        a:active{        /* 没效果??? */
-            background-color: #181fe7;  
-            color: white;
-        }
-        #人物介绍{
-            display: none;
-        }
-        #系列作品{
-            display: none;
-        }
-        #我们相关{
-            display: none;
-        }
-        #人物介绍:target{
-            display: block;
-        }
-        #系列作品:target{
-            display: block;
-        }
-        #我们相关:target{
-            display: block;
-        }
-/* ==================================================== */
-    
-    /* 三列介绍 */
-    .column {
-        float: left;
-        width: 33.33%;
-    }
-/* ==================================================== */    
-    /* 界面一 */
-    /* 界面一：总介绍 */
-    .intro{
-        /* border-radius: 10px; */
-        margin: auto;               /* 居中 */
-        margin-top: 25px;   
-        margin-bottom: 25px;   
-        padding: 20px;
-        outline-style: solid;
-        outline-color: #181fe7;
-        border-radius: 25px;        /* 圆角 */
-        width: 1050px;
-        height: 130px;
-        text-align: left;
-        color: black;
-    }
-    /* 界面一：三栏介绍 */
-    #hai{     
-        /* 背景块 */
-        outline-style: none;            /* 元素外边框：去掉 */
-        background-color: #F6CE39;
-        border-radius: 25px;            /* 圆角 */
-        /* 文字 */
-        text-align: left;               /* 左对齐 */
-        color: white;       
-        /* 文本关系 */
-        margin: auto;       /* 居中 */
-        border-top: 25%;
-        padding: 5% 5%;
-        width: 163px;
-        height: 100px;   
-    }    
-    #pai{      
-        /* 背景块 */
-        outline-style: none;
-        background-color: #CF8177;
-        border-radius: 25px;
-        /* 文字 */
-        text-align: left;
-        color: white;        
-        /* 文本关系 */
-        margin: auto;       /* 居中 */
-        border-top: 25%;
-        padding: 5% 5%;
-        width: 163px;
-        height: 100px;
-        }
-        #zhang{       
-        /* 背景块 */
-        outline-style: none;
-        background-color: #376098;
-        border-radius: 25px;
-        /* 文字 */
-        text-align: left;
-        color: white;
-        /* 文本关系 */
-        margin: auto;       /* 居中 */
-        border-top: 25%;
-        padding: 5% 5%;
-        width: 163px;
-        height: 100px;
-    }
-    img{
-        position: relative; 
-        left: 25%; 
-        top: 50%; 
-        width: 200px; 
-        border-radius: 10%;
-        object-fit: cover;      /* 维持图像比例 */
-    }
-    img:hover{
-       transition: width 5s;
-       border-radius: 10%;
-       transform: scale(1.1);   /* 尺寸太大的话页面会移动 */
-    }
-/* ==================================================== */
-    /* 界面二 */
-    table{
-        margin: auto;
-        padding-top: 100px;
-        width: 80%;
-        /* border-collapse: collapse; */
-    }
-    tr:hover{
-        background-color: rgb(111, 188, 239);
-        color: rgb(236, 239, 231);
-    }
-    tr>:first-child{
-        background-color: rgb(106, 135, 192);
-    }
-    tr>:nth-child(2){
-        background-color: rgb(119, 86, 133);
-    }
-    tr>:last-child{
-        background-color: rgb(162, 203, 181);
-    }
-    table, th, td {
-        /* border: hidden; */
-        border-width: 0;
-        text-align: center;
-    }
-/* ==================================================== */
-    /* 第三页 */
-    /* 输入框 */
-    textarea {
-        box-sizing: border-box;
-        margin-top: 50px;
-        padding: 12px 20px;
-        width: 100%;
-        height: 300px;
-        border-radius: 20px;
-        resize: none;
-        border: 2px solid #181fe7;
-        background-color: #b8ebf5;
-    }
-    /* 提交方位 */
-    .s{
-        margin: 30px;
-        width: 20px;
-        content: "";
-        color: white;
-        display: table;
-        float: right;
-    }
-    input[type="submit"]{
-        border: none;
-        border-radius: 2%;
-        background-color:#376098;
-        color: white;
-        font-size: 12px;
-        width: 100px;
-        height: 40px;
-    }
-    input[type="submit"]:hover{
-        border-radius: 2%;
-        background-color:#181fe7;
-        color: white;
-    }
-/* ==================================================== */
-    </style>
+    <title>海绵宝宝</title>
+    <link rel="stylesheet" href="work1.css">
 </head>
 <body>    
 
     <!--导航栏-->
         <!-- <ul class="topnav"> -->
         <ul>
-            <li><a href="#人物介绍">人物介绍</a></li>
-            <li><a href="#系列作品">系列作品</a></li>
-            <li><a href="#我们相关">我们相关</a></li>
+            <li><a href="#chara">人物介绍</a></li>
+            <li><a href="#series">系列作品</a></li>
+            <li><a href="#our">我们相关</a></li>
         </ul>
         <!-- 人物介绍页面 -->
-        <div id="人物介绍">
+        <div id="chara">
             <div class="intro">
-                <img src="all.jpeg" alt="all" style="left: 0; top:0;float: left; width: 120px; height: 120px; border-radius: 50%; "/>
-                <div style=" padding-left: 16%; padding-top: 1.6%;">《海绵宝宝》
-                    （英语：SpongeBob SquarePants，旧译《棉球方块》）
-                是一部美国喜剧动画剧集，自1999年在尼克儿童频道播出至今，是目前尼克频
-                道最长寿的节目，亦是尼克卡通最长寿的卡通，不仅比先前同为尼克卡通的如
-                《尿布一族》、《大头仔天空》、《猫狗》等卡通的集数还多，更是目前集数
-                最多的尼克卡通，创始者斯蒂芬·海伦伯格是一名海洋生物学家兼动画师，他
-                同时也是动画制作公司United Plankton Pictures的老板。</div>
+                <img src="img/all.jpeg" alt="all" style="background-size: contain; left: 0; top:0; float: left; width: 120px; height: 120px; border-radius: 50%;"/>
+                <div style=" padding-left: 16%; padding-top: 4%;">
+                    海绵宝宝是一只黄色的方形海绵，住在太平洋深处风光优美无人知道的
+                    比基尼海滩水域下。那里是一个没有忧愁的世界，住着一群快乐的海洋生物。
+                </div>
             </div>
        
             <div class="column">
                 <div id="hai" style="margin-bottom: 50px;">
-                    <div>海绵宝宝</div>
+                    <div style="text-align: center;">海绵宝宝</div>
                     <div>是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐。</div>
                 </div>
-                <img src="haimianbaobao.jpeg" alt="all" />
+                <img src="img/haimianbaobao.jpeg" alt="all" />
             </div>
             <div class="column">
                 <div id="pai" style="margin-bottom: 50px;">
-                    <div>派大星</div>
+                    <div style="text-align: center;">派大星</div>
                     <div>粉红色的海星，很可爱，和海绵宝宝交情最好。</div>
                 </div>
-                <img src="paidaxing.jpeg" alt="all"/>
+                <img src="img/paidaxing.jpeg" alt="all"/>
             </div>
             <div class="column">
                 <div id="zhang" style="margin-bottom: 50px;">
-                    <div>海绵宝宝</div>
+                    <div style="text-align: center;">章鱼哥</div>
                     <div>是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐。</div>
                 </div>
-                <img src="zhangyuge.jpeg" alt="all"/>
+                <img src="img/zhangyuge.jpeg" alt="all"/>
             </div>
         </div>
         <!-- 系列作品页面 -->
-        <div id="系列作品">
+        <div id="series">
 
             <table>
-                <tr>
-                    <th>系列</th>
-                    <th>日期</th>
-                    <th>级数</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第一季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第二季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第三季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第四季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第五季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第六季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
-                <tr>
-                    <th>海绵宝宝第七季</th>
-                    <th>2023/6/26</th>
-                    <th>54</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>系列</th>
+                        <th>日期</th>
+                        <th>级数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>海绵宝宝</td>
+                        <td>2008年10月23日</td>
+                        <td>60集</td>
+                    </tr>
+                    <tr>
+                        <td>海绵宝宝</td>
+                        <td>2008年10月23日</td>
+                        <td>60集</td>
+                    </tr>
+                    <tr>
+                        <td>海绵宝宝</td>
+                        <td>2008年10月23日</td>
+                        <td>60集</td>
+                    </tr>
+                    <tr>
+                        <td>海绵宝宝</td>
+                        <td>2008年10月23日</td>
+                        <td>60集</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <!-- 我们相关页面 -->
-        <div id="我们相关">
+        <div id="our">
             <textarea placeholder="对我们的建议..."></textarea>
             <div class="s">
                 <input type="submit" value="提交">

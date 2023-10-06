@@ -3,7 +3,7 @@ body{
 }
 
 .top{
-    width: 1430px;
+    width: 1230px;
     height: 125px;
     margin: 0 auto;
 }
@@ -18,16 +18,16 @@ li{
     height: 70px;
     margin-top: 27.5px;
     margin-bottom: 27.5px;
-    margin-right: 365px;
+    margin-right: 270px;
     border-radius: 35px;
     text-align: center;     /*!!!*/
    } 
-   ul>li a{
+ul>li a{
     /*文字*/
     font-size: 25px;
     line-height: 70px;
     text-decoration: none;
-   }
+}
 
 .top .last{
     margin-right: 0;
@@ -39,7 +39,7 @@ li{
 }
 
 .banner{    /*盒子（边框）*/
-    width: 1430px;
+    width: 1130px;
     height: 310px;
     border-radius: 20px;
     border: 2px solid #5883bc;
@@ -56,13 +56,14 @@ li{
 }
 
 .word{
+    margin-right: 10px;
     margin-left: 285px;
     margin-top: 125px;
     font-size: 20px;
 }
 
 .box1{
-    width: 1430px;
+    width: 1130px;
     height: 265px;
     margin: 0 auto;
     color: white;
@@ -71,62 +72,61 @@ li{
 
 h3{
     text-align: center;
-    line-height: 1px;
+    line-height: 0.5px;
+}
+
+.box1 .hai{
+    float: left;
+    width: 290px;
+    height: 180px;
+    margin-top: 50px;
+    margin-right: 120px;
+    border-radius: 20px;
+    background-color: #f8cf37;
+}
+.box1 .pai{
+    float: left;
+    width: 290px;
+    height: 180px;
+    margin-top: 50px;
+    margin-right: 120px;
+    border-radius: 20px;
+    background-color: #d08079;
 }
 .box1 .zha{
     float: left;
-    width: 310px;
-    height: 185px;
+    width: 290px;
+    height: 180px;
     margin-top: 50px;
     margin-right: 0;
     border-radius: 20px;
     background-color: #385f98;
 }
 
-.box1 .pai{
-    float: left;
-    width: 310px;
-    height: 185px;
-    margin-top: 50px;
-    margin-right: 250px;
-    border-radius: 20px;
-    background-color: #d08079;
-}
-
-.box1 .hai{
-    float: left;
-    width: 310px;
-    height: 185px;
-    margin-top: 50px;
-    margin-right: 250px;
-    border-radius: 20px;
-    background-color: #f8cf37;
-}
 
 p{
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
     font-size: 23px;
 }
 .box2{
-    width: 1430px;
+    width: 1130px;
     height: 320px;
     margin: 0 auto;
 }
 
 .box2 .ha{
     float: left;
-    width: 310px;
-    height: 320px;
+    width: 290px;
+    height: 300px;
     border-radius: 20px;
     margin-top: 25px;
-    margin-right: 250px;
+    margin-right: 120px;
 }
-
 .box2 .zh{
     float: left;
-    width: 310px;
-    height: 320px;
+    width: 290px;
+    height: 300px;
     border-radius: 20px;
     margin-top: 25px;
     margin-right: 0;
@@ -147,7 +147,7 @@ p{
 }
 
 .fake{
-    width: 1430px;
+    width: 1130px;
     margin: 0 auto;
 }
 table .xi{
@@ -162,7 +162,7 @@ table .ji{
 }
 
 .real{
-    width: 1430px;
+    width: 1130px;
     height: 160px;
     margin: 0 auto;
 }
@@ -202,12 +202,12 @@ table .ji{
 textarea{
     resize: none;
     display: block;
-    background-color: #dcf3ff;
-    width: 1430px;
+    width: 1130px;
     height: 240px;
     border: 3px solid #87ceed;
     border-radius: 20px;
     margin: 0 auto;
+    background-color: #dcf3ff;
 }
 
 .null3{
@@ -215,7 +215,7 @@ textarea{
 }
 
 .footer{
-    width: 1430px;
+    width: 1130px;
     height: 60px;
     margin: 0 auto;
 }
@@ -223,7 +223,7 @@ textarea{
 button{
     float: right;
     width: 165px;
-    height: 60px;
+    height: 55px;
     border-radius: 10px;
     border: 0;
     background-color: #6495ed;

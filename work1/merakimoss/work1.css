@@ -1,0 +1,201 @@
+/*背景颜色*/
+body{
+    background-color: #DCF3FF;
+}
+/* =============================================================== */
+/*导航栏*/
+ul{
+    display: block;
+    list-style-type: none;
+    margin: 0 auto;              /* 外边距 */
+    padding: 0;             /* 内边距 */
+    width: 80%;             /* 宽度 */
+    height: 45px;           /* 导航栏高度 */
+    text-align: center;  
+}
+li{
+    /* list-style: none; */
+    display: block;        /* 水平导航栏方法一 */
+    float: left;
+    width: 33.33%;
+    margin-top: 1.5%;
+
+}
+a{
+    color: black;         /* 设置字体颜色 */
+    text-decoration: none;  /* 无下划线 */
+    border-radius: 30%;    /* 圆角 */
+    width: 500px;
+    height: 30px;
+    line-height: 50px;
+}
+a:link{
+    color: green;
+}
+
+a:hover{
+    background-color: #385C81;  
+    color: white;
+}
+/* ==================================================== */
+
+/* 三列介绍 */
+.column {
+    float: left;
+    width: 33.33%;
+}
+/* ==================================================== */    
+/* 界面一 */
+#chara>div #img:hover{
+    transform: scale(1.3);
+}
+/* 界面一：总介绍 */
+#chara .intro{
+    /* border-radius: 10px; */
+    margin: auto;               /* 居中 */
+    margin-top: 3%;   
+    margin-bottom: 5%;   
+    padding: 3%;
+    outline-style: solid;
+    outline-color: #5883BC;
+    border-radius: 25px;        /* 圆角 */
+    width: 90%;
+    height: 130px;
+    text-align: left;
+    color: black;
+}
+/* #chara .intro #img{
+    background-image: url(img/all.jpeg);
+    background-size: contain;
+    left: 0; 
+    top:0;
+    float: left; 
+    width: 120px; 
+    height: 120px; 
+    border-radius: 50%;
+} */
+/* 界面一：三栏介绍 */
+#chara #hai{     
+    /* 背景块 */
+    outline-style: none;            /* 元素外边框：去掉 */
+    background-color: #F6CE39;
+    border-radius: 25px;            /* 圆角 */
+    /* 文字 */
+    text-align: left;               /* 左对齐 */
+    color: white;       
+    /* 文本关系 */
+    margin: auto;       /* 居中 */
+    border-top: 25%;
+    padding: 5% 5%;
+    width: 163px;
+    height: 100px;   
+}    
+#chara #pai{      
+    /* 背景块 */
+    outline-style: none;
+    background-color: #CF8177;
+    border-radius: 25px;
+    /* 文字 */
+    text-align: left;
+    color: white;        
+    /* 文本关系 */
+    margin: auto;       /* 居中 */
+    border-top: 25%;
+    padding: 5% 5%;
+    width: 163px;
+    height: 100px;
+}
+#chara #zhang{       
+    /* 背景块 */
+    outline-style: none;
+    background-color: #376098;
+    border-radius: 25px;
+    /* 文字 */
+    text-align: left;
+    color: white;
+    /* 文本关系 */
+    margin: auto;       /* 居中 */
+    border-top: 25%;
+    padding: 5% 5%;
+    width: 163px;
+    height: 100px;
+}
+#chara img{
+    position: relative; 
+    left: 25%; 
+    top: 50%; 
+    width: 200px; 
+    border-radius: 10%;
+    object-fit: cover;      /* 维持图像比例 */
+}
+#chara img:hover{
+    transition: width 5s;
+    border-radius: 10%;
+    transform: scale(1.1);   /* 尺寸太大的话页面会移动 */
+}
+/* ==================================================== */
+/* part二 */
+#series table{
+    margin: auto;
+    padding-top: 70%;
+    width: 80%;
+    border-collapse: collapse;
+}
+#series table td{
+    padding: 0;
+}
+#series table td:hover{
+    background-color: rgb(111, 188, 239);
+    color: rgb(236, 239, 231);
+}
+#series table td:first-child{
+    background-color: #99CCFF;
+}
+#series table td:nth-child(2){
+    background-color: #87CEEB;
+}
+#series table td:last-child{
+    background-color: #6699CC;
+}
+#series table, th, td {
+    /* border: hidden; */
+    border-width: 0;
+    text-align: center;
+}
+/* ==================================================== */
+/* part三 */
+/* 输入框 */
+#our textarea {
+    box-sizing: border-box;
+    margin-top: 50px;
+    padding: 12px 20px;
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    resize: none;
+    border: 2px solid #87CEED;
+    background-color: #b8ebf5;
+}
+/* 提交方位 */
+#our .s{
+    margin: 30px;
+    width: 20px;
+    content: "";
+    color: white;
+    display: table;
+    float: right;
+}
+#our input[type="submit"]{
+    border: none;
+    border-radius: 2%;
+    background-color:#376098;
+    color: white;
+    font-size: 12px;
+    width: 100px;
+    height: 40px;
+}
+input[type="submit"]:hover{
+    border-radius: 2%;
+    background-color:#181fe7;
+    color: white;
+}

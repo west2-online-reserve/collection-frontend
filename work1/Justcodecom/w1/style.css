@@ -3,15 +3,15 @@ body{
     font-size: 16px;
     margin: 0;
     min-height: 120vh;
-    background: 
+    background:  #4d87c0
     linear-gradient(125deg,rgb(95, 164, 228),rgb(171, 220, 237),rgb(114, 177, 240),#fdfdfd,#29e0be);
-    background-size: 500%;
-    animation:bgAnimation 15s linear infinite;
+    background-size:500% 500%;
+    animation:mymove 13s  infinite;
     
    
 }
 
-@keyframes bgAnimation {
+@keyframes mymove {
     0%{
         background-position: 25% 50%;
     }
@@ -21,6 +21,7 @@ body{
     100%{
         background-position: 0% 50%;
     }
+   
 }
 
 .nav {
@@ -58,9 +59,10 @@ a:hover {
 }
 
 .round1 {
+    display: flex;
     font-size:16PX;
-    padding-top:30px;
-    padding-bottom: 30px;
+    padding-top:1em;
+    padding-bottom: 1em;
     padding-left: 10px;
     margin-top: 20px;
     border:2px solid rgb(63, 88, 216);
@@ -70,8 +72,8 @@ a:hover {
 }
 .round1 img{
     float: left;
-    height: 120px;
-    width: 120px;
+    height: 150px;
+    width: 150px;
     margin-top: 0.1px;
     margin-bottom: 15px;
     border-radius:120px;
@@ -190,7 +192,6 @@ a:hover {
     position:absolute;
     top:910px;
     left:970px;
-    /* ????????????????????????? */
     text-align: center;
     background-color: #4d87c0;
     width:90px;
@@ -215,12 +216,12 @@ a:hover {
     float:left;
     width: 75%;
     height: 100px;
-    color: #737373;
-
+    color: #7f7f7f;
 }
+
 .c7{
     position:absolute;
-    top:1350px;
+    top:1400px;
     left:900px;
     border:none;
     border-radius: 5px;

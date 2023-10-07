@@ -1,0 +1,25 @@
+ul {
+    list-style-type: none;
+    width: 100%;
+    text-align: center;
+}
+li {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+li:hover {
+    background-color :dodgerblue;
+}
+
+.all {
+    border-image-width: 50px;
+}
+
+#intro td {
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+}

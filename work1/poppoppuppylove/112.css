@@ -164,6 +164,9 @@ text-align: center;
 width: 100px;
 text-align: center;
 }
+.trouble {
+  border-collapse: collapse;
+  }
 .serie{
 width: 1000px;
 background-color: rgb(162, 208, 253);

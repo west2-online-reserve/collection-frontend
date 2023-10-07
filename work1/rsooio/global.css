@@ -20,7 +20,7 @@ body {
   border-radius: 999rem;
   background-color: rgba(0, 0, 255, 0.1);
 
-  a {
+  & a {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 999rem;
@@ -28,7 +28,7 @@ body {
     text-decoration-line: none;
   }
 
-  a:hover {
+  & a:hover {
     background-color: #376098;
     color: #ffffff;
   }
@@ -107,7 +107,7 @@ body {
   margin-top: 3rem;
   font-size: small;
 
-  td {
+  & td {
     text-align: center;
   }
 
@@ -117,7 +117,6 @@ body {
 
   .col2 {
     background-color: #add8e6;
-    background-color: black;
   }
 
   .col3 {
@@ -157,7 +156,7 @@ body {
   background-color: #93d4fd;
 }
 
-@media (min-width: 680px) {
+@media (min-device-width: 680px) {
   .list {
     flex-direction: row;
   }
@@ -180,7 +179,7 @@ body {
   }
 }
 
-@media (min-width: 960px) {
+@media (min-device-width: 960px) {
   .list-item {
     width: 14rem;
   }
@@ -191,9 +190,17 @@ body {
   }
 
   .table {
+    & td {
+      text-align: center;
+    }
+
     .col1 {
       background-color: lightskyblue;
       width: 60%;
+    }
+
+    .col2 {
+      background-color: #add8e6;
     }
 
     .col3 {
@@ -203,13 +210,13 @@ body {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-device-width: 1200px) {
   .list-item {
     width: 18rem;
   }
 }
 
-@media (min-width: 1450px) {
+@media (min-device-width: 1450px) {
   .list-item {
     width: 22rem;
   }

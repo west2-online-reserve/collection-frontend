@@ -204,6 +204,10 @@ table .t3 {
     border-width: 2px;
     border-style: solid;
     border-color: #87ceed;
+}
+
+textarea::placeholder {
+    color: black;
     text-indent: 5px;
     line-height: 50px;
     font-size: 15px;
@@ -220,6 +224,7 @@ table .t3 {
     text-align: center;
     background-color: #6495ed;
     color: white;
+    cursor: pointer;
 }
 
 .all .an:hover {

@@ -24,6 +24,7 @@
 
 body {
     background: #DCF3FF;
+    margin: 0 200px;
 }
 
 a {
@@ -124,6 +125,7 @@ nav div:hover {
     width: 310px;
     height: 310px;
     border-radius: 35px;
+    transition: all .2s linear;
 }
 
 .role div img:hover {

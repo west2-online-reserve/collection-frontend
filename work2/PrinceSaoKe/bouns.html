@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouns</title>
+</head>
+
+<body>
+
+    <p>p标签共有5个</p>
+    <p>p标签共有5个</p>
+    <p>p标签共有5个</p>
+    <p>p标签共有5个</p>
+    <p>p标签共有5个</p>
+
+    <h6>h6标签共有4个</h6>
+    <h6>h6标签共有4个</h6>
+    <h6>h6标签共有4个</h6>
+    <h6>h6标签共有4个</h6>
+
+    <script>
+        /// bouns1：输出页面中Dom出现次数最多的前3个名称
+        function domsCount() {
+            let tagsCollection = document.getElementsByTagName('*') // 所有的标签（包含重复标签）
+            let allTags = Array.prototype.slice.call(tagsCollection)    // 将Collection转化成数组
+            let tags = {}   // 用于记录不重复的标签及个数
+
+            // 计数
+            allTags.forEach(tag => {
+                if (tags[tag.tagName]) {
+                    tags[tag.tagName]++
+                } else {
+                    tags[tag.tagName] = 1
+                }
+            });
+
+            let tagsList = Object.keys(tags)    // 将tags的key转换成列表
+
+            // 根据tags中标签的个数对tagsList排序
+            let sortedTags = tagsList.sort((x, y) => {
+                return tags[y] - tags[x]
+            })
+
+            console.log(`数量最多的标签：${sortedTags[0]}，${tags[sortedTags[0]]}个`)
+            console.log(`数量第二多的标签：${sortedTags[1]}，${tags[sortedTags[1]]}个`)
+            console.log(`数量第三多的标签：${sortedTags[2]}，${tags[sortedTags[2]]}个`)
+        }
+
+        /// bouns2：根据字符串路径获取对象
+        function get(obj, path, defaultValue) {
+            let pathList = path.split('.')  // 将字符串路径以'.'进行分割
+            pathList.forEach(p => {
+                if (obj[p]) {
+                    obj = obj[p]
+                } else {
+                    obj = defaultValue
+                }
+            })
+            return obj
+        }
+
+        /// bouns3：访问或修改对象属性自动输出
+        const handler = {
+            get(target, prop) {
+                console.log(target[prop])
+                return target[prop]
+            },
+
+            set(target, prop, value) {
+                console.log(target[prop], value)
+                target[prop] = value
+            }
+        }
+
+        /// bouns4：虚拟DOM
+        function createElement(tag, attrs, children) {
+            return { tag: tag, attrs: attrs, children: children }
+        }
+
+        function mount(vdom, target) {
+            let dom = document.createElement(vdom.tag)
+
+            // 为标签添加属性
+            let attrsKeys = Object.keys(vdom.attrs)
+            attrsKeys.forEach(attrsKey => {
+                dom[attrsKey] = vdom.attrs[attrsKey]
+            })
+
+            // 添加子标签
+            vdom.children.forEach(child => {
+                if (typeof (child) == 'string') {
+                    dom.innerHTML = child
+                } else {
+                    mount(child, dom)
+                }
+            })
+
+            target.appendChild(dom)
+        }
+
+
+        /// bouns1 test
+        domsCount()
+
+        /// bouns2 test
+        const obj = {
+            a: {
+                c: '我是c',
+                d: '我是d',
+            },
+            b: {
+                e: '我是e',
+            },
+        }
+        console.log(get(obj, 'a.d', 'Not Found'))
+        console.log(get(obj, 'b.f', 'Not Found'))
+
+        /// bouns3 test
+        const proxiedObj = new Proxy(obj, handler)
+        const a = proxiedObj.a
+        proxiedObj.b = 1
+
+        /// bouns4 test
+        const myVDom = createElement('div', { id: 'container' }, [
+            createElement('ul', { id: 'list' }, [
+                createElement('li', { className: 'item' }, ['Item 1']),
+                createElement('li', { className: 'item' }, ['Item 2']),
+                createElement('li', { className: 'item' }, ['Item 3'])
+            ])
+        ])
+
+        mount(myVDom, document.body)
+    </script>
+
+</body>
+
+</html>

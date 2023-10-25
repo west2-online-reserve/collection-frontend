@@ -53,7 +53,6 @@
   <script>
     const wrap = document.querySelector('.wra')
     const yes = document.querySelector('.yes')
-    const no = document.querySelector('.no')
 
     function changePosition() {
       let randomLeft = Math.random() * 100
@@ -63,7 +62,7 @@
       wrap.style.top = `${randomTop}%`
     }
 
-    no.addEventListener('click', changePosition)
+    wrap.addEventListener('mouseenter', changePosition)
 
     yes.addEventListener('click', function () {
       alert('成功')

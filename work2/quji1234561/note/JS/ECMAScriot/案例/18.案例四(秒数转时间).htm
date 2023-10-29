@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //第一种
+
+    let sec1 = +prompt('请输入秒数(第一种方法):')
+    function GetTime(t) {
+      //不用let声明使其变为全局变量,之后用于函数外
+      let h = parseInt(t / 60 / 60 % 24)
+      let m = parseInt(t / 60 % 60)
+      let s = parseInt(t % 60)
+      h = h < 10 ? '0' + h : h
+      m = m < 10 ? '0' + m : m
+      s = s < 10 ? '0' + s : s
+      return [h, m, s]
+    }
+    let time1 = GetTime(sec1)
+    document.write(`${time1[0]}时${time1[1]}分${time1[2]}秒`)
+
+    //第二种
+
+    let sec2 = +prompt('请输入秒数(第二种方法):')
+    function getTime(t) {
+      //不用let声明使其变为全局变量,之后用于函数外
+      h = parseInt(t / 60 / 60 % 24)
+      m = parseInt(t / 60 % 60)
+      s = parseInt(t % 60)
+      h = h < 10 ? '0' + h : h
+      m = m < 10 ? '0' + m : m
+      s = s < 10 ? '0' + s : s
+      return [h, m, s]
+    }
+    getTime(sec2)
+    document.write(`${h}时${m}分${s}秒`)
+  </script>
+</body>
+
+</html>

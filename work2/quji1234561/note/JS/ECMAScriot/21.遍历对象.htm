@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>遍历对象</h2>
+  <h3>for( in )语法</h3>
+  <p>for (let k in obj) {</p>
+  <p> console.log(k);</p>
+  <p> console.log(obj[k]);</p>
+  <p> }</p>
+
+  <script>
+    let arr = [11, 22, 33, 44]
+    for (let k in arr) {
+      console.log(k);
+      console.log(arr[k]);
+    }
+    //数组不建议for in,因为k是字符串
+    let obj = {
+      uName: 'Leo',
+      gender: 'male',
+      age: '18'
+    }
+    for (let k in obj) {
+      console.log(k);
+      console.log(obj[k]);
+    }
+  </script>
+</body>
+
+</html>

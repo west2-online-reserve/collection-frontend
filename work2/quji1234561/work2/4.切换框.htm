@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    #app {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .label {
+      width: 120px;
+      height: 50px;
+      background-color: #6190dd;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      color: #000;
+      margin: 10px;
+      transform: all;
+    }
+
+    .label:hover {
+      cursor: pointer;
+      background-color: #4074c7;
+      transition: all 0.15s ease-out;
+    }
+
+    #content {
+      width: 400px;
+      height: 320px;
+      text-align: start;
+      background-color: #80d8fe;
+      border-radius: 5px;
+      padding: 15px;
+      box-sizing: border-box;
+      transform: all;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="menu">
+      <div class="label" id="first">二小姐</div>
+      <div class="label" id="second">静可爱</div>
+      <div class="label" id="third">一色</div>
+    </div>
+    <div id="content">mewww，这里是你需要展示的文字</div>
+    <!-- html和css内容不允许修改,只能修改script -->
+  </div>
+
+  <script>
+    // 要在这里面写逻辑
+
+    //1.创建人物文本数列
+    const text = ['二小姐人物简介', '静可爱人物简介', '一色人物简介']
+    //2.获取DOM对象
+    const menu = document.querySelectorAll('#menu .label')
+    const content = document.querySelector('#content')
+    content.innerHTML = text[0]//默认文本内容
+    //3.遍历给每个label添加点击事件
+    for (let i = 0; i < menu.length; i++) {
+      menu[i].addEventListener('click', function () {
+        content.innerHTML = text[i]
+      })
+    }
+
+  </script>
+</body>
+
+</html>

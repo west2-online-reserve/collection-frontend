@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 400px;
+      height: 400px;
+      margin: 100px auto;
+      background-color: blue;
+      font-size: 60px;
+      color: white;
+      line-height: 400px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>延时函数</h2>
+  <h3>setTimeout(回调函数,等待的毫秒数)</h3>
+  <p>延迟执行,只执行一次</p>
+  <h3>clearTimeout</h3>
+  <p>清除定时器</p>
+
+
+
+  <div>广告位招租</div>
+  <script>
+    setTimeout(function () {
+      document.querySelector('div').style.display = 'none'
+    }, 3000)
+  </script>
+</body>
+
+</html>

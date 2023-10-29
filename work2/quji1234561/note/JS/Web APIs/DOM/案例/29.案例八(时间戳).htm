@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 400px;
+      height: 200px;
+      padding: 20px;
+      background-color: aqua;
+      line-height: 200px;
+      text-align: center;
+      font-size: 25px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div"></div>
+  <script>
+    function getLtime() {
+      const ddl = +new Date('2023-11-5')
+      const now = +new Date()
+      const ltim = ddl - now
+      let s = Math.floor(ltim / 1000 % 60)
+      let m = Math.floor(ltim / 1000 / 60 % 60)
+      let h = Math.floor(ltim / 1000 / 60 / 60 % 24)
+      const d = Math.floor(ltim / 1000 / 60 / 60 / 24)
+      s = s < 10 ? '0' + s : s
+      m = m < 10 ? '0' + m : m
+      h = h < 10 ? '0' + h : h
+      document.querySelector('div').innerHTML = `距离ddl还剩下:${d}天${h}时${m}分${s}秒`
+    }
+    getLtime()
+    setInterval(getLtime, 1000)
+
+
+  </script>
+</body>
+
+</html>

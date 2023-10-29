@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>日期时间</h1>
+  <h2>1.日期对象date</h2>
+  <p>得到当前系统的时间</p>
+  <p>使用new进行操作的,都叫实例化</p>
+  <script>
+    //1.获得当前时间
+    const date = new Date()
+
+    let dateY = date.getFullYear()//年
+    let dateH = date.getHours()//时
+    let dateM = date.getMinutes()//分
+    let dateS = date.getSeconds()//秒
+
+
+    console.log(date);
+    console.log(date.toLocaleString());//年/月/日 时:分:秒(补零)
+    console.log(date.toLocaleDateString());//年月日
+    console.log(date.toLocaleTimeString());//时分秒
+
+    console.log(dateY);
+    console.log(date.getMonth());//月份0-11(月份加1得到实际月份)
+    console.log(date.getDate());//日
+    console.log(date.getDay());//星期0-6(从0开始,星期天是0)
+
+    console.log(dateH);
+    console.log(dateM);
+    console.log(dateS);
+
+    // 2.获得指定时间
+    const date2 = new Date('2023-10-19')
+    console.log(date2);
+  </script>
+
+  <h2>2.时间戳</h2>
+  <p>场景:倒计时</p>
+  <p>获得当前时间戳</p>
+  <p>从1970.1.1 00:00:00开始 至 当前 的毫秒数</p>
+  <h3>1. +new Date()</h3>
+  <p>实例化和赋值同时完成,相当于将Date字符串转为数字型</p>
+  <h3>2. getTime()</h3>
+  <p>需要实例化</p>
+  <h3>3. Date.now()</h3>
+  <p>不需要实例化,只能获得当前的时间戳</p>
+  <script>
+    console.log(+new Date('2024-4-1 18:00:00'));
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<h2>定时器-间歇函数</h2>
+<p>每隔一段时间自动执行一段代码,不需要手动触发</p>
+<h3>1.开启定时器</h3>
+<p>setInterval(函数,间隔时间)</p>
+<p>其中的函数不能加()调用,若要加()外面要再加''</p>
+<p>间隔时间单位ms</p>
+<script>
+  let intvalId = setInterval(function () {
+    //重新开的时候id会重新赋值,所以使用let声明
+    console.log('');
+  }, 1000)
+</script>
+
+<h3>2.关闭定时器</h3>
+<script>
+  console.log(intvalId);
+  //关闭定时器
+  clearInterval(intvalId)
+  setInterval(function () {
+    //重新开的时候id会重新赋值,所以使用let声明
+    console.log('');
+  }, 1000)
+  console.log(intvalId);
+  clearInterval(intvalId)
+  //重新赋值的序号相同,但仍不能使用const赋值(会报错)
+  clearInterval(intvalId)
+
+</script>
+
+<body>
+
+</body>
+
+</html>

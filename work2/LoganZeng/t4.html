@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切换切换</title>
+    <style>
+        #word{
+            color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex;">
+    <div style="display: flex;">
+    <ul>
+        <li style="color: black;margin-top: 100px;font-size: 30px;border-style: solid;border-color: black;text-align: center;border-width: 3px;"><button style="color: black;font-size: 30px;width: 120px;"onclick="change('black')">BLACK</li>
+        <li style="color: pink;margin-top: 150px;font-size: 30px;border-style: solid;border-color: pink;text-align: center;border-width: 3px;"><button style="color: pink;font-size: 30px;width: 120px;"onclick="change('pink')">PINK</li> 
+        <li style="color: red;margin-top: 150px;font-size: 30px;border-style: solid;border-color: red;text-align: center;border-width: 3px;"><button style="color: red;font-size: 30px;width: 120px;"onclick="change('red')">RED</li>
+    </ul>
+</div>
+<div id="myText" style="background-color:aliceblue;width: 300px;height: 300px;position: absolute;margin-left: 500px;margin-top: 200px;">
+    <p id="word"></p>
+</div>
+</div>
+<script>
+function change(color){
+            let x = document.getElementById("myText");
+            x.style.backgroundColor = color;
+            if( x.style.backgroundColor == "pink"){
+               document.getElementById("word").innerHTML =222;
+            }else if (x.style.backgroundColor == "black"){
+                document.getElementById("word").innerHTML = 111;
+            }else if (x.style.backgroundColor == "red"){
+                document.getElementById("word").innerHTML = 333;
+            }
+        }
+</script>
+</body>
+</html>

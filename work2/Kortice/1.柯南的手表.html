@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿笠博士的新发明</title>
+    
+    <style>
+        body {
+            padding-left: 10vw;
+        }
+        .question {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        .box{
+            margin-top: 64px;
+            width: 60%;
+            height: 200px;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #blue{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #21a4f1;
+        }
+        #red{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #fc4b5a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question">
+        <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+        <p>蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。</p>
+        <p>点击定格按钮，红框内显示定格的时间。</p>
+    </div>
+    <div class="box">
+        <div id="blue">
+            <span id="time"></span>
+        </div>
+        <div id="red">
+            <span id="pauseTime"></span>
+        </div>
+    </div>
+    <button id="btn" style="font-size: 24px;margin-top: 48px;">定格</button>
+
+    <!--以上代码不可修改-->
+
+
+    <!--
+        要求在下列代码中实现
+        当打开网页的时候 时间以1000ms的速率动态更新
+        鼠标移入blue的时候 暂停时间的更新，并且有边框放大效果
+        鼠标移出blue的时候 继续时间的更新，css样式还原
+        点击定格按钮，red里面显示点击时候的时间
+    -->
+   <script>
+        /* 
+            实现打开网页，获取时间且以1000ms速率动态更新
+        */
+   
+        // 获取蓝框
+        const blue = document.getElementById("blue")
+        // 获取蓝框中的span
+        const blueSpan = document.getElementById("time")
+        // 获取时间
+        let time = new Date()
+        // 为蓝框中添加时间 并且将时间格式化
+        blueSpan.textContent = time.toLocaleString("zh-CN")
+        // 设置定时器，让时间以1000ms的速率动态更新
+        let timerIn
+        timerIn = setTimeout( update = () => {
+                let time = new Date()
+                blueSpan.textContent = time.toLocaleString("zh-CN")
+                // 执行完再设置一个定时器，达到interval的效果
+                timerIn = setTimeout(update, 1000)
+        }, 1000)
+       
+        /* 
+            实现鼠标移入blue的时候 暂停时间的更新，并且有边框放大效果
+        */
+
+        // 为蓝框绑定鼠标移入事件
+        blue.addEventListener("mouseenter", () => {
+                // 暂停时间更新，也就是删除定时器，in和out都删除，达到反复进入都可以暂停的效果
+                clearTimeout(timerIn)
+                clearInterval(timerOut)
+                // 同时将设置边框放大的样式，也就是将蓝框放大，顺便加个过渡效果 :) 
+                blue.style.transition = "0.3s all linear"
+                blue.style.transform = "scale(1.2)"
+        })
+
+        /* 
+            实现鼠标移出blue的时候 继续时间的更新，css样式还原
+        */
+
+        // 为蓝框绑定鼠标移出事件
+        let timerOut
+        blue.addEventListener("mouseleave", () => {
+                // 将蓝框缩小
+                blue.style.transform = "scale(1)"
+                // 再绑定一个计时器，并且是在暂停的基础上更新
+                timerOut = setTimeout( update =  () => {
+                    // 利用Date.parse()解析time的时间戳，然后手动添加1000ms更新，再用setTime()方法，将时间戳转换为时间
+                    time.setTime(Date.parse(time) + 1000)
+                    blueSpan.textContent = time.toLocaleString("zh-CN")
+                    timerOut = setTimeout(update, 1000)
+                }, 1000)
+        })
+
+        /* 
+            实现点击定格按钮，red里面显示点击时候的时间
+        */
+        
+        // 获取定格按钮
+        const btn = document.getElementById("btn")
+        // 获取红框
+        const red = document.getElementById("red")
+        // 获取红框中的span
+        const redSpan = document.getElementById("pauseTime")
+        // 为按钮绑定单击响应函数
+        btn.addEventListener("click", () => {
+                // 定格时间，也就是将红框中的内容改为时间
+                redSpan.textContent = time.toLocaleString("zh-CN")
+        })
+
+   </script>
+</body>
+
+</html>

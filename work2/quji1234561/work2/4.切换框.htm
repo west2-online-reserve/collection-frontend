@@ -75,7 +75,7 @@
     content.innerHTML = text[0]//默认文本内容
     //3.遍历给每个label添加点击事件
     for (let i = 0; i < menu.length; i++) {
-      menu[i].addEventListener('click', function () {
+      menu[i].addEventListener('click', () => {
         content.innerHTML = text[i]
       })
     }

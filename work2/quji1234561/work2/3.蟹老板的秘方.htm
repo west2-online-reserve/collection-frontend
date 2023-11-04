@@ -65,7 +65,7 @@
     //封装move函数,实现移动效果
     function move() {
       if (num > 0) {
-        let timeId = setTimeout(function () {
+        let timeId = setTimeout(() => {
           const rLeft = Math.random() * 100
           const rTop = Math.random() * 100
           wra.style.left = `${rLeft}%`
@@ -82,7 +82,7 @@
     //鼠标移入时移动
     wra.addEventListener('mouseenter', move)
     //按钮点击事件
-    yes.addEventListener('click', function () {
+    yes.addEventListener('click', () => {
       flag = 1//记录已成功点击
       if (num >= 6) {
         alert('上次有人点到还是在上次')

@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        width: 718px;
+    }
+}
+
+@media screen and (max-width: 992) {
+    body {
+        width: 942px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    body {
+        width: 1100px;
+    }
+}
+
+body {
+    background: #DCF3FF;
+    margin: 0 200px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+nav div {
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+nav div:hover {
+    background: #5883BC;
+    text-decoration: underline;
+}
+
+.introduction {
+    display: flex;
+    border: 2px solid #5883BC;
+    border-radius: 50px;
+    width: 100%;
+    height: auto;
+    padding: 10px 5px;
+}
+
+.introduction img {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+}
+
+.introduction :last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 25px;
+}
+
+.role {
+    display: flex;
+    width: 100%;
+    height: 520px;
+    margin: 50px 0;
+    justify-content: space-between;
+}
+
+.role>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 310px;
+    height: 100%;
+}
+
+.role div div {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 185px;
+    border-radius: 35px;
+    font-size: 28px;
+    color: white;
+}
+
+.role :nth-child(1) div {
+    background: #F8CF37;
+}
+
+.role :nth-child(2) div {
+    background: #D08079;
+}
+
+.role :nth-child(3) div {
+    background: #385F98;
+}
+
+.role div div h6 {
+    font-size: 28px;
+}
+
+.role div img {
+    width: 310px;
+    height: 310px;
+    border-radius: 35px;
+    transition: all .2s linear;
+}
+
+.role div img:hover {
+    transform: scale(1.2);
+}
+
+table {
+    width: 100%;
+    border-spacing: 0px;
+    font-size: 20px;
+    text-align: center;
+}
+
+table tr td:nth-child(1) {
+    width: 56%;
+    background: #99CCFF;
+}
+
+table tr td:nth-child(2) {
+    width: 37%;
+    background: #87CEEB;
+}
+
+table tr td:nth-child(3) {
+    width: 7%;
+    background: #6699CC;
+}
+
+.advice {
+    padding-bottom: 200px;
+}
+
+.advice textarea {
+    width: 100%;
+    height: 240px;
+    border: 2px #87CEED solid;
+    border-radius: 25px;
+    margin: 60px 0 25px 0;
+    padding: 25px 5px;
+    background: #DCF3FF;
+    resize: none;
+    font-size: 25px;
+}
+
+.advice button {
+    float: right;
+    width: 170px;
+    height: 60px;
+    border: 0;
+    border-radius: 5px;
+    background: #6495ED;
+    font-size: 20px;
+    color: white;
+}
+
+button:hover {
+    background: #487BD4;
+}

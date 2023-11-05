@@ -1,0 +1,23 @@
+/* 通用样式 */
+*{
+    padding: 0;
+    margin:0;
+    /* 以border为可见边界 */
+    box-sizing:border-box;
+}
+
+/* 去除链接的下划线 */
+a{
+    text-decoration: none;
+}
+
+/* 去除列表的基础样式 */
+li{
+    list-style-type: none;
+}
+
+body{
+    background-color:#DCF3FF;
+    width: 1200px;
+    margin: 0 auto;
+}

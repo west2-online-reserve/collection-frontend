@@ -78,21 +78,6 @@
         content.innerHTML=data[i]
       })
     }
-    const elements = Array.from(document.querySelectorAll('*'));
-
-const elementCounts = elements.reduce((counts, element) => {
-  const tagName = element.tagName.toLowerCase();
-  counts[tagName] = (counts[tagName] || 0) + 1;
-  return counts;
-}, {});
-
-const sortedElements = Object.entries(elementCounts)
-  .sort((a, b) => b[1] - a[1])
-  .slice(0, 3);
-
-const top3Elements = sortedElements.map(([tagName, count]) => ({ tagName, count }));
-
-console.log(top3Elements);
     </script>
   </body>
 </html>

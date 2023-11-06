@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box1{
+        width: 200px;
+        height:100px;
+        text-align: center;
+        background-color:skyblue;
+        position: absolute;
+    }
+    .word{
+        width:200px;
+        height:30px;
+        padding-top:10px;
+        padding-bottom:10px;
+        font-size:20px;
+    }
+    #btn1,btn2{
+        width:50px;
+        height:30px;
+        background-color:pink; 
+        color:white;
+        }
+    
+    
+</style>
+<body>
+    <div class="box1">
+        <div class ="word">你能点到我吗</div>
+        <button id="btn1" >能</button>
+        <button id="btn1" >不能</button>
+    </div>
+</body>
+<script>
+var n=0;
+    var box=document.querySelector(".box1");
+    box.addEventListener("mouseenter",function(){
+    box.style.left=Math.random()*1000+"px";//水平方向
+    box.style.top=Math.random()*1000+"px";//垂直方向
+    n++;
+    if(n==5)
+    {
+    alert("加把劲略略")
+    n=0;
+    }
+    })
+    var btn=document.getElementById("btn1");
+    btn.addEventListener("click",function(){
+    window.alert("还挺厉害的嘛^^")
+    })
+</script>
+</html>

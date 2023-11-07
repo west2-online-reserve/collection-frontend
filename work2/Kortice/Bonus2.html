@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现一个get函数</title>
+</head>
+<body>
+    <script>
+        /* 
+            实现一个get函数
+            get(obj, path, defaultValue)
+
+            const obj = {
+                a:{
+                    b:{
+                        c:1
+                    }
+                }
+            }
+            get(obj, 'a.b.c', 2);           返回 1
+            get(obj, 'a.b.d', 2);           返回 2
+            get(obj, 'a.b.d.e.f.g', 2);     返回 2
+        */
+       
+        const obj = {
+            a:{
+                b:{
+                    c:1
+                }
+            }
+        }
+
+
+        const get = (obj, path, defaultValue) => {
+            // 先将path中的内容转换为数组
+            let pathArray = [...path]
+            // 将path中的变量过滤出来
+            pathArray = pathArray.filter( (element, index, array) => index%2==0)
+            // 创建一个中间对象
+            let temp = obj
+            // 接下来遍历数组,并且往对象里层走,逐层赋值给temp
+            for (let i=0; i<pathArray.length; i++) {
+                temp = temp[pathArray[i]]
+                // 如果temp是undefined了,可以直接输出defaultValue
+                if (!temp) {
+                    console.log(defaultValue)
+                    break
+                }
+            }
+            // 如果temp存在,输出temp
+            if (temp) {
+                console.log(temp)
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>

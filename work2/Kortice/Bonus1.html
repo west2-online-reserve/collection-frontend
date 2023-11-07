@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取DOM中出现次数最多的前三个名称</title>
+</head>
+<body>
+    
+    <script>
+        // 获取所有的DOM元素 (利用通配选择器)
+        let allElement = document.querySelectorAll("*")
+        // 将上面伪数组打包成数组,
+        allElement = [...allElement]
+        // 创建一个对象接收并记录每个标签出现的次数
+        const elementsCount = {}
+        // 利用forEach遍历allElement
+        allElement.forEach( (element, index, array) => {
+            // 将element变成该element的tagName
+            element = element.tagName
+            // 如果elementsCount里面没有element,为他计数1
+            if (!elementsCount[element]) {
+                elementsCount[element] = 1
+            } else { // 否则就是有这个元素,计数+1
+                elementsCount[element]++
+            }
+        } )
+        /* 
+            利用Object.entries()静态方法,将elementsCount转换为数组(键值对)
+            同时利用数组的sort方法,根据元素出现次数进行降序排序(sort方法为破坏性的方法)
+        */
+        const sortedElements = Object.entries(elementsCount).sort( (a, b) => b[1] - a[1] )
+        // 然后把前三个剔出来
+        const mostThree = sortedElements.splice(0, 3)
+        // 直接输出mostThree中所有的key
+        mostThree.forEach( (element, index, array) => {
+            console.log("昵称："+element[0]+" 出现次数："+element[1])
+        })
+
+    </script>
+</body>
+</html>

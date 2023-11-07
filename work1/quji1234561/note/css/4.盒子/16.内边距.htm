@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            background-color: red;
+        }
+
+        .p1 {
+            padding-top: 50px;
+            padding-left: 20px;
+        }
+
+        * {
+            font-weight: 700;
+        }
+
+        .w200 {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1.内边距</h1>
+    <p>内边距也可以选四个方向</p>
+    <p>padding-top|padding-bottom|padding-left|padding-right</p>
+    <div class="p1 w200">
+        这是盒子中的文本这是盒子中的文本这是盒子中的文本这是盒子中的文本这是盒子中的文本这是盒子中的文本
+    </div>
+
+    <h1>2.内边距的简写</h1>
+    <p>一个代表上下左右<br>
+        两个前为上下，后为左右<br>
+        三个 上 左右 下<br>
+        四个 上 右 下 左
+    </p>
+
+    <h1>3.内边距也会影响盒子实际大小</h1>
+    <h3>但如果盒子没有设置宽和高，就不会被撑开。若写width:100%，则会多出宽度和滚动条</h3>
+
+    <h1>4.设计导航栏</h1>
+    <div class="nav">
+        <a href="#" id="1">设为首页</a>
+        <a href="#" id="2">客户端</a>
+        <a href="#" id="3">博客</a>
+        <a href="#" id="4">关注我</a>
+    </div>
+    <style>
+        .nav {
+            height: 41px;
+            color: #4c4c4c;
+            background-color: #fcfcfc;
+            border-top: 3px solid #ff8500;
+            border-bottom: 1px solid #edeef0;
+            line-height: 41px;
+        }
+
+        .nav a {
+            display: inline-block;
+            padding: 0 20px;
+            text-decoration: none;
+            color: #4c4c4c;
+            font-size: 13px;
+        }
+
+        .nav a:hover {
+            background-color: rgb(224, 224, 224);
+            color: #ff8500;
+        }
+    </style>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bgi {
+            display: block;
+            /* width: 133px;
+            height: 88px; */
+            width: 250px;
+            height: 100px;
+            background-repeat: no-repeat;
+            background-color: rgba(165, 42, 42);
+            background-image: url(img素材/www.bilibili.jpg.jpg);
+            background-position: center center;
+            /* background-position: 40%; */
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>背景</h1>
+    <h1>1.背景颜色background-color</h1>
+    <p>透明transparent（默认）/具体color</p>
+
+
+    <h1>2.背景图片background-image</h1>
+    <p href="#" class="bgi"></p>
+    <p>none/url()</p>
+
+
+    <h1>3.背景平铺backgroud-repeat</h1>
+    <p>repeat/no-repeat/repeat-x/repeat-y</p>
+
+
+    <h1>4.背景图片位置backgroud-position</h1>
+
+    <p>属性值有两个</p>
+
+    <p>方位名词top,center,bottom,left,right
+        <br>只写一个时另一个默认居中显示
+    </p>
+    <p>精确单位：百分比 / 浮点数 + 单位标识符</p>
+    <p>单位可混合，前x后y</p>
+
+    <h1>5.背景图像固定backgroud-attachment</h1>
+    <p>滚动scroll（默认）,固定fixed</p>
+
+    <h1>6.背景复合属性</h1>
+    <p>backgroud:color url() repeat attachment position</p>
+    <div class="bg"></div>
+    <style>
+        .bg {
+            width: 400px;
+            height: 400px;
+            /* background: red; */
+            background: rgb(35, 5, 5, 0.3) url(img素材/www.bilibili.jpg.jpg) no-repeat center center scroll;
+        }
+    </style>
+
+    <h1>6.透明度</h1>
+    <p>rgba 红 绿 蓝 透明度alpha</p>
+    <p>透明度越小越淡</p>
+    <p>0.3可简写为.3</p>
+
+
+</body>
+
+</html>

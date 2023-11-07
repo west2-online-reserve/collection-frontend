@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>跨行rowspan</h2>
+    <table align="center" border="5" cellspacing="0" cellpadding="2">
+        <thead>
+            <tr>
+                <th>行首1</th>
+                <th>行首2</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>a1</td>
+                <td>a2</td>
+            </tr>
+            <tr>
+                <td rowspan="2">b1</td>
+                <!-- 跨行 -->
+                <td>b2</td>
+            </tr>
+            <tr>
+                <td>c2</td>
+                <td>c3</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>跨列colspan</h2>
+    <table align="center" border="5" cellspacing="5">
+        <thead>
+            <tr>
+                <th>行首1</th>
+                <th>行首2</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>a1</td>
+                <td>a2</td>
+            </tr>
+            <tr>
+                <td colspan="2">b1</td>
+                <!-- 跨列 -->
+            </tr>
+            <tr>
+                <td>c1</td>
+                <td>c2</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

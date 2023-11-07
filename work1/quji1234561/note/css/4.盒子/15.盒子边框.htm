@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border-width: 20px;
+            background-color: red;
+            border-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1.边框粗细border-width</h1>
+    <p>像素为单位</p>
+    <hr>
+    <h1>2.边框颜色border-color</h1>
+    <hr>
+    <h1>3.边框样式border-style</h1>
+    <p>默认none，有hidden,dotted,dashed,solid,double,groove,ridge,inset,outset</p>
+
+    <h3>3.1实线solid</h3>
+    <div style="border-style: solid;"></div>
+
+    <h3>3.2虚线dashed</h3>
+    <div style="border-style: dashed;"></div>
+
+
+    <h3>3.3点线dotted</h3>
+    <div style="border-style: dotted;"></div>
+
+
+    <h3>3.4默认无none</h3>
+    <div></div>
+
+    <h3>3.5隐藏hidden</h3>
+    <div style="border-style: hidden;"></div>
+
+    <h3>3.6双边double</h3>
+    <div style="border-style: double;"></div>
+
+    <h3>3.7菱形边ridge</h3>
+    <div style="border-style: ridge;"></div>
+
+
+    <h3>3.8凹槽groove</h3>
+    <div style="border-style: groove;"></div>
+
+    <h3>3.9凹边inset</h3>
+    <div style="border-style: inset;"></div>
+
+    <h3>3.10凸边outset</h3>
+    <div style="border-style: outset;"></div>
+    <hr>
+    <h1>4.复合写法border</h1>
+    <p>不要求顺序，不可省略，一般: 粗细 样式 颜色 </p>
+    <div style="border: 5px green solid;"></div>
+    <hr>
+    <p>可以分别设置上下左右边框</p>
+    <p>border-top|border-bottom|border-left|border-right</p>
+    <div class="db"></div>
+    <style>
+        .db {
+            border: 20px solid rgb(98, 0, 255);
+            /* 第一行被覆盖 */
+            border-top: 20px solid red;
+            border-bottom: 20px solid green;
+            border-left: 20px solid black;
+            border-right: 20px solid yellow;
+        }
+
+        .ct {
+            background-color: transparent;
+            width: 200px;
+            height: 200px;
+            border: 5px solid blue;
+            border-top: 5px solid red;
+        }
+    </style>
+    <div class="ct"></div>
+    <hr>
+    <h1>5.表格边框</h1>
+    <table cellspacing="0" cellpadding="7" width="150px">
+        <tr>
+            <th>表头1</th>
+            <th>表头2</th>
+        </tr>
+        <tr>
+            <td>a1</td>
+            <td>a2</td>
+        </tr>
+        <tr>
+            <td>b1</td>
+            <td>b2</td>
+        </tr>
+        <tr>
+            <td>c1</td>
+            <td>c2</td>
+        </tr>
+    </table>
+    <p>合并相邻边框：<strong>brder-collapse=collapseo</strong></p>
+    <style>
+        table,
+        th,
+        td {
+            border: 3px red solid;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+    <hr>
+    <h1>6.边框对盒子大小的影响</h1>
+    <p>边框会扩大盒子的尺寸</p>
+
+
+</body>
+
+</html>

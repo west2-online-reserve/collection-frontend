@@ -1,0 +1,168 @@
+body{
+    height: 1200px;
+    background-color:#e0f2fe;
+}
+.container{
+    width: 1000px;
+    margin: 0 auto;
+}
+/*#region 导航栏start */
+.page-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 10px;
+}
+.page-nav a{
+    padding: 5px 12px;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+.page-nav a:hover{
+    border-radius: 20px;
+    color: black;
+    text-decoration: underline;
+    background-color:#415e94;
+}
+/*#endregion 导航栏end */
+/*#region 介绍栏start */
+.contrd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    font-size: 16px;
+    border: 2px solid #6c8cbd;
+    border-radius: 20px;
+}
+.contrd img{
+    padding: 10px;
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+}
+/*#endregion 介绍栏end */
+/*#region 主角介绍start */
+.mainchar-text{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.mainchar-text div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 120px;
+    width: 190px;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 14px;
+    border-radius: 20px;
+}
+.mainchar-text div span{
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.mainchar-text div:nth-child(1){
+    background-color: #f1d157;
+}
+.mainchar-text div:nth-child(2){
+    background-color: #c5847c;
+}
+.mainchar-text div:nth-child(3){
+    background-color: #415e94;
+}
+.mainchar-img{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.mainchar-img img{
+    width: 190px;
+    border-radius: 20px;
+}
+.mainchar-img img:hover{
+    transform: scale(1.1);
+}
+/*#endregion 主角介绍end */
+/*#region 剧集表格start */
+table{
+    margin: 40px 0;
+    table-layout: fixed;
+    border-spacing: 0;
+    font-size: 16px;
+    text-align: center;
+}
+table td:nth-child(1){
+    width: 600px ;
+    background-color: #a4cbfa;
+}
+table td:nth-child(2){
+    width: 320px ;
+    background-color: #97cce8;
+}
+table td:nth-child(3){
+    width: 80px ;
+    background-color: #7198c8;
+}
+table tr:first-child td:first-child{
+    border-top-left-radius: 10px;
+}
+table tr:last-child td:first-child{
+    border-bottom-left-radius: 10px;
+}
+table tr:first-child td:last-child{
+    border-top-right-radius: 10px;
+}
+table tr:last-child td:last-child{
+    border-bottom-right-radius: 10px;
+}
+/*#endregion 剧集表格end */
+/*#region 建议栏start */
+.sug{
+    height: 180px;
+    font-size: 16px;
+    border: 2px solid #a2d2ed;
+    border-radius: 15px;
+}
+.sug p{
+    margin:5px;
+}
+.sug textarea{
+    height: 130px;
+    width:99.5% ;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    cursor:pointer ;
+}
+form button{
+    float: right;
+    padding: 12px 45px;
+    margin: 10px 0;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6f94e6;
+    cursor: pointer;
+}
+form button:hover{
+    background-color: #506bf2;
+}
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+/*#endregion 建议栏end */
+
+@media screen and (max-width:1000px) {
+    .container{
+        width: 800px;
+    }
+    
+}

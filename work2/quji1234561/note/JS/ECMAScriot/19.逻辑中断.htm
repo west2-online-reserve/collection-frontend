@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>逻辑中断</h2>
+  <script>
+    function getSum(x, y) {
+      x = x || 0
+      y = y || 0
+      console.log(x + y);
+    }
+    getSum(1, 2)
+  </script>
+  <h3>短路</h3>
+  <p>只存在于&&和||中,当满足一定条件会使右边代码不执行</p>
+  <p>原因:通过左边能得到整个式子的结果,因此没必要到右边</p>
+  <p>&&左为false中断</p>
+  <p>||左为true中断</p>
+  <script>
+    1 && 2//与都真,输出第2个
+    1 || 2//或都真,输出第1个(中断)
+
+  </script>
+  <h3></h3>
+  <h3></h3>
+
+</body>
+
+</html>

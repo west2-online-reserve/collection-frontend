@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>123123</button>
+  <h2>事件对象</h2>
+  <p>事件对象里有事件触发时的相关信息</p>
+  <h4>使用场景</h4>
+  <p>可以判断用户按下哪个键,如按回车发布新闻</p>
+  <p>可以判断鼠标点击了哪个元素</p>
+  <h4>如何获取</h4>
+  <p>一般命名为event,ev,e</p>
+  <p>元素.addEventListener('click',function(e){})</p>
+
+  <h4>部分常用属性</h4>
+
+  <h5>type</h5>
+  <p>事件类型</p>
+
+  <h5>clientX/clientY</h5>
+  <p>获取光标相对于浏览器可见窗口左上角的位置</p>
+
+  <h5>offsetX/offsetY</h5>
+  <p>获取光标相对于当前DOM元素左上角的位置</p>
+
+  <h5>key</h5>
+  <p>用户按下的键盘的值</p>
+  <p>现在不提倡使用keyCode</p>
+
+  <input type="text">
+  <script>
+    const input = document.querySelector('input')
+    input.addEventListener('keyup', function (e) {
+      console.log(e.key);
+    })
+
+  </script>
+</body>
+
+</html>

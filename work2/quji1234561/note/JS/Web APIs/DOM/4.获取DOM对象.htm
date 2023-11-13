@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>获取DOM元素</h1>
+
+  <h2>CSS选择器获取</h2>
+  <p>document.querySelector('css选择器')</p>
+  <p>选择器必加引号,否则当作变量看待</p>
+  <p>选择所查询的第一个</p>
+  <p>document可改成其节点下的其他DOM元素,可缩小检索范围</p>
+
+  <p>选择多个用querySelectorAll</p>
+  <p>多个返回数组(使用querySelectorAll即使只有一个对象也返回伪数组)</p>
+  <p>但该数组是伪数组:没有pop(),push()等数组方法</p>
+  <p>想要得到里面的每一个对象,需要遍历获得</p>
+  <script>
+    document.querySelector('css选择器')
+    const h1 = document.querySelector('h1')
+    const a = {
+      uName: 'a',
+      age: 19
+    }
+    console.log(a);
+    console.log(h1);
+    console.dir(a);
+    console.dir(h1)
+    h1.style.color = 'red'
+    const ps = document.querySelectorAll('p')
+    for (i = 0; i < ps.length; i++) {
+      ps[i].style.color = 'blue'
+    }
+  </script>
+
+  <h2>其他获取方法</h2>
+  <script>
+    //根据id获取
+    // document.getElementById()
+    //根据标签名获取全部标签
+    // document.getElementsByTagName()
+    //根据类名获取全部标签
+    // document.getElementsByClassName()
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div,
+    input,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .search {
+      margin: 100px auto;
+      width: 400px;
+      height: 400px;
+      /* background-color: aqua; */
+    }
+
+    .search input {
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 0 10px;
+      width: 400px;
+      height: 40px;
+      font-size: 18px;
+    }
+
+    .search .options {
+      display: none;
+      width: 396px;
+      /* height: 400px; */
+      border: 2px solid orange;
+      border-top: none;
+    }
+
+    .search .options li {
+      height: 40px;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.301);
+      line-height: 40px;
+      font-size: 18px;
+      text-indent: 8px;
+    }
+
+    .search .options li:hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="search">
+    <input type="search">
+    <ul class="options">
+      <li>123456</li>
+      <li>123456</li>
+      <li>123456</li>
+      <li>123456</li>
+      <li>123456</li>
+    </ul>
+  </div>
+  <script>
+    const input = document.querySelector('.search input')
+    input.addEventListener('focus', function () {
+      document.querySelector('.search .options').style.display = 'block'
+    })
+    document.querySelector('.search input').addEventListener('blur', function () {
+      document.querySelector('.search .options').style.display = 'none'
+    })
+  </script>
+</body>
+
+</html>

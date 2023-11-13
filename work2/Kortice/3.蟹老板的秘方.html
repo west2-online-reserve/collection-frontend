@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切换框</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .outer {
+            width: 600px;
+            height: 600px;
+            margin: 50px auto;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav0 {
+            width: 150px;
+            height: 100px;
+            line-height: 100px;
+            background-color: skyblue;
+            font-size: 20px;
+            text-align: center;
+            transition: all 1s linear;
+        }
+        .nav0:hover {
+            cursor: pointer;
+            background-color: #88ACBC;
+            transform: translate(0, -10px);
+            box-shadow: 0 0 10px black;
+        }
+        .content {
+            height: 500px;
+            background-color: #709ED0;
+            font-size: 40px;
+            transition: all 1s linear;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <!-- 上层导航 -->
+        <div class="nav">
+            <div class="nav1 nav0">二小姐</div>
+            <div class="nav2 nav0">静可爱</div>
+            <div class="nav3 nav0">一色</div>
+        </div>
+        <!-- 下层内容区 -->
+        <div class="content"></div>
+    </div>
+
+    <script>
+        // 获取导航栏的导航项
+        const nav = document.getElementsByClassName("nav0") // nav 伪数组
+        // 利用事件的冒泡，为document绑定单击响应函数
+        document.addEventListener("click", event => {
+            // 判断是否点的是nav
+            if ([...nav].includes(event.target)) {
+                // 获取content
+                const content = document.querySelector(".content")
+                // 切换文本内容
+                if (event.target.classList.contains("nav1")) {
+                    content.textContent = "液氨系女子。不必说，她的冷酷言行足以在女孩子的社会里吹起绝对零度的暴风雪。 表面看来是铜墙铁壁的完美美少女，但害怕狗、突然袭击的温柔、突发事故，这样算来弱点其实很多。"
+                } else if (event.target.classList.contains("nav2")) {
+                    content.textContent = "现充爆炸吧！"
+                } else if (event.target.classList.contains("nav3")) {
+                    content.textContent = "扮演天然系而在男生中具有大人气的一年级女生，足球部经理。"
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+</html>

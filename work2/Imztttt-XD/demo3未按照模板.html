@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tab{
+            width: 400px;
+            margin: 200px auto;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-wrap:wrap;
+        }
+        .item{
+            width: 120px;
+            height: 80px;
+            background: rgb(143, 183, 244);
+            display:inline-block;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+        }
+        .box{
+            width: 400px;
+            height: 300px;
+            background: rgb(104, 145, 232);
+        }
+        .tab .active{
+            background:rgb(109, 130, 214);
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <div class="item active">二小姐</div>
+        <div class="item">静可爱</div>
+        <div class="item">一色</div>
+        <div class="box">液氮系女子。不必说,她的冷酷言行足以在女孩子的社会里吹起绝对零度的暴风雪。表面看来是铜墙铁壁的完美美少女,但害怕狗、突然袭击的温柔、突发事故,这样算来弱点其实很多。</div>
+    </div>
+    <script>
+    let data=[
+            '液氮系女子。不必说,她的冷酷言行足以在女孩子的社会里吹起绝对零度的暴风雪。表面看来是铜墙铁壁的完美美少女,但害怕狗、突然袭击的温柔、突发事故,这样算来弱点其实很多。',
+            '简直像是在为了获得现在最想结婚的女人NO.1称号一样,目前相亲中的教师。貌美气质佳,无奈酒品太差,休息日从白天就开始自斟自饮，说醉话。',
+            '扮演天然系而在男生中具有大人气的一年级女生，足球部经理。'
+    ]
+    const box=document.querySelector('.box')
+    const items=document.querySelectorAll('.tab .item')
+    for(let i=0;i<items.length;i++){
+        items[i].addEventListener('click',function(){
+        box.innerHTML=''
+        // 排他思想
+        // 干掉别人 移除类
+        document.querySelector('.tab .active').classList.remove('active')
+        // 我登基 我添加类 this 当前的a
+        items[i].classList.add('active')
+        box.innerHTML=data[i]
+      })
+    }
+    </script>
+
+</body>
+</html>

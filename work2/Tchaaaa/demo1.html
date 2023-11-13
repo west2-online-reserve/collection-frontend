@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿笠博士的新发明</title>
+    
+    <style>
+        body {
+            padding-left: 10vw;
+        }
+        .question {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        .box{
+            margin-top: 64px;
+            width: 60%;
+            height: 200px;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #blue{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #21a4f1;
+        }
+        #red{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #fc4b5a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question">
+        <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+        <p>蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。</p>
+        <p>点击定格按钮，红框内显示定格的时间。</p>
+    </div>
+    <div class="box">
+        <div id="blue">
+            <span id="time"></span>
+        </div>
+        <div id="red">
+            <span id="pauseTime"></span>
+        </div>
+    </div>
+    <button id="btn" style="font-size: 24px;margin-top: 48px;">定格</button>
+
+    <!--以上代码不可修改-->
+
+
+    <!--
+        要求在下列代码中实现
+        当打开网页的时候 时间以1000ms的速率动态更新
+        鼠标移入blue的时候 暂停时间的更新，并且有边框放大效果
+        鼠标移出blue的时候 继续时间的更新，css样式还原
+        点击定格按钮，red里面显示点击时候的时间
+    -->
+	<script >
+		function getTime() //读取时间函数
+		{
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = Number(date.getMonth())+1;
+			if(month < 10) month = "0" + month;
+			var day = date.getDate();
+			if(day < 10) day = "0" + day;
+			var hours = date.getHours();
+			if(hours < 10) hours = "0" + hours;
+			var minutes = date.getMinutes();
+			if(minutes < 10) minutes = "0" + minutes;
+			var seconds = date.getSeconds();
+			if(seconds < 10) seconds = "0" + seconds;
+			var tempDate= year + "/" + month + "/" + day + " " + hours + ":" + minutes + ":" + seconds;
+			return tempDate;
+		}
+		function showTime() //输出时间函数
+		{
+			document.getElementById("time").innerHTML = getTime();
+		}
+		function showPauseTime() //输出暂停时间函数
+		{
+			document.getElementById("pauseTime").innerHTML = getTime();
+		}
+		function mouseOver() //鼠标移入函数
+		{
+			clearInterval(interval);
+			isPause = true;
+			document.getElementById("blue").style.setProperty("font-size","30px");
+			document.getElementById("blue").style.setProperty("padding-top","18px");
+			document.getElementById("blue").style.setProperty("margin-top","-20px");
+			document.getElementById("blue").style.setProperty("margin-bottom","-20px");
+			document.getElementById("blue").style.setProperty("width","54%");
+			document.getElementById("blue").style.setProperty("margin-left","-35px");
+		}
+		function mouseOut() //鼠标移出函数
+		{
+			//showTime();
+			interval = setInterval("showTime()", 1000);
+			isPause = false;
+			document.getElementById("blue").style.setProperty("font-size","24px");
+			document.getElementById("blue").style.setProperty("padding-top","0px");
+			document.getElementById("blue").style.setProperty("margin-top","0px");
+			document.getElementById("blue").style.setProperty("margin-bottom","0px");
+			document.getElementById("blue").style.setProperty("width","46%");
+			document.getElementById("blue").style.setProperty("margin-left","0px");
+		}
+		showTime();
+		var isPause = false;
+		if(!isPause) var interval = setInterval("showTime()", 1000);
+		document.getElementById("blue").addEventListener("mouseover", mouseOver); //鼠标移入暂停时间
+		document.getElementById("time").addEventListener("mouseover", mouseOver);
+		document.getElementById("blue").addEventListener("mouseout", mouseOut); //鼠标移出继续时间
+		document.getElementById("btn").addEventListener("click", showPauseTime); //输出暂停时间
+	</script>
+</body>
+
+</html>

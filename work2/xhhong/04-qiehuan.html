@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切换框</title>
+</head>
+
+    <style>
+
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main{
+            display: flex;
+            width: 400px;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        nav{
+            display: flex;
+            justify-content: center;
+        }
+
+        ul{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            list-style: none;
+            padding: 0px;
+        }
+
+        li{
+            background: #00ffff;
+            width: 80px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        li:hover{
+            cursor: pointer;
+            background: #0080ff;
+        }
+
+        .content{
+            height: 200px;
+            background: #00ffff;
+        }
+
+        p{
+            text-align: center;
+        }
+
+    </style>
+
+<body>
+
+    <div class="main">
+        <nav>
+            <ul >
+                <li>第一</li>
+                <li>第二</li>
+                <li>第三</li>
+            </ul>
+        </nav>
+        <div class="content">
+            <p> 
+                床前明月光，疑是地上霜。<br>
+                举头望明月，低头思故乡。
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+        let p = document.querySelector('p');
+        let lis = document.querySelectorAll('li');
+
+        lis[0].addEventListener('click', function(){
+            p.innerHTML = "床前明月光，疑是地上霜。<br>举头望明月，低头思故乡。"
+        })
+
+        lis[1].addEventListener('click', function(){
+            p.innerHTML = "两个黄鹂鸣翠柳，一行白鹭上青天。<br>窗含西岭千秋雪，门泊东吴万里船。"
+        })
+
+        lis[2].addEventListener('click', function(){
+            p.innerHTML = "生当作人杰，死亦为鬼雄。<br>至今思项羽，不肯过江东。"
+        })
+
+    </script>
+    
+</body>
+</html>

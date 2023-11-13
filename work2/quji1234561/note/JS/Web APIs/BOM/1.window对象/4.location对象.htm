@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>location对象</h1>
+  <p> location的数据类型是对象,它拆分保存了url地址的各个组成部分</p>
+
+  <h2>herf属性</h2>
+  <p>获得完整url地址,赋值完成跳转操作</p>
+  <p>经常用location的herf属性,利用js跳转页面</p>
+
+
+  <div style="background-color: aqua;">还有60s跳转到百度</div>
+  <script>
+    const d = document.querySelector('div')
+    let n = 60
+    setInterval(function () {
+      n--
+      if (n === 0) {
+        location.href = 'http://www.baidu.com/'
+      }
+      d.innerHTML = `还有${n}s跳转到百度`
+    }, 1000)
+  </script>
+
+  <h2>search属性</h2>
+  <p>获得地址中的参数,符号?后面部分</p>
+  <p>场景:获得表单信息</p>
+  <p>如 '?userName=Leo&pwd=123456'</p>
+
+  <h2>hash属性</h2>
+  <p>获取地址中的哈希值,符号#后面部分</p>
+  <p>可实现页面不需要跳转也能切换内容</p>
+  <p>给a加herf="#/哈希值"</p>
+
+  <h2>reload()方法</h2>
+  <p>重新加载页面</p>
+  <p>location.reload(true)类似ctrl + F5,强制刷新</p>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      height: 4000px;
+    }
+
+    .nav {
+      position: fixed;
+      top: -50px;
+      width: 100%;
+      height: 50px;
+      background-color: aqua;
+      text-align: center;
+      line-height: 50px;
+      font-size: 40px;
+      transition: all .3s;
+    }
+
+    div[class^="section"] {
+      margin: 70px auto;
+      width: 1200px;
+      height: 500px;
+      background-color: blue;
+      color: azure;
+      font-size: 60px;
+    }
+
+    .btns {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10px;
+      width: 50px;
+      height: 250px;
+      /* background-color: red; */
+    }
+
+    button {
+      width: 50px;
+      height: 50px;
+      background-color: aquamarine;
+      opacity: .7;
+    }
+
+    .active {
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1.导航 -->
+  <div class="nav">导航</div>
+  <!-- 2.内容 -->
+  <div class="section1">1</div>
+  <div class="section2">2</div>
+  <div class="section3">3</div>
+  <div class="section4">4</div>
+  <div class="section5">5</div>
+  <!-- 3.电梯 -->
+  <div class="btns">
+    <button data-id="1">1</button>
+    <button data-id="2">2</button>
+    <button data-id="3">3</button>
+    <button data-id="4">4</button>
+    <button data-id="5">5</button>
+  </div>
+  <script>
+    // 1.导航
+    const nav = document.querySelector('.nav')
+    const s1 = document.querySelector('.section1')
+    window.addEventListener('scroll', function () {
+      const scrH = document.documentElement.scrollTop
+      if (scrH >= s1.offsetTop) {
+        nav.style.top = '0'
+      } else {
+        nav.style.top = '-50px'
+      }
+    })
+
+    // 2.跳转
+    document.querySelector('body').addEventListener('click', function (e) {
+
+      if (e.target.tagName === 'BUTTON') {
+        if (document.querySelector('.active')) {//没有则不执行
+          document.querySelector('.active').classList.remove('active')
+        }
+        e.target.classList.add('active')
+
+        document.documentElement.scrollTop = document.querySelector(`.section${e.target.dataset.id}`).offsetTop
+
+
+      }
+    })
+
+    // 3.电梯显示当前模块
+    let heis = []
+    for (let i = 1; i <= 5; i++) {
+      heis.push(document.querySelector(`.section${i}`).offsetTop)
+    }
+    window.addEventListener('scroll', function () {
+      for (let j = 1; j <= 5; j++) {
+        if (document.documentElement.scrollTop >= heis[j - 1] && document.documentElement.scrollTop < heis[j]) {
+          if (document.querySelector('.active')) {//没有则不执行
+            document.querySelector('.active').classList.remove('active')
+          }
+          document.querySelector(`button[data-id="${j}"]`).classList.add('active')
+        } else if (document.documentElement.scrollTop >= heis[4]) {
+          if (document.querySelector('.active')) {//没有则不执行
+            document.querySelector('.active').classList.remove('active')
+          }
+          document.querySelector(`button[data-id="${j}"]`).classList.add('active')
+        }
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>

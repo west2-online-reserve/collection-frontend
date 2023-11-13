@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>1.检测数据类型</h2>
+  <p>typeof(变量名)</p>
+  <p>typeof 变量名</p>
+  <script>
+    let num = 1
+    let str = '1'
+    let boo = false
+    let und
+    let nul = null
+    document.write('<br>1:', typeof num)
+    document.write('<br>\'1 \':', typeof str)
+    document.write('<br>false:', typeof boo)
+    document.write('<br>:', typeof und)
+    document.write('<br>null:', typeof nul)
+  </script>
+
+  <h2>2.数据类型转换</h2>
+  <h3>1.隐式转换</h3>
+  <p>字符串和数字相+时自动把数字转换为字符串相拼接</p>
+  <p>但字符串(内容为数字)和数字相-*/%时会自动把字符串转换为数字(无法运算则NaN)</p>
+  <p>正号+也可以将内容为数字的字符串转换为数字</p>
+  <br>
+  <p>空字符串转数字0,undefined转数字NaN</p>
+  <p>undefined,null,NaN,'',0转布尔false</p>
+
+  <script>
+    document.write(Boolean('false') + '<br>')
+    document.write(5 - 'yi')
+    let numP = +'123'
+    document.write('<br>>typeof(+\'123\'):', typeof numP)
+  </script>
+
+  <h3>2.显式转换</h3>
+  <p>Number()</p>
+  <p>parseInt()</p>
+  <p>parseFloat()</p>
+  <script>
+    document.write('整除：parseInt(127 / 10)<br>')
+    document.write(parseInt(127 / 10))
+    document.write(parseFloat('127.23kg'))
+    document.write('<br>', typeof String(1234))
+    document.write('<br>', Boolean(1))
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <a href=""></a>
+    <a href=""></a>
+    <a href=""></a>
+    <script>
+
+        const doms = [...document.querySelectorAll('*')].map((item) => item.nodeName)
+        const domsCount = doms.reduce((counts, name) => {
+            counts[name] = (counts[name] || 0) + 1;
+            return counts
+        }, {})
+        const result = Object.entries(domsCount).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([name, count]) => name)
+        // console.log(doms)
+        // console.log(domsCount)
+        console.log(result)
+    </script>
+</body>
+
+</html>

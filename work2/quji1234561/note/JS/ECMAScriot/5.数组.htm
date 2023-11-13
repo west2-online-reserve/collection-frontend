@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>数组array</h1>
+
+  <h2>1.数组的基本认识</h2>
+  <p>数组是一种可以按顺序保存数据的数据类型</p>
+  <p>一组数据存储在单个变量名下</p>
+  <p>每个数据都有编号，从零开始</p>
+  <h3>术语</h3>
+  <p>元素:数组中保存的每个数据都叫<strong>数组元素</strong></p>
+  <p>下标:数组中数据的编号</p>
+  <p>长度:数组中数据的个数,通过.length获得</p>
+
+
+  <h2>2.数组的基本使用</h2>
+  <h3>1.声明数组</h3>
+  <p>1.字面量声明数组:let 数组名 = [数据1, 数据2, 数据3, 数据4, 数据5]</p>
+  <p>2.使用new Array构造函数声明:let 数组名 = new Array(数据1, 数据2, 数据3, 数据4, 数据5)</p>
+  <h3>2.取值语法(查)</h3>
+  <p>数组名[下标]</p>
+
+  <script>
+    let ar = [1, 2, 3, 4, 5]
+    document.write(ar)
+    console.log(ar);
+    document.write('<br>第一个数据：', ar[0])
+    document.write('<br>数组长度：', ar.length)
+  </script>
+
+  <h4>遍历数组</h4>
+  <p>一般使用for循环</p>
+  <p> let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</p>
+  <p> for (let i = 0; i < arr.length; i++) {</p>
+      <p> document.write(arr[i] + ' ')</p>
+      <p> }</p>
+
+      <script>
+        // 遍历数组
+        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        for (let i = 0; i < arr.length; i++) {
+          // arr[i] += '1'
+          document.write(arr[i] + ' ')
+
+        }
+      </script>
+
+      <h3>3.修改数组</h3>
+      <p>数组名[下标]=数据</p>
+      <p>实际上是单独给数组元素赋值</p>
+
+      <h3>4.新增</h3>
+      <h4>数组名.push(元素1,元素2,元素3)</h4>
+      <p>push添加新元素到原数组后面,并返回新长度</p>
+      <h4>数组名.unshift(元素1,元素2,元素3)</h4>
+      <p>unshift添加新元素到原数组前面,并返回新长度</p>
+
+      <h3>4.删除</h3>
+      <h4>数组名.pop()</h4>
+      <p>默认删除最后一个,并返回删除的元素</p>
+      <h4>数组名.shift()</h4>
+      <p>默认删除开头一个,并返回删除的元素</p>
+      <h4>数组名.splice(起始位置,删除数量)</h4>
+      <p>起始位置用下标表示</p>
+      <p>不写删除数量,默认删除到结尾</p>
+
+
+</body>
+
+</html>

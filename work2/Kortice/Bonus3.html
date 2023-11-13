@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonus3</title>
+</head>
+<body>
+    <script>
+        /* 
+            实现一个对象obj
+            当访问obj中任意一个属性或者或者任意一个属性赋值时
+            自动在控制台中输出当前访问或者赋值的属性的值和之前的值
+            obj = {
+                a:1,
+                b:2
+            }
+            const a = obj.a // 控制台输出1
+            obj.b = 3 // 控制台输出 2,3
+        */
+
+
+        const obj = {
+            a:1,
+            b:2
+        }
+        /* 
+            利用Object.defineProperty()静态方法来监听obj对象中属性的获取和设置
+            该方法三个参数：Object, prop, discriptor(描述对象)
+        */
+        // 先获取obj中的属性名
+        const props = Object.keys(obj)
+        // 遍历
+        props.forEach( (prop, index, array) => {
+            // 获取属性值
+            let value = obj[prop]
+            // 为obj设置getter和setter监听器
+            Object.defineProperty(obj, prop, {
+                // getter监听对属性的读取操作
+                get: ()=> {
+                    console.log(value)
+                    return value
+                }
+                // setter监听对属性值的设置操作
+                ,set: (newValue)=> {
+                    console.log(value + ' => ' + newValue)
+                    value = newValue
+                }
+            })
+        })
+
+        const a = obj.a // 控制台输出1
+        obj.b = 3 // 控制台输出 2,3
+
+
+
+
+    </script>
+</body>
+</html>

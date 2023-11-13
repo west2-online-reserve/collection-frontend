@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //0-10之间随机整数
+    console.log(Math.floor(Math.random() * 11));
+
+    //不完全随机抽取数组中的元素
+    let arr = ['赵云', '黄忠', '张飞', '马超', '关羽']
+    console.log(arr[Math.floor(Math.random() * arr.length)]);
+    // 5-10
+    console.log(Math.floor(Math.random() * 6) + 5);
+
+    //声明随机生成从n到m随机整数数的函数
+    function getRandom(n, m) {
+      return Math.floor(Math.random() * (m - n + 1)) + n
+    }
+    console.log(getRandom(34, 45));
+
+    //不重复点名
+    //let arr = ['赵云', '黄忠', '张飞', '马超', '关羽']
+    while (arr[0] !== undefined) {
+      let ran = Math.floor(Math.random() * arr.length);
+      console.log(arr[ran]);
+      arr.splice(ran, 1)
+      // console.log(arr);
+    }
+
+    // 随机颜色
+
+    //16进制
+    (function () {
+      let arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+      let colorNum = '#'
+      for (let i = 0; i < 6; i++) {
+        let arrNum = Math.floor(Math.random() * 16)
+        colorNum += arr[arrNum]
+      }
+      console.log(colorNum);
+      document.write(`
+      <div class='color1'></div>
+      <style>
+        .color1{
+        width:200px;
+        height:200px;
+        background-color:${colorNum}
+        }
+      </style>
+      `)
+    })();
+    //rgb
+    (function () {
+      let colorNum = []
+      for (i = 1; i <= 3; i++) {
+        let arrNum = Math.floor(Math.random() * 256)
+        colorNum.push(arrNum)
+      }
+      let color = `rgb(${colorNum[0]},${colorNum[1]},${colorNum[2]})`
+      console.log(color);
+      document.write(`
+        <div class='color2'></div>
+        <style>
+          .color2{
+            width:200px;
+            height:200px;
+            background-color:${color}
+          }
+        </style>
+      `)
+    })();
+
+    //随机颜色函数声明
+    //ture则返回16进制格式,false则返回rgb格式
+    function ranColor(flag = true) {//默认为true
+      if (flag) {
+        let arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+        let colorNum = '#'
+        for (let i = 0; i < 6; i++) {
+          let arrNum = Math.floor(Math.random() * 16)
+          colorNum += arr[arrNum]
+        }
+        return colorNum
+      } else {
+        let r = Math.floor(Math.random() * 256)
+        let g = Math.floor(Math.random() * 256)
+        let b = Math.floor(Math.random() * 256)
+        let color = `rgb(${r},${g},${b})`
+        return color
+      }
+    };
+
+    //随机生成16进制格式或rgb格式
+    (function () {
+      let flag = Math.floor(Math.random() * 2)
+      console.log(ranColor(flag));
+      console.log(ranColor());//空字符串为false,但设置默认值时按默认值算
+    }());
+
+
+
+
+  </script>
+</body>
+
+</html>

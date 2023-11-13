@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>遍历数组函数</h1>
+
+  <h2>foreach</h2>
+  <p>语法: 数组名.each(function(ele,index){})</p>
+  <p>ele即数组元素,index即索引号</p>
+
+  <h2>map</h2>
+  <p>语法: 数组名.map(function(ele,index){})</p>
+  <p>与foreach不同之处在于map可以返回值(新数组),多用于修改数组元素</p>
+
+  <h2>join</h2>
+  <p>语法:数组名.join()</p>
+  <p>将数组转为字符串并拼接,可用于渲染表格数据</p>
+  <script>
+    const arr = []
+    arr.join()//默认逗号','连接
+    arr.join('')//空字符串''连接
+
+
+    let maparr = ['1', 2, 3, 4, 5]
+    maparr = maparr.map(function (ele) {
+      ele += 1
+      return ele
+    })
+    console.log(maparr);
+  </script>
+</body>
+
+</html>

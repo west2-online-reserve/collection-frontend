@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>操作元素内容</h1>
+  <div class="box">文字内容</div>
+  <script>
+    const box = document.querySelector('.box')
+    console.log(box.innerText)
+    console.log(box.innerHTML)
+    box.innerText = '<strong>新文字内容</strong>'
+    //innerText显示纯文本,不解析标签
+    box.innerHTML = '<strong>新文字内容</strong>'
+    //innerHTML显示纯文本,也解析标签
+    console.log(box.innerText)
+    console.log(box.innerHTML)
+  </script>
+
+
+  <h2 class="box1">一等奖:???</h2>
+  <h2 class="box2">二等奖:???</h2>
+  <h2 class="box3">三等奖:???</h2>
+  <script>
+    //抽奖
+    const arr = ['小红', '小兰', '小黑', '小白', '小飞']
+    for (i = 1; i <= 3; i++) {
+      const random = Math.floor(Math.random() * arr.length)
+      console.log(arr[random]);
+      const randomBox = document.querySelector(`.box${i}`)
+      randomBox.innerHTML = `一等奖:${arr[random]}`
+      arr.splice(random, 1)
+    }
+  </script>
+  <!-- <script>
+    const arr = ['小红', '小兰', '小黑', '小白', '小飞']
+    for (i = 1; i <= 3; i++) {
+      const random = Math.floor(Math.random() * arr.length)
+      const randomBox = document.querySelector(`.box${i}`)
+      randomBox.innerHTML = `一等奖:${arr[random]}`
+      arr.splice(random, 1)
+    }
+  </script> -->
+
+
+</body>
+
+</html>

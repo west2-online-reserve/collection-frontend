@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>冒泡排序</h2>
+  <script>
+    let arr = [1, 2, 3, 7, 6, 5]
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = 0; j < arr.length - 1 - i; j++) {
+        if (arr[j] < arr[j + 1]) {
+          let temp = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = temp
+        }
+      }
+    }
+    document.write(arr)
+  </script>
+  <h2>sort排序</h2>
+  <h3>1.升序</h3>
+  <p>arr.sort(function(a,b){</p>
+  <p>return a-b</p>
+  <p>})</p>
+
+  <h3>2.降序</h3>
+  <p>arr.sort(function(a,b){</p>
+  <p>return b-a</p>
+  <p>})</p>
+
+
+  <script>
+    arr.sort()//按照ASCII码排序
+    document.write(arr)
+  </script>
+
+
+
+
+</body>
+
+</html>

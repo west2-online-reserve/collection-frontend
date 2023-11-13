@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            background-color: #c0c0c0;
+            width: 200px;
+            height: 100px;
+            text-align: center;
+            position: absolute;
+        }
+
+        .canYou {
+            width: 200px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            outline: 2px solid #000000;
+        }
+
+        .can {
+            width: 100px;
+            height: 60px;
+            float: left;
+            text-align: center;
+            line-height: 60px;
+            outline: 2px solid #000000;
+        }
+
+        .canNot {
+            width: 100px;
+            height: 60px;
+            float: left;
+            text-align: center;
+            line-height: 60px;
+            outline: 2px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="canYou">你觉得你能点到我吗？</div>
+        <div class="can">能</div>
+        <div class="canNot">不能</div>
+    </div>
+    <script>
+        // 获取元素
+        let box = document.querySelector('.box')
+        let can = document.querySelector('.can')
+        let canNot = document.querySelector('.canNot')
+
+        // 封装随机数函数
+        function random(N, M) {
+            let value = Math.floor(Math.random() * (M - N + 1)) + N
+            return value
+        }
+
+        // 封装位置变化函数，不断生成随机数，让大盒子自己动起来
+        function position(){
+            let left  = random(0, 1500)
+            let height = random(0, 800)
+            box.style.left = left + 'px'
+            box.style.top = height + 'px'
+        }
+        
+        // 在开启定时器前先调用一次position()，解决一秒钟的延迟
+        position()
+
+        // 打开定时器
+        let timer = setInterval(position, 1000)
+
+        // 对整个页面绑定点击事件
+        let i = 0
+        document.addEventListener('click', function(){
+            i++
+        })
+
+        // 对“能”盒子绑定点击事件
+        can.addEventListener('click', function(){
+            if(i < 2) {
+                alert(`神魔，你竟然点了${i + 1}次就点到我了`)
+                i = -1
+            }
+            if(i > 2) {
+                alert(`神魔，你竟然点了${i + 1}次才点到我`)
+                i = -1
+            }
+        })
+
+        // 对“不能”盒子绑定点击事件
+        canNot.addEventListener('click', function(){
+            alert('bro，点我没用啊')
+        })
+    </script>
+</body>
+</html>

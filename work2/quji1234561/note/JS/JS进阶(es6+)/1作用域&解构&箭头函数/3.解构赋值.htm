@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>解构赋值</h1>
+  <h2>1.数组解构</h2>
+  <p>数组解构是将数组的单元值快速批量赋值给一系列变量的简洁语法</p>
+  <p>赋值符号 左边的[]用于批量声明变量,右侧数组的单元值被赋值给左侧数组</p>
+  <p>前面有语句时必须加";"(同立即执行函数),否则与上一行视为同一个语句</p>
+  <p>变量多undefined(可以先给个默认值)</p>
+  <p>变量少直接舍弃多余值(可以使用剩余参数储存)</p>
+  <script>
+    //语法示例
+    const arr1 = [1, 2, 3, 4]
+    let [num1, num2, ...num3] = arr1
+    console.log(num1);
+    console.log(num2);
+    console.log(num3);
+
+    //交换变量值
+    ;[num1, num3] = [num3, num1]
+    console.log(num1);
+    console.log(num2);
+    console.log(num3)
+
+    //变量过多或过少 解决方法
+    function getValue() {
+      return [344, 122]
+    }
+    const [max = 12, ...min] = getValue()
+    console.log(max);
+    console.log(min);
+
+    //按需导入,跳过空位
+    const [a, b, , d] = [1, 2, 3, 4]
+    console.log(a);
+    console.log(b);
+    console.log(d);
+
+    //多维数组也可以解构
+    const arr2 = [1, 2, [3, 4]]
+    console.log(arr2[2, 0]);//取逗号后面的值//1
+    console.log(arr2[2][0]);//3
+    const [e, f, [g, h]] = [1, 2, [3, 4]]
+    console.log('多维数组解构');
+    console.log(e);
+    console.log(f);
+    console.log(g);
+    console.log(h);
+  </script>
+
+  <h2>2.对象解构</h2>
+  <p>左侧使用{}批量声明</p>
+  <p>变量名必须和属性名一致,找不到对应的属性名会变为undefined</p>
+  <script>
+    const obj1 = {
+      uname: 'Leo',
+      age: 18
+    }
+    const { age, uname } = obj1//靠同名检索,顺序颠倒影响不大
+    console.log('--------------------');
+    console.log(uname);
+    console.log(age);
+  </script>
+  <h4>若出现冲突,可以重新改名</h4>
+  <p>语法: &nbsp;&nbsp;&nbsp;旧名:新名</p>
+  <script>
+    //
+    const { uname: username, age: userage } = obj1
+    console.log(username);
+    console.log(userage);
+  </script>
+
+  <h3>数组对象解构</h3>
+  <script>
+    const pig = [
+      {
+        uname: 'peiqi',
+        age: 18,
+      }
+    ]
+    const [{ uname: uName, age: uAge }] = pig
+    console.log(uName, uAge);
+
+    function render1({ uname }) {
+      console.log(uname);
+    }
+    render1(pig[0])
+    function render2([{ uname: myname }]) {
+      console.log(myname);
+    }
+    render2(pig)
+  </script>
+</body>
+
+</html>

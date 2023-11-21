@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 挂载后，页面中将会有以下内容
+    <div id="container">
+        <ul id="list">
+            <li className="item">Item 1</li>
+            <li className="item">Item 2</li>
+            <li className="item">Item 3</li>
+    </div> -->
+    <script>
+        function createElement(tag, attrs, children) {
+            return { tag, attrs, children }
+        }
+        function mount(vdom, container) {
+            let dom = document.createElement(vdom.tag)
+            for (let key in vdom.attrs) {
+                dom.setAttribute(key, vdom.attrs[key])
+            }
+            if (typeof vdom.children[0] === 'string') {
+                dom.textContent = vdom.children
+            }
+            else {
+                vdom.children.forEach(element => {
+                    mount(element, dom)
+                });
+            }
+            container.appendChild(dom)
+        }
+
+        const vdom = createElement('div', { id: 'container' }, [
+            createElement('ul', { id: 'list' }, [
+                createElement('li', { className: 'item' }, ['Item 1']),
+                createElement('li', { className: 'item' }, ['Item 2']),
+                createElement('li', { className: 'item' }, ['Item 3'])
+            ])
+        ])
+        mount(vdom, document.body);
+        // vdom的值如下
+        // vdom = {
+        //     tag: 'div',
+        //     attrs: {
+        //         id: 'container'
+        //     },
+        //     children: [
+        //         {
+        //             tag: 'ul',
+        //             attrs: {
+        //                 id: 'list'
+        //             },
+        //             children: [
+        //                 {
+        //                     tag: 'li',
+        //                     attrs: {
+        //                         className: 'item'
+        //                     },
+        //                     children: ['Item 1']
+        //                 },
+        //                 {
+        //                     tag: 'li',
+        //                     attrs: {
+        //                         className: 'item'
+        //                     },
+        //                     children: ['Item 2']
+        //                 },
+        //                 {
+        //                     tag: 'li',
+        //                     attrs: {
+        //                         className: 'item'
+        //                     },
+        //                     children: ['Item 3']
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // };
+
+    </script>
+</body>
+
+</html>

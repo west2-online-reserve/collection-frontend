@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>其它事件</h1>
+
+
+  <h2>1.页面加载事件</h2>
+  <p>页面加载外部资源(图片,外联css,外联js)完毕时触发的事件</p>
+  <p>场景1:有时要等页面资源全处理完再做一些事情</p>
+  <p>场景2:部分老代码把script写在head里</p>
+  <h3>事件名:load</h3>
+  <img src="../../img/DOM树.png">
+  <script>
+    //等待页面所有资源加载完了再去执行回调函数
+    window.addEventListener('load', function () { })
+    //也可以等待某部分加载完毕
+    const img = document.querySelector('img')
+    img.addEventListener('load', function () { })
+  </script>
+
+  <h3>DOMContentLoaded</h3>
+  <p>只要等HTML标签加载完</p>
+  <p>不需要等待图片和样式完全加载完</p>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () { })
+  </script>
+
+
+
+  <h2>2.元素滚动事件</h2>
+  <p>滚动条在滚动时持续触发的事件</p>
+  <p>场景:需要检测用户把页面滚动到某个区域后做一些处理,如固定导航栏,返回顶部</p>
+  <h3>1.事件名:scroll</h3>
+  <script>
+    const body = document.querySelector('body')
+    window.addEventListener('scroll', function () {
+      console.log(document.documentElement.scrollTop);//documentElement是HTML标签的DOM对象
+    })
+  </script>
+  <h3>2.获得卷曲的像素scrollTop和scrollLeft</h3>
+  <p><strong>可读写,可以访问和赋值</strong></p>
+  <p>可用于做电梯导航</p>
+  <h4>赋值可用scrollTo(x,y)代替</h4>
+
+
+  <h3>3.获得位置(相对定位父元素)offsetTop,offsetLeft</h3>
+  <p><strong>只读,可以访问和不能赋值(一般固定)</strong></p>
+  <p>距离定位父元素的左上距离(类绝对定位,受定位父元素影响)</p>
+  <h4>获得位置(相对视口) 对象.getBoundingClientRect()</h4>
+
+
+
+  <h2>3.页面尺寸事件</h2>
+  <h3>1.事件名:resize</h3>
+  <script>
+    //浏览器窗口大小变化时触发
+    window.addEventListener('resize', function () { })
+  </script>
+  <h3>2.获取(只读)元素宽高(不含边框):clientWidth,clientHeight</h3>
+
+  <h3>3.获取(只读)元素宽高(包含边框):offsetWidth,offsetHeight</h3>
+  <p>获得的是可视宽高,若盒子隐藏,结果为0</p>
+
+
+
+</body>
+
+</html>

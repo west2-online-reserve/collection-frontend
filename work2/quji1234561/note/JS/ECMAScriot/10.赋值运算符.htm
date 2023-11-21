@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>运算符</h1>
+  <h2>1.赋值运算符</h2>
+  <h3>等=</h3>
+  <h3>+加等=</h3>
+  <h3>减等-=</h3>
+  <h3>乘等*=</h3>
+  <h3>除等/=</h3>
+  <h3>取模等%=</h3>
+  <script>
+    let num = 1
+    num += 20
+    num -= 2
+    num *= 2
+    num /= 2
+    num %= 4
+    console.log(num);
+  </script>
+
+  <h2>2.一元运算符</h2>
+  <h3>自增++</h3>
+  <p>用于记数,每次加1</p>
+  <h4>前置自增++n</h4>
+  <p>前置在运算之前加</p>
+  <h4>后置自增(更推荐)n++</h4>
+  <p>后置在运算之后加</p>
+  <script>
+    let n = 1
+    let m = 1
+    let i = 1
+    console.log(++n + 1);
+    console.log(m++ + 1);
+    console.log(i++ + ++i + i);
+  </script>
+
+  <h3>自减--</h3>
+
+  <h2>3.比较(关系)运算符</h2>
+  <h3>&gt;</h3>
+  <h3>&lt;</h3>
+  <h3>&gt;=</h3>
+  <h3>&lt;=</h3>
+  <h3>==值是否相等</h3>
+  <h3>===类型和值是否都相等</h3>
+  <h3>!==是否不全等</h3>
+  <p>浮点数的运算会出现精度问题,先转为整数比较,再转为原来的数据</p>
+  <p>返回boolean值</p>
+  <p>比较运算符也存在隐式转换</p>
+  <p>字符串是比较ASCII码,数字大写小写从小到大排</p>
+  <script>
+    console.log(2 == '2');//true
+    console.log(null == undefined);//true
+    console.log(NaN == NaN);//false
+
+    //  严格判断使用更多
+    console.log(2 === '2');//false
+    console.log(null === undefined);//false
+    console.log(NaN === NaN);//false,NaN不等于任何值,包括自身
+    console.log(2 != '2');//false
+    console.log(2 !== '2');//true
+    console.log('a' < 'b');//true
+    console.log('aa' < 'ab');//true
+    console.log('ba' < 'ab');//false
+    console.log('aa' < 'aac');//true
+  </script>
+
+  <h2>4.逻辑运算符</h2>
+  <h3>与&&</h3>
+  <h3>或||</h3>
+  <h3>非!,取反</h3>
+  <script>
+    let a = 3
+    let b = 6
+    console.log(a > 5 || b > 5);
+  </script>
+
+  <h2>5.运算符优先级</h2>
+  <table>
+    <tr>
+      <th>优先级</th>
+      <th>运算符</th>
+      <th>顺序</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>小括号</td>
+      <td>()</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>一元运算符</td>
+      <td>++ -- !</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>算术运算符</td>
+      <td>先*/%后+-</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>比较运算符</td>
+      <td>&gt; &gt;= &lt; &lt;=</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>相等运算符</td>
+      <td>++ != === !==</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>逻辑运算符</td>
+      <td>先&&后||</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>赋值运算符</td>
+      <td>=</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>逗号运算符</td>
+      <td>,</td>
+    </tr>
+  </table>
+  <style>
+    table {
+      border: 1px solid #000;
+      text-align: center;
+    }
+  </style>
+</body>
+
+</html>

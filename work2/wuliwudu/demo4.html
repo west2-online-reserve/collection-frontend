@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>切换框</title>
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./demo4.css">
+</head>
+
+<body>
+  <!-- 菜单 -->
+  <div class="tab">
+    <div class="tab_list">
+      <ul>
+        <li class="current">个人介绍</li>
+        <li>更多资讯</li>
+        <li>关于我们</li>
+      </ul>
+    </div>
+
+    <!-- 内容 -->
+    <div class="tab_con">
+      <div class="item" style="display: block;">
+        <h3>金智秀</h3>
+        韩国流行乐女歌手、演员、主持人，BLACKPINK成员
+        金智秀（김지수，Kim Jisoo），1995年1月3日出生于韩国京畿道果川市，韩国女歌手、演员、主持人，女子演唱组合BLACKPINK成员
+      </div>
+      <div class="item">2020年8月18日，金智秀决定出演JTBC新剧《雪滴花》，这将是她首次挑战主演身份。<br>
+        2023年3月31日，发行首张个人专辑《ME》。</div>
+      <div class="item">如需联系请拨打热线12345678</div>
+    </div>
+  </div>
+
+
+  <script>
+    var lis = document.querySelector(".tab_list").querySelectorAll("li");
+    var items = document.querySelectorAll(".item");
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].setAttribute("index", i);
+      lis[i].onclick = function () {
+        for (let j = 0; j < lis.length; j++) {
+          lis[j].className = "";
+        }
+        this.className = "current";
+        var index = this.getAttribute("index");
+        for (let k = 0; k < items.length; k++) {
+          items[k].style.display = "none";
+        }
+        items[index].style.display = "block";
+      }
+    }
+  </script>
+</body>
+
+</html>

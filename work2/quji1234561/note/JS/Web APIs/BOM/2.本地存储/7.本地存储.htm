@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>本地存储介绍</h2>
+  <p>为了在本地存储大量数据</p>
+  <p>1.将数据存储在用户浏览器中</p>
+  <p>2.设置、读取方便、甚至页面刷新不丢失</p>
+  <p>3.容量较大,sessionStorage和localStorage约5M左右</p>
+
+  <h2>本地存储分类</h2>
+
+  <h3>localStorage</h3>
+  <p>能够使用localStorage把数据存储到浏览器中</p>
+  <p>作用:永久存储在本地,除非手动删除,否则关闭界面也会存在</p>
+  <p>特性:可以多窗口(页面)共享(同一浏览器,且不能跨域);以键值对的形式存储使用</p>
+
+  <h4>1.存储(改)</h4>
+  <p>语法:</p>
+  <p>localStorage.setItem(key,value)</p>
+  <p>key要加引号,否则会被当作未定义的变量</p>
+  <p>本地存储只能存字符串,数字会转为字符存储</p>
+  <p>改 要重新赋值</p>
+  <script>
+    // localStorage.setItem(键,值)
+  </script>
+
+  <h4>2.获取</h4>
+  <p>语法:</p>
+  <p>localStorage.getItem(key)</p>
+
+  <h4>3.删除</h4>
+  <p>语法:</p>
+  <p>localStorage.removeItem(key)</p>
+
+  <h3>sessionStorage</h3>
+  <p>与localStorage最大不同:关闭浏览器数据会消失</p>
+  <p>使用方法基本相同</p>
+</body>
+
+</html>

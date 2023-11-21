@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .d1 {
+      width: 100px;
+      height: 100px;
+      background-color: aqua;
+    }
+
+    .d2 {
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>事件流</h2>
+  <h3>事件流和两个阶段</h3>
+  <p>事件流指事件完整执行过程中的流动路径</p>
+  <p>捕获阶段</p>
+  <p>冒泡阶段</p>
+
+
+  <h3>事件捕获</h3>
+  <p>从DOM的根元素去寻找捕获的事件</p>
+  <p>addEventListener(事件类型,事件处理函数,是否使用捕获机制)</p>
+  <p>true为捕获,false为冒泡(默认)</p>
+  <p>L0(如onclick)没有捕获</p>
+
+  <h3>事件冒泡</h3>
+  <p>默认false,一定发生</p>
+  <p>子元素触发事件后,依次触发祖元素的同名事件</p>
+
+  <h3>阻止冒泡</h3>
+  <p>问题:默认冒泡,容易误触发父元素的同名事件</p>
+  <p>事件对象e.stopPropagation()</p>
+  <p>此方法阻止流动传播(包括捕获和冒泡)</p>
+
+  <div class="d1">
+    <div class="d2"></div>
+  </div>
+
+  <h3>解绑事件</h3>
+  <h4>L0(on事件)</h4>
+  <p>绑定时采取赋值形式,故解绑:</p>
+  <p>btn.onclick = null</p>
+  <h4>L2(addEventListener)</h4>
+  <p>btn.removeEventListener()</p>
+  <p>匿名函数无法解绑</p>
+
+
+  <script>
+    const d1 = document.querySelector('.d1')
+    const d2 = document.querySelector('.d2')
+    document.addEventListener('click', function () {
+      alert('0')
+    })
+    d1.addEventListener('click', function () {
+      alert('1')//未阻止,会触发document的点击事件
+    })
+    d2.addEventListener('click', function reName(e) {//为解绑需命名
+      e.stopPropagation()//阻止,不会触发d1和document的点击事件
+      alert('2')
+      this.removeEventListener('click', reName)
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>事件委托</h2>
+  <p>优点:减少注册次数,可以提高程序性能</p>
+  <p>原理:事件冒泡</p>
+  <p>给父元素注册事件,当我们触发子元素事件时,会冒泡到父元素身上,从而触发父元素的事件</p>
+  <h5>实现</h5>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <p>ppp</p>
+  </ul>
+  <script>
+    const ul = document.querySelector('ul')
+    ul.addEventListener('click', function (e) {
+      if (e.target.tagName === 'LI') {
+        e.target.style.color = 'red'
+      }
+    })
+
+    let a, b
+    a = 1
+    b = a++
+    console.log(b);
+  </script>
+
+</body>
+
+</html>

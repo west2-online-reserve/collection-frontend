@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>语句</h1>
+
+  <h2>1.顺序语句</h2>
+
+  <h2>2.分支语句</h2>
+  <p>可以选择性地执行代码</p>
+
+  <h3>1.if语句</h3>
+  <p>if(条件1){</p>
+  <p>满足条件1要执行的语句</p>
+  <p>}else if(条件2){</p>
+  <p>满足条件2执行的语句</p>
+  <p>}else{</p>
+  <p>不满足上述条件执行的语句</p>
+  <p>}</p>
+  <p>除了0,空字符串,null,undefined都为真</p>
+  <script>
+    console.log(Boolean(undefined));
+  </script>
+
+  <h3>2.三元运算符</h3>
+  <p>条件?满足条件执行的代码:不满足条件执行的代码</p>
+  <p>一般用于取值</p>
+  <script>
+    console.log(3 > 5 ? 1 : 0);
+    3 > 5 ? document.write(1) : document.write(0)//false-->输出右边0
+  </script>
+
+  <h3>3.switch语句</h3>
+  <p>switch(数据){</p>
+  <p>case 值1:</p>
+  <p>代码1</p>
+  <p>break</p>
+  <p>case 值2:</p>
+  <p>break</p>
+  <p>default:</p>
+  <p>代码n</p>
+  <p>}</p>
+
+
+  <h2>3.循环语句</h2>
+  <h3>while循环</h3>
+  <p>while(循环条件){</p>
+  <p>要重复执行的代码</p>
+  <p>}</p>
+
+  <h3>for循环</h3>
+  <p>for(整个循环前执行;循环条件;每次循环后执行){</p>
+  <p>循环体</p>
+  <p>}</p>
+  <p>for(变量起始值;循环条件;变量变化量){</p>
+  <p>循环体</p>
+  <p>}</p>
+  <script>
+    for (let i = 1; i <= 10; i += 2) {
+      document.write(i)
+    }
+  </script>
+
+  <h3>循环的退出</h3>
+  <p>while(true)和for(;;)都可以构造无限循环</p>
+  <h4>break退出整个循环</h4>
+  <h4>continue结束本次循环,继续下次循环</h4>
+
+
+  <h3>遍历数组</h3>
+  <script>
+    // 遍历数组
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    for (let i = 0; i < arr.length; i++) {
+      document.write(arr[i] + ' ')
+    }
+  </script>
+
+</body>
+
+</html>

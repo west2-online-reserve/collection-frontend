@@ -1,0 +1,40 @@
+body{
+  background-image: linear-gradient(to right,#fbd787,#c6ffdd);
+}
+
+.tab{
+  width: 482px;
+  height: 200px;
+  margin: 100px auto;
+}
+
+.tab_list{
+  height: 39px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  
+  color: #000;
+}
+
+.tab_list li{
+  float: left;
+  height: 39px;
+  line-height: 39px;
+  padding: 0 40px;
+  font-size: 20px;
+}
+
+.current{
+  background-color: #c81623;
+  color: #fff;
+}
+
+
+.item{
+  display: none;
+  height: 180px;
+  background-color: rgba(255,255,255, 0.6);
+  color: #000;
+  font-size: 16px;
+}
+

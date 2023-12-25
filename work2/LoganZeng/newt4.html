@@ -60,6 +60,29 @@
 
     <script>
       // 要在这里面写逻辑
+     
+      let button1 = document.getElementById("first");
+      let button2 = document.getElementById("second");
+      let button3 = document.getElementById("third");
+      button1.addEventListener('click', function() {
+        document.getElementById("content").innerHTML ="液氮xi女子，不必说，他的冷酷言行";
+        button1.style.backgroundColor = 'blue'; 
+        button2.style.backgroundColor = '#6190dd';
+        button3.style.backgroundColor = '#6190dd';
+    });
+    button2.addEventListener('click', function() {
+        document.getElementById("content").innerHTML ="教师酒品差 ，从白天开始说梦话";
+        button1.style.backgroundColor = '#6190dd';
+        button2.style.backgroundColor = 'blue'; 
+        button3.style.backgroundColor = '#6190dd';
+    });
+    button3.addEventListener('click', function() {
+        document.getElementById("content").innerHTML ="扮演天然西的而在";
+        button1.style.backgroundColor = '#6190dd';
+        button2.style.backgroundColor = '#6190dd';
+        button3.style.backgroundColor = 'blue'; 
+    });
+
 
     </script>
   </body>

@@ -60,7 +60,24 @@
 
     <script>
       // 要在这里面写逻辑
-
+      let data=[
+            '液氮系女子。不必说,她的冷酷言行足以在女孩子的社会里吹起绝对零度的暴风雪。表面看来是铜墙铁壁的完美美少女,但害怕狗、突然袭击的温柔、突发事故,这样算来弱点其实很多。',
+            '简直像是在为了获得现在最想结婚的女人NO.1称号一样,目前相亲中的教师。貌美气质佳,无奈酒品太差,休息日从白天就开始自斟自饮，说醉话。',
+            '扮演天然系而在男生中具有大人气的一年级女生，足球部经理。'
+    ]
+    const content=document.querySelector('#content')
+    const label=document.querySelectorAll('#menu .label')
+    const menu=document.querySelector('#menu')
+    for(let i=0;i<label.length;i++){
+        label[i].addEventListener('click',function(){
+        content.innerHTML=''
+        for(let j=0;j<label.length;j++){
+          label[j].style.backgroundColor='#6190dd'
+        }
+        label[i].style.backgroundColor='#4074c7'
+        content.innerHTML=data[i]
+      })
+    }
     </script>
   </body>
 </html>

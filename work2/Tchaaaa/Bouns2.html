@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bouns2</title>
+	</head>
+	<body>
+		<h1>输出见控制台</h1>
+	</body>
+</html>
+<script>
+	function get(obj,path,defaultValue)
+	{
+		var pathParts = path.split('.');
+		var value = obj;
+		for(var i = 0;i < pathParts.length;i++)
+		{
+			if(value && typeof value === 'object' && value.hasOwnProperty(pathParts[i]))
+				value = value[pathParts[i]];
+			else
+				return defaultValue;
+		}
+		return value;
+	}
+	const obj = {
+		a: {
+			b: {
+				c: 1
+			}
+		}
+	};
+	const abc = 1;
+	console.log(get(obj, 'a.b.c', 2)); // 返回 1
+	console.log(get(obj, 'a.b.d', 2)); // 返回 2
+	console.log(get(obj, 'a.b.d.e.f.g', 2)); // 返回 2
+	console.log(get(null, 'a.b.c', 2)); // 返回2
+	console.log(get("abc", 'abc', 2)); // 返回2
+</script>

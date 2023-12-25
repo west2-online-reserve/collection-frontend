@@ -1,0 +1,104 @@
+<!<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>海绵宝宝抓章鱼</title>
+</head>
+<style>
+*{
+    font-size: 30px;
+}
+</style>
+<body>
+<p>海绵宝宝很爱抓章鱼,可爱的学长（出题人）把章鱼哥也混在里面了,尽管他也是章鱼，但是不能抓到他</p> 
+<p>现在我们要将章鱼哥先从这些章鱼中脱离出来(即把这个节点从ul里面去掉),之后再抓章鱼</p>
+<p>海绵宝宝抓章鱼喜欢先从重量小的开始抓，请帮助可爱的海绵宝宝和可爱的学长</p>
+
+<ul id="octopus">
+    <li><span class="name">章鱼一号</span><span class="weight">30.4kg</span></li>
+    <li><span class="name">章鱼二号</span><span class="weight">24.2kg</span></li>
+    <li><span class="name">章鱼三号</span><span class="weight">250.3kg</span></li>
+    <li><span class="name">章鱼四号</span><span class="weight">300.9kg</span></li>
+    <li><span class="name">章鱼五号</span><span class="weight">120.0kg</span></li>
+    <li><span class="name">章鱼六号</span><span class="weight">27.5kg</span></li>
+    <li><span class="name">章鱼七号</span><span class="weight">35.4kg</span></li>
+    <li><span class="name">章鱼哥</span><span class="weight">25.5kg</span></li>
+</ul>
+
+<ul id="octopus-sort">
+<!--
+    <li>第一只章鱼：章鱼六号：27.5kg</li>
+-->
+</ul>
+<button id="sort-btn">排序</button>
+
+<script>
+
+//把章鱼哥节点从ul列表中删除
+function remove (){
+    var octopusList = document.getElementById("octopus");
+    var octopusGe = document.querySelector("#octopus .name").textContent;
+
+    for (var i = 0; i < octopusList.children.length ; i++){
+        var name = octopusList.children[i].querySelector(".name").textContent;
+        if(name === "章鱼哥"){
+            octopusList.children[i].remove();
+        }
+    }
+}
+
+//读取id为octopus的列表，获取其中章鱼名字和体重
+function getWeight () {
+    var octopusList = document.getElementById("octopus");
+    var data =[];
+
+    for(var i = 0; i < octopusList.children.length ; i++){
+        var name = octopusList.children[i].querySelector(".name").textContent;
+        var weight = parseFloat(octopusList.children[i].querySelector(".weight").textContent);
+
+        var row = {
+            "name":name,
+            "weight":weight,
+        };
+        data.push(row);
+    }
+
+    return data;
+}
+
+//按章鱼重量，对data进行从小到大的排序,返回一个排序后的数组
+function sortedOctopus (data) {
+    data.sort(function(a,b){
+        return a.weight - b.weight;
+    });
+
+    return data;
+}    
+
+//将排好序的章鱼朋友输出显示到id为octopus-sort的列表中,格式见ul中注释
+function render (data) {
+    var octopusSort = document.getElementById("octopus-sort")
+    octopusSort.innerHTML = "";
+
+    for(var i = 0; i < data.length; i++){
+        var octopus = data[i];
+        var li = document.createElement("li");
+        li.textContent = "第" + (i+1) +"只章鱼：" + octopus.name + ":" + octopus.weight +"kg";
+        octopusSort.append(li);
+    }
+}
+
+function handleButton() {
+    remove();
+    var data = getWeight();
+    var sortedData = sortedOctopus(data);
+    var octopus = getElementById("octopus");
+    octopus.innerHTML = " ";
+    render(sortedData);
+}
+
+document.getElementById("sort-btn").addEventListener("click",handleButton);
+
+</script>
+</body>
+</html>

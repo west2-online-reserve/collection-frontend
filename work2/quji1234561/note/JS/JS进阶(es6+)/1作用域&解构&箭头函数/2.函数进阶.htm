@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>函数进阶</h1>
+  <h2>1.函数提升</h2>
+  <p>函数在声明前即可被调用</p>
+  <p>会把所有函数声明提升到当前作用域的最前面</p>
+  <script>
+    fn()
+    function fn() {
+      console.log(222);
+    }
+    //使用函数表达式的形式 赋值 不会出现函数提升 
+
+    // fun()
+    var fun = function () {//只提升变量的声明,不提升赋值
+      console.log(333);//fun is not a function
+    }
+  </script>
+
+
+  <h2>2.函数参数</h2>
+  <h3>2.1动态参数</h3>
+  <p>arguments是函数内部内置的伪数组变量,包含了调用参数时的所有实参</p>
+  <script>
+    function getSum() {
+      // console.log(arguments);//本质是伪数组
+      let sum = 0
+      for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i]
+      }
+      console.log(sum);
+    }
+    getSum(2, 3, 12, 13, 2)
+  </script>
+
+  <h3>2.2剩余参数</h3>
+  <p>允许将一个不定数量的参数表示为一个数组</p>
+  <h4>与动态参数不同之处:</h4>
+  <p>...是语法符号,至于最末函数形参之前,用于获取多余的实参</p>
+  <p>获取的剩余实参,是真数组</p>
+  <script>
+    function getSum2(...arr) {
+      let sum = 0
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i]
+      }
+      console.log(sum);
+    }
+    getSum2(2, 3, 12, 13, 2)
+  </script>
+  <h4>易混:展开运算符...</h4>
+  <p>不止用于函数</p>
+  <p>不会修改原数组</p>
+  <script>
+    const arr2 = [1, 2, 3, 4, 5, 6]
+    console.log(...arr2);//1 2 3 4 5 6
+    //场景1:求最值
+    console.log(Math.max(...arr2));//6
+    console.log(Math.min(...arr2));//1
+    //场景2:合并数组
+    const arr3 = [1, 4, 7]
+    const arr4 = [...arr2, ...arr3]
+    console.log(arr4);
+  </script>
+
+  <h2>3.箭头函数</h2>
+  <p>更加简洁,适用于那些本来需要匿名函数的地方</p>
+  <h3>1.基本语法</h3>
+  <script>
+
+    //1.有且仅有一个参数可以省略小括号
+    const niming1 = x => {
+      console.log(x);
+    }
+    niming1(4321)
+    //2.1函数体只有一行可以省略大括号,
+    const niming2 = x => console.log(x)
+    niming2(54321)
+    //2.2函数体只为一行,函数体直接作为返回值返回(可省略return)
+    const niming3 = x => x + x
+    console.log(niming3(123));
+    //2.3可直接返回对象,但需要加小括号(对象本身的大括号和函数体的大括号会混淆)
+    const reName = uName => ({ uname: uName })
+    console.log(reName('Leo'));
+
+  </script>
+  <h3>2.箭头函数参数</h3>
+  <p>没有动态参数,有剩余参数</p>
+
+  <h3>3.箭头函数this</h3>
+  <p>箭头函数不会创建自己的this,只会从作用域链的上一层沿用this</p>
+  <script>
+    //1.之前的this
+    console.log(this);//Window
+
+    function fnThis() {
+      console.log(this);
+    }
+    fnThis()//Window
+
+    const obj = {
+      name: 'Leo',
+      sayHi: function () {
+        console.log(this);
+      }
+    }
+    obj.sayHi()//obj
+
+    //2.箭头函数的this
+    function father() {
+      const funThis = () => {
+        console.log(this);
+      }
+      funThis()
+    }
+    father()//Window
+
+
+    //箭头函数没有this,所以沿用上一级的this
+    const obj2 = {
+      uname: 'Mike',
+      know: () => {
+        console.log(this);
+      }
+    }
+    obj2.know()//Window
+
+    const obj3 = {
+      uname: 'Mike',
+      know: function () {
+        const knows = () => {
+          console.log(this);
+        }
+        knows()//obj3
+      }
+    }
+    obj3.know()
+
+
+
+
+  </script>
+
+</body>
+
+</html>

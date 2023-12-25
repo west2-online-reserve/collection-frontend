@@ -87,11 +87,11 @@ body{
     border: 2px solid rgb(73, 73, 243);
     border-radius: 50px 50px 50px 50px;
 }
-#pic img{
+#pic{
  width: 150px;
  height: 150px;
  border-radius: 50%;
-
+ overflow:hidden;
 }
 #word{
     margin-top: 45px;

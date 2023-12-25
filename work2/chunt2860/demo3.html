@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            width: 430px;
+            height: 430px;
+            margin: 100px auto;
+        }
+
+        ul {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        li {
+            width: 125px;
+            height: 85px;
+            border: 1px solid #6C95D2;
+            list-style: none;
+            text-align: center;
+            line-height: 85px;
+            font-size: 25px;
+            background: #64AAFE;
+            cursor: pointer;
+        }
+
+        .item {
+            display: none;
+            width: 100%;
+            flex-grow: 1;
+            border: 1px solid #6C95D2;
+            font-size: 25px;
+            background: #7DC5F6;
+        }
+
+        .activeLi {
+            background: #00C5FF;
+        }
+
+        .activeItem {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li class="activeLi" data-id="0">二小姐</li>
+            <li data-id="1">静可爱</li>
+            <li data-id="2">一色</li>
+        </ul>
+        <div class="item activeItem">液蚕系女子。不必说,她的冷酷言行足以在女孩子的社会里吹起绝对零度的暴风雪。表面看来是铜墙铁壁的完美美少女,但害怕狗、突然袭击的温柔、突发事故,这样算来弱点其实很多。
+        </div>
+        <div class="item">简直像是在为了获得现在最想结婚的女人NO.1称号一样,目前相亲中的教师。貌美气质佳,无奈酒品太差,休息日从白天就开始自斟自饮,说醉话。</div>
+        <div class="item">扮演天然系而在男生中具有大人气的一年级女生,足球部经理。</div>
+    </div>
+
+    <script>
+        const ul = document.querySelector('.box ul')
+        const items = document.querySelectorAll('.item')
+        ul.addEventListener('click', (e) => {
+            if (e.target.tagName === 'LI') {
+                document.querySelector('.activeLi').classList.remove('activeLi')
+                e.target.classList.add('activeLi')
+                const i = +e.target.dataset.id
+                document.querySelector('.activeItem').classList.remove('activeItem')
+                items[i].classList.add('activeItem')
+            }
+        })
+    </script>
+</body>
+
+</html>

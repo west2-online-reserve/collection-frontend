@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bouns1</title>
+	</head>
+	<style>
+		.btn1, .btn2, .btn3{
+			margin-left: 1%;
+			margin-top: 5%;
+			background-color: #6290F1;
+			width: 100px;
+			height: 70px;
+			border:2px solid #6690D5;
+			border-radius: 5px;
+			font-size: 19px;
+		}
+		#btn{
+			margin-left: 20%;
+		}
+		#box{
+			background-color: #8BC6FF;
+			width: 340px;
+			height: 250px;
+			position: absolute;
+			margin-left: 20.4%;
+			margin-top: 8%;
+			border:2px solid #6E92C9;
+			border-radius: 5px;
+			font-size: 20px;
+		}
+	</style>
+	<body>
+		<div id="box"></div>
+		<div id="btn">
+			<button class="btn1">HTML</button>
+			<button class="btn2">CSS</button>
+			<button class="btn3">JavaScript</button>
+		</div>
+	</body>
+	<script>
+		function btnState1()
+		{
+			btn1Event.style.setProperty("background-color","#00C6FF");
+			btn2Event.style.setProperty("background-color","#6290F1");
+			btn3Event.style.setProperty("background-color","#6290F1");
+			document.getElementById("box").innerHTML = 
+			"HTML的全称为超文本标记语言，是一种标记语言。它包括一系列标签，通过这些标签可以将网络上的文档格式统一，使分散的Internet资源连接为一个逻辑整体。HTML文本是由HTML命令组成的描述性文本，HTML命令可以说明文字，图形、动画、声音、表格、链接等。";
+		}
+		function btnState2()
+		{
+			btn1Event.style.setProperty("background-color","#6290F1");
+			btn2Event.style.setProperty("background-color","#00C6FF");
+			btn3Event.style.setProperty("background-color","#6290F1");
+			document.getElementById("box").innerHTML = 
+			"层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。";
+		}
+		function btnState3()
+		{
+			btn1Event.style.setProperty("background-color","#6290F1");
+			btn2Event.style.setProperty("background-color","#6290F1");
+			btn3Event.style.setProperty("background-color","#00C6FF");
+			document.getElementById("box").innerHTML = 
+			"JavaScript（简称“JS”）是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式、声明式、函数式编程范式。";
+		}
+		var btn1Event = document.querySelector(".btn1");
+		var btn2Event = document.querySelector(".btn2");
+		var btn3Event = document.querySelector(".btn3");
+		btnState1();
+		document.querySelector(".btn1").addEventListener("click", btnState1);
+		document.querySelector(".btn2").addEventListener("click", btnState2);
+		document.querySelector(".btn3").addEventListener("click", btnState3);
+		
+		//Bonus1 获取页面中Dom出现次数最多的前3个名称，以demo4为样例
+		let allDOMs = Array.from(document.querySelectorAll("*"));
+		let tagCounts = allDOMs.map(el => el.tagName).reduce((counts,tag) => {counts[tag] = (counts[tag] || 0) + 1;return counts;},{});
+		let sortedArray = Object.entries(tagCounts).sort((a,b) => b[1] - a[1]).slice(0,3);
+		console.log(sortedArray);
+	</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>内置对象</h2>
+  <p>js准备好的内置对象</p>
+
+  <h3>内置对象Math</h3>
+
+  <h4>属性</h4>
+  <p>PI圆周率</p>
+  <script>
+    console.log(Math.PI);//3.141592653589793
+    console.log('--------------------------');
+  </script>
+
+  <h4>方法</h4>
+  <p>random随机数[0,1）</p>
+  <p>ceil向上取整</p>
+  <p>floor向下取整</p>
+  <p>round四舍五入</p>
+  <p>max最大值</p>
+  <p>min最小值</p>
+  <p>abs绝对值</p>
+  <p>pow幂运算</p>
+  <p>sqrt算术平方根</p>
+
+  <script>
+    console.log(Math.random());//0.011200894639587844,0.9251116606349172
+    console.log(Math.ceil(1.5));//2
+    console.log(Math.floor(1.5));//1
+    //parseInt()类似,但parseInt能将'12px'转为12
+    console.log(Math.round(1.4));//1
+    console.log(Math.round(1.5));//2
+    console.log(Math.round(-1.5));//-1向上取
+    console.log('--------------------------');
+    console.log(Math.max(1, 2, 3, 4, 5));//5
+    console.log(Math.min(1, 2, 3, 4, 5));//1
+    console.log(Math.abs(-1));//1
+    console.log(Math.pow(2, 3));//8
+    console.log(Math.pow(4, 1 / 2));//2
+    console.log(Math.sqrt(16));//4
+
+
+
+  </script>
+</body>
+
+</html>

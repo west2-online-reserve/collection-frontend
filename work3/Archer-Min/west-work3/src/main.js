@@ -1,6 +1,15 @@
-import './assets/main.css'
+// main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import { pinia } from './stores';
+import ElementPlus from 'element-plus';
+import 'element-plus/theme-chalk/index.css';
 
-import { createApp } from 'vue'
-import App from './App.vue'
+const app = createApp(App);
 
-createApp(App).mount('#app')
+app.use(router);
+app.use(pinia);
+app.use(ElementPlus);
+
+app.mount('#app');

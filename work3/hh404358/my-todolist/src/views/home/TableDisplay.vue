@@ -196,7 +196,7 @@ const sortMethod = (a, b) => {
 
 .el-table {
     overflow: hidden;
-    width: 100vh;
+    width: 1200px;
     text-align: center;
     border: 1px solid #D1E2CF;
     border-top: none;

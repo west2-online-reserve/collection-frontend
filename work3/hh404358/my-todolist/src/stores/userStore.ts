@@ -8,7 +8,7 @@ export const userStore = defineStore('user', {
             email: '',
             password: '',
         },
-        todolistStore: [] as {id:number, content: string; time: string[];completed:boolean}[],
+        todolistStore: [] as {id:number, content: string; time: string[];completed:boolean;classify:string}[],
         CompleteStore:[] as { id:number,content: string; time: string[];completed:boolean}[],
     }),
 

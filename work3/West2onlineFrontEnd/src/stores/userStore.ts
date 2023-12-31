@@ -5,7 +5,7 @@ import { type UserInfo, type LoginStatus} from '@/types/userInfo';
 import { reactive } from 'vue';
 import { defineStore } from 'pinia'
 
-export const useUserStore =  defineStore('user', () =>{
+export const useUserStore =  defineStore('user-of-schedule', () =>{
     // 用户数据
     const userInfo = reactive<UserInfo>({
         id: undefined,
@@ -30,7 +30,7 @@ export const useUserStore =  defineStore('user', () =>{
         userInfo.password = user.password;
         userInfo.email = user.email;
 
-        localStorage.setItem('user', JSON.stringify(userInfo));
+        // localStorage.setItem('user-of-schedule', JSON.stringify(userInfo));
     };
 
     // 清除用户数据
@@ -41,7 +41,7 @@ export const useUserStore =  defineStore('user', () =>{
         userInfo.password = '';
         userInfo.email = '';
 
-        localStorage.removeItem('user');
+        localStorage.removeItem('user-of-schedule');
     };
 
     // 退出登录
@@ -85,7 +85,7 @@ export const useUserStore =  defineStore('user', () =>{
 
     // 更新信息
     const updateInfo = (user: UserInfo) => {
-        
+
     }
 
     return {

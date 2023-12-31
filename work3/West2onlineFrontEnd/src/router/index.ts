@@ -13,14 +13,26 @@ const router = createRouter({
       component: () => import('@/views/TestView.vue')
     },
     {
-      name: 'login',
-      path: '/login',
-      component: () => import('@/views/LoginView.vue')
-    },
-    {
-      name: 'register',
-      path: '/register',
-      component: () => import('@/views/RegisterView.vue')
+      name: 'authentication',
+      path: '/authentication',
+      component: () => import('@/views/AuthenticationView.vue'),
+      children: [
+        {
+          name: 'login',
+          path: '',
+          component: () => import('@/components/CustomLoginForm.vue')
+        },
+        {
+          name: 'register',
+          path: 'register',
+          component: () => import('@/components/CustomRegisterForm.vue')
+        },
+        {
+          name: 'reset-password',
+          path: 'reset-password',
+          component: () => import('@/components/CustomResetPasswordForm.vue')
+        },
+      ]
     },
     {
       name: 'home',
@@ -29,8 +41,8 @@ const router = createRouter({
     },
     {
       path:'/',
-      redirect:'/login'
-  }
+      redirect: '/authentication'
+    }
   ]
 })
 

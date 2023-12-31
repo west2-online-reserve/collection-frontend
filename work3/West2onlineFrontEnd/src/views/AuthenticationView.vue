@@ -1,20 +1,21 @@
-<!-- LoginView.vue -->
+<!-- RegisterView.vue -->
 <template>
     <div class="container">
         <div class="container-of-form">
-            <CustomLoginForm />
+            <RouterView> </RouterView>
         </div>
         <div class="container-of-background"></div>
     </div>
 </template>
 
-<script setup lang="ts" name="LoginView"> 
-    import CustomLoginForm from '@/components/CustomLoginForm.vue'
+<script setup lang="ts" name="RegisterView"> 
+    import {RouterView} from 'vue-router'
 
 </script>
 
 <style scoped>
-    .container{
+
+.container{
         display: flex;
         border-radius: 5px;
         

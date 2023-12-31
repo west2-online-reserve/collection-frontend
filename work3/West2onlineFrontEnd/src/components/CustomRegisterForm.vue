@@ -3,60 +3,49 @@
 <template>
     <div class="login-form">
 
-        <h1 class="title">Welcome back</h1>
+        <h1 class="title">Nice to  meet you</h1>
         <h2 class="tip">Please enter your details</h2>
         
         <el-form 
             :inline="false" label-position="top" label-width="120px" :size="formSize" 
-            ref="ruleFormRef" :model="form" :rules="rules" status-icon
+            ref="ruleFormRef" :model="ruleForm" :rules="rules"
             class=""
         >
             <!-- Username -->
             <el-form-item label="User Name" prop="username" 
                 class="form-labels"
             >
-                <el-input v-model="form.username" maxlength="10" placeholder="Please input your username" clearable />
+                <el-input v-model="ruleForm.username" placeholder="Please input your username" clearable />
+            </el-form-item>
+
+            <!-- Email -->
+            <el-form-item label="Email" prop="email" 
+                class="form-labels"
+            >
+                <el-input v-model="ruleForm.email" placeholder="Please input your email" clearable />
             </el-form-item>
 
             <!-- Password -->
-            <el-form-item label="Password" prop=""
+            <el-form-item label="Password" prop="password"
                 class="form-labels"
             >
-                <el-input v-model="form.password" placeholder="Please input your password" clearable show-password/>
+                <el-input v-model="ruleForm.password" placeholder="Please input your password" clearable show-password/>
             </el-form-item>
 
-            <!-- Login options -->
-            <el-form-item label="Login Options"  prop=""
-                class="form-labels"
-            >
-                <el-row justify="space-between" class="expand">
-                    <!-- :span="12" :offset="0" -->
-                    <el-col :span="12">
-                        <el-checkbox v-model="form.isLoginAgain" label="No login for 30 days" class="label-no-login"/>
-                    </el-col>
-                    <el-col :span="8.5">
-                        <!-- TODO: 重设密码 -->
-                        <el-button type="primary" text @click="onResetPassword" class="button-reset-password">Reset Password</el-button>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-
-            <!-- Log in -->
+            <!-- Register -->
             <el-form-item label="" prop=""
                 class="form-labels"
             >
-                <!-- TODO: 登录 -->
-                <el-button type="primary" color="#456442" @click="onLogin" class="button-login" >Log in</el-button>
+                <!-- TODO: 注册 -->
+                <el-button type="primary" color="#456442" @click="onRegisterAccount(ruleFormRef)" class="button-register" >Register</el-button>
             </el-form-item>
 
-            <!-- Create account -->
-            <el-form-item label="" prop=""
+            <!-- return -->
+            <el-form-item label=" " prop=""
                 class="form-labels"
-                >
-                <el-row justify="center" class="expand">
-                    <!-- TODO: 创建账户 -->
-                    <span class="label-no-account">No account?</span><el-button type="primary" @click="onCreateAccount" text class="button-create-one">Create one?</el-button>
-                </el-row>
+            >
+                <!-- TODO: 返回登录页 -->
+                <el-button type="primary" color="transparent" @click="onReturnToLogin" class="button-return-to-login" >Return</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -64,49 +53,115 @@
     
 <script setup lang="ts" name="CustomLoginForm"> 
     import { ref, reactive } from 'vue';
-    // import { Search } from '@element-plus/icons-vue';
-    import type { FormInstance, FormRules } from 'element-plus'
-    
-    interface RuleForm{
-        username:string,
-        password:string,
-        email:string,
-        isLoginAgain:boolean,
-        checkedDate:string,
-    }
+    //interface
+    import {type RuleForm, type UserInfo, type UserInfoCollection} from '@/types/userInfo';
+    // store
+    import {useUserStore} from '@/stores/user';
+    import {storeToRefs} from 'pinia' 
+    // router
+    import { useRouter } from 'vue-router';
 
-    const formSize = ref('default')
-    const ruleFormRef = ref<FormInstance>()   
-    const form = reactive<RuleForm>({
+    // import { Search } from '@element-plus/icons-vue';
+    import type { FormInstance, FormRules } from 'element-plus';
+
+    const userStore = useUserStore();
+
+    let router = useRouter();
+
+    const formSize = ref('default');
+    const ruleFormRef = ref<FormInstance>();
+
+    // the info of user
+    const userInfoform = reactive<UserInfo>({
+      username: '',
+      password: '',
+      email:'',
+      noLoginAgain: false,
+      checkedDate: '',
+    })
+
+    // the information in form to be validated
+    const ruleForm = reactive<RuleForm>({
         username: '',
         password: '',
+        confirmed: '',
         email:'',
-        isLoginAgain: false,
-        checkedDate: '',
     })
+
+    // the rules of validation
+
+    const regexpValidatePass = (rule: any, value: any, callback: any) => {
+        const regExp = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]+$/;
+        if (value === '') {
+            callback(new Error('Please input the password'))
+        } else {
+            if( !regExp.test(ruleForm.password)){
+                callback(new Error('Must have both upper and lower case letters!'));
+            } else {
+                callback();
+            }
+        }
+    }
+
+    const regexpValidateEmail = (rule: any, value: any, callback: any) => {
+        const regExpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regExpEmail.test(ruleForm.email as string)) {
+                callback(new Error('Formatting error!'));
+            } else {
+                callback();
+            }
+    }
 
     const rules = reactive<FormRules<RuleForm>>({
+        // 用户名：
+        // 1. 不能为空 0
+        // 2. 用户名不小于6 0
+        // 3. 不能和已有的重复
         username: [
-            { required: true, message: 'Please input Activity name', trigger: 'blur' },
-            { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },
+            { required: true, message: 'Please input your Username', trigger: 'blur' },
+            { min: 6, max: 20, message: 'Length should be greater than 6', trigger: 'blur' },
+            
         ],
-        password: [],
-        email: [],
-        isLoginAgain: [],
-        checkedDate: [],
-    })
+        // 密码：
+        // 1. 不能为空 0
+        // 2. 必须有大小写字母 0
+        // 3. 长度不小于8 0
+        password: [
+            { required: true, message: 'Please input Your Password', trigger: 'blur'},
+            { min: 8, max: 20, message: 'Length should be greater than 8', trigger: 'blur' },
+            { validator: regexpValidatePass, trigger: 'blur'},
+        ],
+        // 邮箱：
+        // 1.不能空 0
+        // 2. 格式正确 0
+        email:[
+            { required: true, message: 'Please input Your Email', trigger: 'blur'},
+            { validator: regexpValidateEmail, trigger: 'blur'},
+        ]
+    });
 
-    const onCreateAccount = () =>{
-        console.log('CreateAccount!')
+    // register
+    const onRegisterAccount = async (formEl: FormInstance | undefined) => {
+        if (!formEl) 
+            return 
+            {
+                await formEl.validate((valid, fields) => {
+                    if (valid) {
+                        userStore.register(userInfoform);
+                        console.log('submit!')
+                    } else {
+                        console.log('error submit!', fields)
+                    }
+                })
+            }
     }
 
-    const onResetPassword = () =>{
-        console.log('ResetPassword!')
-    }
-
-    const onLogin = () =>{
-        console.log('Login!')
-    }
+    // return to login page
+    const onReturnToLogin = () =>{
+        router.replace({
+            name: 'login',
+        })
+    };
 
 </script>
 
@@ -175,40 +230,18 @@
         color: #3D565A;
     }
 
-    .label-no-login{
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 700;
-        color: #3D565A;
-        line-height: 1;
-        font-size: var(--el-checkbox-font-size);
-    }
-    
-
-    .button-reset-password, .button-create-one{
-        text-align: right;
-        color: #3D565A;
-        font-family: Inter;
-        font-size: 13px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
-    .button-login{
+    .button-register{
         width: 100%;
         color: #FEFFFF;
         font-family: Inter;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
+        margin-top: 20px;
     }
-    .label-no-account{
-        font-family: Inter;
-        font-size: 13px;
-        font-style: normal;
-        font-weight: 500;
 
-        color: #3D565A;
+    .button-return-to-login{
+        color: #989898;
     }
 </style>
     

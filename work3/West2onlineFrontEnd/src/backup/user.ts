@@ -30,7 +30,7 @@ export const useUserStore = defineStore(
     }
 
     // login Checkout
-    // TODO 检索数据
+    // TO DO 检索数据
     // function isUsernameExists(username: string): boolean {
     //   for (const user of userInfoCollection.users) {
     //     if (user.username === username) {
@@ -41,7 +41,7 @@ export const useUserStore = defineStore(
     // }
 
     // login
-    // TODO 登录
+    // TO DO 登录
     const login = (userInfo: UserInfo) => {
       // const user = userInfoCollection.find((user) => user.username === userInfo.username)
       // const isValid = isUserExist(userInfo.username);
@@ -49,7 +49,7 @@ export const useUserStore = defineStore(
     }
 
     // reset password
-    // TODO 修改密码
+    // TO DO 修改密码
     const resetPassword = (userInfo: UserInfo) => {
       // const user = userInfoCollection.find((user) => user.username === userInfo.username)
     }

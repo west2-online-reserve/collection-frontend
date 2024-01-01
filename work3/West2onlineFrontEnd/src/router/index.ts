@@ -7,12 +7,6 @@ const router = createRouter({
   history: createWebHashHistory(), 
   routes: [
     {
-      name: 'test',
-      path: '/test',
-      // 
-      component: () => import('@/views/TestView.vue')
-    },
-    {
       name: 'authentication',
       path: '/authentication',
       component: () => import('@/views/AuthenticationView.vue'),
@@ -42,6 +36,7 @@ const router = createRouter({
     {
       path:'/',
       redirect: '/authentication'
+      // redirect: '/home'
     }
   ]
 })

@@ -8,21 +8,21 @@
         
         <el-form 
             :inline="false" label-position="top" label-width="120px" :size="formSize" 
-            ref="ruleFormRef" :model="userInfoform" :rules="rules"
+            ref="ruleFormRef" :model="ruleForm" :rules="rules"
             class=""
         >
             <!-- Username -->
             <el-form-item label="User Name" prop="username" 
                 class="form-labels"
             >
-                <el-input v-model="userInfoform.username" maxlength="10" placeholder="Please input your username" clearable />
+                <el-input v-model="ruleForm.username" maxlength="10" placeholder="Please input your username" clearable />
             </el-form-item>
 
             <!-- Password -->
             <el-form-item label="Password" prop="password"
                 class="form-labels"
             >
-                <el-input v-model="userInfoform.password" placeholder="Please input your password" clearable show-password/>
+                <el-input v-model="ruleForm.password" placeholder="Please input your password" clearable show-password/>
             </el-form-item>
 
             <!-- Login options -->
@@ -32,7 +32,7 @@
                 <el-row justify="space-between" class="expand">
                     <!-- :span="12" :offset="0" -->
                     <el-col :span="12">
-                        <el-checkbox v-model="userInfoform.noLoginAgain" label="No login for 30 days" class="label-no-login"/>
+                        <el-checkbox v-model="ruleForm.noLoginAgain" label="No login for 30 days" class="label-no-login"/>
                     </el-col>
                     <el-col :span="8.5">
                         <!-- TODO: 重设密码 -->
@@ -63,42 +63,47 @@
 </template>
     
 <script setup lang="ts" name="CustomLoginForm"> 
-    //interface
-    import {type RuleForm, type UserInfo, type UserInfoCollection} from '@/types/userInfo';
-    // store
-    import {useUserStore} from '@/stores/user';
-    import {storeToRefs} from 'pinia' 
-
     import { ref, reactive } from 'vue';
+    //interface
+    import { type RuleForm } from '@/types/userInfo';
+    // store
+    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    // router
+    import { useRouter } from 'vue-router';
+    
     // import { Search } from '@element-plus/icons-vue';
     import type { FormInstance, FormRules } from 'element-plus';
+    import { ElMessage } from 'element-plus'
 
-    import { useRouter } from 'vue-router';
-
-
-
-    const userStore = useUserStore();
-
+    const userCollectionStore = useUserCollectionStore();
+    
     let router = useRouter();
 
+    const auotLogin = () => {
+        userCollectionStore.updateLoginStatus(true, true);
+        if (userCollectionStore.isAutoLogin())
+        {
+            loginSuccessfully();
+            setTimeout(() => {
+                router.replace({
+                    name: 'home',
+                });
+            }, 1000);
+        }
+    }
+    auotLogin();
+    
+    
     const formSize = ref('default');
     const ruleFormRef = ref<FormInstance>();
-
-    // the info of user
-    const userInfoform = reactive<UserInfo>({
-      username: '',
-      password: '',
-      email:'',
-      noLoginAgain: false,
-      checkedDate: '',
-    })    
-
+  
     // the information in form to be validated
     const ruleForm = reactive<RuleForm>({
         username: '',
         password: '',
         confirmed: '',
-        email: '',
+        email:'',
+        noLoginAgain:false,
     })
 
     const rules = reactive<FormRules<RuleForm>>({
@@ -131,14 +136,45 @@
             {
                 await formEl.validate((valid, fields) => {
                     if (valid) {
-                        console.log('submit!')
+                        // TODO 登录验证
+                        if(userCollectionStore.isAccountCorrect(ruleForm.username as string, ruleForm.password as string)){
+                            // 登录成功
+                            loginSuccessfully();
+                            // 跳转到主页
+                            setTimeout(() => {
+                                router.replace({
+                                    name: 'home',
+                                });
+                            }, 1500);
+                        } else {
+                            resetForm(ruleFormRef.value);
+                            loginFailure();
+                        }
                     } else {
                         console.log('error submit!', fields)
+                        loginFailure();
                     }
                 })
             }
     }
 
+    const resetForm = (formEl: FormInstance | undefined) => {
+        if (!formEl) return
+            formEl.resetFields()
+    }
+
+    function loginSuccessfully() {
+        ElMessage({
+            message: 'Log in Successffuly!', type: 'success',
+            grouping: true, showClose: false, offset: 100, duration:1000,
+        });
+    }    
+   function loginFailure() {
+        ElMessage({
+            message: 'Error, login!', type: 'error',
+            grouping: true, offset: 100, duration:1500,
+        });
+    }   
 </script>
 
 <style>

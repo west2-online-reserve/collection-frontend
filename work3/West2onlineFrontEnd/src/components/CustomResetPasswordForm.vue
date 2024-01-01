@@ -61,19 +61,21 @@
 </template>
     
 <script setup lang="ts" name="CustomLoginForm"> 
-    //interface
-    import {type RuleForm, type UserInfo, type UserInfoCollection} from '@/types/userInfo';
-    // store
-    import {useUserStore} from '@/stores/user';
-    import {storeToRefs} from 'pinia' 
-
     import { ref, reactive } from 'vue';
+    //interface
+    import {type RuleForm, type UserInfo } from '@/types/userInfo';
+    // store
+    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    // router
+    import { useRouter } from 'vue-router';
+    // utils
+    // import {updateUserInfo} from '@/utils/userMangent'
+    
     // import { Search } from '@element-plus/icons-vue';
     import type { FormInstance, FormRules } from 'element-plus';
+    import { ElMessage } from 'element-plus'
     
-    import { useRouter } from 'vue-router';
-    
-    const userStore = useUserStore();
+    const { resetPasswordByName,  } = useUserCollectionStore();
 
     let router = useRouter();
 
@@ -85,8 +87,6 @@
         username: '',
         password: '',
         email:'',
-        noLoginAgain: false,
-        checkedDate: '',
     })
 
     // the information in form to be validated
@@ -94,33 +94,20 @@
         username: '',
         password: '',
         confirmed: '',
-        email: '',
     })
 
-    // const existenceValidateUsername = (rule: any, value: any, callback: any) =>{
-    //     if(!userStore.isUserExist(ruleForm.username)){
-    //         callback(new Error('Username Not Exist!'))
-    //     } else {
-    //         callback()
-    //     }
-    // }
+    function updateUserInfo (ruleForm: RuleForm, userInfo: UserInfo)
+    {
+        userInfo.username = ruleForm.username;
+        userInfo.password = ruleForm.password;
+    }
 
-    // const test = ()=> {
-    //     // console.log(userStore.isUsernameExists(ruleForm.username));
-    //     console.log(userStore.userInfoCollection[0]);
-    // }
-    // test();
-    
     const matchValidatePass = (rule: any, value: any, callback: any) => {
-        if (value === '') {
-            callback(new Error('Please input the password'))
-        } else {
-            if (ruleForm.confirmed !== '') {
-            if (!ruleFormRef.value) return
-                ruleFormRef.value.validateField('checkPass', () => null)
-            }
-            callback()
+        if (ruleForm.confirmed !== '') {
+            if (!ruleFormRef.value) return;
+            ruleFormRef.value.validateField('checkPass', () => null);
         }
+        callback();
     }
 
     const matchValidatePass2 = (rule: any, value: any, callback: any) => {
@@ -135,15 +122,11 @@
     }
 
     const regexpValidatePass = (rule: any, value: any, callback: any) => {
-        const regExp = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]+$/;
-        if (value === '') {
-            callback(new Error('Please input the password'))
+        const regExp = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]+$/;
+        if( !regExp.test(ruleForm.password as string)){
+            callback(new Error('Must have both upper and lower case letters!'));
         } else {
-            if( !regExp.test(ruleForm.password)){
-                callback(new Error('Must have both upper and lower case letters!'));
-            } else {
-                callback();
-            }
+            callback();
         }
     }
 
@@ -181,8 +164,21 @@
             {
                 await formEl.validate((valid, fields) => {
                     if (valid) {
-                        console.log('submit!')
+                        updateUserInfo(ruleForm, userInfoform);
+                        if(resetPasswordByName(userInfoform.username as string, userInfoform.password as string)){
+                            resetSuccessfully();
+                            console.log('submit!')
+                            setTimeout(() => {
+                                    router.replace({name: 'login',})
+                            }, 1500);
+                        }else{
+                            resetFailure2();
+                            resetForm(ruleFormRef.value);
+                            console.log('error submit!', fields)
+                        }                      
                     } else {
+                        resetFailure1();
+                        resetForm(ruleFormRef.value);
                         console.log('error submit!', fields)
                     }
                 })
@@ -199,6 +195,11 @@
             name: 'login',
         })
     };
+
+    const resetSuccessfully = () => ElMessage({ message: 'success, Reset Password!', grouping: true, type: 'success', offset: 100, duration:1500 });
+    const resetFailure1 = () => ElMessage({ message: 'Error, failed to reset password!', grouping: true, type: 'error', showClose: true, offset: 100, duration:1500 });
+    const resetFailure2 = () => ElMessage({ message: 'Error, Username Do Not Exist!', grouping: true, type: 'error', showClose: true, offset: 100, duration:1500 });
+      
 
 </script>
 

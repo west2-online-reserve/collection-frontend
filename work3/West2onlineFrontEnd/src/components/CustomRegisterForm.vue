@@ -36,8 +36,17 @@
             <el-form-item label="" prop=""
                 class="form-labels"
             >
-                <!-- TODO: 注册 -->
-                <el-button type="primary" color="#456442" @click="onRegisterAccount(ruleFormRef)" class="button-register" >Register</el-button>
+                <el-row  class="expand" >
+                    <el-col :span="12" >
+                        <!-- TODO: 注册 -->
+                        <el-button type="primary" color="#456442" @click="onRegisterAccount(ruleFormRef)" class="button-register" >Register</el-button>
+                    </el-col>
+                    <el-col :span="12">
+                        <!-- reset Form -->
+                        <el-button type="primary" color="#e0f3eb" @click="resetForm(ruleFormRef)" class="button-reset-form" >Reset</el-button>
+                    </el-col>
+                </el-row>
+                
             </el-form-item>
 
             <!-- return -->
@@ -48,23 +57,29 @@
                 <el-button type="primary" color="transparent" @click="onReturnToLogin" class="button-return-to-login" >Return</el-button>
             </el-form-item>
         </el-form>
+
     </div>
 </template>
     
 <script setup lang="ts" name="CustomLoginForm"> 
     import { ref, reactive } from 'vue';
     //interface
-    import {type RuleForm, type UserInfo, type UserInfoCollection} from '@/types/userInfo';
+    import {type RuleForm, type UserInfo} from '@/types/userInfo';
     // store
-    import {useUserStore} from '@/stores/user';
-    import {storeToRefs} from 'pinia' 
+    import { useUserStore } from '@/stores/userStore';
+    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+
     // router
     import { useRouter } from 'vue-router';
+    // utils
+    import {updateUserInfo, registerAccountToLocalStorage} from '@/utils/userMangent'
 
     // import { Search } from '@element-plus/icons-vue';
     import type { FormInstance, FormRules } from 'element-plus';
+    import { ElMessage } from 'element-plus';
 
     const userStore = useUserStore();
+    const { isUsernameUnique, isEmailUnique } = useUserCollectionStore();
 
     let router = useRouter();
 
@@ -72,15 +87,15 @@
     const ruleFormRef = ref<FormInstance>();
 
     // the info of user
+    // 用以保存表单信息，用以提交
     const userInfoform = reactive<UserInfo>({
       username: '',
       password: '',
       email:'',
-      noLoginAgain: false,
-      checkedDate: '',
     })
 
     // the information in form to be validated
+    // 用以保存表单信息，用以验证
     const ruleForm = reactive<RuleForm>({
         username: '',
         password: '',
@@ -89,18 +104,13 @@
     })
 
     // the rules of validation
-
     const regexpValidatePass = (rule: any, value: any, callback: any) => {
-        const regExp = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]+$/;
-        if (value === '') {
-            callback(new Error('Please input the password'))
-        } else {
-            if( !regExp.test(ruleForm.password)){
+        const regExp = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]+$/; // /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]+$/
+            if(!regExp.test(ruleForm.password as string)){
                 callback(new Error('Must have both upper and lower case letters!'));
             } else {
                 callback();
             }
-        }
     }
 
     const regexpValidateEmail = (rule: any, value: any, callback: any) => {
@@ -128,8 +138,8 @@
         // 3. 长度不小于8 0
         password: [
             { required: true, message: 'Please input Your Password', trigger: 'blur'},
-            { min: 8, max: 20, message: 'Length should be greater than 8', trigger: 'blur' },
             { validator: regexpValidatePass, trigger: 'blur'},
+            { min: 9, max: 20, message: 'Length should be greater than 8', trigger: 'blur' },
         ],
         // 邮箱：
         // 1.不能空 0
@@ -143,17 +153,40 @@
     // register
     const onRegisterAccount = async (formEl: FormInstance | undefined) => {
         if (!formEl) 
-            return 
+            return;
             {
                 await formEl.validate((valid, fields) => {
                     if (valid) {
-                        userStore.register(userInfoform);
-                        console.log('submit!')
+                        // TODO: 检索数据
+                        if(isUsernameUnique(ruleForm.username as string) && isEmailUnique(ruleForm.email as string)){
+                            updateUserInfo(ruleForm, userInfoform, true);
+                            userStore.updateLoginStatus(true, false, 'Today');
+
+                            registerAccountToLocalStorage(userInfoform);
+                            console.log('registerAccount!');
+                            registerSuccessfully();
+                            setTimeout(() => {
+                                router.replace({
+                                    name: 'home',
+                                })
+                            }, 1500);
+                            return;
+                        }else{
+                            console.log('error submit!');
+                            resetForm(ruleFormRef.value);
+                            registerFailure();
+                            return;
+                        }                
                     } else {
-                        console.log('error submit!', fields)
+                        console.log('error submit!', fields);
+                        registerFailure();
                     }
-                })
+                });
             }
+    }
+    const resetForm = (formEl: FormInstance | undefined) => {
+        if (!formEl) return
+            formEl.resetFields()
     }
 
     // return to login page
@@ -162,6 +195,10 @@
             name: 'login',
         })
     };
+
+    const registerSuccessfully = () => ElMessage({ message: 'success, Register an account!', grouping: true, type: 'success', offset: 100, duration:1500 });
+    const registerFailure = () => ElMessage({ message: 'Error, submit!', grouping: true, type: 'error', showClose: true, offset: 100, duration:1500 });
+  
 
 </script>
 
@@ -229,15 +266,23 @@
         line-height: normal;
         color: #3D565A;
     }
-
-    .button-register{
+    .button-register,.button-reset-form{
         width: 100%;
         color: #FEFFFF;
         font-family: Inter;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
-        margin-top: 20px;
+        margin: 20px 0 0;
+    }
+    .button-reset-form{
+        color: #888888;
+    }
+    .expand .el-col-12:nth-child(1){
+        padding-right: 10px;
+    }
+    .expand .el-col-12:nth-child(2){
+        padding-left: 10px;
     }
 
     .button-return-to-login{

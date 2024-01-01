@@ -6,6 +6,7 @@ export interface RuleForm{
     password: string | undefined,
     confirmed?: string | undefined,
     email?: string | undefined,
+    noLoginAgain?: boolean | undefined,
 }
 
 // define the login status
@@ -21,9 +22,9 @@ export interface UserInfo{
     username:string | undefined,
     password:string | undefined,
     email:string | undefined,
-    noLoginAgain?:boolean,
-    checkedDate?:string,
-    isLoggedIn?:boolean,
+    // noLoginAgain?:boolean,
+    // checkedDate?:string,
+    // isLoggedIn?:boolean,
 }
 
 // define a collection of User's InfoForm

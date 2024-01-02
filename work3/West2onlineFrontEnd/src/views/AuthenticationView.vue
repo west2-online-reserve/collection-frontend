@@ -10,15 +10,13 @@
 
 <script setup lang="ts" name="RegisterView"> 
     import {RouterView} from 'vue-router'
-
 </script>
 
 <style scoped>
-
-.container{
+    .container{
         display: flex;
-        border-radius: 5px;
-        
+        border-radius: 20px;
+        box-shadow: 1px 1px 8px 1px #D1E2CF;
     }
     .container-of-form{
         background: #FAFCF9;
@@ -29,7 +27,7 @@
         justify-content: center;
         align-items: center;
 
-        border-radius: 10px 0 0 10px;
+        border-radius: 20px 0 0 20px;
     }
     .container-of-background{
         width: 588px;
@@ -40,6 +38,8 @@
         background-size: 492px;
         background-position: 26px 92px;
 
-        border-radius: 0 10px 10px 0;
+        border-radius: 0 20px 20px 0;
     }
+
+
 </style>

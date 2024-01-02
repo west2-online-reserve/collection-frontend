@@ -6,7 +6,7 @@ import { type UserInfo, type LoginStatus} from '@/types/userInfo';
 import { defineStore } from 'pinia'
 
 export const useUserStore =  defineStore('user-of-schedule', () =>{
-    // 用户数据
+    // user information
     const userInfo = reactive<UserInfo>({
         id: undefined,
         username: '',
@@ -22,13 +22,14 @@ export const useUserStore =  defineStore('user-of-schedule', () =>{
         userInfo.email = user.email;
     }
     
-    // 登录状态
+    // Login Status
     const loginStatus = reactive<LoginStatus>({
         isLoggedIn: undefined,
         noLoginAgain: undefined,
         checkedDate: undefined,
     })
 
+    // Update the loginStatus
     const updateLoginStatus = (IsLoggedIn = false, NoLoginAgain = false, CheckedDate = '') => {
         loginStatus.isLoggedIn = IsLoggedIn;
         loginStatus.noLoginAgain = NoLoginAgain;
@@ -40,7 +41,7 @@ export const useUserStore =  defineStore('user-of-schedule', () =>{
         localStorage.setItem('user-of-schedule', JSON.stringify(userInfo));
     }
 
-    // 注册
+    // Register Account
     // 设置用户数据
     // 并后续导入用户数据组
     const registerAccount = (user: UserInfo):UserInfo => {
@@ -54,7 +55,7 @@ export const useUserStore =  defineStore('user-of-schedule', () =>{
         return user;
     };
 
-    // 清除用户数据
+    // Clear Account Info Inside LocalStorage
     // 并后续删除用户组中数据
     // use clearAccountInfoInsideLocalStorage after updateLoginStatus
     const clearAccountInfoInsideLocalStorage = ():void => {
@@ -67,20 +68,20 @@ export const useUserStore =  defineStore('user-of-schedule', () =>{
         localStorage.setItem('user-of-schedule', JSON.stringify(userInfo));
     };
 
-    // 退出登录
+    // Log out
     const logoutAccount = ():void => {
         loginStatus.isLoggedIn = false;
         loginStatus.noLoginAgain = false;
         loginStatus.checkedDate = undefined;
     };
 
-    // 时间检测
+    // Check Date
     const checkDate = (date:string):boolean => {
         console.log(date, "上次免登录时间");
         return true;
     }
 
-    // 自动登录
+    // Autologin
     // 综合考虑 1.是否免登录 2.免登录是否超时 3用户数据是否正确
     const isAutoLogin = (): boolean => {
         // 页面加载时检查localStorage是否有保存的用户数据

@@ -1,9 +1,45 @@
 <!-- HomeView.vue -->
 <template> 
-    <el-button type="primary" @click="testButton">test</el-button>
-    <el-button type="primary" @click="testButton1">addAccountToCollection</el-button>
-    <el-button type="primary" @click="testButton2">resetPasswordByName</el-button>
-    <el-button type="primary" @click="testButton3">isAccountCorrect</el-button>
+    <div class="homeview-container">
+        <el-container>
+            <el-header class="homeview-header">
+                <el-menu 
+                    :default-active="activeIndex"
+                    class="homeview-menu"
+                    style="border-radius: 20px 20px 0 0;"
+                    mode="horizontal"
+                    :ellipsis="false"
+                    @select="handleSelect"
+                >
+                    <el-menu-item index="1" class="">Todo List</el-menu-item>
+                    <el-menu-item index="2">Table View</el-menu-item>
+                    <!-- h-spring -->
+                    <div class="flex-grow" />
+                    <el-text link class="text-email">
+                        <el-icon><User/></el-icon> novarye@qq.com
+                    </el-text>
+                    <el-button link type="danger" class="button-logout" @click="dialogVisible = true">logout</el-button>
+                    <el-dialog
+                        v-model="dialogVisible"
+                        title="Tips" center
+                        width="30%"
+                        :before-close="handleClose"
+                    >
+                        <span>Logout will not delete any data. You can still log in with this account.</span>
+                        <template #footer>
+                        <span class="dialog-footer">
+                            <el-button @click="dialogVisible = false">Cancel</el-button>
+                            <el-button type="primary" @click="dialogVisible = false; logoutAccount()">Confirm</el-button>
+                        </span>
+    </template>
+  </el-dialog>
+                </el-menu>
+            </el-header>
+            <el-main class="homeview-main">
+                <RouterView></RouterView>
+            </el-main>
+        </el-container>
+    </div>
 </template>
     
 <script setup lang="ts" name="HomeView"> 
@@ -11,58 +47,111 @@
     //interface
     import { type UserInfo, type LoginStatus} from '@/types/userInfo';
     // router
-    import { useRouter } from 'vue-router';
+    import { RouterView, RouterLink, useRouter } from 'vue-router';
     // store
     // import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     //utils
     import {registerAccountToLocalStorage} from '@/utils/userMangent'
-    
-    import {ElMessage} from 'element-plus'
+    // ui
+    import {ElMessage, ElMessageBox} from 'element-plus'
     
     let router = useRouter();
 
-const { testInfo, registerAccount, addAccountToCollection, resetPasswordByName, isAccountCorrect, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
+    const { testInfo, registerAccount, addAccountToCollection, resetPasswordByName, isAccountCorrect, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
     
-    let testInfo1 = reactive<UserInfo>({
-    id: '23131231434',
-    username: 'NoVarYe',
-    password: 'Qazwsx1234',
-    email: 'yy@qq.com',
-});
-    let testInfo2 = reactive<UserInfo>({
-    id: '2313wfssfs434',
-    username: 'NoQweYe',
-    password: 'Qadgad234',
-    email: 'yqqy@qq.com',
-});
-const testButton = () => {
-    testInfo();
-}
-const testButton1 = () => {
-    addAccountToCollection(registerAccount(testInfo1));
-    addAccountToCollection(registerAccount(testInfo2));
-}
+    // menu
+    const activeIndex = ref('1')
+    const handleSelect = (key: string) => {
+        if(key == '1') router.replace({name: 'todolist',});
+        if( key == '2') router.replace({name: 'table-presentation',});
+    }
+
+    // TODO 退出按键
+    // logout
+    const dialogVisible = ref(false)
+    const handleClose = (done: () => void) => {
+        ElMessageBox.confirm('Are you sure to close this dialog?')
+            .then(() => {done()})
+            .catch(() => { /*catch error*/ })
+    }
+
+    const logoutAccount = ()=>{
+        console.log('logout button')
+    }
 
 
-const testButton2 = () => {
-    console.log(resetPasswordByName('NoVarYe', 'tedsft'))
-}
-const testButton3 = () => {    
-    // console.log(isAccountCorrect('NoVarYe', 'test'))
-    console.log(isAccountCorrect('NoVarYe', 'tedsft'))
-}
-
-
-    function loginSuccessfully() {
-        ElMessage({
-            message: 'Log in Successffuly!', type: 'success',
-            grouping: true, showClose: false, offset: 100, duration:1000,
-        });
-    }    
 </script>
     
+
+<style>
+    .el-dialog--center .el-dialog__body{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+</style>
 <style scoped>
+    .flex-grow {
+        flex-grow: 1;
+    }
+    .homeview-container{
+        display: flex;
+        border-radius: 5px;
+        width: 1145px;
+        height: 692px;
+        border-radius: 20px;
+        box-shadow: 1px 1px 8px 1px #D1E2CF;
+
+    }
+
+    .homeview-header{
+        background-color: #D1E2CF;
+        padding: 0;
+        border-radius: 20px;
+    }
+    .homeview-menu{
+        background-color: #D1E2CF;
+    }
+    .homeview-menu > .el-menu-item:nth-child(1):hover{
+        border-radius: 20px 0 0 0;
+    }
+    .homeview-menu > .el-menu-item{
+        color: #11240e;
+        font-size: 18px;
+        user-select:none;
+    }
+    .homeview-menu > .is-active:nth-child(1), 
+    .homeview-menu > .el-menu-item:nth-child(1):hover,
+    .homeview-menu > .el-menu-item:nth-child(1):not(:hover){
+        border-radius: 20px 0 0 0;
+    }
+    .text-email{
+        color: #11240e;
+        font-size: 18px;
+        vertical-align: middle;
+    }
     
+    .button-logout{
+        margin-left:20px;
+        margin-right:20px;
+        font-size: 18px;
+
+        border: 0;
+        padding: 0;
+        line-height: 1.6;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;;
+    }
+
+    .dialog-footer button:first-child {
+        margin-right: 10px;
+    }
+
+    .homeview-main{
+        background-color: #FEFFFF;
+        /* test */
+        /* background-color: #c7dddd; */
+        border-radius: 0 0 20px 20px;
+    }
+
 </style>
     

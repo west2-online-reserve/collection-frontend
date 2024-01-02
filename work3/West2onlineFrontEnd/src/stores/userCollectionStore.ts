@@ -1,10 +1,10 @@
 // userCollectionStore.ts
-import { ref, reactive, toRefs } from 'vue';
+
 // interface 
-import { type UserInfo, type UserInfoCollection} from '@/types/userInfo';
+import { type UserInfo } from '@/types/userInfo';
 // Store
 import { useUserStore } from './userStore';
-import { defineStore, storeToRefs} from 'pinia';
+import { defineStore} from 'pinia';
 
 export const useUserCollectionStore = defineStore('user-collection-of-schedule', ()=>{
     // const userCollection = reactive<UserInfoCollection>([]);
@@ -12,10 +12,10 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
     
     const testInfo = ():void => {
         const userCollectionJson = localStorage.getItem('user-collection-of-schedule');
-        console.log(userCollectionJson); // 检查打印输出的结果是否是一个有效的 JSON 字符串
+        console.log(userCollectionJson);
         const userCollection2 = JSON.parse(userCollectionJson as string || '[]');
-        console.log(userCollection2); // 检查打印输出的结果是否是一个数组对象
-        console.log(userCollection); // 检查打印输出的结果是否是一个数组对象
+        console.log(userCollection2);
+        console.log(userCollection);
     }
 
     // const { updateLoginStatus, registerAccount, clearAccount, logoutAccount, autoLogin} = useUserStore();
@@ -34,8 +34,6 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
     // const isIdUnique = (id:string):boolean => !userIdSet.has(id);
     // const isUsernameUnique = (username:string):boolean => !userUsernameSet.has(username);
     // const isEmailUnique = (email:string):boolean => !userEmailSet.has(email);
-
-
     const isIdUnique = (id:string):boolean => {
         for(let index = 0; index < userCollection.length; index++){
             if(id == userCollection[index].id)

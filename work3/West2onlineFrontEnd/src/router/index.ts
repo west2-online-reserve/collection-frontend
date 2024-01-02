@@ -1,7 +1,8 @@
 // router/index.ts
 import {createRouter, createWebHashHistory, } from 'vue-router'
 import HomeView from '@/views/HomeView.vue' 
-
+import TodoListViewVue from '@/views/TodoListView.vue'
+import TablePresentationViewVue from '@/views/TablePresentationView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(), 
@@ -31,12 +32,23 @@ const router = createRouter({
     {
       name: 'home',
       path: '/home',
-      component: HomeView
+      component: HomeView,
+      children: [
+        {
+          name: 'todolist',
+          path: '',
+          component: TodoListViewVue,
+        },
+        {
+          name: 'table-presentation',
+          path: 'table-presentation',
+          component: TablePresentationViewVue,
+        },
+      ]
     },
     {
       path:'/',
       redirect: '/authentication'
-      // redirect: '/home'
     }
   ]
 })

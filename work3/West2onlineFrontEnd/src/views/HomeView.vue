@@ -139,7 +139,9 @@
         border: 0;
         padding: 0;
         line-height: 1.6;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, 
+            'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+            'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;;
     }
 
     .dialog-footer button:first-child {

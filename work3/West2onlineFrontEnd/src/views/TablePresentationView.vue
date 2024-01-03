@@ -1,6 +1,6 @@
 <!-- TablePresentationView.vue -->
 <template> 
-    TablePresentationView
+    <TablePresentation/>
 </template>
     
 <script setup lang="ts" name="TablePresentationView"> 
@@ -16,6 +16,8 @@
     import {registerAccountToLocalStorage} from '@/utils/userMangent'
     //ui
     import {ElMessage} from 'element-plus'
+    // components
+    import TablePresentation from '@/components/TablePresentationComponent.vue'
     
     let router = useRouter();
 

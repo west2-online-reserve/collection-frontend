@@ -77,12 +77,12 @@
     // import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     //utils
-    import {registerAccountToLocalStorage} from '@/utils/userMangent'
+    // import {registerAccountToLocalStorage} from '@/utils/userManagement'
     //ui
     import {ElMessage} from 'element-plus'
     import { Search } from '@element-plus/icons-vue'
     
-    const { testInfo, registerAccount, addAccountToCollection, resetPasswordByName, isAccountCorrect, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
+    const { testInfo, registerAccount, addAccountToCollection, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
 
     // search
     const value2 = ref('')
@@ -123,43 +123,7 @@ const select = ref('')
     createdDate: '2016-05-03',
     completedDate: '2016-05-03',
     label: 'Star',
-  },
-  {
-    content: 'No. 189, Grove St, Los Angeles',
-    createdDate: '2016-05-03',
-    completedDate: '2016-05-03',
-    label: 'Star',
-  },
-  {
-    content: 'No. 189, Grove St, Los Angeles',
-    createdDate: '2016-05-03',
-    completedDate: '2016-05-03',
-    label: 'Star',
-  },
-  {
-    content: 'No. 189, Grove St, Los Angeles',
-    createdDate: '2016-05-03',
-    completedDate: '2016-05-03',
-    label: 'Star',
-  },
-  {
-    content: 'No. 189, Grove St, Los Angeles',
-    createdDate: '2016-05-03',
-    completedDate: '2016-05-03',
-    label: 'Star',
-  },
-  {
-    content: 'No. 189, Grove St, Los Angeles',
-    createdDate: '2016-05-03',
-    completedDate: '2016-05-03',
-    label: 'Star',
-  },
-  {
-    content: 'No. 189, Grove St, Los Angeles',
-    createdDate: '2016-05-03',
-    completedDate: '2016-05-03',
-    label: 'Star',
-  },
+  }
 ]
 
 const handleEdit = () => {
@@ -187,4 +151,4 @@ const handleCurrentChange = (val: number) => {
         height: 586px;
     }
 </style>
-    
+    @/utils/userMangement@/backup/userInfo

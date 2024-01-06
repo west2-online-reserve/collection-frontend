@@ -1,5 +1,4 @@
 <!-- CustomLoginForm.vue -->
-<!-- 实现登录表单的复用 -->
 <template>
     <div class="login-form">
 
@@ -65,28 +64,30 @@
 <script setup lang="ts" name="CustomLoginForm"> 
     import { ref, reactive } from 'vue';
     //interface
-    import { type RuleForm } from '@/types/userInfo';
+    import { type RuleForm } from '@/types/userManagement';
     // store
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     // router
     import { useRouter } from 'vue-router';
     
-    // import { Search } from '@element-plus/icons-vue';
+    // ui
     import type { FormInstance, FormRules } from 'element-plus';
     import { ElMessage } from 'element-plus'
+    // utils
+    import { CurrentYMD } from '@/utils/dateUtilities';
+
 
     const userCollectionStore = useUserCollectionStore();
     
     let router = useRouter();
 
     const auotLogin = () => {
-        userCollectionStore.updateLoginStatus(true, true);
         if (userCollectionStore.isAutoLogin())
         {
             loginSuccessfully();
             setTimeout(() => {
                 router.replace({
-                    name: 'home',
+                    name: 'todolist',
                 });
             }, 1000);
         }
@@ -137,13 +138,13 @@
                 await formEl.validate((valid, fields) => {
                     if (valid) {
                         // TODO 登录验证
-                        if(userCollectionStore.isAccountCorrect(ruleForm.username as string, ruleForm.password as string)){
+                        if(userCollectionStore.isAccountCorrect(ruleForm.username as string, ruleForm.password as string, ruleForm.noLoginAgain, CurrentYMD)){
                             // 登录成功
                             loginSuccessfully();
                             // 跳转到主页
                             setTimeout(() => {
                                 router.replace({
-                                    name: 'home',
+                                    name:'todolist',
                                 });
                             }, 1500);
                         } else {
@@ -278,4 +279,4 @@
         color: #3D565A;
     }
 </style>
-    
+    @/stores/userCollectionStore

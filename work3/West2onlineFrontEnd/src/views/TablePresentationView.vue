@@ -6,14 +6,14 @@
 <script setup lang="ts" name="TablePresentationView"> 
     import { ref, reactive } from 'vue';
     //interface
-    import { type UserInfo, type LoginStatus} from '@/types/userInfo';
+    // import { type User} from '@/types/UserManagement';
     // router
     import { useRouter } from 'vue-router';
     // store
-    // import { useUserStore } from '@/stores/userStore';
+    // import { useUserStore } from '@/stores/userStore2';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     //utils
-    import {registerAccountToLocalStorage} from '@/utils/userMangent'
+    // import {registerAccountToLocalStorage} from '@/utils/UserManagement'
     //ui
     import {ElMessage} from 'element-plus'
     // components
@@ -21,7 +21,7 @@
     
     let router = useRouter();
 
-    const { testInfo, registerAccount, addAccountToCollection, resetPasswordByName, isAccountCorrect, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
+    const { testInfo, registerAccount, addAccountToCollection, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
     
   
 </script>
@@ -29,4 +29,4 @@
 <style scoped>
     
 </style>
-    
+    @/utils/userMangement@/stores/userCollectionStore

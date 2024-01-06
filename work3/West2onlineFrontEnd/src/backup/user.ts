@@ -1,5 +1,5 @@
 // user.ts
-import {type UserInfo, type UserInfoCollection} from '@/types/userInfo';
+import {type UserInfo, type UserInfoCollection} from '@/backup/userInfo';
 
 import { ref, reactive,  computed, toRefs} from 'vue';
 import { v4 as uuidv4 } from 'uuid';

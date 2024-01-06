@@ -63,31 +63,21 @@
 <script setup lang="ts" name="CustomLoginForm"> 
     import { ref, reactive } from 'vue';
     //interface
-    import {type RuleForm, type UserInfo } from '@/types/userInfo';
+    import {type RuleForm, type User } from '@/types/userManagement';
     // store
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     // router
     import { useRouter } from 'vue-router';
-    // utils
-    // import {updateUserInfo} from '@/utils/userMangent'
-    
-    // import { Search } from '@element-plus/icons-vue';
+    // ui
     import type { FormInstance, FormRules } from 'element-plus';
     import { ElMessage } from 'element-plus'
     
-    const { resetPasswordByName,  } = useUserCollectionStore();
+    const { resetPasswordByName } = useUserCollectionStore();
 
     let router = useRouter();
 
     const formSize = ref('default');
     const ruleFormRef = ref<FormInstance>();
-
-    // the information of user to be commit
-    const userInfoform = reactive<UserInfo>({
-        username: '',
-        password: '',
-        email:'',
-    })
 
     // the information in form to be validated
     const ruleForm = reactive<RuleForm>({
@@ -96,10 +86,10 @@
         confirmed: '',
     })
 
-    function updateUserInfo (ruleForm: RuleForm, userInfo: UserInfo)
+    function updateUserInfo (ruleForm: RuleForm, userInfo: User)
     {
-        userInfo.username = ruleForm.username;
-        userInfo.password = ruleForm.password;
+        userInfo.account.username = ruleForm.username;
+        userInfo.account.password = ruleForm.password;
     }
 
     const matchValidatePass = (rule: any, value: any, callback: any) => {
@@ -133,16 +123,16 @@
     // the rules of form
     const rules = reactive<FormRules<RuleForm>>({
         // 用户名：
-        // 1. 不能为空 o
+        // 1. 不能为空
         // 2. 用户名必须存在
         username: [
             { required: true, message: 'Please input your Username', trigger: 'blur' },
             // { validator: existenceValidateUsername, trigger: 'blur' },
         ],
         // 密码：
-        // 1. 不能为空 0
-        // 2. 必须符合要求: 密码长度不小于8位，同时包含大小写字母 0
-        // 3. 与确认密码一致 0
+        // 1. 不能为空
+        // 2. 必须符合要求: 密码长度不小于8位，同时包含大小写字母
+        // 3. 与确认密码一致
         password: [
             { required: true, message: 'Please input Your Password', trigger: 'blur'},
             { min: 8, max: 20, message: 'Length should be greater than 8', trigger: 'blur' },
@@ -150,8 +140,8 @@
             { validator: matchValidatePass, trigger: 'blur'},
         ],
         // 确认密码：
-        // 1. 不能为空 0
-        // 2. 必须与密码一致 0
+        // 1. 不能为空
+        // 2. 必须与密码一致
         confirmed: [
             {required: true, message: 'Please input Your Password', trigger: 'blur'},
             { validator: matchValidatePass2, trigger: 'blur'},
@@ -164,8 +154,7 @@
             {
                 await formEl.validate((valid, fields) => {
                     if (valid) {
-                        updateUserInfo(ruleForm, userInfoform);
-                        if(resetPasswordByName(userInfoform.username as string, userInfoform.password as string)){
+                        if(resetPasswordByName(ruleForm.username as string, ruleForm.password as string)){
                             resetSuccessfully();
                             console.log('submit!')
                             setTimeout(() => {
@@ -292,4 +281,4 @@
         color: #989898;
     }
 </style>
-    
+    @/stores/userCollectionStore@/backup/userInfo

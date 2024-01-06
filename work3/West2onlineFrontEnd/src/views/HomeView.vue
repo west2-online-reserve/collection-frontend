@@ -16,7 +16,7 @@
                     <!-- h-spring -->
                     <div class="flex-grow" />
                     <el-text link class="text-email">
-                        <el-icon><User/></el-icon> novarye@qq.com
+                        <el-icon><User/></el-icon> {{getUserEmail()}}
                     </el-text>
                     <el-button link type="danger" class="button-logout" @click="dialogVisible = true">logout</el-button>
                     <el-dialog
@@ -28,8 +28,8 @@
                         <span>Logout will not delete any data. You can still log in with this account.</span>
                         <template #footer>
                         <span class="dialog-footer">
+                            <el-button type="primary" @click="dialogVisible = false; logoutUser()">Confirm</el-button>
                             <el-button @click="dialogVisible = false">Cancel</el-button>
-                            <el-button type="primary" @click="dialogVisible = false; logoutAccount()">Confirm</el-button>
                         </span>
     </template>
   </el-dialog>
@@ -45,21 +45,23 @@
 <script setup lang="ts" name="HomeView"> 
     import { ref, reactive } from 'vue';
     //interface
-    import { type UserInfo, type LoginStatus} from '@/types/userInfo';
+    import { type User} from '@/types/userManagement';
     // router
-    import { RouterView, RouterLink, useRouter } from 'vue-router';
+    import { RouterView, useRouter } from 'vue-router';
     // store
-    // import { useUserStore } from '@/stores/userStore';
+    import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     //utils
-    import {registerAccountToLocalStorage} from '@/utils/userMangent'
+    // import {registerAccountToLocalStorage} from '@/utils/userManagement'
     // ui
     import {ElMessage, ElMessageBox} from 'element-plus'
     
     let router = useRouter();
+    const userStore = useUserStore();
+    const  userCollectionStore = useUserCollectionStore();
 
-    const { testInfo, registerAccount, addAccountToCollection, resetPasswordByName, isAccountCorrect, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
-    
+    const { getUserEmail } = useUserCollectionStore();
+
     // menu
     const activeIndex = ref('1')
     const handleSelect = (key: string) => {
@@ -76,8 +78,13 @@
             .catch(() => { /*catch error*/ })
     }
 
-    const logoutAccount = ()=>{
-        console.log('logout button')
+    const logoutUser = ()=>{
+        console.log('logout button');
+        userCollectionStore.logoutAccount();
+        setTimeout(() => {
+            router.replace({name: 'login',})
+        }, 1500);
+
     }
 
 
@@ -156,4 +163,4 @@
     }
 
 </style>
-    
+    @/utils/userMangement@/stores/userCollectionStore@/stores/userStore

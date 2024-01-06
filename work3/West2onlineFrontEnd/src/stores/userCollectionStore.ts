@@ -1,26 +1,52 @@
 // userCollectionStore.ts
 
+import { reactive } from 'vue';
 // interface 
-import { type UserInfo } from '@/types/userInfo';
+import { primaryUser,  defaultUser, type User, type UserCollection} from '@/types/userManagement';
 // Store
 import { useUserStore } from './userStore';
 import { defineStore} from 'pinia';
-
-export const useUserCollectionStore = defineStore('user-collection-of-schedule', ()=>{
-    // const userCollection = reactive<UserInfoCollection>([]);
-    const userCollection = JSON.parse(localStorage.getItem('user-collection-of-schedule')as string || '[]');
+import { v4 as v4uuid } from 'uuid';
+// test MODE
+const TESTMODE = true;
     
-    const testInfo = ():void => {
-        const userCollectionJson = localStorage.getItem('user-collection-of-schedule');
-        console.log(userCollectionJson);
-        const userCollection2 = JSON.parse(userCollectionJson as string || '[]');
-        console.log(userCollection2);
-        console.log(userCollection);
-    }
+export const useUserCollectionStore = defineStore('user-collection-of-schedule', ()=>{
 
-    // const { updateLoginStatus, registerAccount, clearAccount, logoutAccount, autoLogin} = useUserStore();
-    const { updateUserInfo, updateLoginStatus, updateInfoInLocalStorage, 
-        registerAccount, logoutAccount, clearAccountInfoInsideLocalStorage, isAutoLogin } = useUserStore();
+    const { 
+        // detect
+        isAutoLogin,
+
+        // get
+        getUserName,
+        getUserEmail,
+
+        // modify
+        updateLocalStorage,
+        updateLoginStatusOfLocalStorage,
+        logoutAccountOfUser,
+
+        // clear 
+        clearUserLocalStorage
+    } = useUserStore();
+    
+    // const userCollection = reactive<UserCollection>([]);
+    // 用户数据集是一个数组
+    const userCollection = reactive<UserCollection>(JSON.parse(localStorage.getItem('user-collection-of-schedule') as string || '[]'));
+    
+    // test
+
+    /**
+     * @description print user collection
+     */
+    const testInfo = ():void => {
+        console.log("userCollection", userCollection);
+       
+        // const userCollectionJson = localStorage.getItem('user-collection-of-schedule');
+        // console.log("userCollectionJson", userCollectionJson);
+
+        // const userCollection2 = JSON.parse(userCollectionJson as string || '[]');
+        // console.log("userCollection2", userCollection2);
+    }
 
     /*
     *   unique 
@@ -36,57 +62,73 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
     // const isEmailUnique = (email:string):boolean => !userEmailSet.has(email);
     const isIdUnique = (id:string):boolean => {
         for(let index = 0; index < userCollection.length; index++){
-            if(id == userCollection[index].id)
+            if(id == userCollection[index].account.id)
             return false;
         }
         return true;
     }
     const isUsernameUnique = (username:string):boolean => {
         for(let index = 0; index < userCollection.length; index++){
-            if(username == userCollection[index].username)
+            if(username == userCollection[index].account.username)
             return false;
         }
         return true;
     }
     const isEmailUnique = (email:string):boolean => {
         for(let index = 0; index < userCollection.length; index++){
-            if(email == userCollection[index].email)
+            if(email == userCollection[index].account.email)
             return false;
         }
         return true;
     }
 
-    // Add Account
-    const addAccountToCollection = (user: UserInfo):void => {
+    /** 
+     * @description Add Account To Collection
+     * @param user 
+     * @returns 
+     */
+    const addAccountToCollection = (user: User):void => {
+        if(TESTMODE){console.log('addAccountToCollection');}
+        user.loginStatus = primaryUser.loginStatus;
         const newUser = {...user};
-        if(isIdUnique(newUser.id as string)){
+
             userCollection.push(newUser);
 
-            console.log(userCollection);
             localStorage.setItem('user-collection-of-schedule', JSON.stringify(userCollection));
-            // 更新 userStore
-            updateInfoInLocalStorage();
-        }
+
+            // TODO 更新 userStore
+            updateLocalStorage(newUser);
+
     };
     
-    // Remove Account
-    const removeAccount = (user: UserInfo) => {
+    /**
+     * Remove account, if it exists
+     * @param user 
+     * @returns boolean 
+     */
+    const removeAccountByUsername = (username: string):boolean => {
         for(let i = 0; i < userCollection.length; i++){
-            if(userCollection[i].username == user.username){
+            if(userCollection[i].account.username == username){
                 userCollection.splice(i, 1);
                 localStorage.setItem('user-collection-of-schedule', JSON.stringify(userCollection));
-                updateLoginStatus(undefined, undefined, undefined);
-                clearAccountInfoInsideLocalStorage();
+                // TODO 更新 userStore
+                // updateLocalStorage();
                 return true;
             }
         }
+        return false;
     };
 
-    // Reset Password
+    /**
+     * @description Reset Password By Name 
+     * @param username 
+     * @param newPassword 
+     * @returns 
+     */
     const resetPasswordByName = (username: string, newPassword: string):boolean => {
         for(let i = 0; i < userCollection.length; i++){
-            if(userCollection[i].username == username){
-                userCollection[i].password = newPassword;
+            if(userCollection[i].account.username == username){
+                userCollection[i].account.password = newPassword;
                 localStorage.setItem('user-collection-of-schedule', JSON.stringify(userCollection));
                 return true;
             }
@@ -95,52 +137,74 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
     };
 
     // Login
-    const isAccountCorrect = (username: string, password: string, checkedDate = 'Today', noLoginAgain = false, ):boolean => {
+    const isAccountCorrect = (username: string, password: string, noLoginAgain:any, checkedDate:any):boolean => {
         
-        // console.log(userArray.value[0]);
         for(let i = 0; i < userCollection.length; i++){
-            if(userCollection[i].username == username && userCollection[i].password == password){
-                // console.log(userArray.value[i].username, userArray.value[i].password);
-                updateLoginStatus(true, noLoginAgain, checkedDate);
-                // 提取用户信息， 更新到 LocalStorage
-                updateUserInfo(userCollection[i]);
-                updateInfoInLocalStorage();
+            if(userCollection[i].account.username == username && userCollection[i].account.password == password){
+                userCollection[i].loginStatus.isLoggedIn = true;
+                userCollection[i].loginStatus.checkedDate = checkedDate;
+                userCollection[i].loginStatus.noLoginAgain = noLoginAgain;
+
+                updateLoginStatusOfLocalStorage(userCollection[i]);
+                return true;
+            }
+        }
+        return false;
+    };
+    // Logout
+    const logoutAccount = ():boolean => {
+        const userName= getUserName();
+        logoutAccountOfUser();
+        for(let i = 0; i < userCollection.length; i++){
+            if(userCollection[i].account.username == userName){
+                userCollection[i].loginStatus.isLoggedIn = false;
+                userCollection[i].loginStatus.noLoginAgain = false;
+                userCollection[i].loginStatus.checkedDate = undefined;
+                localStorage.setItem('user-collection-of-schedule', JSON.stringify(userCollection));
+                // TODO 更新 userStore
+                // updateLocalStorage();
                 return true;
             }
         }
         return false;
     };
 
-    // Clear All about userCollectionStore and userStore
-    const clearAll = ():void => {
+    /**
+     * @description Clear All about userCollectionStore and userStore
+     * 
+     */ 
+    const clearAll = (): void => {
+        if(TESTMODE) console.log('clearAll');
         userCollection.splice(0, userCollection.length);
         localStorage.removeItem('user-collection-of-schedule');
         
         // clear userStore inside LocalStorage
-        updateLoginStatus(undefined, undefined, undefined);
-        clearAccountInfoInsideLocalStorage();
+        clearUserLocalStorage();
     };
     
     return {
+        // Test
         testInfo,
+
+        // Get
+        getUserEmail,
                 
+        // Detect
+        isAutoLogin,
         isUsernameUnique,
         isEmailUnique,
         
-        registerAccount,
+        // Add
         addAccountToCollection,
-        
-        updateLoginStatus,
-        isAccountCorrect,
 
-        logoutAccount,
-        removeAccount,
-
-        resetPasswordByName,
-
+        // Clear
+        removeAccountByUsername, // delete
         clearAll,
-
-        isAutoLogin,
+        
+        // Modify
+        isAccountCorrect,
+        logoutAccount,
+        resetPasswordByName,
     };
 },
 {

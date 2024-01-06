@@ -1,4 +1,11 @@
 // types/userInfo.ts
+import { type TodoList} from '@/types/todoList';
+
+// define a type of user
+export enum UserType{
+    Admin = 'admin',
+    User = 'user',
+}
 
 // define a Form of validating data
 export interface RuleForm{
@@ -22,6 +29,8 @@ export interface UserInfo{
     username:string | undefined,
     password:string | undefined,
     email:string | undefined,
+    // TODO 后期修改为必选项
+    userType?:UserType,
     // noLoginAgain?:boolean,
     // checkedDate?:string,
     // isLoggedIn?:boolean,

@@ -1,130 +1,130 @@
 // userStore.ts
 import { reactive } from 'vue';
 //interface
-import { type UserInfo, type LoginStatus} from '@/types/userInfo';
+import { defaultUser, type CheckedDate, type User } from '@/types/userManagement';
+import {  } from '@/types/userManagement';
 // store
 import { defineStore } from 'pinia'
 
+// test mode
+const TESTMODE = false;
+
 export const useUserStore =  defineStore('user-of-schedule', () =>{
     // user information
-    const userInfo = reactive<UserInfo>({
-        id: undefined,
-        username: '',
-        password: '',
-        email: '',
-    });
+    // const user = reactive<User>({
+    //     account: {
+    //         id: undefined,
+    //         username: undefined,
+    //         password: undefined,
+    //         email: undefined,
+    //     },
+    //     loginStatus: {
+    //         isLoggedIn: undefined,
+    //         noLoginAgain: undefined,
+    //         checkedDate: undefined,
+    //     },
+    //     todoList: undefined,
+    // });
+    const user = reactive<User>(JSON.parse(localStorage.getItem('user-of-schedule') as string || '{}'));
 
-    // Update the userInfo
-    const updateUserInfo = (user: UserInfo) => {
-        userInfo.id = user.id;
-        userInfo.username = user.username;
-        userInfo.password = user.password;
-        userInfo.email = user.email;
-    }
-    
-    // Login Status
-    const loginStatus = reactive<LoginStatus>({
-        isLoggedIn: undefined,
-        noLoginAgain: undefined,
-        checkedDate: undefined,
-    })
-
-    // Update the loginStatus
-    const updateLoginStatus = (IsLoggedIn = false, NoLoginAgain = false, CheckedDate = '') => {
-        loginStatus.isLoggedIn = IsLoggedIn;
-        loginStatus.noLoginAgain = NoLoginAgain;
-        loginStatus.checkedDate = CheckedDate;
-    }
-
-    // update the userInfo
-    const updateInfoInLocalStorage =() => {
-        localStorage.setItem('user-of-schedule', JSON.stringify(userInfo));
-    }
-
-    // Register Account
-    // 设置用户数据
-    // 并后续导入用户数据组
-    const registerAccount = (user: UserInfo):UserInfo => {
-        userInfo.id = user.id;
-        userInfo.username = user.username;
-        userInfo.password = user.password;
-        userInfo.email = user.email;
-
-        localStorage.setItem('user-of-schedule', JSON.stringify(userInfo));
-
-        return user;
+    const getUserName = () => {
+        return user.account.username;
     };
+    const getUserEmail = () => {
+        return user.account.email;
+    }
 
-    // Clear Account Info Inside LocalStorage
-    // 并后续删除用户组中数据
-    // use clearAccountInfoInsideLocalStorage after updateLoginStatus
-    const clearAccountInfoInsideLocalStorage = ():void => {
-        userInfo.id = undefined;
-        userInfo.username = undefined;
-        userInfo.password = '';
-        userInfo.email = '';
+    // update the LocalStorage
+    const updateLocalStorage = (userTobeupdated:User = defaultUser) => {
+        if (TESTMODE) {
+            console.log("updateLocalStorage:", user);
+        }
+        user.account = userTobeupdated.account;
+        user.loginStatus = userTobeupdated.loginStatus;
+        user.todoList = userTobeupdated.todoList;
+        // console.log(localStorage.setItem('user-of-schedule', JSON.stringify(user)));
+        localStorage.setItem('user-of-schedule', JSON.stringify(userTobeupdated));
+    }
 
-        // localStorage.removeItem('user-of-schedule');
-        localStorage.setItem('user-of-schedule', JSON.stringify(userInfo));
+    const updateLoginStatusOfLocalStorage = (userTobeupdated:User = defaultUser) => {
+        user.loginStatus = userTobeupdated.loginStatus;
+        updateLocalStorage(user);
+    }
+
+    // Clear LocalStorage
+    const clearUserLocalStorage = ():void => {
+        updateLocalStorage();
+        localStorage.removeItem('user-of-schedule');
     };
 
     // Log out
-    const logoutAccount = ():void => {
-        loginStatus.isLoggedIn = false;
-        loginStatus.noLoginAgain = false;
-        loginStatus.checkedDate = undefined;
+    const logoutAccountOfUser = ():void => {
+        user.loginStatus.isLoggedIn = false;
+        user.loginStatus.noLoginAgain = false;
+        user.loginStatus.checkedDate = undefined;
+        localStorage.setItem('user-of-schedule', JSON.stringify(user));
     };
 
     // Check Date
-    const checkDate = (date:string):boolean => {
-        console.log(date, "上次免登录时间");
+    const checkDate = (date:CheckedDate):boolean => {
+        if (user.loginStatus.checkedDate == undefined) {
+            return false
+        }
+        const {year:originalYear, month:originalMonth, day:originalDay} = user.loginStatus.checkedDate;
+        const originalTimestamp = new Date(originalYear, originalMonth - 1, originalDay).getTime();
+        const inputTimestamp = new Date(date.year, date.month - 1, date.day).getTime();
+        const timeDifference = Math.abs(inputTimestamp - originalTimestamp);
+        const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        if (daysDifference > 30) {
+            return false;
+        }
+        if (TESTMODE) console.log(date, "No login time last time");
         return true;
     }
 
     // Autologin
-    // 综合考虑 1.是否免登录 2.免登录是否超时 3用户数据是否正确
+    // 1. Check whether the login is not required. 
+    // 2. Check whether the login is timed out. 
+    // 3. Check whether user data is correct
     const isAutoLogin = (): boolean => {
-        // 页面加载时检查localStorage是否有保存的用户数据
+        // Check whether user data is stored in localStorage when the page is loaded
         const savedUser = localStorage.getItem('user-of-schedule');
         
         if (!savedUser) return false ;
         
         const savedUserInfo = JSON.parse(savedUser as string);
-        console.log(savedUserInfo.loginStatus);
         const {isLoggedIn, noLoginAgain, checkedDate } =  savedUserInfo.loginStatus
-
         if (!isLoggedIn) {
             return false;
         } else if (!noLoginAgain){
-            loginStatus.isLoggedIn = false;
+            user.loginStatus.isLoggedIn = false;
             return false;
         } else if (!checkDate(checkedDate)) {
-            loginStatus.isLoggedIn = false;
-            loginStatus.noLoginAgain = false;
-            loginStatus.checkedDate = undefined;
+            user.loginStatus.isLoggedIn = false;
+            user.loginStatus.noLoginAgain = false;
+            user.loginStatus.checkedDate = undefined;
             return false;
         } else {
-            // 跳转主页面
             return true; 
         }
     }
 
     return {
-        userInfo,
-        updateUserInfo,
-        
-        loginStatus,
-        updateLoginStatus,
-        
-        updateInfoInLocalStorage,
-
-        registerAccount,
-        
-        clearAccountInfoInsideLocalStorage,
-        
-        logoutAccount,
-        
+        // Detect
         isAutoLogin,
+        
+        // Get
+        getUserName,
+        getUserEmail,
+        
+        // Modify
+        updateLocalStorage,
+        updateLoginStatusOfLocalStorage,
+        logoutAccountOfUser,
+        
+        // Clear
+        clearUserLocalStorage,
+
     };
 },  // persisted state
 {

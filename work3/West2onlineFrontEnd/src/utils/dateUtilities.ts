@@ -20,3 +20,9 @@ export function getMonthName(date: Date) {
     const monthIndex = new Date(date).getMonth();
     return monthNames[monthIndex];
 }
+
+export const CurrentYMD ={
+  year: new Date().getFullYear(),
+  month: new Date().getMonth() + 1,
+  day: new Date().getDay(),
+};

@@ -1,7 +1,9 @@
 // router/index.ts
 import {createRouter, createWebHashHistory, } from 'vue-router'
+import AuthenticationView from '@/views/AuthenticationView.vue'
+import CustomLoginForm from '@/components/CustomLoginForm.vue'
+import TestView from '@/views/TestView.vue'
 import HomeView from '@/views/HomeView.vue' 
-import TodoListViewVue from '@/views/TodoListView.vue'
 import TablePresentationViewVue from '@/views/TablePresentationView.vue'
 
 const router = createRouter({
@@ -10,12 +12,12 @@ const router = createRouter({
     {
       name: 'authentication',
       path: '/authentication',
-      component: () => import('@/views/AuthenticationView.vue'),
+      component: AuthenticationView,
       children: [
         {
           name: 'login',
           path: '',
-          component: () => import('@/components/CustomLoginForm.vue')
+          component: CustomLoginForm,
         },
         {
           name: 'register',
@@ -37,18 +39,24 @@ const router = createRouter({
         {
           name: 'todolist',
           path: '',
-          component: TodoListViewVue,
+          component: () => import('@/views/TodoListView.vue'),
         },
         {
           name: 'table-presentation',
           path: 'table-presentation',
           component: TablePresentationViewVue,
         },
+        {
+          name: 'test',
+          path: '/test',
+          component: TestView,
+        }
       ]
     },
     {
       path:'/',
       redirect: '/authentication'
+      // redirect: '/home'
     }
   ]
 })

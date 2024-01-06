@@ -63,39 +63,30 @@
     
 <script setup lang="ts" name="CustomLoginForm"> 
     import { ref, reactive } from 'vue';
+    import { onMounted } from 'vue';
     //interface
-    import {type RuleForm, type UserInfo} from '@/types/userInfo';
+    import {primaryUser, defaultUser, CurrentYMD, type RuleForm, type User} from '@/types/userManagement';
     // store
-    import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
 
     // router
     import { useRouter } from 'vue-router';
-    // utils
-    import {updateUserInfo, registerAccountToLocalStorage} from '@/utils/userMangent'
 
     // import { Search } from '@element-plus/icons-vue';
     import type { FormInstance, FormRules } from 'element-plus';
     import { ElMessage } from 'element-plus';
+    import { v4 as v4uuid } from 'uuid';
 
-    const userStore = useUserStore();
-    const { isUsernameUnique, isEmailUnique } = useUserCollectionStore();
+    const { isUsernameUnique, isEmailUnique, addAccountToCollection} = useUserCollectionStore();
 
     let router = useRouter();
 
     const formSize = ref('default');
     const ruleFormRef = ref<FormInstance>();
 
-    // the info of user
-    // 用以保存表单信息，用以提交
-    const userInfoform = reactive<UserInfo>({
-      username: '',
-      password: '',
-      email:'',
-    })
+    const accountInfo = reactive<User>(primaryUser);
 
     // the information in form to be validated
-    // 用以保存表单信息，用以验证
     const ruleForm = reactive<RuleForm>({
         username: '',
         password: '',
@@ -157,20 +148,25 @@
             {
                 await formEl.validate((valid, fields) => {
                     if (valid) {
-                        // TODO: 检索数据
+                        // TODO: 检索数据库，如果用户名和邮箱都没有重复，就注册成功
                         if(isUsernameUnique(ruleForm.username as string) && isEmailUnique(ruleForm.email as string)){
-                            updateUserInfo(ruleForm, userInfoform, true);
-                            userStore.updateLoginStatus(true, false, 'Today');
+                            accountInfo.account.id = v4uuid();
+                            accountInfo.account.username = ruleForm.username as string;
+                            accountInfo.account.password = ruleForm.password as string;
+                            accountInfo.account.email = ruleForm.email as string;
+                            accountInfo.loginStatus = {
+                                isLoggedIn:  true,
+                                noLoginAgain: true,
+                                checkedDate: CurrentYMD}
+                            addAccountToCollection(accountInfo);
+                                registerSuccessfully();
+                                setTimeout(() => {
+                                    router.replace({
+                                        name: 'todolist',
+                                    })
+                                }, 1500);
+                                return;
 
-                            registerAccountToLocalStorage(userInfoform);
-                            console.log('registerAccount!');
-                            registerSuccessfully();
-                            setTimeout(() => {
-                                router.replace({
-                                    name: 'home',
-                                })
-                            }, 1500);
-                            return;
                         }else{
                             console.log('error submit!');
                             resetForm(ruleFormRef.value);
@@ -289,4 +285,4 @@
         color: #989898;
     }
 </style>
-    
+    @/utils/userMangement@/utils/userManagementUtilities@/backup/userInfo

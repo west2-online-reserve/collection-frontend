@@ -38,7 +38,7 @@
     // import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     //utils
-    import {registerAccountToLocalStorage} from '@/utils/userMangent'
+    import {registerAccountToLocalStorage} from '@/utils/userManagement'
     import * as dateUtils from '@/utils/dateUtils'
     // ui
     import {ElMessage} from 'element-plus'
@@ -89,4 +89,4 @@
 }
 
 </style>
-    
+    @/utils/userMangement@/stores/userCollectionStore@/utils/dateUtilities@/utils/userManagementUtilities@/backup/userInfo

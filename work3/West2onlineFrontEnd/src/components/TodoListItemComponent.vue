@@ -7,7 +7,7 @@
                     <el-checkbox></el-checkbox>
                 </el-col>
                 <el-col :span="20" >
-                    <el-text >df</el-text>
+                    <EditItem :msg="binfo" :item='iteminfo'/>
                 </el-col>
                 <el-col :span="2">
                     <el-checkbox-button><el-icon><Star /></el-icon></el-checkbox-button>
@@ -18,19 +18,25 @@
 </template>
     
 <script setup lang="ts" name="TodoListItem"> 
-    import { ref, reactive } from 'vue';
+    import { ref, unref, reactive, nextTick } from 'vue';
     //interface
-    import { type UserInfo, type LoginStatus} from '@/types/userInfo';
+    import { type TodoItem, type TodoList, type CheckTime } from '@/types/todoList';
     // store
     // import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
     //utils
-    // import {registerAccountToLocalStorage} from '@/utils/userManagement'
-    import * as dateUtils from '@/utils/dateUtils'
     // ui
-    import {ElMessage} from 'element-plus'
+    // components
+    import EditItem from '@/components/EditItemComponent.vue'
 
-
+    const props = defineProps({
+        item: {
+            type: Object as () => TodoItem,
+            required: true
+        }
+    })
+    const binfo = { name: props.item.title , type: 'default', textbutton: true };
+    const iteminfo =  props.item   
     
 </script>
 <style>

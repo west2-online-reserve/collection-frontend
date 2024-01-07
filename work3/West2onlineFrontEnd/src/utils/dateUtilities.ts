@@ -21,8 +21,23 @@ export function getMonthName(date: Date) {
     return monthNames[monthIndex];
 }
 
+export function getDay(date: Date): number {
+    const day = new Date(date).getDay();
+    return day;
+}
+
 export const CurrentYMD ={
   year: new Date().getFullYear(),
   month: new Date().getMonth() + 1,
-  day: new Date().getDay(),
+  day: new Date().getDate(),
+};
+export const CurrentYMDHMS ={
+  year: new Date().getFullYear(),
+  month: new Date().getMonth() + 1,
+  day: new Date().getDate(),
+  time: {
+  hour: new Date().getHours(),
+  minute: new Date().getMinutes(),
+  second: new Date().getSeconds(),
+  }
 };

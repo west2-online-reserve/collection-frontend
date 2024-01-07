@@ -5,6 +5,7 @@ import { defaultUser, type CheckedDate, type User } from '@/types/userManagement
 import {  } from '@/types/userManagement';
 // store
 import { defineStore } from 'pinia'
+import { type TodoItem, type TodoList } from '@/types/todoList';
 
 // test mode
 const TESTMODE = false;
@@ -109,6 +110,15 @@ export const useUserStore =  defineStore('user-of-schedule', () =>{
         }
     }
 
+    // todolist
+    const updateTodoListOfLocalUser = (todoList:TodoList):void => {
+        if (TESTMODE) console.log('updateTodoListOfLocalUser');
+        const user = JSON.parse(localStorage.getItem('user-of-schedule') as string || '{}');
+        user.todolist = todoList;
+        localStorage.setItem('user-of-schedule', JSON.stringify(user));
+    };
+
+    
     return {
         // Detect
         isAutoLogin,
@@ -124,6 +134,9 @@ export const useUserStore =  defineStore('user-of-schedule', () =>{
         
         // Clear
         clearUserLocalStorage,
+
+        // todolist
+        updateTodoListOfLocalUser,
 
     };
 },  // persisted state

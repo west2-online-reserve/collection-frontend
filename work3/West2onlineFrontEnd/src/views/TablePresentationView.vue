@@ -19,9 +19,10 @@
     // components
     import TablePresentation from '@/components/TablePresentationComponent.vue'
     
+    
     let router = useRouter();
 
-    const { testInfo, registerAccount, addAccountToCollection, updateLoginStatus, isAutoLogin} = useUserCollectionStore();
+    const { testInfo, addAccountToCollection, isAutoLogin} = useUserCollectionStore();
     
   
 </script>

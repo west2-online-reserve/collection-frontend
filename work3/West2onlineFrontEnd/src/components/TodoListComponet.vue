@@ -4,10 +4,10 @@
         <el-container>
             <el-main style="padding:0;">
                 <el-row style="width: 100%;">
-                    <el-col :span="15">
+                    <el-col :span="11">
                         <el-text class="title-todo">TODO LIST</el-text>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="3">
                         <el-checkbox-button v-model="checked1"><el-icon><Menu/></el-icon></el-checkbox-button>
                     </el-col>
                     <el-col :span="5">
@@ -16,9 +16,25 @@
                             <el-checkbox-button label="Completed"><el-icon><CircleCheckFilled/></el-icon></el-checkbox-button>
                         </el-checkbox-group>
                     </el-col>
+                    <el-col :span="5">
+                        <el-dropdown split-button type="primary" @click="handleClick">
+                            Tags
+                            <template #dropdown>
+                                <el-dropdown-menu>
+                                    <el-dropdown-item>Label 1</el-dropdown-item>
+                                    <el-dropdown-item>Label 2</el-dropdown-item>
+                                    <el-dropdown-item>Label 3</el-dropdown-item>
+                                    <el-dropdown-item>Label 4</el-dropdown-item>
+                                    <el-dropdown-item>Label 5</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </template>
+                        </el-dropdown>
+                    </el-col>
                 </el-row>
-                <el-scrollbar style="height: 484px;">
-                    <div v-for="item in 20" :key="item" class="scrollbar-demo-item"><TodoListItem/></div>
+                <el-scrollbar style="height: 484px;" v-loading="loading">
+                    <div v-for="item in todoListOfSelectedDate" :key="item.id" class="scrollbar-demo-item">
+                    <TodoListItem :item="item"/>
+                    </div>
                 </el-scrollbar>
         </el-main>    
     </el-container>
@@ -26,22 +42,43 @@
 </template>
     
 <script setup lang="ts" name="TodoList"> 
-    import { ref, reactive } from 'vue';
+    import { ref, reactive, onMounted } from 'vue';
     //interface
-    import { type UserInfo, type LoginStatus} from '@/types/userInfo';
+    import { type TodoItem, type TodoList, type CheckTime } from '@/types/todoList';
     // store
-    // import { useUserStore } from '@/stores/userStore';
-    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    import { useTodoListStore } from '@/stores/todolistStore'
     //utils
-    // import {registerAccountToLocalStorage} from '@/utils/userManagement'
-    import * as dateUtils from '@/utils/dateUtils'
+    import { CurrentYMD } from '@/utils/dateUtilities';
+
     // ui
-    import {ElMessage} from 'element-plus'
     import TodoListItem from '@/components/TodoListItemComponent.vue'
+
+    const loading = ref(false);
+
+    // const { } = useTodoListStore();
+    const { getTodoListOfSelectedDate, getSelectedDate } = useTodoListStore();
 
     const checked1 = ref(true)
     const checkboxGroup1 = ref(['Star'])
     const labels = ['All', 'Star', 'Completed'];
+
+    const handleClick = () => {
+        // eslint-disable-next-line no-alert
+        alert('button click')
+    }
+
+    // todolist
+    // const todoListOfSelectedDate = ref<TodoList>(getTodoListOfSelectedDate(getSelectedDate()));
+    const todoListOfSelectedDate = ref<TodoList>([])
+    setInterval(() => {todoListOfSelectedDate.value = getTodoListOfSelectedDate(getSelectedDate())}, 1000);
+
+
+
+
+
+
+
+    
     
 </script>
 
@@ -74,4 +111,3 @@
   color: var(--el-color-primary);
 }
 </style>
-    @/utils/userMangement@/stores/userCollectionStore@/utils/dateUtilities@/backup/userInfo

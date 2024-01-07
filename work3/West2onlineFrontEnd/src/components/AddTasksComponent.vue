@@ -4,9 +4,14 @@
         <el-container>
             <el-main style="padding:0;">
                 <el-row>
-                    <el-text class="title-task">
-                        TASK
-                    </el-text>
+                    <el-col :span="4">
+                        <el-text class="title-task">TASK</el-text>
+                    </el-col>
+                    <el-col :span="16" style="padding-top:4px ;">
+                        <el-input v-model="inputTitle" placeholder="Please input Title" class="input-title">
+                            <template #prepend>Title</template>
+                        </el-input>
+                    </el-col>
                 </el-row>
                 <el-row justify="space-between" style="width: 100%;">
                     <el-col :span="20" style="background-color: aliceblue;">
@@ -14,7 +19,7 @@
                         v-model="textarea"
                         :rows="3"
                         type="textarea"
-                        placeholder="Please input"
+                        placeholder="Please input Content"
                         resize="none"
                         class="text-area"
                         />
@@ -33,29 +38,46 @@
 <script setup lang="ts" name="AddTasks"> 
     import { ref, reactive } from 'vue';
     //interface
-    import { type UserInfo, type LoginStatus} from '@/types/userInfo';
+    import { defaultTodoItem, type TodoItem} from '@/types/todoList';
     // store
-    // import { useUserStore } from '@/stores/userStore';
-    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    import { useTodoListStore } from '@/stores/todolistStore'
     //utils
-    import {registerAccountToLocalStorage} from '@/utils/userManagement'
-    import * as dateUtils from '@/utils/dateUtils'
+    import * as dateUtils from '@/utils/dateUtilities'
     // ui
     import {ElMessage} from 'element-plus'
     import type { CalendarDateType, CalendarInstance } from 'element-plus'
 
+    const {addTodoItem, getTodoList, getSelectedDate} = useTodoListStore();
+
+    const inputTitle = ref('')
     const textarea = ref('')
 
     const resetTextArea = ()=>{
         textarea.value = '';
+        inputTitle.value = '';
         console.log('Reset TextArea!');
     }
     const addTask = ()=>{
-        console.log('Add Task!');
+        if(inputTitle.value == ''){
+            ElMessage({
+                message: 'Please input Title!',
+                type: 'warning'
+            })
+            return;
+        } else{
+            console.log('Add defaultTodoItem!');
+
+            const task = Object.assign({}, defaultTodoItem);
+            task.title = inputTitle.value;
+            task.description = textarea.value;
+            task.creatDateTime = dateUtils.CurrentYMDHMS;
+            task.startDate = getSelectedDate()
+            task.id = Date.now().toString();
+            resetTextArea();
+            addTodoItem(task);
+            // window.location.reload();
+        }
     }
-
-
-    
 </script>
 
 <style scoped>
@@ -74,6 +96,9 @@
         'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
         'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
+.input-title{
+    --el-input-border-color: #cfe2ce;
+}
 .text-area{
     /* font-size: 18px; */
     font-family: Inter;
@@ -89,4 +114,3 @@
 }
 
 </style>
-    @/utils/userMangement@/stores/userCollectionStore@/utils/dateUtilities@/utils/userManagementUtilities@/backup/userInfo

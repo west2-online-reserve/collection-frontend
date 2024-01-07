@@ -69,8 +69,6 @@
         logoutAccount();
     };
     const testButton6 = ()=>{
-        console.log(isAccountCorrect('testUser01', 'testPassword'));
-        console.log(isAccountCorrect('testUser01', 'testUser01_password'));
     };
     const testButton7 = ()=>{
     };

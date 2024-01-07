@@ -12,6 +12,7 @@ declare module 'vue' {
     CustomLoginForm: typeof import('./src/components/CustomLoginForm.vue')['default']
     CustomRegisterForm: typeof import('./src/components/CustomRegisterForm.vue')['default']
     CustomResetPasswordForm: typeof import('./src/components/CustomResetPasswordForm.vue')['default']
+    EditItemComponent: typeof import('./src/components/EditItemComponent.vue')['default']
     ElButt: typeof import('element-plus/es')['ElButt']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
@@ -26,6 +27,9 @@ declare module 'vue' {
     ElContainr: typeof import('element-plus/es')['ElContainr']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
@@ -37,6 +41,8 @@ declare module 'vue' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElR: typeof import('element-plus/es')['ElR']
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
@@ -47,6 +53,7 @@ declare module 'vue' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -56,5 +63,8 @@ declare module 'vue' {
     TestComp: typeof import('./src/components/testComp.vue')['default']
     TodoListComponet: typeof import('./src/components/TodoListComponet.vue')['default']
     TodoListItemComponent: typeof import('./src/components/TodoListItemComponent.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

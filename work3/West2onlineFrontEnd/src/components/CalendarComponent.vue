@@ -2,7 +2,7 @@
 <template> 
     <div class="container-calendar">
 
-        <el-calendar ref="calendar">
+        <el-calendar ref="calendarRef">
             <template #header="{ date }">     
                 <span class="label-month-year">{{ dateUtils.getMonthName(date) }}, {{ dateUtils.getYear(date) }}</span>
                 <el-button-group style="width: 380px; margin:auto 0;">
@@ -35,17 +35,20 @@
                     </el-row>
                 </el-button-group>
             </template>
+            <template #date-cell="{ data }">
+                    <el-button link @click="setSelectedDate(data);">
+                        {{ data.day.split('-').slice(2).join() }}
+                    </el-button>
+            </template>
         </el-calendar>
     </div>
 </template>
     
 <script setup lang="ts" name="Calendar"> 
-    import { ref, reactive } from 'vue';
+    import { ref, } from 'vue';
     //interface
-    import { type UserInfo, type LoginStatus} from '@/types/userInfo';
     // store
-    // import { useUserStore } from '@/stores/userStore';
-    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    import { useTodoListStore } from '@/stores/todolistStore'
     //utils
     // import {registerAccountToLocalStorage} from '@/utils/userManagement'
     import * as dateUtils from '@/utils/dateUtilities'
@@ -53,11 +56,20 @@
     import type { CalendarDateType, CalendarInstance } from 'element-plus'
     
     // canlendar
-    const calendar = ref<CalendarInstance>()
+    const { setSelectedDate, getSelectedDate } = useTodoListStore();
+
+    const calendarRef = ref<CalendarInstance>();
+
     const selectDate = (val: CalendarDateType) => {
-        if (!calendar.value) return
-            calendar.value.selectDate(val)
+        if (!calendarRef.value) return
+            calendarRef.value.selectDate(val)
+            // console.log(calendarRef.value.selectDate(val))
     }
+
+    const reloadPage = ()=>{
+        window.location.reload();
+    }
+
 
 
 </script>
@@ -128,4 +140,3 @@
         /* line-height: 50px; */
     }
 </style>
-    @/utils/userMangement@/stores/userCollectionStore@/utils/dateUtilities@/utils/userManagementUtilities@/backup/userInfo

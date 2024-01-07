@@ -3,6 +3,7 @@
 import { reactive } from 'vue';
 // interface 
 import { primaryUser,  defaultUser, type User, type UserCollection} from '@/types/userManagement';
+import { type TodoList } from '@/types/todoList';
 // Store
 import { useUserStore } from './userStore';
 import { defineStore} from 'pinia';
@@ -26,7 +27,10 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
         logoutAccountOfUser,
 
         // clear 
-        clearUserLocalStorage
+        clearUserLocalStorage,
+
+        // todo
+        updateTodoListOfLocalUser,
     } = useUserStore();
     
     // const userCollection = reactive<UserCollection>([]);
@@ -181,6 +185,15 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
         // clear userStore inside LocalStorage
         clearUserLocalStorage();
     };
+
+    // todolist 
+    const updateTodoList = (todoList: TodoList):void => {
+        if(TESTMODE) console.log('updateTodoList');
+        const userCollection = JSON.parse(localStorage.getItem('user-collection-of-schedule') as string || '[]');
+        const userIndex = userCollection.findIndex((user:any) => user.account.username === getUserName());
+        userCollection[userIndex].todolist = todoList;
+        localStorage.setItem('user-collection-of-schedule', JSON.stringify(userCollection));
+    }
     
     return {
         // Test
@@ -188,6 +201,7 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
 
         // Get
         getUserEmail,
+        getUserName,
                 
         // Detect
         isAutoLogin,
@@ -205,6 +219,10 @@ export const useUserCollectionStore = defineStore('user-collection-of-schedule',
         isAccountCorrect,
         logoutAccount,
         resetPasswordByName,
+
+        // Todo
+        updateTodoListOfLocalUser,
+        updateTodoList,
     };
 },
 {

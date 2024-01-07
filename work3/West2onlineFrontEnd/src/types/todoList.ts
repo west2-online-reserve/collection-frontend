@@ -1,4 +1,9 @@
 // todolist.ts
+export interface CheckTime{
+    year: number;
+    month: number;
+    day: number;
+}
 
 interface TodolistTime{
     hour: number;
@@ -16,6 +21,7 @@ interface TodolistDateTime{
 export interface TodoItem {
     id: string;
     creatDateTime: TodolistDateTime;
+    startDate:CheckTime;
     
     title: string;
     description: string|undefined;
@@ -41,6 +47,11 @@ const testTodoItem01: TodoItem = {
             minute: 10,
             second: 10,
         }
+    },
+    startDate:{
+        year: 2021,
+        month: 10,
+        day: 1,
     },
     title: 'testTodoItem01',
     description: 'testTodoItem01_description',
@@ -70,6 +81,11 @@ const testTodoItem02: TodoItem = {
             second: 10,
         }
     },
+    startDate:{
+        year: 2021,
+        month: 10,
+        day: 1,
+    },
     title: 'testTodoItem02',
     description: 'testTodoItem02_description',
     starMark: false,
@@ -87,3 +103,28 @@ const testTodoItem02: TodoItem = {
     }
 }
 export const testTodoList01: TodoList = [testTodoItem01, testTodoItem02]; 
+
+export const defaultTodoItem: TodoItem = {
+    id: 'defaultTodoItem',
+    creatDateTime: {
+        year: 2024,
+        month: 1,
+        day: 1,
+        time: {
+            hour: 0,
+            minute: 0,
+            second: 0,
+        }
+    },
+    startDate:{
+        year: 2024,
+        month: 1,
+        day: 1,
+    },
+    title: 'defaultTodoItem',
+    description: 'defaultTodoItem_description',
+    starMark: false,
+    label: 'defaultTodoItem_label',
+    completed: false,
+    finishedDateTime: undefined,
+}

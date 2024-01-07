@@ -43,31 +43,49 @@
 </template>
     
 <script setup lang="ts" name="HomeView"> 
-    import { ref, reactive } from 'vue';
+    import { ref, onMounted } from 'vue';
     //interface
     import { type User} from '@/types/userManagement';
     // router
     import { RouterView, useRouter } from 'vue-router';
     // store
-    import { useUserStore } from '@/stores/userStore';
     import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    import { useTodoListStore } from '@/stores/todolistStore';
     //utils
     // import {registerAccountToLocalStorage} from '@/utils/userManagement'
     // ui
-    import {ElMessage, ElMessageBox} from 'element-plus'
+    import { ElMessageBox} from 'element-plus'
     
     let router = useRouter();
-    const userStore = useUserStore();
-    const  userCollectionStore = useUserCollectionStore();
 
-    const { getUserEmail } = useUserCollectionStore();
+    const { getUserEmail, logoutAccount} = useUserCollectionStore();
+    const { clearTodoList } = useTodoListStore();
+
 
     // menu
-    const activeIndex = ref('1')
-    const handleSelect = (key: string) => {
-        if(key == '1') router.replace({name: 'todolist',});
-        if( key == '2') router.replace({name: 'table-presentation',});
-    }
+    const activeIndex = ref('1');
+    onMounted(() => {
+      restoreActiveIndex();
+    });
+    const handleSelect = (index:string) => {
+      activeIndex.value = index; // 更新 activeIndex 的值
+      if(index == '1') router.replace({name: 'todolist',});
+    if( index == '2') router.replace({name: 'table-presentation',});
+      saveActiveIndex(); // 保存 activeIndex 的值
+    };
+
+    // 保存 activeIndex 的值到 sessionStorage
+    const saveActiveIndex = () => {
+      sessionStorage.setItem('activeIndex', activeIndex.value);
+    };
+
+    // 从 sessionStorage 中恢复 activeIndex 的值
+    const restoreActiveIndex = () => {
+      const savedActiveIndex = sessionStorage.getItem('activeIndex');
+      if (savedActiveIndex) {
+        activeIndex.value = savedActiveIndex;
+      }
+    };
 
     // TODO 退出按键
     // logout
@@ -80,13 +98,12 @@
 
     const logoutUser = ()=>{
         console.log('logout button');
-        userCollectionStore.logoutAccount();
+        logoutAccount();
+        clearTodoList();
         setTimeout(() => {
             router.replace({name: 'login',})
-        }, 1500);
-
+        }, 1000);
     }
-
 
 </script>
     

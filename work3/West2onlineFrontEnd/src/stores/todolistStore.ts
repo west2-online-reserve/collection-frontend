@@ -7,7 +7,7 @@ import {type CheckTime, type TodoItem, type TodoList } from '@/types/todoList';
 import { defineStore } from 'pinia'
 import { useUserCollectionStore } from '@/stores/userCollectionStore'
 // utils
-import {getYear, getMonth, getDay,CurrentYMD} from '@/utils/dateUtilities';
+import { CurrentYMDHMS } from '@/utils/dateUtilities';
 
 // test mode
 const TESTMODE = false;
@@ -73,15 +73,51 @@ export const useTodoListStore =  defineStore('todolist', () =>{
       
 
     // update todo item
-    const updateTodoItem = (todoItem:TodoItem):void => {
-        todoList[todoList.indexOf(todoItem)] = todoItem;
-        // 更新 localStorage
+    const updateTodoItem = (todoItem: TodoItem): void => {
+        // 查找待更新的待办事项在 todoList 中的索引
+        const index = todoList.findIndex(item => item.id === todoItem.id);
+        // console.log('1', todoItem);
+        // console.log('2', todoList[index])
+        if (index !== -1) {
+            // 更新待办事项对象
+            todoList[index].title = todoItem.title;
+            todoList[index].description = todoItem.description;
+      
+          // 更新 localStorage
+          localStorage.setItem('todolist', JSON.stringify(todoList));
+      
+          // 更新组件中的待办事项列表
+          updateTodoList(todoList);
+      
+          // 更新本地用户的待办事项列表
+          updateTodoListOfLocalUser(todoList);
+        }
+      };
+
+    // update complete Status
+    const completeItem = (id: string)=>{
+        const index = todoList.findIndex(item => item.id === id);
+        if (index !== -1) {
+        todoList[index].completed = !todoList[index].completed;
+        if(todoList[index].completed){
+            todoList[index].finishedDateTime = CurrentYMDHMS;
+        }else{
+            todoList[index].finishedDateTime = undefined;
+        }
         localStorage.setItem('todolist', JSON.stringify(todoList));
-        // 更新组件中的待办事项列表
         updateTodoList(todoList);
-        // 更新本地用户的待办事项列表
         updateTodoListOfLocalUser(todoList);
-    };
+       }
+    }
+    const starMarkItem = (id: string)=>{
+        const index = todoList.findIndex(item => item.id === id);
+        if (index !== -1) {
+        todoList[index].starMark = !todoList[index].starMark;
+        localStorage.setItem('todolist', JSON.stringify(todoList));
+        updateTodoList(todoList);
+        updateTodoListOfLocalUser(todoList);
+       }
+    }
 
     // clear todo list
     const clearTodoList = ():void => {
@@ -116,6 +152,18 @@ export const useTodoListStore =  defineStore('todolist', () =>{
         // console.log("todoListOfDate", todoListOfDate);
         return todoListOfDate;
       };
+    const getCompleteStatus = (id: string)=>{
+        const index = todoList.findIndex(item => item.id === id);
+        if (index !== -1) {
+        return todoList[index].completed
+        }
+    }
+    const getStarStatus = (id: string)=>{
+        const index = todoList.findIndex(item => item.id === id);
+        if (index !== -1) {
+        return todoList[index].starMark
+        }
+    }
 
 
 
@@ -130,15 +178,19 @@ export const useTodoListStore =  defineStore('todolist', () =>{
         // Update
         setSelectedDate,
         updateTodoItem,
+        completeItem,
+        starMarkItem,
 
         // Get
         getTodoList,
         getTodoListOfSelectedDate,
         getSelectedDate,
+        getCompleteStatus,
+        getStarStatus,
     };
-    },
-    {
-            persist: true,
-            // storage: sessionStorage , // default: localStorage
-    }
+},
+{
+    persist: true,
+    // storage: sessionStorage , // default: localStorage
+},
 );

@@ -1,7 +1,7 @@
 <!-- To doListView.vue -->
 <template> 
     <div class="container-add-task">
-        <el-container>
+        <el-container v-loading="loading">
             <el-main style="padding:0;">
                 <el-row style="width: 100%;">
                     <el-col :span="11">
@@ -31,7 +31,7 @@
                         </el-dropdown>
                     </el-col>
                 </el-row>
-                <el-scrollbar style="height: 484px;" v-loading="loading">
+                <el-scrollbar style="height: 484px;">
                     <div v-for="item in todoListOfSelectedDate" :key="item.id" class="scrollbar-demo-item">
                     <TodoListItem :item="item"/>
                     </div>
@@ -53,7 +53,11 @@
     // ui
     import TodoListItem from '@/components/TodoListItemComponent.vue'
 
-    const loading = ref(false);
+    const loading = ref(true);
+    setTimeout(()=>{
+        loading.value = false
+    },1000
+    )
 
     // const { } = useTodoListStore();
     const { getTodoListOfSelectedDate, getSelectedDate } = useTodoListStore();

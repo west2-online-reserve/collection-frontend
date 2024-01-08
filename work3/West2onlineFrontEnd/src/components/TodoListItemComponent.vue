@@ -4,13 +4,13 @@
         <el-container>
             <el-row style="width: 100%;">
                 <el-col :span="2">
-                    <el-checkbox></el-checkbox>
+                    <el-checkbox v-model="checked1" @change="handleCheckAllChange"></el-checkbox>
                 </el-col>
                 <el-col :span="20" >
-                    <EditItem :msg="binfo" :item='iteminfo'/>
+                    <TitleItem :msg="binfo" :item='iteminfo'/>
                 </el-col>
                 <el-col :span="2">
-                    <el-checkbox-button><el-icon><Star /></el-icon></el-checkbox-button>
+                    <el-checkbox-button v-model="checked2" @change="handleCheckAllChange2"><el-icon><Star /></el-icon></el-checkbox-button>
                 </el-col>
             </el-row>
         </el-container>
@@ -23,11 +23,13 @@
     import { type TodoItem, type TodoList, type CheckTime } from '@/types/todoList';
     // store
     // import { useUserStore } from '@/stores/userStore';
-    import { useUserCollectionStore } from '@/stores/userCollectionStore';
+    import { useTodoListStore } from '@/stores/todolistStore';
     //utils
     // ui
     // components
-    import EditItem from '@/components/EditItemComponent.vue'
+    import TitleItem from '@/components/TitleItemComponent.vue'
+
+    const { completeItem, getCompleteStatus, starMarkItem, getStarStatus} = useTodoListStore()
 
     const props = defineProps({
         item: {
@@ -35,8 +37,19 @@
             required: true
         }
     })
-    const binfo = { name: props.item.title , type: 'default', textbutton: true };
+    const titlename = props.item.title
     const iteminfo =  props.item   
+    const binfo = { name: titlename , type: 'default', textbutton: true };
+
+    const checked1 = ref(getCompleteStatus(props.item.id))
+    const checked2 = ref(getStarStatus(props.item.id))
+
+    const handleCheckAllChange = () => {
+        completeItem(props.item.id)
+    }
+    const handleCheckAllChange2 = () => {
+        starMarkItem(props.item.id)
+    }
     
 </script>
 <style>

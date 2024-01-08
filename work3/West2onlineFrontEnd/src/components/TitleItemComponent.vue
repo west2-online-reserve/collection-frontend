@@ -1,6 +1,6 @@
 <template>
     <el-button ref="buttonRef" v-click-outside="onClickOutside" :type="msg.type" :text="msg.textbutton" size="small">
-        {{msg.name }}
+        {{item.title }}
     </el-button>
     <el-popover
     ref="popoverRef"
@@ -63,12 +63,13 @@
     </el-row>
     <el-row justify="end" style="margin-top: 10px;">
         <el-button size="small" type="primary" style="width: 60px;" @click="editItem">Edit</el-button>
+        <el-button size="small" type="danger" style="width: 60px;" @click="deleteItem">Delete</el-button>
         <el-button size="small" type="warning" style="width: 60px;" @click="resetText">Reset</el-button>
     </el-row>
     </el-popover>
 </template>
 
-<script setup lang="ts" name="EditItem">
+<script setup lang="ts" name="TitleItem">
     import { ref, unref, reactive, nextTick } from 'vue';
     //interface
     import { type User} from '@/types/userManagement';
@@ -83,7 +84,7 @@
     import { ElInput } from 'element-plus'
 import type { TodoItem } from '@/types/todoList';
 
-    const { deleteTodoItem, updateTodoItem, completeItem} = useTodoListStore()
+    const { deleteTodoItem, updateTodoItem } = useTodoListStore()
 
      const props = defineProps(['msg', 'item'])
 
@@ -130,6 +131,7 @@ import type { TodoItem } from '@/types/todoList';
         inputTitle.value = '';
         textarea.value = ''
     }
+
     const editItem = ()=> {
         if(inputTitle.value != ''){
             (props.item as TodoItem).title = inputTitle.value as string
@@ -137,9 +139,12 @@ import type { TodoItem } from '@/types/todoList';
         if(textarea.value != ''){
             (props.item as TodoItem).description = textarea.value as string
         }
-        // console.log(props.item, inputTitle.value, textarea.value)
         updateTodoItem(props.item)
         resetText()
+    }
+
+    const deleteItem = ()=> {
+        deleteTodoItem(props.item.id)
     }
 </script>
 

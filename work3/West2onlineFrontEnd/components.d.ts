@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AddTasksComponent: typeof import('./src/components/AddTasksComponent.vue')['default']
     CalendarComponent: typeof import('./src/components/CalendarComponent.vue')['default']
+    copy: typeof import('./src/components/EditItemComponent copy.vue')['default']
     CustomLoginForm: typeof import('./src/components/CustomLoginForm.vue')['default']
     CustomRegisterForm: typeof import('./src/components/CustomRegisterForm.vue')['default']
     CustomResetPasswordForm: typeof import('./src/components/CustomResetPasswordForm.vue')['default']
@@ -20,6 +21,7 @@ declare module 'vue' {
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxButton: typeof import('element-plus/es')['ElCheckboxButton']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
+    ElCheckButton: typeof import('element-plus/es')['ElCheckButton']
     ElCheckedButton: typeof import('element-plus/es')['ElCheckedButton']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContain: typeof import('element-plus/es')['ElContain']
@@ -61,6 +63,7 @@ declare module 'vue' {
     TablePresentationComponent: typeof import('./src/components/TablePresentationComponent.vue')['default']
     TablePresentationView: typeof import('./src/components/TablePresentationView.vue')['default']
     TestComp: typeof import('./src/components/testComp.vue')['default']
+    TitleItemComponent: typeof import('./src/components/TitleItemComponent.vue')['default']
     TodoListComponet: typeof import('./src/components/TodoListComponet.vue')['default']
     TodoListItemComponent: typeof import('./src/components/TodoListItemComponent.vue')['default']
   }

@@ -56,6 +56,10 @@ export const userStore = defineStore('user', {
         // 完成待办
         Completelist(data){
             this.CompleteStore.push({ ...data });
+        },
+        //修改用户名
+        EditUserNameById(id,name){
+            this.registerDataList[id].username=name;
         }
 
     },

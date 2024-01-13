@@ -231,14 +231,6 @@ const sortMethod = (a, b) => {
     overflow: visible;
 }
 
-/* .el-table_column_1 .cell {
-    color: #11240E;
-    font-size: 28px;
-    font-weight: 500;
-}
-天哪为什么一刷新字体样式就没了 */
-
-
 .el-table__empty-block {
     width: 1398px !important;
     height: 500px !important;

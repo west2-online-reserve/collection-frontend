@@ -87,7 +87,7 @@ const getTodoClass = (classify) => {
             <div class="block" style="display: inline; margin-left: 20px;">
                 <el-date-picker v-model="date" type="datetimerange" start-placeholder="开始时间" end-placeholder="结束时间"
                     format="YYYY/MM/DD HH:mm" date-format="YYYY/MM/DD dd" time-format="A hh:mm"
-                    value-format="YYYY/MM/DD HH:mm" style="width: 260px;" />
+                    value-format="YYYY/MM/DD HH:mm" style="width: 100px;" />
                 <el-select v-model="picker" placeholder="分类标签" style="width:100px">
                     <el-option v-for="item in options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option></el-select>

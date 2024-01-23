@@ -26,7 +26,7 @@
 <script  setup>
 
 import { ref } from 'vue'
-import userStore from '../stores/localStorage'
+import useUserStore from '../stores/userStore'
 
 let name = ref("")
 let email = ref("")
@@ -49,33 +49,58 @@ function hidTip()
 
 const onSubmit = () => {
 
-  let user = userStore()
+  let user = useUserStore()
   let flag1 = x1.test(name.value)
   let flag2 = x2.test(email.value)
   let flag3 = x3.test(password.value)
 
-  if (flag1 && flag2 && flag3)
+  if(flag2)
   {
-    user.add(name, email, password)
+    let flag = true
+    let n = user.length;
+    console.log(n)
+    for (let i=0; i<n; i++)
+    {
+      console.log(i)
+      console.log(email.value)
+      console.log(user.users[i].email)
+      if (email.value == user.users[i].email)
+      {
+        flag = false
+        alert("该用户已注册（邮箱为唯一标识）")
+        break
+      }
+    }
+    if (flag)
+    {
+      if (flag1 && flag2 && flag3)
+      {
+        user.add(name.value, email.value, password.value)
+        alert("注册成功")
+      }
+      else
+      {
+        if (!flag1)
+        {
+          // noterror1 = false
+          alert("用户名格式不正确")
+        }
+        if (!flag2)
+        {
+          // noterror2 = false
+          alert("邮件格式不正确")
+        }
+        if (!flag3)
+        {
+          // noterror3 = false
+          alert("密码格式不正确")
+        }
+      }
+    }
+    flag = true
   }
-  else
-  {
-    if (!flag1)
-    {
-      // noterror1 = false
-      alert("用户名格式不正确")
-    }
-    if (!flag2)
-    {
-      // noterror2 = false
-      alert("邮件格式不正确")
-    }
-    if (!flag3)
-    {
-      // noterror3 = false
-      alert("密码格式不正确")
-    }
-  }
+
+  
   
 }
 
@@ -101,3 +126,4 @@ input::-webkit-input-placeholder
 }
 
 </style>
+../stores/userStore

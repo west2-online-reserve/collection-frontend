@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>变量</h1>
+  <p>变量是存储数据的容器</p>
+
+  <h2>1.变量的声明(定义)</h2>
+  <p>let 变量名</p>
+
+  <h2>2.变量的赋值</h2>
+  <p>变量名 = 数据</p>
+  <p>重新赋值会覆盖</p>
+  <p><strong>也可以声明的同时赋值（变量的初始化）</strong></p>
+  <p>但不允许多次声明,会报错(用var声明不报错)</p>
+  <p>let 变量名 = 数据</p>
+  <script>
+    // 例子
+    let mName = 'hbw'
+    let mAge = 18
+    console.log(mName, mAge)
+    // 可以多个声明，但不提倡(可读性不好)
+    let uName = 'L', uAge = 19
+    console.log(uName, uAge)
+
+    // 1.输入
+    // prompt('请输入年龄')
+
+    // 2.处理
+    let userage = prompt('请输入年龄')
+
+    //3.输出
+    document.write('你的年龄是：', userage)
+  </script>
+
+  <h2>3.交换变量</h2>
+  <!-- 和C一样麻烦 -->
+  <script>
+    let num1 = 1
+    let num2 = 2
+    let temp = num1
+    num1 = num2
+    num2 = temp
+    document.write(num1, num2)
+  </script>
+
+  <h2>4.为什么不使用var</h2>
+  <p>先赋值再声明不报错</p>
+  <p>声明过的变量可重复声明</p>
+  <p>变量提升、全局变量、没有块级作用域等</p>
+  <p>结果:不够规范,在大型项目中相比let更容易出现问题</p>
+
+</body>
+
+</html>

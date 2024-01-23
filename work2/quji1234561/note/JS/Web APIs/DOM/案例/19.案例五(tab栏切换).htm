@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+    }
+
+    .tab {
+      width: 400px;
+      height: 400px;
+    }
+
+    .tab ul {
+      width: 400px;
+      height: 30px;
+    }
+
+    .tab ul li {
+      float: left;
+      width: 80px;
+      height: 30px;
+      list-style: none;
+      text-align: center;
+      font-size: 20px;
+      line-height: 30px;
+      border: 1px solid #000;
+      border-radius: 20px 20px 0 0;
+      background-color: #eee;
+    }
+
+    .tab ul .select {
+      background-color: #dad8d8;
+    }
+
+
+    .tab .main {
+      position: relative;
+    }
+
+    .tab .main div {
+      display: none;
+      position: absolute;
+      width: 400px;
+      height: 370px;
+      border: 1px solid #000;
+      background-color: blanchedalmond;
+      text-align: center;
+      line-height: 370px;
+      font-size: 70px;
+    }
+
+    .tab .main .active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tab">
+    <ul>
+      <li class="select">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <div class="main">
+      <div class="active">a</div>
+      <div>b</div>
+      <div>c</div>
+      <div>d</div>
+      <div>e</div>
+    </div>
+  </div>
+
+  <script>
+    const lis = document.querySelectorAll('.tab ul li ')
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].addEventListener('mouseenter', function () {
+        document.querySelector(`.tab .main .active`).classList.remove('active')
+        document.querySelector(`.tab .main div:nth-child(${i + 1})`).classList.add('active')
+        document.querySelector(`.tab ul .select`).classList.remove('select')
+        this.classList.add('select')
+      })
+
+
+    }
+  </script>
+</body>
+
+</html>

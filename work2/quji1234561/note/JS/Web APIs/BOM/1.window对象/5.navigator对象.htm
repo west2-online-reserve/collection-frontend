@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>navgator对象</h1>
+  <p>navigator的数据类型是对象,记录了浏览器自身的相关信息</p>
+  <h2>userAgent属性</h2>
+  <p>检测浏览器的版本及平台</p>
+  <p>场景:通过验证用户的浏览器,跳转到相应页面,如移动端浏览器则自动跳转移动端页面</p>
+  <script>
+    !(function () {
+      const userAgent = navigator.userAgent
+      //检验是否为Android或iPhone
+      const android = userAgent.match(/(Android);?[\s\/]+([\d.]+)?/)
+      const iphone = userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
+      //如果是Android或iPhone,则跳转至移动站点
+      if (android || iphone) {
+        location.herf = 'http://m.itcast.cn'
+      }
+    })()
+  </script>
+
+
+</body>
+
+</html>

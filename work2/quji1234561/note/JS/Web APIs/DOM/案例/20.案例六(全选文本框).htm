@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @keyframes checked {
+      50% {
+        transform: scale(1.1)
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    table tr input:checked {
+      animation: checked .7s;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th><input type="checkbox">全选</th>
+      <th>商品</th>
+      <th>商家</th>
+      <th>价格</th>
+    </tr>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td>小米手机</td>
+      <td>小米</td>
+      <td>￥1999</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td>小米净水器</td>
+      <td>小米</td>
+      <td>￥4999</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox"></td>
+      <td>小米电视</td>
+      <td>小米</td>
+      <td>￥5999</td>
+    </tr>
+  </table>
+  <script>
+    // 获取复选框
+    const th = document.querySelector('table tr th input')
+    const tds = document.querySelectorAll('table tr td input')
+    // 使复选框与全选一致
+    th.addEventListener('click', function () {
+      for (i = 0; i < tds.length; i++) {
+        tds[i].checked = this.checked
+      }
+    })
+    for (i = 0; i < tds.length; i++) {
+      //使全选框在小复选框全选时勾选
+      tds[i].addEventListener('click', function () {
+        // let num = 0
+        // for (j = 0; j < tds.length; j++) {
+        //   num += +tds[j].checked
+        // }
+        // if (num === tds.length) {
+        //   th.checked = true
+        // } else {
+        //   th.checked = false
+        // }
+        th.checked = document.querySelectorAll('td input:checked').length === tds.length
+      })
+    }
+  </script>
+</body>
+
+</html>

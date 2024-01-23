@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>js执行机制</h1>
+  <p>一个引擎解释渲染HTML,css</p>
+  <p>一个引擎解释js</p>
+
+  <h2>单线程</h2>
+  <p>同时只能做一件事</p>
+  <p>若js执行时间过长,会造成页面渲染不连贯,导致页面渲染加载阻塞 </p>
+  <script>
+    console.log('111');
+    setTimeout(function () {
+      console.log('222');
+    }, 0)
+    console.log('333');
+    //结果为111 333 222
+  </script>
+
+  <h3>解决方法</h3>
+  <p>为解决该问题,利用多核cpu的计算能力,h5提出Web Worker标准,允许JS脚本创建多线程,同步和异步</p>
+  <h3>同步</h3>
+  <p>前一个任务结束后再执行后一个任务</p>
+  <p><strong>同步任务</strong>都在 主线程 上执行,形成一个 执行栈</p>
+  <h3>异步</h3>
+  <p>在执行某任务时,同时执行其他任务</p>
+  <p><strong>异步任务</strong>相关添加到 任务队列(消息队列) 中</p>
+  <p>异步是通过回调函数实现的</p>
+  <p>异步任务3种类型:</p>
+  <p>1.普通事件:click,resize等</p>
+  <p>2.资源加载:load,error等</p>
+  <p>3.定时器,setInterval,setTimeout等</p>
+  <h3>事件循环</h3>
+  <p>1.先执行执行栈中的同步任务</p>
+  <p>2.异步任务放入任务队列中</p>
+  <p>3.一旦执行栈中所有同步任务执行完毕,系统就会读取任务队列中的异步任务,于是被读取的异步任务结束等待状态,进入执行栈,开始执行</p>
+  <p>由于主线程不断重复获得任务,执行任务,再获取任务,再执行,所以这种机制被称为<strong>事件循环</strong></p>
+  <script>
+    console.log(1);
+    console.log(2);
+    setTimeout(function () {
+      console.log(3);
+    }, 0)
+    console.log(4);
+  </script>
+
+</body>
+
+</html>

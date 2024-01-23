@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    textarea {
+      width: 400px;
+      height: 20px;
+      line-height: 20px;
+      transition: all .3s;
+      resize: none;
+    }
+
+    textarea:focus {
+      width: 400px;
+      height: 200px;
+    }
+
+    .num {
+      color: rgba(0, 0, 0, 0.553);
+      width: 400px;
+      text-align: right;
+      opacity: 0;
+    }
+
+    .item {
+      width: 400px;
+      height: 20px;
+      line-height: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <form action="">
+    <textarea type="text" placeholder="发一条友善的评论"></textarea>
+  </form>
+  <div class="num">0/100 字</div>
+  <div class="item"></div>
+
+  <script>
+    const text = document.querySelector('textarea')
+    const num = document.querySelector('.num')
+    text.addEventListener('focus', function () {
+      num.style.opacity = '1'
+
+    })
+    text.addEventListener('blur', function () {
+      num.style.opacity = '0'
+    })
+
+    text.addEventListener('input', function () {
+      const teleng = text.value.length
+      num.innerHTML = `${teleng}/100 字`
+    })
+    text.addEventListener('keyup', function (e) {
+      if (e.key === 'Enter') {
+        if (text.value.trim() !== '') {//trim方法去除两侧的空格,防止内容为空
+          // 条件也可写为text.value.trim(),若为空字符串,则布尔值为false,同样不执行,且更简洁
+          document.querySelector('.item').innerHTML = text.value
+        }
+        text.value = ''// text.parentNode.reset()清除表单域内容
+        num.innerHTML = `0/100 字`//若不加则回车后字数不清零
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,16 +1,13 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
-import {
-    Search,
-    Star,
-} from '@element-plus/icons-vue'
-import { userStore } from '../../stores/userStore';
+import {Search,Star} from '@element-plus/icons-vue'
+import { useTodoStore } from '../../stores/TodoStore';
 import { ElMessage } from 'element-plus'
 
 const value = ref(new Date())
 const date = ref('')
 const textarea = ref('')
-const todolist = userStore()
+const todoStore = useTodoStore()
 const todoData = reactive({
     content: textarea,
     time: date,
@@ -33,7 +30,7 @@ const AddTimeerror = () => {
 // 添加待办校验输入内容是否为空，以及是否选中时间，然后再上传到pinia
 const addCheck = () => {
     if (textarea.value.trim() !== '' && date.value.length !== 0) {
-        todolist.addtodolist(todoData);
+        todoStore.addtodolist(todoData);
         textarea.value = '';
         date.value = '';
         Addsuccess();
@@ -71,7 +68,7 @@ const addCheck = () => {
             <el-button style="margin-left: 20px;" :icon="Star" type="warning" size='large' circle />
         </div>
         <div>
-            <div v-for="(todo, index) in todolist.todolistStore" class="item" :key="index"
+            <div v-for="(todo, index) in todoStore.todolistStore" class="item" :key="index"
                 style="background-color:#DDEBDB ;">
                 <img src="../../assets/Ellipse 2.svg" alt="" style="margin-left: 24px;">
                 <span style="margin-left: 20px;">{{ todo.content }}</span>
@@ -215,4 +212,5 @@ const addCheck = () => {
 .line {
     width: 1px;
     background-color: var(--el-border-color);
-}</style>
+}
+</style>

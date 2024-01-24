@@ -8,7 +8,7 @@ import form from '@/views/menu/form.vue';
 // 定义路由关系
 const routes=[
     {path :'/login',component: Login},
-    {path :'/',component: Layout,redirect:'/menu/todolist' ,children: [
+    {path :'/',component: Layout,redirect:'/login' ,children: [
         {path:'/menu/todolist',component:TodoList},
         {path:'/menu/form',component:form},
     ]},

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
-import { userStore } from '../../stores/userStore';
+import { useTodoStore } from '../../stores/TodoStore';
 import { FormInstance } from 'element-plus'
 import { ElMessage } from 'element-plus'
 
 const ruleFormRef = ref<FormInstance>()
 const search = ref('')
 const date = ref('')
-const todolist = userStore()
+const todoStore = useTodoStore()
 
 // 一些消息提示
 const Editerror = () => {
@@ -29,14 +29,14 @@ const Editsuccess = () => {
 
 // 从pinia获取待办数据
 const tableData = computed(() => {
-    const incompleted = todolist.todolistStore.map((item,index) => ({
+    const incompleted = todoStore.todolistStore.map((item,index) => ({
         id:index++,
         content: item.content,
         start: item.time[0],
         end: item.time.length > 1 ? item.time[1] : '',
         completed: false,
     }))
-    const completed = todolist.CompleteStore.map((item,index) => ({
+    const completed = todoStore.completeStore.map((item,index) => ({
         id: index++,
         content: item.content,
         start: item.time[0],
@@ -57,7 +57,7 @@ const filterTableData = computed(() => {
                 (!date.value || data.start.includes(date.value) || data.end.includes(date.value)) &&
                 (!search.value || data.content.toLowerCase().includes(search.value.toLowerCase()))
         )
-        .slice(start, end);
+    .slice(start, end);
 });
 
 // 修改操作
@@ -83,7 +83,7 @@ const editTodo = (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate((valid) => {
         if (valid) {          
-            todolist.EditTodoById(editData.value.id, editData.value.content);
+            todoStore.EditTodoById(editData.value.id, editData.value.content);
             dialogVisible.value = false;
             Editsuccess()
         } else {
@@ -95,14 +95,14 @@ const editTodo = (formEl: FormInstance | undefined) => {
 
 // 完成操作
 const handleComplish = ({ row }) => {
-    const completedTask = todolist.todolistStore[row.id];
-    todolist.Completelist(completedTask);
-    todolist.todolistStore.splice(row.id, 1);
+    const completedTask = todoStore.todolistStore[row.id];
+    todoStore.completelist(completedTask);
+    todoStore.todolistStore.splice(row.id, 1);
 }
 
 // 删除操作
 const handleDelete = ({ row }) => {
-    todolist.todolistStore.splice(row.id, 1);
+    todoStore.todolistStore.splice(row.id, 1);
     Deletesuccess();
 }
 
@@ -133,10 +133,10 @@ const handleCurrentChange = (page) => {
         <el-table :data="filterTableData" empty-text="暂无内容">
             <!-- 表头 -->
             <el-table-column type="index" label="序号" width="120px" align="center" />
-            <el-table-column label="内容" prop="content" width="480px" align="center" />
+            <el-table-column label="内容" prop="content" width="478px" align="center" />
             <el-table-column label="创建时间" prop="start" width="250px" align="center" format="YYYY/MM/DD" />
             <el-table-column label="完成时间" prop="end" width="250px" align="center" />
-            <el-table-column label="操作" align="center" width="300px">
+            <el-table-column label="操作" align="center" width="298px">
                 <!-- 操作按钮 -->
                 <template #default="scope">
                     <el-button size="large" type="primary" @click="handleComplish(scope)" v-if="!scope.row.completed"
@@ -172,7 +172,7 @@ const handleCurrentChange = (page) => {
         </el-dialog>
     </div>
 </template>
-<style>
+<style lang="scss" scoped>
 .title {
     color: #11240E;
     font-size: 32px;
@@ -180,24 +180,24 @@ const handleCurrentChange = (page) => {
     margin: 20px 0;
 }
 
-.el-table {
+:deep(.el-table) {
     overflow: hidden;
-    width: 1402px;
+    width: 1398px;
     text-align: center;
     border: 2px solid #D1E2CF;
-    border-top: none;
-    border-left: none;
+    border-left:none ;
+    border-top:none ;
     box-sizing: border-box;
 }
 
-.el-table__cell {
+:deep(.el-table__cell) {
     padding: 5px;
     height: 70px;
     border: 2px solid #D1E2CF;
     box-sizing: border-box;
 }
 
-.el-table__header .cell {
+:deep(.el-table__header .cell) {
     color: #11240E;
     font-family: Inter;
     font-size: 28px;
@@ -207,7 +207,7 @@ const handleCurrentChange = (page) => {
     overflow: visible;
 }
 
-.el-table__body .cell {
+:deep(.el-table__body .cell) {
     color: #5A6858;
     font-family: Inter;
     font-size: 20px;
@@ -217,29 +217,28 @@ const handleCurrentChange = (page) => {
     overflow: visible;
 }
 
-/* .el-table_column_1 .cell {
-    color: #11240E;
-    font-size: 28px;
-    font-weight: 500;
-}
-天哪为什么一刷新字体样式就没了 */
+// .el-table_column_1 .cell {
+//     color: #11240E;
+//     font-size: 28px;
+//     font-weight: 500;
+// }
 
 
-.el-table__empty-block {
-    width: 1398px !important;
+
+:deep(.el-table__empty-block ){
+    width: 1390px !important;
     height: 500px !important;
-    border: none;
     border-top: 2px solid #D1E2CF;
     border-left: 2px solid #D1E2CF;
 }
 
-.el-table__empty-text {
+:deep(.el-table__empty-text) {
     color: #D2D2D2;
     font-size: 32px;
     font-weight: 700;
 }
 
-.completed-task .cell {
+:deep(.completed-task .cell) {
     color: #D3D3D3;
 }
 

@@ -2,10 +2,10 @@
 import { useRouter } from 'vue-router';
 import { ref, reactive } from 'vue'
 import { FormInstance } from 'element-plus';
-import { userStore } from '../stores/userStore';
+import { useUserStore } from '../stores/UserStore';
 import { ElMessage } from 'element-plus'
 const router = useRouter()
-const authStore = userStore();
+const userStore = useUserStore();
 
 //控制注册与登录表单的显示， 默认显示注册
 const ruleFormRef = ref<FormInstance>()
@@ -67,7 +67,7 @@ const register = (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate((valid) => {
         if (valid) {
-            authStore.addRegisterData(registerData);
+            userStore.addRegisterData(registerData);
             Registsuccess();
             isRegister.value = false;
         } else {
@@ -80,14 +80,14 @@ const login = (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate((valid) => {
         if (valid) {
-            const user = authStore.logincheck(
+            const user = userStore.logincheck(
                 registerData.username,
-                registerData.password,
+                registerData.password
             );
             if (user) {
                 Loginsuccess();
-                authStore.setLoginData(registerData);//为什么邮箱的值传不过去啊啊啊
-                router.push('/')
+                userStore.setLoginData(registerData);
+                router.push('/menu/todolist')
             } else {
                 Loginerror();
                 return false

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { userStore } from '../stores/userStore';
-const loginUser = userStore();
+import { useUserStore } from '../stores/UserStore';
+import {useRoute} from 'vue-router'
+const userStore = useUserStore();
 </script>
 <template>
     <div class="common-layout">
@@ -10,8 +10,8 @@ const loginUser = userStore();
                 <el-menu  router mode="horizontal">
                     <el-menu-item index="/menu/todolist" style="margin-left: 100px;" :class="{ 'choose': $route.path === '/menu/todolist' }">Todolist</el-menu-item>
                     <el-menu-item index="/menu/form" :class="{ 'choose': $route.path === '/menu/form' }">表格展示</el-menu-item>
-                    <el-menu-item style="margin-left: 900px;background: none;width: 150px;">{{ loginUser.getusername() }}</el-menu-item>
-                    <el-menu-item @click="loginUser.clearlogin()" index="/login">退出</el-menu-item>
+                    <el-menu-item style="margin-left: 900px;background: none;width: 150px;">{{ userStore.getusername() }}</el-menu-item>
+                    <el-menu-item @click="userStore.clearlogin()" index="/login">退出</el-menu-item>
                 </el-menu>
             </el-header>
             <el-container style="background-color: #FEFFFF;height: 92vh;">

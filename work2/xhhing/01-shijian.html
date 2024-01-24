@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿笠博士的新发明</title>
+    
+    <style>
+        body {
+            padding-left: 10vw;
+        }
+        .question {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        .box{
+            margin-top: 64px;
+            width: 60%;
+            height: 200px;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #blue{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #21a4f1;
+        }
+        #red{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #fc4b5a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question">
+        <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+        <p>蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。</p>
+        <p>点击定格按钮，红框内显示定格的时间。</p>
+    </div>
+    <div class="box">
+        <div id="blue">
+            <span id="time"></span>
+        </div>
+        <div id="red">
+            <span id="pauseTime"></span>
+        </div>
+    </div>
+    <button id="btn" style="font-size: 24px;margin-top: 48px;">定格</button>
+
+    <!--以上代码不可修改-->
+
+
+    <!--
+        要求在下列代码中实现
+        当打开网页的时候 时间以1000ms的速率动态更新
+        鼠标移入blue的时候 暂停时间的更新，并且有边框放大效果
+        鼠标移出blue的时候 继续时间的更新，css样式还原
+        点击定格按钮，red里面显示点击时候的时间
+    -->
+   <script >
+       
+        //    获取元素
+        let btn = document.querySelector('#btn');
+        let blue = document.querySelector('#blue');
+        let red = document.querySelector('#red');
+        let time = document.querySelector('#time');
+        let pauseTime = document.querySelector('#pauseTime');
+
+        function get(){
+            // 实例化时间对象
+            let date = new Date();
+            blue.innerHTML = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} 
+                ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        }
+        // 先调用一次，使其不会有一秒的空白期
+        get();
+        // 用定时器来实时更新时间
+        let timer1 = setInterval(get, 1000);
+
+        // 蓝色框移入事件
+        blue.addEventListener('mouseover', function(){
+            blue.style.transform = 'scale(1.2)';
+            clearInterval(timer1);
+        })
+        // 蓝色框移出事件
+        blue.addEventListener('mouseleave', function(){
+            blue.style.transform = 'scale(1)';
+            timer1 = setInterval(get, 1000);
+        })
+        // 按钮点击事件
+        btn.addEventListener('click', function(){
+            let date = new Date();
+            red.innerHTML = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} 
+                ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+            // 十秒后消失
+            setTimeout(function(){
+                red.innerHTML = '';
+            }, 10000)
+        })
+
+   </script>
+</body>
+
+</html>

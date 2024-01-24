@@ -133,9 +133,11 @@
 
       // 删除todo
       function todoDelete(todoId) {
+        console.log(todoId)
         todoList.value.forEach( (todo,index) => {
           if (todo.id === todoId) {
-            todoList.value.shift(index)
+            console.log(index)
+            todoList.value.splice(index, 1)
             ElNotification({
               title: 'Success',
               message: '删除成功！',

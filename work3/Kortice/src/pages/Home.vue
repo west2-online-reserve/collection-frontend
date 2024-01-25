@@ -9,12 +9,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
+  name:'Home'
   import { RouterView } from 'vue-router'
-  export default {
-    name:'Home',
-    // components:{}
-  }
 </script>
 
 <style scoped>

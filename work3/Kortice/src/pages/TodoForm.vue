@@ -9,7 +9,7 @@
       </div>
       <!-- 右侧 -->
       <div class="account">
-        <span>{{ accountEmail }}</span>
+        <span>{{ accountUsername }}</span>
         <RouterLink to="/home/login" @click="exit">退出</RouterLink>
       </div>
     </div>
@@ -69,124 +69,104 @@
   </div>
 </template>
 
-<script>
+<script setup>
+  name:'TodoForm'
+  components:{MyCalendar}
+  
   import { ref, computed } from 'vue'
   import { RouterLink, useRouter } from 'vue-router'
   import { useAccountsStore } from '../stores/accounts.js'
   import { useTodoListStore } from '../stores/todoList.js'
   import { storeToRefs } from 'pinia'
   import MyCalendar from '../components/MyCalendar.vue'
-  export default {
-    name:'TodoForm',
-    components:{MyCalendar},
-    setup() {
-      // 数据
-      const router = useRouter()
-      let accountEmail = JSON.parse(localStorage.getItem('loginAccount')).email
-      const accountsStore = useAccountsStore()
-      const { accounts } = storeToRefs(accountsStore)
-      const todoListStore = useTodoListStore()
-      const { todoList } = storeToRefs(todoListStore)
-      let date = ref('')
-      let search = ref('')
+  
+  // 数据
+  const router = useRouter()
+  const accountUsername = JSON.parse(localStorage.getItem('loginAccount')).username
+  const accountsStore = useAccountsStore()
+  const { accounts } = storeToRefs(accountsStore)
+  const todoListStore = useTodoListStore()
+  const { todoList } = storeToRefs(todoListStore)
+  const date = ref('')
+  const search = ref('')
 
-      const filterTodoList = computed(() =>
-        todoList.value.filter( (data) =>
-            (!date.value || data.creationTime.split(' ')[0] === date.value)
-            &&
-            (!search.value || data.todoThing.includes(search.value))
-        )
-      )
+  const filterTodoList = computed(() =>
+    todoList.value.filter( (data) =>
+        (!date.value || data.creationTime.split(' ')[0] === date.value)
+        &&
+        (!search.value || data.todoThing.includes(search.value))
+    )
+  )
 
-      // 方法
+  // 方法
 
-      // 完成todo
-      function todoComplete(rowData) {
-        rowData.isDone = true
-        let time = new Date()
-        time = time.toLocaleDateString('zh-CN') + ' ' + time.getHours() + ':' + (time.getMinutes() >= 10 ? '' : '0') + time.getMinutes()
-        rowData.completionTime = time
-      }
+  // 完成todo
+  function todoComplete(rowData) {
+    todoListStore.handleCompelete(rowData.id)
+  }
 
-      // 修改todo
-      function todoChange(rowData) {
-        ElMessageBox.prompt('请输入修改的内容', '⭐Tip', {
-        confirmButtonText: '确认',
-        cancelButtonText: '取消',
+  // 修改todo
+  function todoChange(rowData) {
+    ElMessageBox.prompt('请输入修改的内容', '⭐Tip', {
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+  })
+    .then(({ value }) => {
+      ElNotification({
+          title: 'Success',
+          message: '修改成功！',
+          type: 'success',
       })
-        .then(({ value }) => {
-          ElNotification({
-              title: 'Success',
-              message: '修改成功！',
-              type: 'success',
-          })
-          rowData.todoThing = value
-        })
-        .catch(() => {
-          ElNotification({
-            title: 'Info',
-            message: '您已取消修改！',
-            type: 'info',
-          })
-        })
-      }
+      todoListStore.handleEdit(rowData.id, value)
+    })
+    .catch(() => {
+      ElNotification({
+        title: 'Info',
+        message: '您已取消修改！',
+        type: 'info',
+      })
+    })
+  }
 
-      // 删除todo
-      function todoDelete(todoId) {
-        console.log(todoId)
-        todoList.value.forEach( (todo,index) => {
-          if (todo.id === todoId) {
-            console.log(index)
-            todoList.value.splice(index, 1)
-            ElNotification({
-              title: 'Success',
-              message: '删除成功！',
-              type: 'success',
-            })
-          }
-        });
-      }
-
-
-      // 选择时间
-      function dateSelect(selectDate) {
-        date.value = selectDate
-        date.value = date.value.toLocaleDateString('zh-CN')
-      }
-
-      function dateConfirm() {
+  // 删除todo
+  function todoDelete(todoId) {
+    /* todoList.value.forEach( (todo,index) => {
+      if (todo.id === todoId) {
+        todoList.value.splice(index, 1)
         ElNotification({
           title: 'Success',
-          message: '已为您筛选出对应待办！',
-          type: 'success',
-      })
-      }
-
-      // 退出弹窗提示
-      function exit() {
-        ElMessage({
-          message: '退出成功！',
+          message: '删除成功！',
           type: 'success',
         })
-        router.replace({
-          path:'/'
-        })
       }
+    }) */
+    todoListStore.handleDelete(todoId)
+  }
 
 
-      return {
-        accountEmail,
-        todoList,
-        filterTodoList,
-        search,
-        todoComplete,
-        todoChange,
-        todoDelete,
-        dateSelect,
-        dateConfirm,
-        exit
-      }
-    }
+  // 选择时间
+  function dateSelect(selectDate) {
+    date.value = selectDate
+    date.value = date.value.toLocaleDateString('zh-CN')
+  }
+
+  function dateConfirm() {
+    ElNotification({
+      title: 'Success',
+      message: '已为您筛选出对应待办！',
+      type: 'success',
+  })
+  }
+
+  // 退出弹窗提示
+  function exit() {
+    ElMessage({
+      message: '退出成功！',
+      type: 'success',
+    })
+    router.replace({
+      path:'/'
+    })
   }
 </script>
 

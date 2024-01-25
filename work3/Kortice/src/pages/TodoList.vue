@@ -7,7 +7,7 @@
         <RouterLink to="/todoform" active-class="active" >表格展示</RouterLink>
       </div>
       <div class="account">
-        <span>{{ accountEmail }}</span>
+        <span>{{ accountUsername }}</span>
         <RouterLink to="/home/login" @click="exit">退出</RouterLink>
       </div>
     </div>
@@ -54,7 +54,10 @@
   </div>
 </template>
 
-<script>
+<script setup>
+  name:'TodoList'
+  components:{MyCalendar}
+
   import { RouterLink, useRouter } from 'vue-router'
   import { ref } from 'vue'
   import { useAccountsStore } from '../stores/accounts.js'
@@ -62,62 +65,50 @@
   import { storeToRefs } from 'pinia'
   import { nanoid } from 'nanoid'
   import MyCalendar from '../components/MyCalendar.vue'
-  export default {
-    name:'TodoList',
-    components:{MyCalendar},
-    setup(){
-      // 数据
-      const router = useRouter()
-      let taskDate = ref(new Date())
-      let taskDetail = ref('')
-      let accountEmail = JSON.parse(localStorage.getItem('loginAccount')).email
+    
+  // 数据
+  const router = useRouter()
+  let taskDate = ref(new Date())
+  let taskDetail = ref('')
+  let accountUsername = JSON.parse(localStorage.getItem('loginAccount')).username
 
-      // pinia里面的数据
-      const accountsStore = useAccountsStore()
-      const {accounts} = storeToRefs(accountsStore)
-      const todoListStore = useTodoListStore()
-      const { todoList } = todoListStore
+  // pinia里面的数据
+  const accountsStore = useAccountsStore()
+  const {accounts} = storeToRefs(accountsStore)
+  const todoListStore = useTodoListStore()
+  const { todoList } = todoListStore
 
-      //方法
-      function dateSelect(selectDate) {
-        taskDate.value = selectDate
-      }
-
-      function addTodo() {
-        const todoObj = {
-          id:nanoid(),
-          todoThing:taskDetail.value,
-          creationTime:taskDate.value.toLocaleDateString('zh-CN') + ' ' +  taskDate.value.getHours() + ':' + (taskDate.value.getMinutes() >= 10 ? '' : '0') + taskDate.value.getMinutes(),
-          completionTime:'暂未完成',
-          isDone:false
-        }
-        todoListStore.todoList.push(todoObj)
-        taskDetail.value = ''
-      }
-
-      // 退出弹窗提示
-      function exit() {
-        ElMessage({
-          message: '退出成功！',
-          type: 'success',
-        })
-        router.replace({
-          path:'/'
-        })
-      }
-
-
-      return {
-        accountEmail,
-        taskDate,
-        taskDetail,
-        todoList,
-        addTodo,
-        dateSelect,
-        exit
-      }
-    }
+  //方法
+  function dateSelect(selectDate) {
+    taskDate.value = selectDate
   }
+
+  // 添加todo
+
+  function addTodo() {
+    // 打包新的todoObj
+    const todoObj = {
+      id:nanoid(),
+      todoThing:taskDetail.value,
+      creationTime:taskDate.value.toLocaleDateString('zh-CN') + ' ' +  taskDate.value.getHours() + ':' + (taskDate.value.getMinutes() >= 10 ? '' : '0') + taskDate.value.getMinutes(),
+      completionTime:'暂未完成',
+      isDone:false
+    }
+    todoListStore.addNewTodo(todoObj)
+    taskDetail.value = ''
+  }
+
+  // 退出弹窗提示
+  function exit() {
+    ElMessage({
+      message: '退出成功！',
+      type: 'success',
+    })
+    router.replace({
+      path:'/'
+    })
+  }
+
 </script>
 
 <style scoped>

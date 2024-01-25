@@ -22,55 +22,44 @@
   </div>
 </template>
 
-<script>
+<script setup>
   import { ref } from 'vue'
   import { RouterLink, useRouter } from 'vue-router'
   import { useAccountsStore } from '../stores/accounts.js'
-  export default {
-    name:'Login',
-    setup(){
-      // 数据
-      let username = ref('')
-      let password = ref('')
-      let accounts = JSON.parse(localStorage.getItem('accounts'))
-      let isTrue = ref(false)
-      // 路由器
-      const router = useRouter()
-      // accountsStore
-      const accountsStore = useAccountsStore()
+  name:'Login'
+  // 数据
+  let username = ref('')
+  let password = ref('')
+  let accounts = JSON.parse(localStorage.getItem('accounts'))
+  let isTrue = ref(false)
+  // 路由器
+  const router = useRouter()
+  // accountsStore
+  const accountsStore = useAccountsStore()
 
-      // 方法
-      function login() {
-        accounts.accounts.forEach( account => {
-          // 判断是否有匹配的account信息
-          if (account.username === username.value && account.password === password.value) {
-            isTrue.value = false
-            alert(`登录成功！欢迎 ${username.value} 回来！`)
-            // 打包account信息
-            const loginAccount = {
-              username:account.username,
-              email:account.email,
-              password:account.password
-            }
-            localStorage.setItem('loginAccount', JSON.stringify(loginAccount))
-            router.replace({
-              path:'/todolist'
-            })
-          } else {
-            isTrue.value = true
-          }
-        });
+  // 方法
+  function login() {
+    accounts.accounts.forEach( account => {
+      // 判断是否有匹配的account信息
+      if (account.username === username.value && account.password === password.value) {
+        isTrue.value = false
+        alert(`登录成功！欢迎 ${username.value} 回来！`)
+        // 打包account信息
+        const loginAccount = {
+          username:account.username,
+          email:account.email,
+          password:account.password
+        }
+        localStorage.setItem('loginAccount', JSON.stringify(loginAccount))
+        router.replace({
+          path:'/todolist'
+        })
+      } else {
+        isTrue.value = true
       }
-
-      // 返回相关的数据
-      return {
-        username,
-        password,
-        isTrue,
-        login
-      }
-    }
+    });
   }
+
 </script>
 
 <style scoped>

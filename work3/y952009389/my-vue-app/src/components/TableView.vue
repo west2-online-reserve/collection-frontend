@@ -10,8 +10,8 @@
       </div>
   <div>
     <div>
-      <input type="text" v-model="searchQuery" placeholder="Search" @input="filterItems" />
-      <input type="date" v-model="selectedDate" @change="filterItems" />
+      <input type="text" v-model="searchQuery" placeholder="搜索" @change="searchMatch" />
+      <input type="date" v-model="selectedDate" @change="dateMatch" />
     </div>
     <table>
       <thead>
@@ -23,108 +23,85 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in todoList" :key="index">
-          <td>{{ todoStore.todoList[index].content }}</td>
-          <td>{{ todoStore.todoList[index].createdAt }}</td>
-          <td>{{ todoStore.todoList[index].completedAt }}</td>
+        <tr v-for="(item, index) in items" :key="index">
+          <td>{{ item.content }}</td>
+          <td>{{ item.createdAt }}</td>
+          <td>{{ item.completedAt }}</td>
           <td>
             <button @click="completeItem(index)" :disabled="ifFinish(index)">完成</button>
-            <button @click="openDialog(index)">修改</button>
+            <button @click="openDiv(index)">修改</button>
             <button @click="deleteItem(index)">删除</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <dialog v-show="dialogOpen">
+    <div v-show="divOpen">
       <input type="text" v-model="newContent" placeholder="请输入新的新内容"/>
       <button @click="confirmEdit">确认</button>
       <button @click="closeDialog">取消</button>
-    </dialog>
+    </div>
   </div>
 </template>
 
-<script>
+<script lang="ts" setup name="TableView666">
 import { ref, computed } from 'vue';
 import { useTodoStore } from '../stores/useTodoStore.ts';
 const todoStore = useTodoStore();
+const items = todoStore.getTodoList();
+const divOpen = ref(false);
+const newContent = ref("");
+const newIndex = ref(0);
+const selectedDate = ref("");
+const searchQuery = ref("");
+interface TodoItem {
+  content: string;
+  createdAt: string; 
+  completedAt: string; 
+}
+const searchMatch = computed(() => {
+  return items.filter((item: TodoItem) =>
+    item.content.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 
-export default {
-  name: 'TableView',
-  data() {
-    return {
-      searchQuery: '',
-      selectedDate: '',
-      dialogOpen: false,
-    };
-  },
-
-  computed: {
-      todoStore() {
-        return useTodoStore();
-      },
-      todoList() {
-        return this.todoStore.getTodoList();
-      },
-    },
-
-  setup() {
-    const items = todoStore.getTodoList();
-    const dialogOpen = ref(false);
-    const newContent = ref('');
-    const filteredItems = computed(() => {
-      return items.filter((item) => {
-        const dateMatch = !this.selectedDate || item.createdAt.includes(this.selectedDate);
-        const searchMatch = !this.searchQuery || item.content.toLowerCase().includes(this.searchQuery.toLowerCase());
-        return dateMatch && searchMatch;
-      });
-    });
-
-    const ifFinish = (index) => {
-      if(todoStore.todoList[index].completedAt === undefined) {
-        return false;
-      } 
-      else return true;
-    };
-
-    const openDialog = function(index) {
-      this.dialogOpen = true;
-      newContent.value = todoStore.todoList[index].content;
-    };
-
-    const closeDialog = function() {
-      this.dialogOpen = false;
-    };
-
-    const confirmEdit = () => {
-      todoStore.updateContent(newContent.value, index);
-      closeDialog();
-    };
-
-    const completeItem = (index) => {
-      const currentTime = new Date().toLocaleString();
-      items[index].completedAt = currentTime;
-    };
-
-    const deleteItem = (index) => {
-      items.splice(index, 1);
-    };
-
-    const filterItems = () => {
-      
-    };
-
-    return {
-      filteredItems,
-      openDialog,
-      closeDialog,
-      confirmEdit,
-      completeItem,
-      deleteItem,
-      filterItems,
-      ifFinish,
-    };
-  },
+const dateMatch = function() {
+  const dateMatch = !selectedDate || items.createdAt.includes(selectedDate.value);
+  return dateMatch;
 };
+
+const ifFinish = (index: number) => {
+  if(todoStore.todoList[index].completedAt === undefined) {
+    return false;
+  } 
+  else return true;
+};
+
+const openDiv = function(index: number) {
+  divOpen.value = true;
+  newIndex.value = index;
+};
+
+const closeDialog = function() {
+  divOpen.value = false;
+};
+
+const confirmEdit = () => {
+  todoStore.updateContent(newContent.value, newIndex.value);
+  newContent.value = "";
+  closeDialog();
+};
+
+const completeItem = (index: number) => {
+  const currentTime = new Date().toLocaleString();
+  items[index].completedAt = currentTime;
+};
+
+const deleteItem = (index: number) => {
+  items.splice(index, 1);
+};
+
+
+
 </script>
 
   <style scoped>

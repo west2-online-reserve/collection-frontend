@@ -6,8 +6,9 @@ import { useRouter } from 'vue-router'
 import imgText from '@/assets/photo.jpg'
 const userStore = useUserStore()
 const router = useRouter()
-const login = ref(true)
+const login = ref(true)//控制显示登录界面还是注册界面
 const formdata = ref()
+
 const formModel = reactive({
     inputNewname: '',
     inputNewword: '',
@@ -39,19 +40,23 @@ const rules = {
         { pattern:/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/, message: '请输入正确邮箱格式', trigger: 'change' }
     ]
 }
+
+//注册
 const register = () => {
-    const form = reactive({
+    const form = {
         newname: formModel.inputNewname,
         newword: formModel.inputNewword,
         email: formModel.inputEmail
-    })
+    }
     userStore.register.push(form)
     ElMessage({
         message: '注册成功',
         type: 'success',
     })
     login.value=true
-}//注册
+}
+
+//登录
 const pass=ref(false)
 const enter = () => {
     userStore.register.forEach(item => {
@@ -79,6 +84,7 @@ const enter = () => {
 <template>
     <el-row type="flex" justify="center" align="middle" style="background-color:#9b9ebf">
         <el-col :span="6" :offset="1" >
+            <!--登陆界面-->
             <el-form :model="loginForm" :rules="rules" v-if="login" ref="formdata">
                 <el-form-item>
                     <h1>登录</h1>
@@ -103,6 +109,7 @@ const enter = () => {
                     </el-link>
                 </el-form-item>
             </el-form>
+            <!--注册界面-->
             <el-form :model="formModel" :rules="rules" v-else ref="formdata">
                     <el-form-item>
                         <h1>注册</h1>
@@ -124,8 +131,9 @@ const enter = () => {
                             去登录
                         </el-link>
                     </el-form-item>
-                </el-form>
+            </el-form>
         </el-col>
+        <!--图片-->
         <el-col :span="12" :offset="2"><img :src="imgText" style="width: 800px"/></el-col>
     </el-row>
 </template>

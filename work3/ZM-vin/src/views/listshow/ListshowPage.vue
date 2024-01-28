@@ -1,19 +1,21 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useTaskStore } from '@/stores/task'
-import { Calendar, Search } from '@element-plus/icons-vue'
+import { Search } from '@element-plus/icons-vue'
 import { formatTime } from '@/utils/format.js'
 
 const useTask = useTaskStore()
-const midId = ref('')
 const input = ref('')
-const dialogVisible = ref(false)
+const dialogVisible = ref(false)//控制修改Dialog对话框的显示
+const dataList = ref(useTask.list)
 
+//修改
+const midId = ref('')
 const change = (row) => {
     dialogVisible.value = true
     input.value = row.content
     midId.value = row.id
-}//修改
+}
 const changeContent = () => {
     dialogVisible.value = false
     useTask.list.forEach(item => {
@@ -22,39 +24,49 @@ const changeContent = () => {
             item.content=input.value
         }
     })
-}//修改
+}
+
+//完成
 const finish = (row) => {
     row.sign = false
-}//完成
+}
+
+//已完成
 const unfinish = (row) => {
     row.sign = true
-}//已完成
+}
+
+//删除
 const deleteData = (row) => {
-        useTask.list = useTask.list.filter(item =>item.id !==row.id)
-        useTask.data = useTask.list
-}//删除
+    useTask.list = useTask.list.filter(item => item.id !== row.id)
+    dataList.value = useTask.list
+}
+
+//按时间查询
 const datesearch = ref('')
 const dsearch = () => {
     if (!(datesearch.value)&&!(wordsearch.value.length))
     {
-        useTask.list = useTask.data
+       dataList.value = useTask.list
     }
    if(datesearch.value)
     {
-        useTask.list = useTask.data
-        useTask.list = useTask.list.filter(item => ((new Date(item.settime).getYear() === new Date(datesearch.value).getYear()) && (new Date(item.settime).getMonth() === new Date(datesearch.value).getMonth()) && (new Date(item.settime).getDate()=== new Date(datesearch.value).getDate())))
+        dataList.value = useTask.list
+        dataList.value = dataList.value.filter(item => ((new Date(item.settime).getYear() === new Date(datesearch.value).getYear()) && (new Date(item.settime).getMonth() === new Date(datesearch.value).getMonth()) && (new Date(item.settime).getDate()=== new Date(datesearch.value).getDate())))
     }
-}//按时间查询
+}
+
+//按字查询
 const wordsearch = ref('')
 const wsearch = () => {
     if (!(datesearch.value) && !(wordsearch.value.length)) {
-        useTask.list = useTask.data
+        dataList.value = useTask.list
     }
     if (wordsearch.value.length) {
-        useTask.list = useTask.data
-        useTask.list = useTask.list.filter(item => !(item.content !== wordsearch.value) )
+        dataList.value = useTask.list
+        dataList.value = dataList.value.filter(item => !(item.content !== wordsearch.value) )
     }
-}//按字查询
+}
 </script>
 
 
@@ -64,24 +76,26 @@ const wsearch = () => {
             <div class="card-header">
                 <span class="item">待办事项</span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="block">
-                        <el-date-picker
-                        v-model="datesearch"
-                        type="dates"
-                        placeholder="请选择所选时间"
-                        />
-                        <el-button @click="dsearch()" type="primary" round style="background-color:#9b9ebf">查找</el-button>
-                    </div>
+                <!--时间选择器-->
+                <div class="block">
+                    <el-date-picker
+                    v-model="datesearch"
+                    type="dates"
+                    placeholder="请选择所选时间"
+                    />
+                    <el-button @click="dsearch()" type="primary" round style="background-color:#9b9ebf">查找</el-button>
+                </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <el-input @input="wsearch()" v-model="wordsearch" class="w-50 m-2" placeholder="请输入要查找的内容" style="width: 25%" >
-                <template #prefix>
-                <el-icon class="el-input__icon"><search /></el-icon>
-                </template>
-            </el-input>
+                <!--搜索框-->
+                <el-input @input="wsearch()" v-model="wordsearch" class="w-50 m-2" placeholder="请输入要查找的内容" style="width: 25%" >
+                    <template #prefix>
+                    <el-icon class="el-input__icon"><search /></el-icon>
+                    </template>
+                </el-input>
             </div>
         </template>
-
-        <el-table :data="useTask.list" style="width: 100%">
+        <!--待办表格-->
+        <el-table :data="dataList" style="width: 100%">
             <el-table-column type="index" label="序号" width="180" />
             <el-table-column prop="content" label="内容" width="450" />
             <el-table-column prop="settime" label="创建时间" width="250">
@@ -106,21 +120,20 @@ const wsearch = () => {
             </el-table-column>
       </el-table>
     </el-card>
+    <!--修改Dialog对话框-->
         <el-dialog
-                        v-model="dialogVisible"
-                        title="修改"
-                        width="30%"
-                      >
-                         <el-input v-model="input" placeholder="请修改" />
-                        <template #footer>
-                          <span class="dialog-footer">
-                            <el-button @click="dialogVisible = false">取消</el-button>
-                            <el-button type="primary" @click="changeContent()">
-                              确定
-                            </el-button>
-                          </span>
-                        </template>
-                      </el-dialog>
+            v-model="dialogVisible"
+            title="修改"
+            width="30%"
+            >
+            <el-input v-model="input" placeholder="请修改" />
+                <template #footer>
+                    <span class="dialog-footer">
+                        <el-button @click="dialogVisible = false">取消</el-button>
+                        <el-button type="primary" @click="changeContent()">确定</el-button>
+                    </span>
+                </template>
+        </el-dialog>
 </template>
 
 <style>

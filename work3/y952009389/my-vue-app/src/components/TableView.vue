@@ -10,8 +10,8 @@
       </div>
   <div>
     <div>
-      <input type="text" v-model="searchQuery" placeholder="搜索" @change="searchMatch" />
-      <input type="date" v-model="selectedDate" @change="dateMatch" />
+      <input type="text" v-model="searchQuery" placeholder="搜索" />
+      <input type="date" v-model="selectedDate" />
     </div>
     <table>
       <thead>
@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="index">
+        <tr v-for="(item, index) in filteredList" :key="index">
           <td>{{ item.content }}</td>
           <td>{{ item.createdAt }}</td>
           <td>{{ item.completedAt }}</td>
@@ -46,6 +46,7 @@
 <script lang="ts" setup name="TableView666">
 import { ref, computed } from 'vue';
 import { useTodoStore } from '../stores/useTodoStore.ts';
+
 const todoStore = useTodoStore();
 const items = todoStore.getTodoList();
 const divOpen = ref(false);
@@ -53,21 +54,28 @@ const newContent = ref("");
 const newIndex = ref(0);
 const selectedDate = ref("");
 const searchQuery = ref("");
+
 interface TodoItem {
   content: string;
   createdAt: string; 
   completedAt: string; 
 }
-const searchMatch = computed(() => {
-  return items.filter((item: TodoItem) =>
-    item.content.toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
-});
 
-const dateMatch = function() {
-  const dateMatch = !selectedDate || items.createdAt.includes(selectedDate.value);
-  return dateMatch;
-};
+const filteredList = computed(() => {
+  return todoStore.todoList
+    .filter((item: TodoItem) =>
+      item.content.toLowerCase().includes(searchQuery.value.toLowerCase())
+    )
+    .filter((item: TodoItem) => {
+      if(selectedDate.value !=""){
+        let [year, month, day] = selectedDate.value.split("-");
+        month = parseInt(month, 10).toString();
+        const date = ref(`${year}/${month}/${day}`)
+        return item.createdAt.includes(date.value);
+      }
+      else return item.createdAt.includes(selectedDate.value);
+    });
+});
 
 const ifFinish = (index: number) => {
   if(todoStore.todoList[index].completedAt === undefined) {
@@ -76,12 +84,12 @@ const ifFinish = (index: number) => {
   else return true;
 };
 
-const openDiv = function(index: number) {
+const openDiv = (index: number) => {
   divOpen.value = true;
   newIndex.value = index;
 };
 
-const closeDialog = function() {
+const closeDialog = () => {
   divOpen.value = false;
 };
 
@@ -99,8 +107,6 @@ const completeItem = (index: number) => {
 const deleteItem = (index: number) => {
   items.splice(index, 1);
 };
-
-
 
 </script>
 

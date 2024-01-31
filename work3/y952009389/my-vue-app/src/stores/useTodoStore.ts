@@ -7,12 +7,14 @@ interface Todo {
 }
 
 export const useTodoStore = defineStore('todo', {
+  // 真正存储数据的地方
   state: () => ({
     todoList: [] as Todo[],
   }),
-  
+  // actions里面放置的是一个一个的方法，用于响应组件里的“动作”
   actions: {
     getTodoList() {
+      // this指的是当前的store(useTodoStore)
       return this.todoList;
     },
     

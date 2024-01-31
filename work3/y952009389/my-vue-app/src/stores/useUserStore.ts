@@ -16,4 +16,5 @@ export const useUserStore = defineStore('user', {
       this.users.push({ username, password, email });
     },
   },
+  persist: true,
 });

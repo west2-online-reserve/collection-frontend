@@ -31,45 +31,36 @@
     </div>
   </template>
   
-  <script>
+  <script lang="ts" setup>
+  import { ref, computed } from 'vue';
   import { useUserStore } from '../stores/useUserStore.ts';
   import { useTodoStore } from '../stores/useTodoStore.ts';
+  import { useRouter } from 'vue-router';
+
   const userStore = useUserStore();
   const todoStore = useTodoStore();
-  export default {
-    data() {
-      return {
-        newTodo: '',
-      };
-    },
-    computed: {
-      userStore() {
-        return useUserStore();
-      },
-      todoStore() {
-        return useTodoStore();
-      },
-      todoList() {
-        return this.todoStore.getTodoList();
-      },
-    },
-    methods: {
-      addTodo() {
-        if (this.newTodo.trim() !== '') {
+  const newTodo = ref("");
+  const router = useRouter();
+  
+  const addTodo = () => {
+    if (newTodo.value.trim() !== '') {
           const currentTime = new Date().toLocaleString();
-          this.todoStore.addTodo({
-            content: this.newTodo.trim(),
+          todoStore.addTodo({
+            content: newTodo.value.trim(),
             createdAt: currentTime,
           });
-          this.newTodo = '';
+          newTodo.value = "";
         }
-      },
-      logout() {
-        // 跳转至登录页
-        this.$router.push({ name: 'login' });
-      },
-    },
   };
+
+  const logout = () => {
+    router.push({ name: 'login' });
+  };
+
+  const todoList = computed(() => {
+    return todoStore.getTodoList();
+  });
+
   </script>
   
   <style scoped>

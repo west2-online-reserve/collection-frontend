@@ -20,46 +20,44 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: '',
-        email: '',
-      };
-    },
-    methods: {
-      register() {
-        // 输入校验
-        if (this.username.length < 6) {
-          alert('Username should be at least 6 characters long.');
-          return;
-        }
-  
-        if (this.password.length < 8 || !/[a-z]/.test(this.password) || !/[A-Z]/.test(this.password)) {
-          alert('Password should be at least 8 characters long and contain both uppercase and lowercase letters.');
-          return;
-        }
-  
-        if (!/\S+@\S+\.\S+/.test(this.email)) {
-          alert('Invalid email address.');
-          return;
-        }
-  
-        // 输入校验通过，保存至localStorage
-        const userData = {
-          username: this.username,
-          password: this.password,
-          email: this.email,
-        };
-  
-        localStorage.setItem('userData', JSON.stringify(userData));
-  
-        // 跳转到登录页
-        this.$router.push({ name: 'login' });
-      },
-    },
-  };
+  <script lang="ts" setup>
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
+
+  const username = ref("");
+  const password = ref("");
+  const email = ref("");
+  const router = useRouter();
+
+  const register = () => {
+    // 输入校验
+    if (username.value.length < 6) {
+      alert('Username should be at least 6 characters long.');
+      return;
+    }
+
+    if (password.value.length < 8 || !/[a-z]/.test(password.value) || !/[A-Z]/.test(password.value)) {
+      alert('Password should be at least 8 characters long and contain both uppercase and lowercase letters.');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email.value)) {
+      alert('Invalid email address.');
+      return;
+    }
+
+    // 输入校验通过，保存至localStorage
+    const userData = {
+      username: username,
+      password: password,
+      email: email,
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+
+    // 跳转到登录页
+    router.push({ name: 'login' });
+  }
+
   </script>
   

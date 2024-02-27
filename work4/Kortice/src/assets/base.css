@@ -1,0 +1,35 @@
+/* 清除默认样式 */
+* {
+  margin: 0;
+  padding: 0;
+}
+/* #region 定制滚动条 */
+
+/* 
+  滚动条宽度
+  html::-webkit-scrollbar {
+    width: .5vw;
+    background-color: transparent;
+  }
+  滚动条滑块
+  html::-webkit-scrollbar-thumb {
+    background-color: #0003;
+    border-radius: 6px;
+    transition: all .2s ease-in-out;
+  }
+  html::-webkit-scrollbar-thumb:hover:hover {
+    cursor: pointer;
+    background-color: #0000004d;
+  }
+  滚动条轨道
+  html::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+*/
+
+/* #endregion */
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}

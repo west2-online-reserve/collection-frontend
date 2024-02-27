@@ -1,29 +1,11 @@
-# Kortice
+# Article House
 
-This template should help get you started developing with Vue 3 in Vite.
+基本还原美术的设计，功能基本实现，并且实现了文章界面含有页内导航。
 
-## Recommended IDE Setup
+关注和粉丝的相关功能暂未实现，项目中的数据只是摆设（ =w= .
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+评论功能只实现了二级评论。
 
-## Customize configuration
+创作页面中运用了 ``Vue-markdown-editor`` 库进行 ``markdown`` 数据的渲染
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+设置页中支持修改头像等数据，目前是改变除头像外的任何数据都需要重新登录验证，有待改进。

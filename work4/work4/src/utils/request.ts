@@ -2,7 +2,7 @@ import axios, { type InternalAxiosRequestConfig, type AxiosResponse } from "axio
 
 // 创建axios实例​
 export const service = axios.create({
-    baseURL: "",
+    baseURL: `http://47.115.212.79:81/`,
     timeout: 20000, // 超时时间​
     withCredentials: true, // 是否允许带cookie​
 });

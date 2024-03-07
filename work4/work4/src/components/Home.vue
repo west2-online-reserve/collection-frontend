@@ -1,53 +1,64 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { ElMessage } from 'element-plus';
-import { getHomePage } from '@/api/api';
+import { getArticles } from '@/api/api';
 
-interface Article {
-  article_id: number;
-  username: string;
-  title: string;
-  content: string;
-  cover_url: string;
-  visit_count: number;
-  like_count: number;
-  comment_count: number;
-  created_at: string;
-}
-
-const articles = ref();
+const articles1 = ref();
+const articles2 = ref();
 
 //async和await配合，实现异步操作，保证在接口调用完后才读取值​
-const fetchHomePageData = async () => {
+const fetchArticlesData = async () => {
   try {
-    const data = {
+    const data1 = {
+      getHottest: 0,
+      count: 10,
+    };
+    const data2 = {
       getHottest: 1,
       count: 10,
     };
 
-    const response = await getHomePage(data);
+    const response1 = await getArticles(data1);
+    const response2 = await getArticles(data2);
 
-    if (response.data && response.data.items) {
-      articles.value = response.data.items;
+    if (response1.data && response1.data.items) {
+      articles1.value = response1.data.items;
+    }
+    if (response2.data && response2.data.items) {
+      articles2.value = response2.data.items;
     }
   } catch (err: any) {
-    ElMessage.error(err.message || "登录失败");
+    ElMessage.error(err.message || "暂时还没有人发布文章哦");
   }
 };
 
 onMounted(() => {
-  fetchHomePageData();
+  fetchArticlesData();
 });
 
-console.log(articles.value)
 </script>
 
 <template>
   <div>
-    <div v-for="article in articles" :key="article.article_id">
+    <h1>最新文章列表</h1>
+    <div v-for="article in articles1" :key="article.article_id">
       <h2>{{ article.title }}</h2>
       <p>{{ article.content }}</p>
+      <p>{{ article.username }}</p>
+      <p>{{ article.visit_count }}</p>
+      <p>{{ article.like_count }}</p>
     </div>
+  </div>
+
+  <div>
+    <h1>最热文章排行榜</h1>
+    <div v-for="article in articles2" :key="article.article_id">
+      <p>
+        {{ article.article_id }}
+        {{ article.title }}
+      </p>
+    </div>
+    <p>查看更多></p>
   </div>
 </template>
 

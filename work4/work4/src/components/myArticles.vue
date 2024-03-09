@@ -10,6 +10,7 @@ const fetchMyArticlesData = async () => {
   try {
     const data = {
       getWrittenArticle: 1,
+      Authorization: "XSOiyesyGQxPFBGTW0evEnvioN3igXS52KWQ7HVfJAw5DWCkxkOwao0T7wqOpGbTJghhsrPdNeYZjvsV5AoqmfRDcZru9N713g9dHmOkAHcYxOfZqH8M+SNH7jwtTZFnfHdsf3gi3kBr1bA/HJ/jMO9IbELboa/dqhANtNr6vfE=",
     };
 
     const response = await getMyArticles(data);

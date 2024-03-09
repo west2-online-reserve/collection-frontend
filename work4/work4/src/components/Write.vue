@@ -1,26 +1,42 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import MarkdownIt from 'markdown-it'
+import { ElMessage } from 'element-plus';
+import { writeArticles } from '@/api/api';
 
 const md = new MarkdownIt()
 const title = ref('')
-const markdownContent = ref('')
+const content = ref('')
+const cover_url = ref('')
 
 const compiledMarkdown = computed(() => {
-  return md.render(markdownContent.value)
+  return md.render(content.value)
 })
 
-const publishArticle = () => {
-  console.log('输入文章标题...', { title: title.value, content: markdownContent.value })
+const publishArticle = async () => {
+  try {
+    const data = {
+      Authorization: "XSOiyesyGQxPFBGTW0evEnvioN3igXS52KWQ7HVfJAw5DWCkxkOwao0T7wqOpGbTJghhsrPdNeYZjvsV5AoqmfRDcZru9N713g9dHmOkAHcYxOfZqH8M+SNH7jwtTZFnfHdsf3gi3kBr1bA/HJ/jMO9IbELboa/dqhANtNr6vfE=",
+      title: title.value,
+      content: content.value,
+      cover_url: cover_url.value,
+    };
+
+    const response = await writeArticles(data);
+
+    alert(response.base.msg)
+  } catch (err: any) {
+    ElMessage.error(err.message || "发布失败");
+  }
 }
 </script>
 
 <template>
   <div class="editor-container">
-    <input type="text" v-model="title" placeholder="Article Title" class="title-input" />
+    <input type="text" v-model="title" placeholder="输入文章标题..." class="title-input" />
 
     <div class="markdown-editor">
-      <textarea v-model="markdownContent" class="markdown-input" placeholder="Write in Markdown..."></textarea>
+      <textarea v-model="content" class="markdown-input" placeholder="请输入..."></textarea>
       <div class="markdown-preview" v-html="compiledMarkdown"></div>
     </div>
 

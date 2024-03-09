@@ -11,15 +11,15 @@ const fetchArticlesData = async () => {
   try {
     const data1 = {
       getHottest: 0,
-      count: 10,
-      Authorization: "XSOiyesyGQxPFBGTW0evEnvioN3igXS52KWQ7HVfJAw5DWCkxkOwao0T7wqOpGbTJghhsrPdNeYZjvsV5AoqmfRDcZru9N713g9dHmOkAHcYxOfZqH8M+SNH7jwtTZFnfHdsf3gi3kBr1bA/HJ/jMO9IbELboa/dqhANtNr6vfE=",
+      count: 2,
     };
     const data2 = {
       getHottest: 1,
-      count: 10,
-      Authorization: "XSOiyesyGQxPFBGTW0evEnvioN3igXS52KWQ7HVfJAw5DWCkxkOwao0T7wqOpGbTJghhsrPdNeYZjvsV5AoqmfRDcZru9N713g9dHmOkAHcYxOfZqH8M+SNH7jwtTZFnfHdsf3gi3kBr1bA/HJ/jMO9IbELboa/dqhANtNr6vfE=",
+      count: 2,
     };
-
+    // 在请求之前在localStorage中设置token
+    window.localStorage.setItem('token', 'XSOiyesyGQxPFBGTW0evEnvioN3igXS52KWQ7HVfJAw5DWCkxkOwao0T7wqOpGbTJghhsrPdNeYZjvsV5AoqmfRDcZru9N713g9dHmOkAHcYxOfZqH8M+SNH7jwtTZFnfHdsf3gi3kBr1bA/HJ/jMO9IbELboa/dqhANtNr6vfE=');
+    // 发送请求
     const response1 = await getArticles(data1);
     const response2 = await getArticles(data2);
 
@@ -29,6 +29,7 @@ const fetchArticlesData = async () => {
     if (response2.data && response2.data.items) {
       articles2.value = response2.data.items;
     }
+    console.log(response1)
   } catch (err: any) {
     ElMessage.error(err.message || "暂时还没有人发布文章哦");
   }
@@ -37,7 +38,6 @@ const fetchArticlesData = async () => {
 onMounted(() => {
   fetchArticlesData();
 });
-
 </script>
 
 <template>

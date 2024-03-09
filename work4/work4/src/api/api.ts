@@ -4,7 +4,6 @@ import { service } from "@/utils/request";
 interface homePage {
   getHottest: number;
   count: number;
-  Authorization: string;
 }
 
 interface homePageResponse {
@@ -30,11 +29,11 @@ interface homePageResponse {
   } | null
 }
 
-export const getArticles = (data: homePage): Promise<homePageResponse> => {
-  return service.request<homePageResponse>({
-      method: "get",
-      url: `/juejin/homepage`,
-      data
+export const getArticles = (params: homePage): Promise<homePageResponse> => {
+  return service.request({
+    method: "get",
+    url: `/juejin/homepage`,
+    params
   });
 };
 
@@ -82,7 +81,7 @@ interface  ArticlesResponse {
 }
 
 export const Articles = (data: Articles): Promise<ArticlesResponse> => {
-  return service.request<ArticlesResponse>({
+  return service.request({
       method: "get",
       url: `/juejin/article`,
       data
@@ -120,7 +119,7 @@ interface myHomePageResponse {
 }
 
 export const getMyArticles = (data: myHomePage): Promise<myHomePageResponse> => {
-  return service.request<myHomePageResponse>({
+  return service.request({
       method: "get",
       url: `/juejin/myhomepage`,
       data
@@ -143,7 +142,7 @@ interface changeUsernameResponse {
 }
 
 export const changeUsername = (data: changeUsername): Promise<changeUsernameResponse> => {
-  return service.request<changeUsernameResponse>({
+  return service.request({
       method: "put",
       url: `/juejin/user/setup/username`,
       data
@@ -165,7 +164,7 @@ interface changeAvatarResponse {
 }
 
 export const changeAvatar = (data: changeAvatar): Promise<changeAvatarResponse> => {
-  return service.request<changeAvatarResponse>({
+  return service.request({
       method: "put",
       url: `/juejin/user/setup/avatar_url`,
       data
@@ -187,7 +186,7 @@ interface changePasswordResponse {
 }
 
 export const changePassword = (data: changePassword): Promise<changePasswordResponse> => {
-  return service.request<changePasswordResponse>({
+  return service.request({
       method: "put",
       url: `/juejin/user/setup/password`,
       data
@@ -211,7 +210,7 @@ interface writeArticlesResponse  {
 }
 
 export const writeArticles = (data: writeArticles): Promise<writeArticlesResponse> => {
-  return service.request<writeArticlesResponse>({
+  return service.request({
       method: "post",
       url: `/juejin/write`,
       data

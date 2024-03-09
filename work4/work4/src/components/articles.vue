@@ -126,7 +126,7 @@ onMounted(fetchArticleDetails)
 
     <div class="comments-section">
       <h2>Comments ({{ articleDetails.comment_count }})</h2>
-      <textarea v-model="newComment" placeholder="Write a comment..." class="new-comment"></textarea>
+      <textarea v-model="newComment" placeholder="平等表达，友善交流" class="new-comment"></textarea>
       <button @click="postComment" class="post-comment-button">Post Comment</button>
       <div class="comments-list">
         <div v-for="comment in comments" :key="comment.comment_id" class="comment">

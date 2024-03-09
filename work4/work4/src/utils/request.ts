@@ -14,7 +14,7 @@ service.interceptors.request.use(
         config.headers['Access-Control-Allow-Origin'] = '*';
         const token = window.localStorage.getItem("token");
         if (token) {
-            config.headers.Authorization = token;
+            config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
     },

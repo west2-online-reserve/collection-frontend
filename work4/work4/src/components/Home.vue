@@ -30,6 +30,7 @@ const fetchArticlesData = async () => {
       articles2.value = response2.data.items;
     }
     console.log(response1)
+    console.log(window.localStorage.token)
   } catch (err: any) {
     ElMessage.error(err.message || "暂时还没有人发布文章哦");
   }

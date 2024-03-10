@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿笠博士的新发明</title>
+    
+    <style>
+        body {
+            padding-left: 10vw;
+        }
+        .question {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+        .box{
+            margin-top: 64px;
+            width: 60%;
+            height: 200px;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #blue{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #21a4f1;
+        }
+        #red{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            border: 2px solid #fc4b5a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question">
+        <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+        <p>蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。</p>
+        <p>点击定格按钮，红框内显示定格的时间。</p>
+    </div>
+    <div class="box">
+        <div id="blue">
+            <span id="time"></span>
+        </div>
+        <div id="red">
+            <span id="pauseTime"></span>
+        </div>
+    </div>
+    <button id="btn" style="font-size: 24px;margin-top: 48px;">定格</button>
+
+    <!--以上代码不可修改-->
+
+
+    <!--
+        要求在下列代码中实现
+        当打开网页的时候 时间以1000ms的速率动态更新
+        鼠标移入blue的时候 暂停时间的更新，并且有边框放大效果
+        鼠标移出blue的时候 继续时间的更新，css样式还原
+        点击定格按钮，red里面显示点击时候的时间
+    -->
+
+    <script>
+        // 获取元素
+        let blueBox = document.querySelector('#blue')
+        let redBox = document.querySelector('#red')
+        let btn = document.querySelector('#btn')
+        
+        // 获取本地时间
+        let time = new Date()
+        let year = time.getFullYear()
+        let month = time.getMonth() + 1
+        let date = time.getDate()
+        let hour = time.getHours()
+        hour = hour < 10 ? '0' + hour : hour
+        let min = time.getMinutes()
+        min = min < 10 ? '0' + min : min
+        let sec = time.getSeconds()
+        sec = sec < 10 ? '0' + sec : sec
+        blueBox.innerHTML = `${year}/${month}/${date} ${hour}:${min}:${sec}`
+
+        // 封装函数
+        function changeTime() {
+            sec++
+            if(sec === 60) {
+                min++
+                sec = 0
+            }
+            if(min === 60) {
+                hour++
+                min = 0
+            }
+            if(hour === 24) {
+                date++
+                hour = 0
+            }
+            sec = sec < 10 & (!/^0/.test(sec) | sec === 0) ? '0' + sec : sec
+            min = min < 10 & (!/^0/.test(min) | min === 0) ? '0' + min : min
+            hour = hour < 10 & (!/^0/.test(hour) | hour === 0) ? '0' + hour : hour
+            blueBox.innerHTML = `${year}/${month}/${date} ${hour}:${min}:${sec}`
+        }
+
+        // 打开定时器
+        let timer = setInterval(changeTime, 1000)
+
+        // 鼠标移入效果
+        blueBox.addEventListener('mouseenter', function(){
+            blueBox.style.transform = 'scale(1.2)'
+            clearInterval(timer)
+        })
+
+        // 鼠标移出效果
+        blueBox.addEventListener('mouseleave', function(){
+            blueBox.style.transform = 'scale(1)'
+            timer = setInterval(changeTime, 1000)
+        })
+
+        // 按下按钮
+        btn.addEventListener('click', function(){
+            redBox.innerHTML = `${year}/${month}/${date} ${hour}:${min}:${sec}`
+        })
+    </script>
+</body>
+
+</html>

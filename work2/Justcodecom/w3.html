@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    #app {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .label {
+      width: 120px;
+      height: 50px;
+      background-color: #6190dd;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      color: #000;
+      margin: 10px;
+      transform: all;
+    }
+
+    .label:hover {
+      cursor: pointer;
+      background-color: #4074c7;
+      transition: all 0.15s ease-out;
+    }
+
+    #content {
+      width: 400px;
+      height: 320px;
+      text-align: start;
+      background-color: #80d8fe;
+      border-radius: 5px;
+      padding: 15px;
+      box-sizing: border-box;
+      transform: all;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div id="menu">
+      <div class="label" id="first">二小姐</div>
+      <div class="label" id="second">静可爱</div>
+      <div class="label" id="third">一色</div>
+    </div>
+    <div id="content">mewww，这里是你需要展示的文字</div>
+    <!-- html和css内容不允许修改,只能修改script -->
+  </div>
+
+  <script>
+    // 要在这里面写逻辑
+    const btn = document.querySelectorAll(".label");
+    const text = ["液氮系女子。不必说，她的冷酷言行足以在女孩子的社会里吹起绝对零度的暴风雪。表面看起来是铜墙铁壁的完美少女，但害怕狗、突然袭击的温柔、突发事故，这样算来弱点其实很多", 
+                  "简直像是在为了获得现在最想结婚的女人NO.1称号一样，目前相亲中的教师，貌美气质佳，无奈酒品太差，休息日从白天就开始自斟自饮，说醉话。",
+                  "扮演天然系而在男生中具有大人气的一年级女生，足球部经理。"];
+
+    for (let i = 0; i < btn.length; i++) {
+      btn[i].addEventListener("click", () => {
+        btn.forEach(function (item) {
+          item.style.backgroundColor = "#6190dd";
+        })
+        btn[i].style.backgroundColor = "#00b5ff";
+        document.querySelector("#content").textContent = text[i];
+      })
+    }
+  </script>
+</body>
+
+</html>
+     
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

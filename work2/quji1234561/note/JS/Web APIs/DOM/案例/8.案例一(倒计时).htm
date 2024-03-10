@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <textarea name="" id="" cols="30" rows="10">
+  网站用户注册协议范本 尊敬的客户您好，欢迎您访 天水长控电器网站（以下简称：网站）。 在您注册成为网 站会员之前，请您务必认真阅读和理解《网站用户注册协议》（以下简称：协议）中所有的 条款。
+  您须完全意协议中所有的条款，才可以注册成为本网站的会员，使用面的服务。 您在网站的注册和操作均将被视为是您对协议所有条款及内容的自愿接受。
+</textarea>
+  <br>
+  <button class="btn" disabled>我已阅读用户协议(10)</button>
+  <script>
+    // 获取元素
+    const btn = document.querySelector('.btn')
+    // 倒计时
+    let i = 10
+    // 开始定时器
+    let intId = setInterval(function () {
+      i--
+      btn.innerHTML = `我已阅读用户协议(${i})`
+      if (i === 0) {
+        btn.disabled = false
+        btn.innerHTML = `我已阅读用户协议`
+        clearInterval(intId)
+      }
+    }, 1000)
+
+  </script>
+</body>
+
+</html>

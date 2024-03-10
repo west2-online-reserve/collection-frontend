@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拼手速</title>
+    <style>
+        #box {
+            background-color: cadetblue;
+            display: inline-block;
+            padding: 5px;
+        }
+
+        #title {
+            font-size: 30px;
+        }
+
+        input {
+            font-size: 30px;
+            width: 35%;
+            height: 60px;
+            background-color: coral;
+            margin: 5%;
+        }
+
+        input:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="title">你觉得你点得到我吗</div>
+        <input id="yes" type="button" value="能">
+        <input id="no" type="button" value="不能">
+    </div>
+</body>
+<script>
+    const box = document.getElementById("box");
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    let cnt = 0
+    box.addEventListener("mouseover", function () {
+        box.style.marginLeft = Math.random() * (screenWidth - box.offsetWidth) + "px";
+        box.style.marginTop = Math.random() * (screenHeight - box.offsetHeight) + "px";
+        cnt++;
+        if (cnt == 10) {
+            alert("还没点到，别玩了");
+        }
+    })
+    document.querySelector("#yes").addEventListener("click", function () {
+        const strs = ["牛牛牛", "算你厉害", "上次点到还是上一次", "这么多次才点到，真菜"]
+        alert(strs[Math.floor(Math.random() * strs.length)])
+    })
+    document.querySelector("#no").addEventListener("click", function () {
+        alert("你要不要听听你在说什么");
+    })
+</script>
+
+</html>

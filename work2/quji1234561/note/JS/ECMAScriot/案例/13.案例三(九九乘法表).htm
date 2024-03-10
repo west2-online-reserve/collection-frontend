@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .td {
+      margin: 2px 0;
+      padding: 2px 10px;
+      display: inline-block;
+      width: 60px;
+      height: 25px;
+      border: 1px solid pink;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px 1px grey;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <script>
+    for (i = 1; i <= 9; i++) {
+      for (j = 1; j <= i; j++) {
+        document.write(`  <div class="td">${j}×${i}=${j * i}</div>
+   `)
+      }
+      document.write(`<br>`)
+    }
+
+  </script>
+</body>
+
+</html>

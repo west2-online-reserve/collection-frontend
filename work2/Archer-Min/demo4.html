@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>demo4</title>
+    <style>
+        #container {
+            width: 190px;
+            height: 120px;
+            position: relative;
+            border: 2px solid #000;
+            overflow: hidden;
+            padding: 10px;
+            background-color: rgb(149, 208, 235)
+        }
+
+        #yes-btn, #no-btn {
+            padding: 10px 30px 10px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: rgb(60, 79, 189);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <p id="message">你觉得你能点到我吗</p>
+        <button id="yes-btn">能</button>
+        <button id="no-btn">不能</button>
+    </div>
+
+    <script>
+        const gameContainer = document.getElementById('container');
+        const yesButton = document.getElementById('yes-btn');
+        const noButton = document.getElementById('no-btn');
+
+        let clickCount = 0;
+
+        function getRandomPosition() {
+            const maxWidth = window.innerWidth - 190; 
+            const maxHeight = window.innerHeight - 120; 
+            const randomX = Math.random() * maxWidth;
+            const randomY = Math.random() * maxHeight;
+            return { x: randomX, y: randomY };
+        }
+
+        gameContainer.addEventListener('mouseenter', () => {
+            const position = getRandomPosition();
+            gameContainer.style.left = position.x + 'px';
+            gameContainer.style.top = position.y + 'px';
+        });
+
+        yesButton.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount < 6) {
+                alert('牛啊');
+            } else {
+                alert('这么久还没点到，别玩了');
+            }
+        });
+
+        noButton.addEventListener('click', () => {
+            clickCount++;
+            alert('真菜');
+        });
+    </script>
+</body>
+</html>

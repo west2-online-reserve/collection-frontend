@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid #000;
+      border-collapse: collapse
+    }
+
+    th,
+    td {
+      padding: 5px 5px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+
+    tr:not(:first-child):hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <caption>学生列表</caption>
+  <table>
+    <tr>
+      <th>序号</th>
+      <th>姓名</th>
+      <th>年龄</th>
+      <th>性别</th>
+      <th>家乡</th>
+    </tr>
+    <script>
+      let stus = [
+        { name: '小明', age: '18', gender: '男', hometown: '河北' },
+        { name: '小红', age: '19', gender: '女', hometown: '河南' },
+        { name: '小刚', age: '17', gender: '男', hometown: '山西' },
+        { name: '小丽', age: '18', gender: '女', hometown: '山东' }
+      ]
+
+      for (let i = 0; i < stus.length; i++) {
+        document.write(`
+        <tr>
+          <td>${i + 1}</td>
+          <td>${stus[i].name}</td>
+          <td>${stus[i].age}</td>
+          <td>${stus[i].gender}</td>
+          <td>${stus[i].hometown}</td>
+        </tr>
+        `)
+
+      }
+    </script>
+  </table>
+</body>
+
+</html>

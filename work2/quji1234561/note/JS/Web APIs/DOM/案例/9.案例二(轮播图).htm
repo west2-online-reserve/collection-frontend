@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    div,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: #575353;
+    }
+
+    .box .color {
+      width: 200px;
+      height: 170px;
+      font-size: 30px;
+      text-align: center;
+      line-height: 170px;
+      color: #ffffff;
+      background-color: blue;
+    }
+
+    .box ul {
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      /* background-color: blue; */
+
+    }
+
+    .box ul li {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: rgb(154, 153, 153);
+    }
+
+    .box ul .active {
+      transform: scale(1.2);
+      background-color: #ffffff;
+    }
+  </style>
+  <div class="box">
+    <div class="color">蓝</div>
+    <ul>
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script>
+    //随机背景颜色,仿轮播图
+    const colorArr = [
+      { uname: '蓝', color: 'blue' },
+      { uname: '黄', color: 'yellow' },
+      { uname: '红', color: 'red' },
+      { uname: '绿', color: 'green' },
+      { uname: '黑', color: 'black' },
+    ]
+
+    const divColor = document.querySelector('.box .color')
+    divColor.style.backgroundColor = colorArr[0].color
+    divColor.innerHTML = colorArr[0].uname
+    let i = 0
+    setInterval(function () {
+      //循环轮播
+      i++
+      if (i === colorArr.length) {
+        i = 0
+      }
+      //颜色
+      divColor.style.backgroundColor = colorArr[i].color
+      //文本
+      divColor.innerHTML = colorArr[i].uname
+      //去掉圆点
+      document.querySelector('.box ul .active').classList.remove('active')
+      //圆点
+      document.querySelector(`.box ul li:nth-child(${i + 1})`).classList.add('active')
+    }, 1000)
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

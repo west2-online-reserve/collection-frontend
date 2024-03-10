@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>对象</h2>
+  <h3>属性</h3>
+  <p>let 对象名 = {</p>
+  <p>属性:属性值,</p>
+  <p>方法:函数()</p>
+  <p>}</p>
+  <p>属性与属性值用冒号隔开</p>
+  <p>属性之间用逗号隔开</p>
+  <p>属性只在对象内生效</p>
+  <p>对象属性没有顺序</p>
+  <p></p>
+
+  <script>
+    let pink = {
+      uName: 'pink',
+      color: 'pink',
+      gender: 'man'
+    }
+    console.log(pink);
+    document.write(`<br>` + typeof (pink))
+  </script>
+
+  <h4>查:访问属性</h4>
+  <p>对象名.属性名</p>
+  <p>对象名['属性名']</p>
+
+  <script>
+    document.write(pink.uName, pink.gender)
+  </script>
+
+  <h4>改:重新赋值</h4>
+  <p>对象.属性=新属性值</p>
+
+
+  <h4>增</h4>
+  <p>对象.新属性=属性值</p>
+
+  <h4>删</h4>
+  <p>delete 对象.属性名</p>
+  <script>
+    pink.color = 'blue'
+    console.log(pink);
+    pink.age = 18
+    console.log(pink);
+    delete pink.color
+    console.log(pink);
+  </script>
+  <h3>方法</h3>
+  <h4>方法声明</h4>
+  <p> let obj = {</p>
+  <p> uName: '薛之谦',</p>
+  <p> sing: function () {</p>
+  <p> console.log('演员');</p>
+  <p> }</p>
+  <p> }</p>
+  <h4> 方法调用</h4>
+  <p> obj.sing()</p>
+  <p> 例子:document.write()</p>
+
+  <script>
+    let obj = {
+      uName: '薛之谦',
+      sing: function () {
+        console.log('演员');
+      }
+    }
+    //方法调用
+    obj.sing()
+    // 例子:document.write()
+  </script>
+
+
+</body>
+
+</html>

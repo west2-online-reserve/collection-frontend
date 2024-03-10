@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    nav {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: black;
+    background-color: rgb(172, 215, 238);
+    }
+    button{
+        background-color: rgb(206, 231, 244);
+        border: 0ch;
+        font-size: medium;
+        border-radius: 15%;
+    }
+    img{
+        width: 60%;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+<body>
+    <nav>
+        <button id ="yi">一次函数</button>
+        <button id ="san">三角函数</button>
+        <button id ="zhi">指数函数</button>
+        <button id ="dui">对数函数</button>
+        <button id ="mi">幂函数</button>
+    </nav>
+    <img src="一次函数.jpg">
+
+    <script>
+        var yi = document.getElementById('yi');
+        var san = document.getElementById('san');
+        var zhi = document.getElementById('zhi');
+        var dui = document.getElementById('dui');
+        var mi = document.getElementById('mi');
+        var img = document.querySelector('img');
+        yi.onclick = function(){
+            img.src = '一次函数.jpg';
+        }
+        san.onclick = function(){
+            img.src = '三角函数.jpg';
+        }
+        zhi.onclick = function(){
+            img.src = '指数函数.jpg';
+        }
+        dui.onclick = function(){
+            img.src = '对数函数.jpg';
+        }
+        mi.onclick = function(){
+            img.src = '幂函数.jpg';
+        }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "@xui/components",
+  "version": "0.0.1",
+  "description": "缺胳膊少腿的小组件库",
+  "main": "index.js",
+  "scripts": {
+    
+  }
+}

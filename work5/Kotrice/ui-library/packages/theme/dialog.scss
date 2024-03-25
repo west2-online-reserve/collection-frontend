@@ -1,0 +1,54 @@
+@use './base.scss' as *;
+
+$dialog-padding: 16px;
+
+#mask {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: $mask-color;
+  .x-dialog-container {
+    width: 40%;
+    background-color: #fff;
+    @include to-center;
+    margin-top: 15vh;
+    box-shadow: $container-boxshadow;
+    border-radius: $boder-raduis-small;
+    box-sizing: border-box;
+    padding: $dialog-padding;
+    position: relative;
+    .x-dialog-header {
+      font-size: map-get($map: $base-font, $key: large);
+      padding-bottom: 20px;
+      .close-container {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: $dialog-padding;
+        right: $dialog-padding;
+        cursor: pointer;
+        .icon {
+          width: 100%;
+          height: 100%;
+        }
+        &:hover {
+          .icon path {
+            fill: map-get($map: $base-colors, $key: primary);
+          }
+        }
+      }
+    }
+    .x-dialog-content {
+      font-size: map-get($map: $base-font, $key: base);
+      color: map-get($map: $base-font-color, $key: regular);
+    }
+    .x-dialog-footer {
+      padding-top: 20px;
+    }
+  }
+}
+
+

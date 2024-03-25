@@ -1,0 +1,34 @@
+@use './base.scss' as *;
+
+.x-checkbox-div {
+  display: inline-block;
+}
+.x-checkbox-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &.x-checkbox-disabled {
+    cursor: not-allowed;
+  }
+  .x-checkbox {
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  .x-checkbox-label {
+    font-size: map-get($map: $base-font, $key: base);
+    font-weight: 500;
+    color: map-get($map: $base-font-color, $key: regular);
+    user-select: none;
+    &.is-checked {
+      color: map-get($map: $base-colors, $key: primary);
+    }
+    &.x-checkbox-label-disabled {
+      color: map-get($map: $base-font-color, $key: placeholder);
+    }
+  }
+}

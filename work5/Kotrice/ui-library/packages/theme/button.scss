@@ -1,0 +1,73 @@
+@use './base.scss' as *;
+
+$types: ('primary', 'success', 'warning', 'danger', 'info');
+
+
+$x-button-font-weight: 500;
+$x-button-border: 1px solid #dcdfe6;
+$x-button-border-radius: 4px;
+
+.x-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  font-weight: $x-button-font-weight;
+  border: $x-button-border;
+  background-color: #FFF;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  user-select: none;
+  vertical-align: middle;
+  color: #ffffff;
+  &--small {
+    height: 24px;
+    padding: 5px 11px;
+    font-size: 11px;
+    border-radius: $x-button-border-radius - 1px;
+  }
+  &--default {
+    height: 32px;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: $x-button-border-radius;
+  }
+  &--large {
+    height: 40px;
+    padding: 12px 19px;
+    font-size: 14px;
+    border-radius: $x-button-border-radius;
+  }
+  //  利用 @each 动态生成对应type对应的样式
+  @each $type in $types {
+    &--#{$type} {
+      $color: map-get($map: $base-colors, $key: $type);
+      background-color: $color;
+      border-color: $color;
+      &:hover {
+        $light-color: lighten($color, 10%);
+        background-color: $light-color;
+        border-color: $light-color;
+      }
+      &:active {
+        $dark-color: darken($color, 10%);
+        background-color: $dark-color;
+        border-color: $dark-color;
+      }
+      &--disabled {
+        $disabled-color: lighten($color, 20%);
+        background-color: $disabled-color;
+        border: $disabled-color;
+        cursor: not-allowed;
+      }
+    }
+  }
+  &--round {
+    border-radius: $x-button-border-radius * 5;
+  }
+}
+
+

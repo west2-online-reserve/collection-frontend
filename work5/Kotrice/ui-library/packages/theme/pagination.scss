@@ -1,0 +1,49 @@
+@use './base.scss' as *;
+
+.x-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .x-pager {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    li {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      margin: 0 10px;
+      user-select: none;
+      cursor: pointer;
+      color: map-get($map: $base-font-color, $key: primary);
+      background-color: map-get($map: $base-colors, $key: fill);
+      border-radius: $boder-raduis-base;
+      &.active {
+        color: #fff;
+        background-color: map-get($map: $base-colors, $key: primary);
+      }
+    }
+  }
+  .x-jumper {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    .el-input {
+      margin-left: 10px;
+      width: 56px;
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+  }
+  .el-select {
+    width: 128px;
+    margin-right: 20px;
+  }
+  .x-pagination-total {
+    margin-right: 20px;
+  }
+}

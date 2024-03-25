@@ -1,0 +1,9 @@
+{
+  "name": "@xui/theme",
+  "version": "0.0.1",
+  "description": "缺胳膊少腿的组件库样式",
+  "main": "index.scss",
+  "scripts": {
+
+  }
+}

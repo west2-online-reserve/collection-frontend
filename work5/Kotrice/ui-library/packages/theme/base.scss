@@ -1,0 +1,34 @@
+// 一些基础色
+$base-colors: (
+  primary: #409eff,
+  success: #67c23a,
+  warning: #e6a23c,
+  danger: #f56c6c,
+  info: #909399,
+  fill: #f0f2f5
+);
+// 字体
+$base-font: (
+  extra-large: 20px,
+  large: 18px,
+  medium: 16px,
+  base: 14px,
+  small: 13px,
+  extra-small: 12px
+);
+$base-font-color: (
+  primary: #303133,
+  regular: #606266,
+  secondary: #909399,
+  placeholder: #a8abb2,
+  disabled: #c0c4cc,
+);
+// 遮罩层的颜色
+$mask-color: rgba(0, 0, 0, .5);
+$container-boxshadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
+$boder-raduis-small: 2px;
+$boder-raduis-base: 4px;
+// 定义水平居中的mixin
+@mixin to-center() {
+  margin: 0 auto;
+}

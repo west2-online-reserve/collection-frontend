@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .select {
+      width: 400px;
+      height: 180px;
+      padding-top: 10px;
+      text-align: center;
+
+      background-color: #eee;
+    }
+
+    .select .names {
+      height: 30px;
+      margin-top: 10px;
+    }
+
+    .select .bts {
+      height: 40px;
+      margin-top: 15px;
+    }
+
+    .select .bts button {
+      margin-top: 5px;
+      width: 50px;
+      height: 30px;
+      background-color: #fff;
+    }
+
+    .select .bts .start {
+      margin-right: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="select">
+    <h2>随机点名</h2>
+    <div class="names">姓名</div>
+    <div class="bts">
+      <button class="start">开始</button>
+      <button class="stop">结束</button>
+    </div>
+  </div>
+  <script>
+    const arr = ['赵云', '黄忠', '张飞', '马超', '关羽', '刘备', '诸葛亮']
+
+    const start = document.querySelector('.start')
+    const stops = document.querySelector('.stop')
+    //为了在结束时使用,声明为全局变量
+    let sid
+    let ranNum
+    start.addEventListener('click', function () {
+      sid = setInterval(function () {
+        ranNum = parseInt(Math.random() * arr.length)
+        document.querySelector('.select .names').innerHTML = arr[ranNum]
+      }, 80)
+      start.disabled = true//防止重复点击生成多个定时器,无法关闭
+      if (arr.length === 1) {//只剩下一个人时禁用按钮
+        start.disabled = true
+        stops.disabled = true
+        //关闭定时器,但不影响最后一个人名跳出
+        setTimeout(function () { clearInterval(sid) }, 5000)
+      }
+    })
+    stops.addEventListener('click', function () {
+      clearInterval(sid)
+      start.disabled = false
+      arr.splice(ranNum, 1)//被点过的不再参与点名
+
+    })
+
+  </script>
+</body>
+
+</html>

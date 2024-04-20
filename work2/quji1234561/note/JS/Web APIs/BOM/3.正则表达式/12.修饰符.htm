@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>修饰符</h2>
+  <p>修饰符约束正则执行的某些细节行为,如是否区分大小写,是否支持多行匹配等</p>
+  <p>语法:</p>
+  <p>/表达式/修饰符</p>
+  <h4>i(ignore)不区分大小写</h4>
+  <h4>g(global)匹配所有满足正则表达式的结果</h4>
+
+  <h3>replace()方法</h3>
+  <p>字符串.replace(/表达式/,'替换进去的文本')</p>
+
+  <script>
+    let str = 'A字符串a'
+    str = str.replace(/a/i, '替换进去的文本')//只能查找一个替换
+    console.log(str);
+    str = str.replace(/a/ig, '替换进去的文本')//加g可以全局替换
+    console.log(str);
+    str = str.replace(/a|A/g, '替换进去的文本')//加 | 表或
+    console.log(str);
+
+  </script>
+
+</body>
+
+</html>

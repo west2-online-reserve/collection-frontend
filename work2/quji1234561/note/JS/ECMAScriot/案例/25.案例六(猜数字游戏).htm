@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //0-10猜数字游戏
+    let ran = Math.floor(Math.random() * 11)
+    // console.log(parseInt('12757jjj'));
+    // console.log(ran);
+
+    let flag = true
+    for (let i = 1; i <= 3; i++) {
+      num = prompt('请输入你猜的数字(0-10):')
+      if (+num < 0 || +num > 10 || num === '') {
+        alert('请输入范围内的数字')
+        i--
+        continue
+      } else if (+num === ran) {
+        flag = false
+        alert('恭喜你猜对了！')
+        break
+      } else if (+num > ran) {
+        alert('大了一点')
+        i < 3 ? alert(`你还有${3 - i}次机会`) : i
+        continue
+      } else if (+num < ran) {
+        alert('小了一点')
+        i < 3 ? alert(`你还有${3 - i}次机会`) : i
+        continue
+      }
+    }
+    if (flag) {
+      alert('很遗憾,你的机会已用完')
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -156,6 +156,10 @@ body{
     margin: 0 auto;
     position: relative;
     top:150px;
+    border-radius: 30px;
+}
+table{
+    border-collapse: collapse;
 }
 .l1{
     width:720px;

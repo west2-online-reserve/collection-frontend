@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>数据类型</h1>
+  <h2>1.基本数据类型</h2>
+
+  <h3>1.number数字型</h3>
+  <h4>算术运算符:</h4>
+  <h4>加+</h4>
+  <h4>减-</h4>
+  <h4>乘*</h4>
+  <h4>除/</h4>
+  <h4>取模%</h4>
+  <p>NaN代表计算错误</p>
+  <p>NaN参与计算的结果都是NaN</p>
+  <p>NaN不等于NaN</p>
+  <script>
+    document.write('')
+  </script>
+
+  <h3>2.string字符串型</h3>
+  <p>由单引号('')、双引号("")、反引号(``)包裹的数据都是字符串</p>
+  <p>字符串用+拼接</p>
+  <p><strong>模板字符串</strong></p>
+  <p>反引号``</p>
+  <p>${变量名}</p>
+  <p></p>
+  <script>
+    let age = 18
+    document.write('\'\"\`<br>')
+    document.write('123' + '456' + '<br>')
+    document.write('123' + 456 + '789' + [1, 2, 3, 4, 5] + '<br>')
+    document.write('123' + 456 + '789' + [1, 2, 3, 4, 5] + '<br>')
+    // 原先写法
+    document.write('我的岁数：' + age + '<br>')
+    // es6新写法：模板字符串
+    document.write(`我的岁数：${age}`)
+  </script>
+
+  <h3>3.boolean布尔型</h3>
+  <p>唯二值: true false</p>
+  <script>
+    document.write(`0+true：${0 + true}` + '<br>')
+    document.write(`0+false：${0 + false}` + '<br>')
+    document.write(`true：${true}+'<br>'`)
+    document.write(`false：${false}` + '<br>')
+    document.write(`3<4：${3 < 4}` + '<br>')
+    document.write(`3>4：${3 > 4}` + '<br>')
+  </script>
+
+
+  <h3>4.undefined未定义型</h3>
+  <script>
+    let num
+    document.write(`未定义：${num}`)
+
+  </script>
+
+
+  <h3>5.null空类型</h3>
+  <p>undefined表示没赋值,null赋值了但内容为空</p>
+  <p>官方解释null作为尚未创建的对象</p>
+  <p>准备存放对象,但对象还没创建好,可以先赋值null</p>
+  <script>
+    document.write(`0+undefined：${0 + undefined}` + '<br>')
+    document.write(`0+null：${0 + null}`)
+  </script>
+
+  <h2>2.引用数据类型</h2>
+
+  <h3>6.object对象</h3>
+
+  <h3>3.拓展</h3>
+  <h4>值类型(基本数据类型):存储的是值本身</h4>
+  <p>string,number,boolean,undefined,null</p>
+  <p>栈(操作系统):由操作系统自动分配释放存放函数的参数值、局部变量的值等。其操作方式类似于数据结构中的栈</p>
+  <p>基本数据类型存放到栈里</p>
+
+  <h4>引用类型(引用数据类型):存储的是地址</h4>
+  <p>通过new关键字创建的对象,如Object,Array,Date</p>
+  <p>堆(操作系统):存储复杂类型(对象),一般由程序员分配释放,若程序员不释放,由垃圾回收机制回收。</p>
+  <p>引用数据类型存放到堆里</p>
+  <img src="../img/栈堆.png">
+  <style>
+    img {
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    //基本数据类型
+    let num1 = 10
+    let num2 = num1
+    //存储于堆中的值相同,但并不是同一个
+    num2 = 20
+    console.log(num1);//10
+
+
+    //引用数据类型
+    let obj1 = {
+      age: 18
+    }
+    let obj2 = obj1
+    //存储在栈里的地址相同,所指向的存储于堆里的值也是同一个
+    obj2.age = 19
+    console.log(obj1);//{age:19}
+
+
+  </script>
+
+</body>
+
+</html>

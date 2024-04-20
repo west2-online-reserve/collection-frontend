@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function get(obj, path, defaultValue) {
+            const keys = path.split('.');
+            let result = obj;
+            for (let key of keys) {
+                if (result === undefined) {
+                    return defaultValue;
+                }
+                result = result[key];
+            }
+            return result === undefined ? defaultValue : result;
+        }
+
+        const obj = {
+            a: {
+                b: {
+                    c: 1
+                }
+            }
+        };
+        console.log(get(obj, 'a.b.c', 2)) // 返回 1
+        console.log(get(obj, 'a.b.d', 2)) // 返回 2
+        console.log(get(obj, 'a.b.d.e.f.g', 2)) // 返回 2
+    </script>
+</body>
+
+</html>

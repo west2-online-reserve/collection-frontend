@@ -1,3 +1,4 @@
+// bonus 1
 type MyPick<T, K extends keyof T> = {
     [P in K]: T[P];
 };
@@ -14,7 +15,7 @@ const todo: TodoPreview = {
     title: 'Clean room',
     completed: false,
 }
-
+// bonus 2
 type DeepReadonly<T> = {
     readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
 };

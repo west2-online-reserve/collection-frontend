@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./WTA1.css">
+    <style>
+        body{
+            background-color: rgb(226, 255, 255);
+        }
+        @media only screen and (max-width: 500px) {
+        html {
+            font-size: 8px;
+        }
+        .nav{
+            font-size: 8px;
+        }
+        .intro_box {
+            width: 90%;
+            height: 10vh;
+        }
+        .intro_c{
+            width: 100%;
+            height: 10vh;
+            margin-top: 2vh;
+        }
+        .img_per{
+            width: 100%;
+            margin-top: 1.5vh;
+        }
+        .characters_bar{
+            width: 25%;
+            height: 100%;
+            border-radius: 20px;
+        }
+        .img_per img{
+            width: 25%;
+            height: 25%;
+            border-radius: 20px;
+        }
+        table{
+            width: 90%;
+        }
+        textarea{
+            width: 90%;
+            height: 10vh;
+        }
+        button{
+            right: 6%;
+            padding: 8px 20px;
+        }
+        
+    }
+    @media only screen and (min-width: 1500px) {
+    button {
+        right: 19.5%;
+    }
+    }
+    </style>
+</head>
+<body>
+    <!-- navigation bar -->
+    <div class="navigation">
+        <ul class="nav">
+            <li class="nav-titI"><a href="#A">人物介绍</a></li>
+            <li class="nav-titI"><a href="#B">系列作品</a></li>
+            <li class="nav-titI"><a href="#C">我们相关</a></li>
+        </ul>
+    </div>
+    <!-- introduction bar -->
+    <div class="intro_box" id="A">
+        <div class="pic_all">
+            <img src="./img/all.jpeg" >
+        </div>
+        <p class="cartoon_intro">海绵宝宝是一只黄色的方形海绵，
+            住在太平洋深处风光优美无人知道的比基尼海滩水域下那里是一个没有忧愁的世界，
+            住着一群快乐的海洋生物
+        </p>
+    </div>
+    <!-- characters intro -->
+    <div class="intro_c">
+        <div class="characters_bar" id="haimian_img">
+            <p align="center" >海绵宝宝</p>
+            <p class="intro">是动画片《海绵宝宝》系列动画片中的主角，超级活泼可爱，给人带来快乐</p>
+        </div>
+        <div class="characters_bar" id="xing_img">
+            <p align="center">派大星</p>
+            <p class="intro">粉红色的海星，很可爱也很呆，和海绵宝宝的交情最好</p>
+        </div>
+        <div class="characters_bar" id="zhangyu_img">
+            <p align="center">章鱼哥</p>
+            <p class="intro">大鼻子章鱼，对艺术有着执着的追求，本质上是一个善良且有正义感的章鱼</p>
+        </div>
+    </div>
+    <div class="img_per">
+        <img src="./img/haimianbaobao.jpeg">
+        <img src="./img/paidaxing.jpeg">
+        <img src="./img/zhangyuge.jpeg">
+    </div>
+    <!-- table -->
+     <table>
+        <thead>
+                <th style="width: 400px;">系列</th>
+                <th style="width: 400px;">日期</th>
+                <th style="width: 200px;">集数</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="line1">海绵宝宝</td>
+                <td class="line2">2008年10月23日</td>
+                <td class="line3">60集</td>
+            </tr>
+            <tr>
+                <td class="line1">海绵宝宝</td>
+                <td class="line2">2008年10月23日</td>
+                <td class="line3">60集</td>
+            </tr>
+            <tr>
+                <td class="line1">海绵宝宝</td>
+                <td class="line2">2008年10月23日</td>
+                <td class="line3">60集</td>
+            </tr>
+            <tr>
+                <td class="line1">海绵宝宝</td>
+                <td class="line2">2008年10月23日</td>
+                <td class="line3">60集</td>
+            </tr>
+        </tbody>
+     </table>
+     <!-- comment box -->
+    <textarea placeholder="对我们的建议"></textarea>
+    <button type="submit" >提交</button>
+</body>
+</html>

@@ -1,0 +1,200 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(207, 231, 245);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.navigation{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    color: #000;
+    font-size: 20px;
+}
+
+.navigation a {
+    text-decoration: none; /* 移除下划线 */
+    color: inherit;        /* 保持颜色不变 */
+}
+
+.navigation h1{
+    cursor: pointer;
+}
+
+
+.main {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 85%;
+    height: 250px;
+    display: flex;            /* 确保使用 flex 布局 */
+    align-items: center;      /* 垂直居中对齐图片和文字 */
+    justify-content: center;  /*水平居中对齐内容*/
+    margin: 0 auto;           /* 使整个容器水平居中 */
+    border: 2px solid rgb(34, 97, 192);  /* 给容器添加边框 */
+}
+
+
+.main img {
+    width: 200px;             /* 图片的宽度 */
+    height: 200px;            /* 图片的高度 */
+    border-radius: 50%;       /* 将图片设置成圆形 */
+    margin-left: 20px;       /* 给图片添加右边距，让文字有间距 */
+    margin-right: 20px;       /* 给图片添加右边距，让文字有间距 */
+    object-fit: cover;        /* 确保图片保持圆形的情况下不会变形 */
+}
+
+.main span {
+    flex-grow: 1;             /* 让文字占据剩余空间 */
+    font-size: 16px;          /* 文字大小 */
+    line-height: 1.5;         /* 行距 */
+}
+
+.roles {
+    display: flex;
+    justify-content: space-around; /* 均匀分布 */
+    flex-wrap: wrap; /* 如果屏幕不够宽，可以换行 */
+    margin-top: 20px;
+}
+
+.card {
+    width: 20%; /* 每个卡片占据父容器的28%宽度，留出间隔 */
+    box-sizing: border-box; /* 让padding和border也算在宽度内 */
+    margin-bottom: 20px; /* 添加底部间距 */
+
+}
+
+.card img {
+    width: 100%; /* 图片占据卡片宽度的80% */
+    height: auto; /* 自适应高度 */
+    border-radius: 10px; /* 圆角效果 */
+    margin-top: 20px;
+}
+
+.text-content {
+    height: 100px;
+    border-radius: 15px; /* 圆角边框 */
+    padding: 10px;
+    margin-top: 10px; /* 上方间距 */
+}
+.title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+
+}
+
+.content {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.hmbb .text-content { background-color: #ebc23c; }
+.pdx .text-content { background-color: rgb(203, 110, 120); }
+.zyg .text-content { background-color: rgb(57, 62, 100); }
+
+.my-table {
+    width: 90%;
+    border-collapse: collapse; /* 合并边框 */
+    margin-top: 20px; /* 上边距 */
+    margin: auto;
+    border-radius: 15px;
+}
+
+.my-table th, .my-table td {
+    border: 0px solid #000; /* 单元格边框 */
+    padding: 10px; /* 内边距 */
+    text-align: center; /* 居中对齐 */
+}
+
+
+
+.my-table td:nth-child(1) {
+    width: 60%;
+    background-color: #9ccded; /* 设置第三列的背景颜色 */
+}
+
+.my-table td:nth-child(2) {
+    background-color: #8fc4d2f6; /* 设置第三列的背景颜色 */
+}
+
+.my-table td:nth-child(3) {
+    background-color: #285486; /* 设置第三列的背景颜色 */
+}
+
+
+
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: 300px; /* 父容器的高度，可以根据需求调整 */
+    margin: 0 auto; /* 水平居中容器 */
+    width: 90%;
+
+}
+
+.about input {
+
+    width: 80%; /* 输入框宽度占据容器的全部 */
+    height: 150px; /* 设置较大的高度 */
+    padding: 10px; /* 输入框内边距 */
+    font-size: 16px; /* 设置字体大小 */
+    margin-top: 20px;
+    margin-bottom: 10px; /* 输入框与按钮之间的距离 */
+    border-radius: 5px; /* 设置圆角 */
+    border: 1px solid #9adbf5; /* 设置边框 */
+    background-color: rgb(207, 231, 245);
+}
+
+.about button {
+    padding: 10px 20px; /* 按钮的内边距 */
+    font-size: 16px; /* 按钮字体大小 */
+    background-color: #4CAF50; /* 按钮背景色 */
+    color: white; /* 按钮文字颜色 */
+    border: none; /* 移除边框 */
+    border-radius: 5px; /* 按钮圆角 */
+    cursor: pointer; /* 鼠标悬停手型 */
+    margin-left: 95%;
+}
+
+.about button:hover {
+    background-color: #45a049; /* 悬停时按钮颜色 */
+}
+
+
+.about input {
+    width: 100%;            /* 输入框宽度占据容器的全部 */
+    height: 150px;          /* 设置较大的高度 */
+    padding: 10px;          /* 输入框内边距 */
+    font-size: 16px;        /* 设置字体大小 */
+    margin-top: 20px;
+    justify-content: center;
+    margin-bottom: 10px;    /* 输入框与按钮之间的距离 */
+    border-radius: 5px;     /* 设置圆角 */
+    border: 1px solid #9adbf5; /* 设置边框 */
+    background-color: rgb(207, 231, 245);
+}
+
+.about button {
+    padding: 10px 20px;     /* 设置按钮的内边距 */
+    font-size: 16px;        /* 设置按钮文字的大小 */
+    background-color: #6d81f7; /* 按钮背景色 */
+    color: white;           /* 按钮文字颜色 */
+    border: none;           /* 去掉默认边框 */
+    border-radius: 5px;     /* 按钮圆角 */
+    cursor: pointer;        /* 鼠标悬浮时显示手型 */
+}
+
+.about button:hover {
+    background-color: #45a049; /* 按钮悬停时的颜色变化 */
+}
+
+

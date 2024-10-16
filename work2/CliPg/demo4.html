@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+            <span>Can u touch me</span>
+        </div>
+        <div class="btns">
+            <button class="btn" id="btn1">Can</button>
+            <button class="btn" id="btn2">Can not</button>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<style>
+   .box{
+        width: 200px;
+        height: 100px;
+        background-color: gray;
+        box-shadow: 10px;
+        text-align: center;
+        border-radius: 5px;
+        position: absolute;
+        transition: all 0.5s ease; /* 增加平滑的移动过渡效果 */
+    }
+   .content{
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .btn{
+        width: 80px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+   
+
+</style>
+
+<script>
+    const box = document.querySelector('.box');
+    let timer;
+
+    box.addEventListener('mouseenter', () => {
+
+        timer = setTimeout(() => {
+            // 获取视窗宽高
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // 随机生成新的位置
+        const randomLeft = Math.random() * (viewportWidth - box.offsetWidth);
+        const randomTop = Math.random() * (viewportHeight - box.offsetHeight);
+
+        // 设置box的新位置
+        box.style.left = randomLeft + 'px';
+        box.style.top = randomTop + 'px';
+        },100)
+        
+    });
+
+    box.addEventListener('mouseleave', () => {
+            clearTimeout(timer); // 如果鼠标在 0.5 秒前移出 box，取消移动
+        });
+
+    btn1.addEventListener('click', () => {
+        alert('666');
+    });
+
+    btn2.addEventListener('click', () => {
+        alert('菜就多练');
+    });
+
+
+    
+
+
+
+</script>

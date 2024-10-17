@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css"><!-- 引入样式表 -->
+    <title>设计稿</title><!-- 页面标题 -->
+</head>
+<body>
+   <div id="container"><!-- 整个页面的容器 -->
+   <a id="introduction" href="#briefintro">人物介绍</a><!-- "人物介绍"的锚点 -->
+   <a  id="works" href="#table">系列作品</a><!-- "系列作品"的锚点 -->
+   <a id="related" href="#suggestion">我们相关</a><br><br><br><!-- "我们相关"的锚点 -->
+   <!--以上三个都利用id选择器-->
+   <!--这个部分为对海绵宝宝的介绍以及插入all.jpeg图片的位置-->
+   <div id="briefintro"><img id="all" src="all.jpeg" alt="all" width="180" height="180"><br><br><br>
+   海绵宝宝是一只黄色的方形海绵，住在太平洋深处风光优美无人知道的比基尼海滩水域下。那里是一个没有忧愁的世界，住着一群快乐的海洋生物。
+   </div><br><br><!--这里使用两个br标签来隔开上下两个部分-->
+   <!--这个部分为海绵宝宝 派大星 章鱼哥的介绍-->
+   <div id="yellow">
+      <b id="name">海绵宝宝</b><br>是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐
+   </div>
+   <div id="pink">
+      <b id="name1">派大星</b><br>粉红色的海星，很可爱，和海绵宝宝交情最好。
+   </div>
+   <div id="blue">
+      <b id="name2">章鱼哥</b><br>大鼻子章鱼，对艺术有执着的追求，本质上是一个善良且有正义感的章鱼。
+   </div>
+      <img id="yellow1" src="haimianbaobao.jpeg" alt="海绵宝宝" width="150" height="150">
+      <img id="pink1" src="paidaxing.jpeg" alt="派大星" width="150" height="150">
+      <img id="blue1" src="zhangyuge.jpeg" alt="章鱼哥" width="150" height="150">
+      <!--系列作品部分以表格的形式呈现-->
+   <table id="table" class="center">
+      <tr>
+          <th>系列</th>
+          <th>日期</th>
+          <th>集数</th>
+      </tr> 
+      <tr>
+          <td class="col1">海绵宝宝</td>
+          <td class="col2">2018年10月23日</td>
+          <td class="col3">60集</td>       
+       </tr>
+       <tr>
+          <td class="col1">海绵宝宝</td>
+          <td class="col2">2018年10月23日</td>
+          <td class="col3">60集</td>       
+       </tr>
+       <tr>
+         <td class="col1">海绵宝宝</td>
+          <td class="col2">2018年10月23日</td>
+          <td class="col3">60集</td>        
+       </tr>
+       <tr>
+         <td class="col1">海绵宝宝</td>
+         <td class="col2">2018年10月23日</td>
+         <td class="col3">60集</td>       
+       </tr>
+       <tr>
+         <td class="col1">海绵宝宝</td>
+         <td class="col2">2018年10月23日</td>
+         <td class="col3">60集</td>         
+       </tr>
+     </table>
+     <!--这里为建议板块-->
+<p id="suggestion">对我们的建议</p>
+<!--这里为提交按钮-->
+<input id="button"type="button" value="提交">
+   
+</div>
+
+</body>
+</html> 

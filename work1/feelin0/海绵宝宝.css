@@ -1,0 +1,131 @@
+/* 设定网页背景颜色 */
+body{
+    background-color: #dcf3ff;
+}
+/* 导航栏 */
+.daohang{
+    width: 780px;
+    height: 50px;
+    display: flex;
+    margin: 15px auto;
+    justify-content: space-between;
+    line-height: 50px;
+}
+a{
+    text-decoration: none;/*清除超链接下划线默认样式*/
+}
+a:hover{
+    color: gray;/*设置超链接悬浮效果*/
+}
+/* 简要介绍栏 */
+.intro{/*创建一个弹性容器*/
+    width: 800px;
+    height: 200px;
+    display: flex; /*通过flex进行弹性盒子布局*/
+    justify-content: space-between;
+    align-items: center;
+    margin: auto; /*版心居中*/
+    border: 1px solid #5883bc;
+    border-radius: 20px; 
+}
+.intro img{/*介绍栏中图片样式设定*/
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border-radius: 50%;/*将图片展示为半圆*/
+}
+.intro div{/*介绍栏中文字位置设定*/
+    box-sizing: border-box;
+    padding: 10px;
+}
+/* 人物介绍栏 */
+.chara{/*创建一个弹性容器*/
+    width: 800px;
+    height: 140px;
+    margin: 20px auto;
+    display: flex;/*通过flex进行弹性盒子布局*/
+    justify-content: space-between;/*主轴对齐方式*/
+}
+.chara div{/*弹性盒子属性*/
+    width: 210px;
+    height: 140px;
+    color: white;
+    box-sizing: border-box;/*防止盒子撑大*/
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+}
+.chara div:first-child{/*弹性盒子背景颜色*/
+    background-color: #f8cf37;
+}
+.chara div:nth-child(2){
+    background-color: #d08079;
+}
+.chara div:nth-child(3){
+    background-color: #385f98;
+}
+h4{
+    text-align: center;
+    margin: 0;
+}
+/* 角色照片栏 */
+.pic{/*创建一个弹性容器*/
+    width: 800px;
+    height: 210px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+.pic div img{/*图片尺寸设定*/
+    width: 210px;
+    height: 210px;
+    border-radius: 20px;
+}
+/* 系列作品 */
+.series{/*创建一个弹性容器*/
+    width: 800px;
+    height: 130px;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+}
+.series div{
+    width: 400px;
+    text-align: center;/*居中文字*/
+}
+.series div:first-child{
+    background-color: #99ccff;
+}
+.series div:nth-child(2){
+    background-color: #87ceeb;
+}
+.series div:nth-child(3){
+    background-color: #6699cc;
+}
+/* 我们相关 */
+.about{
+    width: 800px;
+    height: 180px;
+    margin: auto;
+    border: 2px solid hsl(201, 75%, 76%);
+    font-size: 14px;
+    text-indent: 2em;
+    border-radius: 10px;
+}
+/* 提交按钮，原本打算用表单里的input但不知道如何定位 */
+.input{
+    width: 800px;
+    height: 100px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: flex-end;
+}
+.input div{
+    width: 100px;
+    height: 50px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    background-color: #6495ed;
+    border-radius: 10px;
+}

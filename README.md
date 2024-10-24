@@ -1,21 +1,17 @@
-# Collection - frontends
+# Collection - frontend
 
-这个仓库用作保存有志于加入west2-online的同学的代码/笔记, 这里记录了他们学习过程中的点点滴滴
+这个仓库用作保存有志于加入西二在线的同学的代码、笔记，这里记录了他们学习过程中的点点滴滴。
 
-## 作业仓库
+## 学习资料
 
-请访问: [frontends作业与帮助资料](https://github.com/west2-online/learn-frontends)
+请前往 [west2-online/learn-frontend](https://github.com/west2-online/learn-frontend) 仓库查看。
 
-这个作业与帮助资料是**不断迭代的**(也就是不断在更新, 可能你做了一半作业发现作业内容变了很多)
+需要注意的是，学习资料是在不断更新的，所以学长学姐们的代码不一定对应最新的学习资料。当然，如果作业内容改动过多的话，我们会将先前的作业进行归档处理（比如移到子目录下）。
 
-对于参与正式学习的同学, 我们保留了一份**作业快照**在这个仓库里, 你可以根据作业快照来完成你的作业
+## GitHub 入门使用
 
-但是资料请访问上述仓库, 资料是随时都会更新的, 不过我们还是希望你可以养成一个**自我学习查找**的好习惯, 不要过度依赖他人
-
-## Github入门使用
-
-请访问: [飞书 - Git与Github超容易入门](https://west2-online.feishu.cn/wiki/Lsz9w3CiGinXzgkevtmceHZknrf)
+请查看我们的飞书文档：[Git 与 GitHub 超容易入门](https://west2-online.feishu.cn/wiki/Lsz9w3CiGinXzgkevtmceHZknrf)。
 
 ## 提交作业
 
-请访问: [飞书 - 如何提交我的作业](https://west2-online.feishu.cn/wiki/Zvqow0CUxig3iWkWQgBcHp4AnHe)
+请查看我们的飞书文档：[如何提交我的作业](https://west2-online.feishu.cn/wiki/Zvqow0CUxig3iWkWQgBcHp4AnHe)。

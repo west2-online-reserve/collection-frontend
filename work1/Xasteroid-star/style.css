@@ -1,124 +1,176 @@
-/* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126 License: none (public domain) */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
+* {
+  margin: 0 auto;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-} /* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+  box-sizing: border-box;
 }
 body {
-  line-height: 1;
+  background-color: #dcf3ff;
 }
-ol,
-ul {
+/* 导航条布局 */
+.nav {
+  width: 1200px;
+  margin: 20px 240px;
+  height: 50px;
+}
+.nav li {
+  font: 16px 微软雅黑;
+  float: left;
   list-style: none;
+  line-height: 50px;
 }
-blockquote,
-q {
-  quotes: none;
+.nav a {
+  color: black;
+  padding: 0 168px;
+  display: block;
+  text-decoration: none;
 }
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
+.nav a:hover {
+  background-color: aliceblue;
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+/* 故事背景 */
+.box1 {
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 1080px;
+  height: 200px;
+  border: 2px solid #accae7;
+  padding: 0 10px;
+}
+
+.box1 img {
+  float: left;
+  width: 150px;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.content {
+  margin-top: 80px;
+  text-align: justify;
+  font: bold;
+}
+
+.box2 {
+  color: white;
+  margin: 25px auto;
+  width: 1080px;
+  justify-content: center;
+  height: 110px;
+}
+
+.box2 h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.box2 p {
+  text-align: left;
+  padding: 0 5px;
+}
+.left1 {
+  height: 110px;
+  float: left;
+  margin-right: 255px;
+  border-radius: 10px;
+  width: 190px;
+  padding-top: 10px;
+  background-color: #f8cf37;
+}
+.center1 {
+  height: 110px;
+  float: left;
+  margin-right: 255px;
+  border-radius: 10px;
+  width: 190px;
+  padding-top: 10px;
+  background-color: #d08077;
+}
+.right1 {
+  height: 110px;
+  float: left;
+  border-radius: 10px;
+  width: 190px;
+  padding-top: 10px;
+  background-color: #385f98;
+}
+
+.box3 {
+  display: flex;
+  height: 250px;
+  width: 1080px;
+  margin: 10px auto;
+}
+.box3 img {
+  border-radius: 10px;
+  width: 190px;
+  margin-right: 255px;
+  height: 190px;
+}
+/* 系列作品 */
+.box4 {
+  width: 1080px;
+  margin: 0 306px;
+}
+
+/* 与我们相关 */
+.box4 {
+  float: left;
+  width: 1080px;
+}
+.ii {
+  text-align: center;
+  float: left;
+  padding-inline: 311px;
+}
+.jj {
+  text-align: center;
+  float: left;
+  padding-inline: 169px;
+}
+.kk {
+  text-align: center;
+  float: left;
+  padding: 0 10px;
+}
+.box5 {
+  text-align: center;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 1080px;
+}
+.i {
+  text-align: center;
+  padding: 0 288px;
+  float: left;
+  background-color: #99ccff;
+}
+.j {
+  text-align: center;
+  padding: 0 130px;
+  float: left;
+  background-color: #87ceeb;
+}
+.k {
+  text-align: center;
+  padding: 0px 10px;
+  float: left;
+  background-color: #6699cc;
+}
+.box6 {
+  border-radius: 10px;
+  margin: 150px auto;
+  width: 1080px;
+  border: 2px solid #b2e1f6;
+}
+.button {
+  float: right;
+  background-color: #6495ed;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  margin: -100px 300px;
+  cursor: pointer;
 }

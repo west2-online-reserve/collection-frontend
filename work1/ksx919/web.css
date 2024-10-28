@@ -113,8 +113,29 @@ body{
     top:800px;
     left:200px;
 }/*设置表格的位置*/
+#tb{
+    border-collapse: collapse;
+}
+#tbnr{
+    border-radius: 15px;
+}
+table tbody tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+  }
+  
+  table tbody tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+  }
+  
+  table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+  
+  table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
 td:nth-child(1) {
-    background-color: rgb(242, 0, 255); /* 设置背景颜色 */
+    background-color: rgb(0, 200, 255); /* 设置背景颜色 */
     width: 636px;
     text-align: center;
 }/*设置表格第一列的颜色和宽度*/
@@ -124,7 +145,7 @@ td:nth-child(2) {
     text-align: center;
 }/*设置表格第二列的颜色和宽度*/
 td:nth-child(3) {
-    background-color: rgb(175, 230, 173); /* 设置背景颜色 */
+    background-color: rgb(173, 197, 230); /* 设置背景颜色 */
     width:100px;
     text-align: center;
 }/*设置表格第三列的颜色和宽度*/
@@ -137,17 +158,29 @@ td:nth-child(3) {
     border: 2px solid #0000ff;
     border-radius: 25px;
 }/*设置给我们建议一栏的边框*/
+
 #tj{
     position:absolute;
-    top:1300px;
+    top:1270px;
     right: 200px;
     width:100px;
     height:50px;
-    border:#0000ff;
-    border-radius: 10px;
-    background-color: #0000ff;
 }/*设置提交按钮的边框*/
 #wz2{
     color:white;
     text-align: center;/*居中*/
 }/*设置提交按钮的文字*/
+#submit-btn {
+    font-size: 24px; /* 将字体放大一倍 */
+    padding: 15px 30px; /* 调整按钮内边距，放大按钮 */
+    background-color: #4c77af; /* 添加背景颜色，提升视觉效果 */
+    color: white; /* 设置按钮文字颜色 */
+    border: none; /* 移除默认边框 */
+    border-radius: 10px; /* 添加圆角 */
+    cursor: pointer; /* 鼠标悬停时变为手型 */
+    transition: background-color 0.3s ease; /* 添加渐变效果 */
+}
+
+#submit-btn:hover {
+    background-color: #45a049; /* 添加悬停时的颜色变化 */
+}

@@ -1,0 +1,123 @@
+#container{
+    width:900px;
+    height:1000px;
+    background-color:#def3ff;
+}/*这里设置整体的背景色*/
+/*对顶上三个导航的颜色 距离 设置*/
+#introduction{
+    font-size:15px;
+    float:left;
+    text-align:center;
+    width:300px;
+    height:5px;
+}
+#works{
+    font-size:15px;
+    float:left;
+    text-align:center;
+    width:300px;
+    height:5px;
+}
+#related{
+    font-size:15px;
+    float:left;
+    text-align:center;
+    width:300px;
+    height:5px;
+}
+/*对左边为all.jpeg图片的这个框架进行颜色 大小设置*/
+#briefintro{
+    border:3px solid #5abcbd;
+    margin:0px 75px;
+    border-radius:20px;
+    width:700px;
+    height:140px;
+    padding:5px 20px 50px 0px;
+}
+#all{
+    float:left;
+    margin:0px 30px 0px 5px;
+}
+/*对下面海绵宝宝 派大星 章鱼哥的介绍进行颜色 大小设置*/
+/*以下三个为海绵宝宝 派大星 章鱼哥的文字介绍部分设置*/
+#yellow{
+    margin:0px 67px 15px 70px;
+    border:3px solid #f7cf39;
+    border-radius:25px;
+    width:200px;
+    height:100px;
+    color:white;
+    background-color: #f7cf39;
+    float:left;
+    text-align: center;
+}
+#blue{
+    margin:0px 78px 15px 50px;
+    border:3px solid #395d94;
+    border-radius: 25px;
+    width:200px;
+    height:100px;
+    color:white;
+    background-color: #395d94;
+    float:right;
+    text-align: center;
+}
+#pink{
+    margin-bottom:15px;
+    border: solid #ce827b;
+    border-radius:25px;
+    width:200px;
+    height:100px;
+    color:white;
+    background-color: #ce827b;
+    float:left;
+    text-align: center;
+}
+/*以下为海绵宝宝 派大星 章鱼哥的图片部分设置*/
+#yellow1{
+    margin-left:96px;
+}
+#pink1{
+    margin-left:123px;
+}
+#blue1{
+    margin-left:120px;
+}
+/*以下为表格部分设置*/
+#table{
+    margin:20px 72px;
+    border:1px solid transparent;
+    width:750px;
+    height:150px;
+    border-collapse: collapse;
+}
+.center{
+    text-align: center;
+}
+.col1{
+    background-color: #9ccbff;
+}
+.col2{
+    background-color: #84cfef;
+}
+.col3{
+    background-color: #639ace;
+}
+/*以下为建议部分设置*/
+#suggestion{
+    border:3px solid #8ccfef;
+    border-radius:10px;
+    width:750px;
+    height:120px;
+    margin:40px 70px 20px 70px;
+}
+/*以下为按钮部分设置*/
+#button{
+    width:100px;
+    height:30px;
+    background-color:#6396ef;
+    border: 3px solid #6396ef;
+    border-radius:3px;
+    color:white;
+    margin-left:725px;
+}

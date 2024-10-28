@@ -89,6 +89,7 @@
     border:1px solid transparent;
     width:750px;
     height:150px;
+    border-collapse: collapse;
 }
 .center{
     text-align: center;

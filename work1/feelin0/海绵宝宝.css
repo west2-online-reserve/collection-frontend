@@ -106,6 +106,7 @@ h4{
 .about{
     width: 800px;
     height: 180px;
+    display:block;
     margin: auto;
     border: 2px solid hsl(201, 75%, 76%);
     font-size: 14px;

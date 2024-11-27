@@ -115,17 +115,9 @@ border-radius: 20px;
     #suggestion{
         border: 2px solid #87ceed;
         border-radius: 10px;
-        width:100%;
+        width:1200px;
         height: 100px;
-        padding: 10px;
 
-    }
-    input[type="text"]{
-        width: 100%;
-        /*padding: 10px;
-        margin-top: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;*/
     }
     input[type="submit"]{
         background-color: #6495ed;
@@ -134,10 +126,12 @@ border-radius: 20px;
         border-radius: 5px;
         border: none;
         cursor: pointer;
+        margin-left: 1150px;
     }
     input[type="submit"]:hover{
         background-color: #216090;
         margin-top: 10px;
+
     }
     .advice{
         display: flex;

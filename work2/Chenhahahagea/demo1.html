@@ -72,6 +72,7 @@
         document.getElementById("time").innerHTML = time.toLocaleString();
       }
       changeTime = setInterval(update, 1000);
+      update();
       var blue = document.getElementById("blue");
       // 鼠标悬停
       blue.addEventListener(

@@ -1,0 +1,101 @@
+
+/* 基本设置 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f8ff;
+}
+
+/* 身体部分 */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 全片介绍环节 */
+.intro-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.intro-image {
+    width: 300px;
+    border-radius: 10px;
+    margin-right: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 角色介绍环节 */
+#characters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.character {
+    flex-basis: 30%;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.character-image {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* 系列介绍环节 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4682b4;
+    color: white;
+}
+
+/* 关于我们介绍环节 */
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+/* 版权环节 */
+footer {
+    background-color: #4682b4;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}

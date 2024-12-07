@@ -72,6 +72,7 @@
         time.toLocaleTimeString();
         el.innerHTML=time.toLocaleDateString()+' '+time.toLocaleTimeString();
   };
+  updateTime();
   let intervalId=setInterval(updateTime,1000);
   let blueBox=document.getElementById('blue');
   blueBox.addEventListener('mousemove', function() {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location"></span></p>
+
+    <script>
+        // 使用 fetch 方法请求 API
+        fetch("https://myip.ipip.net/json")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("请求失败");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                document.getElementById("ip").textContent = data.data.ip; // 显示 IP 地址
+                document.getElementById("location").textContent = data.data.location; // 显示地理位置
+            })
+            .catch((error) => {
+                document.getElementById("ip").textContent = "请求失败，无法解析 IP";
+                document.getElementById("location").textContent = "请求失败，无法解析地理位置";
+                console.error("error:", error);
+            });
+        /**
+         * 为什么在这个任务中需要使用 id 选择器来查找插入查询结果的元素?
+         *
+         * IP和地理位置是唯一信息，id 同样对应唯一的 html 元素，避免多元素冲突的可能。
+         */
+    </script>
+  </body>
+</html>

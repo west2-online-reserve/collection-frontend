@@ -1,0 +1,192 @@
+body {
+    margin: 0;
+    font-family: 'Microsoft yahei';
+    background-color: #DDF3FF;
+}
+
+.bigFont {
+    font: 20px 'Microsoft yahei';
+}
+
+.smallFont {
+    font: 700 16px 'Microsoft yahei';
+}
+
+.left {
+    text-align: left; /* 左边标题靠左 */
+}
+
+.center {
+    text-align: center; /* 中间标题居中 */
+}
+
+.right {
+    text-align: right; /* 右边标题靠右 */
+}
+
+.container1 {
+    display: flex; /* 使用 Flexbox 布局 */
+    align-items: center; /* 垂直居中对齐 */
+    border: 2px solid #5D82BC; /* 方框的边框 */
+    border-radius: 25px;/*边框圆角*/
+    padding: 10px; /* 内边距 */
+    width: 1180px; /* 方框的宽度 */
+    margin: 0 auto; /* 上下外边距为0 左右自动 */
+}
+
+.container2 {
+    display: flex; /* 使用 Flexbox 布局 */
+    justify-content: space-between; /* 元素之间均匀分布 */
+    width: 1220px; /* 方框的宽度 */
+    margin: 50px auto; /* 居中容器 */
+}
+
+.box {
+    width: 200px; /* 块元素宽度 */
+    height: 150px; /* 块元素高度 */
+    border: none; /* 边框 */
+    padding: 10px; /* 内边距 */
+    border-radius: 25px;/*边框圆角*/
+    display: flex;
+    flex-direction: column; /* 设置子元素垂直排列 */
+    justify-content: center; /* 垂直居中内容 */
+    align-items: center; /* 水平居中内容 */
+    margin: 10px; /* 块元素之间的间距 */
+    color: #ffffff;/*文字颜色*/
+}
+
+.yellow{
+    background-color: #F5D036;
+}
+
+.pink{
+    background-color: #CE827A;
+}
+
+.blue{
+    background-color: #3D5E98;
+}
+
+.rectangle-image {
+    width: 216px; /* 图片宽度 */
+    height: 300px; /* 图片高度 */
+    border-radius: 25px; /* 圆角 */
+}
+
+.circle-image {
+    width: 200px; /* 图片宽度 */
+    height: 200px; /* 图片高度 */
+    border-radius: 100%; /* 圆形效果 */
+    margin-right: 10px; /* 图片与文字之间的间距 */
+}
+
+.container3 {
+    display: flex; /* 使用 Flexbox 布局 */
+    border: 2px solid #8BCDED; /* 方框的边框 */
+    border-radius: 25px;/*边框圆角*/
+    padding: 10px; /* 内边距 */
+    width: 1180px; /* 方框的宽度 */
+    height: 200px;
+    font-size: 16px;
+    color: #000;
+    margin: 0 auto;
+}
+
+.custom-table {
+    margin: 50px auto; /*居中对齐*/
+    border-collapse: collapse; /* 合并边框 */
+    width: 1200px;
+    height: 120px;
+    border: none;
+ }
+ 
+.custom-table th,.custom-table td {
+     border: none; /* 设置边框 */
+     padding: 0; /* 去掉内边距 */
+     text-align: center; /* 设置文本居中 */
+ }
+ 
+.no-border {
+    border: none;
+}
+
+.no-border th{
+    border: none;
+}
+
+.backBlue1{
+    background-color: #9DCBFF;
+}
+
+.backBlue2{
+    background-color: #8BCDEB;
+}
+
+.backBlue3{
+    background-color: #6A98CC;
+}
+
+
+/* 设置第一列的宽度 */
+th:nth-child(1), td:nth-child(1) {
+    width: 300px; /* 设置系列列的宽度 */
+
+}
+
+/* 设置第二列的宽度 */
+th:nth-child(2), td:nth-child(2) {
+    width: 100px; /* 设置日期列的宽度 */
+}
+
+/* 设置第三列的宽度 */
+th:nth-child(3), td:nth-child(3) {
+    width: 50px; /* 设置集数列的宽度 */
+  
+}
+
+.container5 {
+    display: flex; /* 使用 Flexbox 布局 */
+    border: none; /* 方框的边框 */
+    border-radius: 25px;/*边框圆角*/
+    padding: 10px; /* 内边距 */
+    width: 1200px; /* 方框的宽度 */
+    height: 200px;
+    font-size: 16px;
+    color: #000;
+    margin: 10px auto;
+}
+
+.style-in {
+    background-color: transparent; /* 背景颜色 */
+    border: 2px solid #8BCDED; /* 边框 */
+    border-radius: 5px; /* 边框圆角 */
+    padding: 10px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    width: 100%; /* 宽度 */
+    height: 200px; /* 高度 */
+    outline: none; /* 去掉聚焦时的轮廓 */
+    text-align: left; /* 文本左对齐 */
+    vertical-align: top; /* 垂直对齐到顶部 */
+    resize: none; /* 禁止调整大小 */
+
+}
+
+.container4 {
+    display: flex; /* 弹性盒子布局 */
+    justify-content: flex-end; /* 将所有子元素向主轴的结束位置（右边）对齐 */
+    border: none;
+    width: 1200px;
+    height: 80px;
+    margin:0 auto;
+    padding: 10px;
+}
+
+button {
+    padding: 5px 60px;
+    background-color: #6B94ED;
+    font: 20px 'Microsoft yahei';
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /* 设置鼠标悬停可点击 */
+}

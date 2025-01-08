@@ -1,0 +1,166 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #dcf3ff;
+}
+/* 导航条布局 */
+.nav {
+  width: 1200px;
+  margin: 20px 240px;
+  height: 50px;
+}
+.nav li {
+  font: bolder 16px "微软雅黑";
+  float: left;
+  list-style: none;
+  line-height: 50px;
+}
+.nav a {
+  color: black;
+  padding: 0 168px;
+  display: block;
+  text-decoration: none;
+}
+.nav a:hover {
+  background-color: aliceblue;
+}
+/* 故事背景 */
+.box1 {
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 1080px;
+  height: 200px;
+  border: 2px solid #accae7;
+  padding: 0 10px;
+}
+
+.box1 img {
+  float: left;
+  width: 150px;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.content {
+  margin-top: 80px;
+  text-align: justify;
+
+  font: bold;
+}
+
+.box2 {
+  color: white;
+  margin: 25px auto;
+  width: 1080px;
+  justify-content: center;
+  height: 110px;
+}
+
+.box2 h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.box2 p {
+  text-align: left;
+  padding: 0 5px;
+}
+.left1 {
+  height: 110px;
+  float: left;
+  margin-right: 255px;
+  border-radius: 10px;
+  width: 190px;
+  padding-top: 10px;
+  background-color: #f8cf37;
+}
+.center1 {
+  height: 110px;
+  float: left;
+  margin-right: 255px;
+  border-radius: 10px;
+  width: 190px;
+  padding-top: 10px;
+  background-color: #d08077;
+}
+.right1 {
+  height: 110px;
+  float: left;
+  border-radius: 10px;
+  width: 190px;
+  padding-top: 10px;
+  background-color: #385f98;
+}
+
+.box3 {
+  display: flex;
+  height: 250px;
+  width: 1080px;
+  margin: 10px auto;
+}
+.box3 img {
+  border-radius: 10px;
+  width: 190px;
+  margin-right: 255px;
+  height: 190px;
+}
+/* 系列作品 */
+.box4 {
+  width: 1080px;
+  margin: 0 306px;
+}
+
+/* 与我们相关 */
+.box4 {
+  float: left;
+  width: 1080px;
+}
+
+/* 列表 */
+.list {
+  text-align: center;
+  margin: 0 auto;
+  width: 1080px;
+}
+.number {
+  font-weight: bolder;
+}
+.i {
+  text-align: center;
+  padding: 0 288px;
+  background-color: #99ccff;
+}
+.j {
+  text-align: center;
+  padding: 0 130px;
+  background-color: #87ceeb;
+}
+.k {
+  text-align: center;
+  padding: 0px 10px;
+  background-color: #6699cc;
+}
+textarea {
+  display: block;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 1080px;
+  height: 100px;
+  border: 2px solid #b2e1f6;
+  background-color: #dcf3ff;
+}
+.button {
+  float: right;
+  background-color: #6495ed;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 20px 300px;
+  cursor: pointer;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      .body {
+        margin-top: 100px;
+        padding-left: 20px;
+        padding-top: 1px;
+        background-color: #76f8ed6c;
+        width: 300px;
+        border-radius: 30px;
+        box-shadow: 10px 10px 10px 1px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="body">
+      <h1>What is my IP address?</h1>
+      <p>IP address: <span id="ip">Loading...</span></p>
+      <p>Location: <span id="location"></span></p>
+    </div>
+    <script>
+      fetch("https://myip.ipip.net/json")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          document.getElementById("ip").innerText = data.data.ip;
+          document.getElementById("location").innerText = data.data.location;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          document.getElementById("ip").innerText = "Error";
+          document.getElementById("location").innerText = "Error";
+        });
+      // 请在此处完成你的代码
+      // 为什么在这个任务中需要使用 id 选择器来查找插入查询结果的元素
+      //    id在这个任务中是唯一的，所以不会选错。
+      //    所以用id选择器可以让我们更准确的找到我们想要的那个div
+      //    在这个div里使用document.getElementById()可以将fetch到的内容
+      //    准确地在指定的div打印出来
+    </script>
+  </body>
+</html>

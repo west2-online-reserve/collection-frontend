@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location">{{location}}</span></p>
+
+    <script>
+      // 请在此处完成你的代码
+    const url = "https://myip.ipip.net/json"
+    fetch(url)
+     .then((response) => response.json())
+     .then((data) => {
+        console.log(data)
+        document.getElementById("ip").textContent = data.data.ip
+        // var location = data.data.location
+        // document.getElementById("location").textContent = location.join(', ');
+        document.getElementById("location").textContent = data.data.location;
+      })
+     .catch((error) => {
+        console.error(error)
+      })
+      //使用id选择器可读性高，便于维护  
+    </script>
+  </body>
+</html>

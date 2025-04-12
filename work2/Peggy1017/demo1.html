@@ -67,11 +67,13 @@
 
          
     <script>
+      var time="00:00:00";
       function set_time(){
      var currentTime = new Date().toLocaleString();
-     var time = document.getElementById('time');
+      time = document.getElementById('time');
      time.innerText = currentTime;
       }
+      set_time();
       var timer=setInterval(set_time,1000);
 
      var blue=document.getElementById('blue');

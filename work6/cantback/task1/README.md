@@ -1,6 +1,9 @@
 # 部署在本地
 
 # 运行方法
+因为福大通知系统需要cookie，我没有校园网，需要手动复制添加cookie，参数`COOKIE_HEADER`
+
+
 爬取数据
 在`/task1/config/config.js`中配置mysql
 ```SHELL

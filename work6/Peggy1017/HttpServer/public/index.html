@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件管理系统</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            background-color: var(--light-color);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-header h2 i {
+            margin-right: 10px;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .file-input-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+        
+        .file-input-container:hover {
+            border-color: var(--primary-color);
+            background-color: #f0f7ff;
+        }
+        
+        .file-input-container i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .file-input-container p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+        
+        .file-input-container .file-name {
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+            word-break: break-all;
+        }
+        
+        #fileInput {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-refresh {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: 1px solid #ddd;
+        }
+        
+        .btn-refresh:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        
+        .file-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .file-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .file-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .file-link:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+        
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .message {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .message i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            background-color: var(--light-color);
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+            
+            .card-header, .card-body {
+                padding: 1rem;
+            }
+            
+            .file-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .file-actions {
+                margin-top: 1rem;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>文件管理系统</h1>
+        <p>上传、管理和分享您的文件</p>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-cloud-upload-alt"></i> 上传文件</h2>
+            </div>
+            <div class="card-body">
+                <div id="uploadMessage" class="message hidden"></div>
+                <form id="uploadForm" class="upload-form">
+                    <div class="file-input-container">
+                        <i class="fas fa-file-upload"></i>
+                        <p>点击或拖拽文件到此处</p>
+                        <p class="file-name" id="selectedFileName"></p>
+                        <input type="file" id="fileInput" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> 上传文件</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-folder-open"></i> 文件列表</h2>
+            </div>
+            <div class="card-body">
+                <div id="fileListMessage" class="message hidden"></div>
+                <button id="refreshBtn" class="btn btn-refresh"><i class="fas fa-sync-alt"></i> 刷新列表</button>
+                <div id="fileListContainer">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 文件管理系统 | 基于 Koa.js 构建</p>
+    </div>
+
+    <script>
+        // DOM Elements
+        const uploadForm = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileInput');
+        const selectedFileName = document.getElementById('selectedFileName');
+        const uploadMessage = document.getElementById('uploadMessage');
+        const fileListContainer = document.getElementById('fileListContainer');
+        const fileListMessage = document.getElementById('fileListMessage');
+        const refreshBtn = document.getElementById('refreshBtn');
+
+        // Show file name when selected
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                selectedFileName.textContent = this.files[0].name;
+            } else {
+                selectedFileName.textContent = '';
+            }
+        });
+
+        // Show message function
+        function showMessage(element, message, isError = false) {
+            element.innerHTML = `
+                <i class="${isError ? 'fas fa-exclamation-circle' : 'fas fa-check-circle'}"></i>
+                ${message}
+            `;
+            element.classList.remove('hidden', 'success', 'error');
+            element.classList.add(isError ? 'error' : 'success');
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                element.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Get file icon based on file extension
+        function getFileIcon(filename) {
+            const extension = filename.split('.').pop().toLowerCase();
+            
+            const iconMap = {
+                'pdf': 'fa-file-pdf',
+                'doc': 'fa-file-word',
+                'docx': 'fa-file-word',
+                'xls': 'fa-file-excel',
+                'xlsx': 'fa-file-excel',
+                'ppt': 'fa-file-powerpoint',
+                'pptx': 'fa-file-powerpoint',
+                'jpg': 'fa-file-image',
+                'jpeg': 'fa-file-image',
+                'png': 'fa-file-image',
+                'gif': 'fa-file-image',
+                'svg': 'fa-file-image',
+                'mp3': 'fa-file-audio',
+                'wav': 'fa-file-audio',
+                'mp4': 'fa-file-video',
+                'mov': 'fa-file-video',
+                'zip': 'fa-file-archive',
+                'rar': 'fa-file-archive',
+                'txt': 'fa-file-alt',
+                'js': 'fa-file-code',
+                'html': 'fa-file-code',
+                'css': 'fa-file-code',
+                'json': 'fa-file-code'
+            };
+            
+            return iconMap[extension] || 'fa-file';
+        }
+
+        // Fetch and display file list
+        async function fetchFiles() {
+            fileListContainer.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch('/api/files');
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.files.length === 0) {
+                        fileListContainer.innerHTML = `
+                            <div class="empty-state">
+                                <i class="fas fa-folder-open"></i>
+                                <p>没有找到文件</p>
+                                <p>上传一些文件以开始使用</p>
+                            </div>
+                        `;
+                    } else {
+                        const fileListHtml = `
+                            <ul class="file-list">
+                                ${data.files.map(file => `
+                                    <li class="file-item">
+                                        <div class="file-info">
+                                            <i class="file-icon fas ${getFileIcon(file.name)}"></i>
+                                            <a href="${file.url}" class="file-link" target="_blank">${file.name}</a>
+                                        </div>
+                                        <div class="file-actions">
+                                            <a href="${file.url}" class="btn btn-primary" download><i class="fas fa-download"></i> 下载</a>
+                                            <button class="btn btn-danger delete-btn" data-filename="${file.name}"><i class="fas fa-trash-alt"></i> 删除</button>
+                                        </div>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        `;
+                        
+                        fileListContainer.innerHTML = fileListHtml;
+                        
+                        // Add event listeners to delete buttons
+                        document.querySelectorAll('.delete-btn').forEach(button => {
+                            button.addEventListener('click', handleDelete);
+                        });
+                    }
+                } else {
+                    showMessage(fileListMessage, '获取文件列表失败', true);
+                    fileListContainer.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>加载文件列表时出错</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                showMessage(fileListMessage, '获取文件列表时出错: ' + error.message, true);
+                fileListContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>加载文件列表时出错</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Handle file upload
+        async function handleUpload(event) {
+            event.preventDefault();
+            
+            if (!fileInput.files[0]) {
+                showMessage(uploadMessage, '请选择要上传的文件', true);
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            // Show loading state
+            uploadMessage.innerHTML = `
+                <div class="loading-spinner" style="width: 20px; height: 20px; margin-right: 10px;"></div>
+                正在上传文件...
+            `;
+            uploadMessage.classList.remove('hidden', 'success', 'error');
+            
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage(uploadMessage, `文件 "${data.filename}" 上传成功`);
+                    uploadForm.reset();
+                    selectedFileName.textContent = '';
+                    fetchFiles(); // Refresh the file list
+                } else {
+                    showMessage(uploadMessage, '上传失败: ' + data.message, true);
+                }
+            } catch (error) {
+                showMessage(uploadMessage, '上传文件时出错: ' + error.message, true);
+            }
+        }
+
+        // Handle file deletion
+        async function handleDelete(event) {
+            const filename = event.target.getAttribute('data-filename') || 
+                             event.target.parentElement.getAttribute('data-filename');
+            
+            if (confirm(`确定要删除 "${filename}" 吗?`)) {
+                try {
+                    // Show loading state in the button
+                    const button = event.target.closest('.delete-btn');
+                    const originalContent = button.innerHTML;
+                    button.innerHTML = `<div class="loading-spinner" style="width: 16px; height: 16px;"></div>`;
+                    button.disabled = true;
+                    
+                    const response = await fetch(`/api/delete/${filename}`, {
+                        method: 'DELETE'
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showMessage(fileListMessage, data.message);
+                        fetchFiles(); // Refresh the file list
+                    } else {
+                        showMessage(fileListMessage, '删除失败: ' + data.message, true);
+                        button.innerHTML = originalContent;
+                        button.disabled = false;
+                    }
+                } catch (error) {
+                    showMessage(fileListMessage, '删除文件时出错: ' + error.message, true);
+                }
+            }
+        }
+
+        // Drag and drop functionality
+        const dropZone = document.querySelector('.file-input-container');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropZone.style.borderColor = '#4361ee';
+            dropZone.style.backgroundColor = '#e3f2fd';
+        }
+        
+        function unhighlight() {
+            dropZone.style.borderColor = '#ccc';
+            dropZone.style.backgroundColor = '#f9f9f9';
+        }
+        
+        dropZone.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            if (files && files.length) {
+                fileInput.files = files;
+                selectedFileName.textContent = files[0].name;
+            }
+        }
+
+        // Event listeners
+        uploadForm.addEventListener('submit', handleUpload);
+        refreshBtn.addEventListener('click', fetchFiles);
+        
+        // Initial file list load
+        document.addEventListener('DOMContentLoaded', fetchFiles);
+    </script>
+</body>
+</html> 

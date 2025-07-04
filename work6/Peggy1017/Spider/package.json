@@ -1,0 +1,17 @@
+{
+  "name": "fzu-notice-scraper",
+  "version": "1.0.0",
+  "description": "爬取福州大学通知文件系统的通知数据",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cheerio": "^1.1.0",
+    "puppeteer": "^24.11.2"
+  }
+}

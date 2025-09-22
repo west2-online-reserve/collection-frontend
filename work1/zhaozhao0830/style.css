@@ -1,0 +1,213 @@
+body{
+    /* 设置整个界面的背景颜色 */
+    background-color: #dcf3ff;
+}
+.header{
+    /* 设置高度 */
+    height: 80px;
+    /* 设置宽度 */
+    width: 1000px;
+    /* 用margin实现水平居中 */
+	margin-left: auto;
+	margin-right: auto;
+    /* 使用flex布局，方便实现导航项的水平排列和对齐控制 */
+    display: flex;
+     /* 使导航项在头部两端分布 */
+    justify-content: space-between;
+     /* 让导航项在垂直方向上居中对齐 */
+    align-items: center;
+    /* 设置字体大小 */
+    font-size: 20px;
+}
+.header a{
+    /* 去除超链接的下划线 */
+    text-decoration: none;
+    /* 修改超链接字体的颜色为黑色 */
+    color: black; 
+    /* 添加内边距，增大点击区域 */
+    padding: 20px;
+}
+.all{
+    /* 设置高度 */
+    height: 200px;
+    /* 设置宽度 */
+    width: 1000px;
+    /* 使用flex布局，方便实现导航项的水平排列和对齐控制 */
+    display: flex;
+    /* 用margin实现水平居中 */
+    margin-left: auto;
+    margin-right: auto;
+    /* 垂直居中 */
+    align-items: center;
+    /* 添加边框 */
+    border-style: solid;
+    /* 设置边框圆角 */
+    border-radius: 15px;
+    /* 边框颜色 */
+    border-color: #5883be;
+    /* 字体大小 */
+    font-size: 18px;
+}
+.all img{
+     /* 左侧留出10px间距，避免图片紧贴边框 */
+    margin-left: 10px;
+    /* 用高度和宽度设置大小 */
+    width: 150px;
+    height: 150px;
+    /* 将图片改为圆形 */
+    border-radius: 50%;
+    /* 使图片和文字垂直居中对齐 */
+    vertical-align: middle;
+}
+.box{
+    /* 外部留出20px间距，与其他页面元素保持距离 */
+    margin: 20px;
+    width: 1000px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    /* 使用flex布局，实现三个卡片的水平排列 */
+    display: flex;
+    /* 使三个卡片之间保持均匀间距，优化布局 */
+    justify-content:space-between;
+}
+.box1,.box2,.box3{
+    /* 固定宽度为230px，确保三个盒子宽度一致，在父容器中均匀分布 */
+    width: 230px;
+    /* 固定高度为400px，与父容器高度匹配，保证内容区域大小统一 */
+    height: 400px;
+    /* 隐藏边框 */
+    border-style: hidden;
+}
+.inner1{
+    /* 设置背景颜色 */
+    background-color: #f8cf37;
+    /* 设置圆角 */
+    border-radius: 15px;
+}
+.inner2{
+    /* 设置背景颜色 */
+    background-color: #d08079;
+    /* 设置圆角 */
+    border-radius: 15px;
+}
+.inner3{
+    /* 设置背景颜色 */
+    background-color: #385f98;
+    /* 设置圆角 */
+    border-radius: 15px;
+}
+.box img{
+    /* 图片宽度与卡片宽度一致，保证完整展示 */
+    width: 230px;
+    /* 固定高度，保持图片比例协调 */
+    height: 230px;
+    /* 隐藏边框 */
+    border-style: hidden;
+    /* 设置圆角 */
+    border-radius: 15px;
+    /* 顶部留出间距，避免图片紧贴卡片边缘 */
+    margin-top: 20px;
+}
+.text{
+    /* 宽度略小于卡片，形成内边距效果 */
+    width: 200px;
+     /* 文字内容居中对齐 */
+    justify-content: center;
+    /* 固定高度，确保不同卡片文字区域一致 */
+    height: 120px;
+     /* 水平居中 */
+    margin-left: auto;
+    margin-right: auto;
+     /* 使用flex布局，方便内容居中 */
+    display: flex;
+    /* 字体颜色 */
+    color: white;
+    /* 字体大小 */
+    font-size: 18px;
+}
+.name{
+    /* 字体大小 */
+    font-size: 20px;
+    /* 加粗 */
+    font-weight: bold;
+    /* 居中对齐 */
+    text-align: center;
+    /* 字体颜色 */
+    color: white;
+}
+table{
+    /* 与页面其他元素宽度一致 */
+    width: 1000px;
+     /* 水平居中 */
+    margin-left: auto;
+    margin-right: auto;
+    /* 合并边框*/
+    border-collapse: collapse;
+    text-align: center;
+}
+table tr td:nth-child(1) {
+    /* 设置不同列的宽度不同，颜色不同 */
+    width: 56%;
+    background: #99CCFF;
+}
+
+table tr td:nth-child(2) {
+    width: 36%;
+    background: #87CEEB;
+}
+
+table tr td:nth-child(3) {
+    width: 8%;
+    background: #6699CC;
+}
+textarea{
+    /* 顶部留出较大间距，与表格区域分隔 */
+    margin-top: 50px;
+    width: 1000px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    /* 块级显示，确保对齐效果 */
+    display: block;
+    border-radius: 15px;
+    background-color: #dcf3ff;
+    border-color: #99CCFF;
+     /* 内边距，避免文字紧贴边框 */
+    padding: 10px;
+}
+textarea::placeholder{
+    /* 提示文字大小 */
+    font-size: 18px;
+    /* 提示文字颜色 */
+    color: #000;
+}
+.anniu{
+    /* 文本域有padding，加上相应的大小，确保按钮能够右对齐 */
+    width: 1020px;
+    margin: auto;
+}
+button{
+     /* 与输入框保持适当距离 */
+    margin-top: 20px;
+    /* 设置高度宽度为合适的大小 */
+    width: 100px;
+    height: 40px;
+    /* 与输入框右对齐 */
+    margin-left: auto;
+     /* 块级显示，确保对齐效果 */
+    display: block;
+    /* 设置圆角 */
+    border-radius: 5px;
+    background-color: #5883be;
+    color: white;
+    font-size: 18px;
+    /* 隐藏边框 */
+    border-style: hidden;
+}
+button:hover{
+    /* 鼠标悬停时改变颜色 */
+    background-color: #3b5998;
+    /* 鼠标变为手型 */
+    cursor: pointer;
+}

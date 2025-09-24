@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>DOM树和DOM对象</h1>
+  <h2>DOM树</h2>
+
+  <p>将HTML文档以树状结构直观表现出来,称之为DOM树或文档树</p>
+  <p>描述网页内容关系的名词</p>
+  <p>作用:直观体现标签之间的关系</p>
+  <img src="../../img/DOM树.png" style="width:1200px">
+
+  <h2>DOM对象</h2>
+  <p>DOM对象:浏览器根据HTML标签自动生成的js对象</p>
+  <p>所有标签属性都可以在js对象上找到</p>
+  <p>修改js对象的属性会自动映射到标签身上</p>
+  <p>核心思想:将网页内容当作对象处理</p>
+  <h3>document对象</h3>
+  <p>是DOM里提供的一个对象</p>
+  <p>所以他提供的属性和方法都是用来访问和操作网页内容的(例:document.write)</p>
+  <p>网页所有内容都在document里</p>
+  <p></p>
+
+  <script>
+    const h1 = document.querySelector('body h1')
+    console.dir(h1)
+  </script>
+</body>
+
+</html>

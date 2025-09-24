@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 通配符 */
+        * {
+            color: #dc18e6;
+        }
+
+        .a {
+            color: red;
+        }
+
+        #ab {
+            color: blue;
+        }
+
+        .b {
+            color: blue;
+        }
+
+        .c1 {
+            color: rgba(201, 224, 20, 0.922);
+        }
+
+        p {
+            color: green;
+        }
+
+        div {
+            /* width: 100px; */
+            /* height: 100px; */
+            background-color: red;
+            color: white;
+        }
+
+        span {
+            color: green;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1.标签选择器<br>（以html标签名作为选择器）</h2>
+    <p>迅速为同类型标签统一样式，但无法差异化设置（越细化的标签优先级越高）<br>
+        格式：标签名+声明</p>
+    <h2>2.类选择器class（最常用）<br><strong style="text-decoration: underline;">空格隔开多类名</strong></h2>
+    <p class="a">将class属性值为a的标签作为选择器<br>
+        格式：.a+声明</p>
+    <ui class="b">
+        <li class="c1">1</li>
+        <li>2</li>
+        <li>3</li>
+
+    </ui>
+
+    <div>大盒子</div><br>
+    <span>小盒子</span>
+    <h2>3.id选择器（用#开头）<br>id只能使用一次，属性值是唯一的独有的</h2>
+    <h2>4.通配符选择器（*）</h2>
+    <p>12345678</p>
+    <p class="a">12345678</p>
+    <p class="a" id="ab">12345678</p>
+    <h2>优先级：id&gt;类d&gt;标签d&gt;通配符</h2>
+
+</body>
+
+</html>

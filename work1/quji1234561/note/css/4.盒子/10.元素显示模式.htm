@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+
+        span {
+            background-color: blue;
+            height: 100px;
+            width: 100px;
+            /* 直接设置行内元素的宽度和高度是无效的，
+            默认的宽度是内容的宽度 */
+        }
+
+        .bl {
+            background-color: blue;
+        }
+
+        .gr {
+            background-color: green;
+        }
+
+        .il {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1.块元素</h1>
+    <p>标题h，段落p，div，列表ol，ul都是独占一行</p>
+    <div>1234<span>123</span></div>
+    <p>文字类（p，h）标签里不能放块元素（变成块元素也不行）</p>
+
+    <h1>2.行内元素</h1>
+    <p>a,strong,b,em,i,del,s,ins,u,span</p>
+    <p>特殊情况：链接a里可以放块级元素，但转换为块级元素更安全</p>
+    <ul>
+        <li>
+            <a href="#">
+                <div style="text-align: center;" class="bl il">图片</div>
+            </a>
+            <a href="#">
+                <div style="text-align: center;" class="gr il">名称</div>
+            </a>
+
+        </li>
+
+
+    </ul>
+
+    <h1>3.行内块元素</h1>
+    <p>img，input，td</p>
+    <p>一行多个，默认为内容的宽度（行内元素）
+        <br>可设置宽和高（块元素）
+    </p>
+
+    <h1>4.转换display</h1>
+    <p>块元素block，行内元素inline，行内块元素inline-block</p>
+    <a href="#" class="zhuan">转换</a>
+    <style>
+        .zhuan {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</body>
+
+</html>

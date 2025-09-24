@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>正则表达式(Reguler Expression)</h1>
+
+  <h2>1.介绍</h2>
+  <p>用于匹配字符串中字符组合的模式,在js中正则表达式也是对象</p>
+  <p>通常用来查找,替换那些符合正则表达式的文本,许多语言都支持正则表达式</p>
+  <h3>场景:</h3>
+  <h4>匹配</h4>
+  <p>验证表单:用户名表单只能输入英文字母,数字或下划线,昵称输入框可以输入中文</p>
+  <h4>替换</h4>
+  <p>过滤掉页面内容中的一些敏感词</p>
+  <h4>提取</h4>
+  <p>从字符串中获取想要的部分</p>
+
+  <h2>2.语法</h2>
+  <h3>定义规则</h3>
+  <p>const 变量名 = /表达式/</p>
+
+
+  <h3>查找</h3>
+  <h5>规则.test(被检测的字符串)</h5>
+  <p>返回布尔值</p>
+  <h5>规则.exec(被检测的字符串)</h5>
+  <p>真则返回数组,假则返回null</p>
+  <script>
+    const str = '作为例子的句子'
+    //定义规则
+    const reg1 = /例子/
+    const reg2 = /空/
+    console.log(reg1.test(str));//true
+    console.log(reg2.test(str));//false
+    console.log(reg1.exec(str));//['例子', index: 2, input: '作为例子的句子', groups: undefined]
+    console.log(reg2.exec(str));//null
+
+  </script>
+
+
+</body>
+
+</html>

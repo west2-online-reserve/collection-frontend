@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>节点操作</h1>
+
+  <h2>1.DOM节点</h2>
+  <h3>1.元素节点</h3>
+  <h3>2.属性节点</h3>
+  <h3>3.文本节点</h3>
+
+  <h2>2.查找节点</h2>
+  <p>通过DOM对象之间的关系查找</p>
+  <p>场景:关闭按钮,关闭父元素</p>
+  <h3>1.父节点</h3>
+  <h4>.parentNode</h4>
+  <p>可以一层层往上查找.parentNode.parentNode</p>
+  <h3>2.子节点</h3>
+  <h4>.childNodes</h4>
+  <p>获得所有子节点,包括文本节点、注释节点等</p>
+  <h4>.children</h4>
+  <p>仅获得元素节点</p>
+  <p>返回伪数组</p>
+  <h3>3.兄弟节点</h3>
+  <h4>.nextElementSibling</h4>
+  <h4>.previousElementSibling</h4>
+
+
+  <h2>3.增加节点</h2>
+  <h3>1.创建</h3>
+  <h4>document.createElement('标签名')</h4>
+  <h3>2.追加</h3>
+  <h4>父元素DOM对象.appendChild(元素对象)</h4>
+  <h4>父元素DOM对象.inserBefore(元素对象,哪个元素前)</h4>
+
+  <ul></ul>
+  <script>
+    const ul = document.querySelector('ul')
+    const li = document.createElement('li')
+    li.innerHTML = '新建li'
+    ul.appendChild(li)
+    //置顶
+    // ul.insertBefore(li, ul.children[0])
+  </script>
+  <h3>3.克隆</h3>
+  <h4>DOM元素.cloneNode(布尔值)</h4>
+  <p>true克隆时包含子元素,false(默认)不包含子元素</p>
+  <script>
+    function cloneli() {
+      const li1 = li.cloneNode(true)
+      li1.innerHTML = '克隆li'
+      ul.insertBefore(li1, ul.children[0])
+    }
+    cloneli()
+    cloneli()
+    cloneli()
+  </script>
+
+
+  <h2>4.删除节点</h2>
+  <h4>父元素.removeChild(要删除的元素)</h4>
+  <script>
+    ul.removeChild(ul.children[0])
+  </script>
+
+
+</body>
+
+</html>

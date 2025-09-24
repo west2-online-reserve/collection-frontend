@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        obj = {
+            a: 1,
+            b: 2
+        };
+
+        Object.keys(obj).forEach((key) => {
+            let value = obj[key]
+            Object.defineProperty(obj, key, {
+                get() {
+                    console.log(value)
+                    return value
+                },
+                set(newValue) {
+                    console.log(value, newValue)
+                    value = newValue
+                }
+            })
+        })
+
+        const a = obj.a // 控制台输出 1
+        obj.b = 3 // 控制台输出 2,3
+    </script>
+</body>
+
+</html>

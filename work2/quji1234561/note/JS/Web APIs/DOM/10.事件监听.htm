@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>事件监听</h2>
+  <p>让程序检测是否有事件产生,一旦有事件触发,就立即调用一个函数做出响应,也称为 绑定事件或者注册事件</p>
+  <h4>元素对象.addEventListener('事件类型',要执行的函数)</h4>
+  <p>事件源:被触发的dom元素</p>
+  <p>事件类型:触发的方式</p>
+  <p>事件处理程序:触发的函数</p>
+  <button></button>
+  <script>
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+      setInterval(function () {
+        document.write('1')
+      }, 1000)
+    })
+  </script>
+
+  <h4>事件监听版本</h4>
+  <p>L0</p>
+  <p>事件源.on事件=function(){}</p><!-- 赋值形式会出现覆盖的情况 -->
+  <p>L2</p>
+  <p>事件源.addEventListener(事件,事件处理函数)</p>
+</body>
+
+</html>

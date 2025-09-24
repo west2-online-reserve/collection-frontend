@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Bouns3</title>
+	</head>
+</html>
+<script>
+	obj = {a: 1, b: 2};
+	obj = new Proxy(obj, {
+		get (target, property)
+		{
+			console.log(target[property]);
+			return target[property];
+		},
+		set (target, property, value)
+		{
+			console.log(target[property]);
+			target[property] = value;
+			console.log(target[property]);
+		}
+	});
+	const a = obj.a // 控制台输出 1
+	obj.b = 3 // 控制台输出 2,3
+</script>

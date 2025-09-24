@@ -1,0 +1,184 @@
+a{
+    text-decoration:none;/* cancel underline */
+}
+.nav{
+    margin: auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+    padding-inline-start: 0px;
+    font: 14px "微软雅黑";
+    list-style: none;
+    width: 90%;
+}
+.nav-titI{
+    float: left;
+    font-size: 1.2em;
+    width: 20%;
+    line-height: 2.75em;
+    text-align: center;
+    cursor: pointer;/* pointer shape when mouse hover */
+}
+
+.nav-titI:hover {
+    background-color: rgb(119, 119, 192);
+    text-align: center;
+    border-radius: 25px;
+    text-decoration: underline;
+}
+/* -------------------------------------------------------------- */
+/* 介绍框 */
+.intro_box{
+    max-width: 1150px;
+    width: 80%;
+    height: 30vh;
+    border: 2px solid rgba(164, 218, 243, 0.897);
+    margin: auto;
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.pic_all{
+    width: 22%;
+    height: 80%;
+    margin-left: 2%;
+}
+.pic_all img{
+    width: 100%;
+    height: 100%;
+    border-radius: 250px;
+}
+.cartoon_intro{
+    width: 78%;
+    float: right;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+/* -------------------------------------------- */
+/* characters introduction */
+.intro_c{
+    max-width: 1350px;
+    display: flex;
+    justify-content: space-around;
+    width: 92%;
+    height: 20vh;
+    margin: auto;
+    margin-top: 4vh;
+    
+}
+.characters_bar{  /*introduction sentences*/
+    width: 20%;
+    height: 100%;
+    border-radius: 30px;
+    font-weight: 700;
+    color: #ffffff;
+}
+.img_per{
+    max-width: 1350px;
+    display: flex;
+    justify-content: space-around;
+    width: 92%;
+    margin: auto;
+    margin-top: 2.5vh;
+}
+.img_per img{
+    width: 20%;
+    height: 20%;
+    border-radius: 30px;
+    
+}
+#haimian_img{
+    background-color: rgb(190, 190, 10);
+}
+#xing_img{
+    background-color: pink;
+}
+#zhangyu_img{
+    background-color:rgb(54, 59, 75);
+}
+.intro{
+    margin-left: 8px;
+    margin-right: 5px;
+    font-weight: 400; 
+}
+.img_per img:hover{
+    transform: scale(1.195);
+
+}
+/* ----------------------------------------------- */
+/* table */
+table{
+    max-width: 1150px;
+    margin:auto;
+    width: 80%;
+    margin-top: 4vh;
+    border-collapse: collapse;
+    
+}
+table thead{
+    justify-content: center;
+    
+}
+table tbody{
+    text-align: center;
+    
+}
+.line3{
+    width: 10%;
+}
+/* Rounded corner of table */
+table tr:first-child .line1 {
+    border-top-left-radius: 8px;
+}
+table tr:first-child .line3 {
+    border-top-right-radius: 8px;
+}
+table tr:nth-child(4) .line1 {
+    border-bottom-left-radius: 8px;
+}
+table tr:nth-child(4) .line3 {
+    border-bottom-right-radius: 8px;
+}
+/* background color of table */
+.line1,.line3{
+    background-color: #76d3d6;
+}
+.line2{
+    background-color: #9cafe2;
+}
+/* ------------------------------------------------- */
+/* comment box */
+textarea{
+    resize: none;
+    max-width: 1150px;
+    width: 80%;
+    height: 25vh;
+    border: 2px solid rgba(164, 218, 243, 0.897);
+    background-color:rgb(226, 255, 255);
+    margin: auto;
+    margin-top: 3vh;
+    border-radius: 15px;
+    display: flex;
+    text-align: start;
+    
+}
+/* button */
+button {
+    background-color: #1f71db;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 48px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    position: absolute;
+    right: 10%;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #1d6392;
+}

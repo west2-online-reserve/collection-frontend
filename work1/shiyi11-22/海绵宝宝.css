@@ -1,0 +1,156 @@
+/* 通用样式 */
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 主体样式 */
+body{
+    font-family: Arial,sans-serif;
+    background-color: #dcf3ff;
+}
+
+/* 容器样式 */
+.container{
+    width:80%;
+    margin:0 auto;
+    padding:20px;
+}
+
+/* 头部样式 */
+.header ul{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.header ul li{
+    cursor: pointer;
+
+}
+
+/* 主内容样式 */
+.main-content{
+    display: flex;
+    align-items: center;
+    margin-top:20px;
+    border:1px solid #385f98;
+    padding:20px;
+    border-radius: 10px;
+}
+.main-content img{
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.main-content p{
+    flex:1;
+    font-size: 16px;
+    line-height: 1.5;
+
+}
+
+/* 角色样式 */
+.characters{
+    display: flex;
+    justify-content: space-between;
+    margin-top:20px;
+}
+.character-box{
+    width:200px;
+    height: 150px;
+    padding:17px;
+    border-radius: 20px;
+    color:#fff;
+    text-align: center;
+}
+
+.character-img {
+    text-align: center;
+    border-radius: 8px;
+    width: 200px;
+   }
+
+.character-img img{
+    
+    width:100%;
+    height: 100%;
+    border-radius: 10%;
+}
+
+.character-box h3{
+    margin-top: 10px;
+}
+.character-box p{
+    font-size:14px;
+    margin-top: 10px;
+}
+
+/* 角色背景颜色样式 */
+.yellow{
+    background-color: #f8cf37;
+}
+.pink{
+    background-color: #d08079;
+}
+.blue{
+    background-color: #385f98;
+}
+
+/* 系列信息样式 */
+.series-info{
+    margin-top:10px;
+    padding:20px;
+    border-radius: 8px;
+}
+
+/* 表格样式 */
+table{
+    width:100%;
+    border-collapse: collapse;
+    margin-top:20px;
+}
+th,td{
+    padding:2px;
+    text-align:center;
+}
+tbody{
+    text-align: center;
+}
+.column1{
+    background-color: #99ccff;
+}
+.column2{
+    background-color: #87ceeb;
+}
+.column3{
+    background-color: #6699cc;
+}
+
+/* 反馈样式 */
+.feedback{
+    margin-top: 20px;
+    padding:20px;
+}
+.feedback textarea{
+    width: 100%;
+    height: 200px;
+    border:1px solid #03a9f4;
+    padding:10px;
+    border-radius: 5%;
+    padding:10px 0 120px 0;
+    background:#dcf3ff;
+}
+.feedback button{
+    float:right;
+    margin-top:10px ;
+    padding:10px 40px;
+    background-color: #03a9f4;
+    color:#fff;
+    border: none;
+    border-radius:5px ;
+    cursor:pointer;
+}

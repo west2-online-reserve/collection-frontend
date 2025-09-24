@@ -1,0 +1,154 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(207, 231, 245);
+    font-family: 'Poppins', sans-serif;
+}
+.navigation{/*导航栏样式*/
+    display: flex;
+    justify-content: space-around;/*水平方向对齐方式*/
+    align-items: center;/*竖直方向对齐方式*/
+    height: 100px;/*高度*/
+    color: #000;
+    font-size: 20px;/*字号*/
+}
+.navigation a{/*导航栏内链接样式*/
+    text-decoration: none;
+    color: inherit;
+}
+
+.navigation h1{/*导航栏内标题样式*/
+    border: #000;
+    cursor: pointer;/*鼠标悬停时显示手型光标 */
+}
+
+.navigation h1:hover{/*鼠标放在链接上的状态*/
+    color: red;
+    background-color: #9ccded;
+}
+
+.intro{/*介绍样式*/
+    height: 1000px;/*高度*/
+}
+
+.abstract{/*简介样式*/
+    border-radius: 10px;
+    width: 85%;
+    height: 250px;
+    display: flex;            /* 确保使用 flex 布局 */
+    align-items: center;      /* 垂直居中对齐图片和文字 */
+    justify-content: center;  /*水平居中对齐内容*/
+    margin: 0 auto;           /* margin取0消除外边距，auto使使容器在父元素中水平居中。 */
+    border: 2px solid rgb(34, 97, 192);  /* 给容器添加边框 */
+}
+
+.abstract img{/*简介内图片样式*/
+    width: 200px;             /* 图片的宽度 */
+    height: 200px;            /* 图片的高度 */
+    border-radius: 50%;       /* 将图片设置成圆形 */
+    margin-left: 20px;       /* 给图片添加右边距，让文字有间距 */
+    margin-right: 20px;       /* 给图片添加右边距，让文字有间距 */
+    object-fit: cover;      
+}
+
+.chara{
+    width: 85%;
+    height: 600px;
+    display: flex;
+    margin: auto ;  
+    margin-top: 50px;
+    align-items:flex-start;
+    justify-content:space-around;
+    /* border: 2px solid rgb(34, 97, 192); */
+    flex-wrap: wrap; /* 如果容器不够宽，可以换行 */
+}
+.chara img{
+    width: 25%;
+    border-radius: 30px;
+}
+.chara img:hover{/*设置光标悬停在图片上时的样式*/
+    transform: scale(1.2);
+    transition: transform 0.3s ease;/*设置过渡效果，0.3s缓动（平滑过渡效果）*/
+}
+
+
+.text_content {
+    width: 25%;
+    height: 100px;
+    border-radius: 15px; /* 圆角边框 */
+    padding: 10px;
+    margin-top: 10px; /* 上方间距 */
+}
+.title {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+
+}
+.content {
+    font-size: 20px;
+    color: #ffffff;
+}
+.hmbb{ background-color: #ebc23c; }
+.pdx{ background-color: rgb(203, 110, 120); }
+.zyg{ background-color: rgb(57, 62, 100); }
+
+.my_table{
+    width: 85%;
+    border-collapse:collapse ;/*取collapse表合并相邻单元格的边框，取seperate表每个单元格有独立的边框*/
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.my_table tr{
+    text-align:center;
+}
+.my_table td:nth-child(1){/*设置第一列格式*/
+    background-color: #9ccded;
+    width: 50%;
+}
+.my_table td:nth-child(2){/*设置第二列格式*/
+    background-color: #8fc4d2f6;
+    width: 25%;
+}
+.my_table td:nth-child(3){/*设置第三列格式*/
+    background-color: #285486;
+    width: 25%;
+}
+
+.about{
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+.about input{
+    width: 85%;
+    margin: 0 auto;
+    height: 50%;
+    border-color: #9ccded;
+    background-color: rgb(207, 231, 245);
+    font-size: 20px; /* 设置字体大小 */
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.about button{
+    width: 10%;
+    height: 40px;
+    margin-left: 83%;
+    margin-top: 15px;
+    border: none;
+    background-color: #9ccded;
+    color: #ffffff;
+    font-size: 16px; /* 按钮字体大小 */
+    border-radius: 15px; /* 按钮圆角 */
+}
+
+
+.about button:hover{
+    color:crimson;
+    cursor: pointer;
+    background-color: aquamarine;
+}

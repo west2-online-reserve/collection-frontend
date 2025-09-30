@@ -34,7 +34,10 @@ header nav ul li:hover {
   cursor: pointer;
 }
 
-
+header nav ul li a {
+  text-decoration: none;
+  color: black;
+}
 
 /* 介绍部分 */
 .introduction {
@@ -46,8 +49,6 @@ header nav ul li:hover {
   display: flex;
   align-items: center;
 }
-
-
 
 .introduction img {
   width: 200px;

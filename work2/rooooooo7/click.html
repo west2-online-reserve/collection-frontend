@@ -74,6 +74,10 @@
         movePopup();
         const moveInterval = setInterval(movePopup, 1500);//每1.5s移动一次
 
+        wra.addEventListener('mouseover', function() {
+          movePopup();
+        })
+
         yesButton.addEventListener('click', function(e) {
           e.stopPropagation();//阻止事件冒泡
           const message = ["恭喜你终于点到了","上次点到还是上次"];

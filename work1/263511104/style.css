@@ -1,0 +1,205 @@
+/* 全局样式 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #DCF3FF;
+  /* 背景色为浅蓝色 */
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+/* 导航栏同一行显示 */
+header nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 50px 0 0 0;
+}
+
+header nav ul li {
+  font-size: 20px;
+  margin: 0 200px;
+}
+
+header nav ul li:hover {
+  color: #4a90e2;
+  cursor: pointer;
+}
+
+
+
+/* 介绍部分 */
+.introduction {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #4a90e2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.introduction img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* 圆形图片 */
+  margin-right: 20px;
+}
+
+.introduction p {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* 角色介绍部分 */
+.characters {
+  display: flex;
+  justify-content: center;
+  /* 居中排列 */
+  align-items: flex-start;
+  background: #d6f3ff;
+  padding: 20px 0;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 50px;
+  /* 固定左右间距 */
+}
+
+.character .desc {
+  width: 300px;
+  height: 200px;
+  background: #FFD43B;
+  /* 角色1黄色 */
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.character:nth-child(2) .desc {
+  background: #D98B8B;
+  /* 角色2粉色 */
+}
+
+.character:nth-child(3) .desc {
+  background: #4666A3;
+  /* 角色3蓝色 */
+}
+
+.character img {
+  width: 339.99px;
+  height: 339.99px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.character h3 {
+  margin: 0 0;
+  text-align: center;
+}
+
+.character-card.yellow {
+  background-color: #fff79a;
+}
+
+.character-card.red {
+  background-color: #ff9999;
+}
+
+.character-card.blue {
+  background-color: #4a69dc;
+}
+
+/* 系列作品部分 */
+.works {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.works table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 20px 0;
+}
+
+.works td,
+.works th {
+  border: 1px solid #4a90e2;
+  padding: 10px;
+  text-align: center;
+}
+
+.works th {
+  background-color: #99ccff;
+  font-weight: bold;
+}
+
+.works td {
+  background-color: #c6e5ff;
+  font-weight: bold;
+}
+
+.works tr:nth-child(even) td {
+  background-color: #c6e5ff;
+}
+
+/* 反馈表单部分 */
+.feedback {
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #d3e9ff;
+  padding: 20px;
+  border: 2px solid #4a90e2;
+  border-radius: 10px;
+}
+
+.feedback h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.feedback form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback textarea {
+  width: 80%;
+  height: 150px;
+  padding: 10px;
+  resize: none;
+}
+
+.feedback button {
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3d79d2;
+}

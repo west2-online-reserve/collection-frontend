@@ -1,0 +1,36 @@
+.color_blue1{
+    background-color:#66b3e3;
+}
+.color_blue2{
+    background-color:#007bff;
+}
+.color_darkblue{
+    background-color:#1d5bac;
+}
+.center{
+    text-align: center;
+    width: 80%;
+    height: 20%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.image_size{
+    width:200px;
+    height:200px;
+    border-radius: 10%;
+}
+.delete_dian{
+    list-style: none;
+    padding: 0;
+    margin: 150px 150px 50px;
+    display: inline-block;
+}
+.image_round{
+    border-radius: 50%;
+    width:150px;
+    height:150px;
+}
+.yellow-background{
+    background-color :yellow;
+
+}

@@ -65,8 +65,7 @@ body{
     transform: scale(1.5, 1.5);
 }
 .haimianbaobao{
-    float: left;
-    display:inline-block;
+    float:left;
 }
 .haimianbaobao1{
     height:140px;
@@ -76,8 +75,7 @@ body{
 }
 
 .paidaxing{
-    float: left;
-    display:inline-block;
+    float:left;
 }
 .paidaxing1{
     height:140px;
@@ -86,8 +84,7 @@ body{
     border-radius: 10%;
 }
 .zhangyuge{
-    float: left;
-    display:inline-block;
+    float:left;
 }
 .zhangyuge1{
     height:140px;

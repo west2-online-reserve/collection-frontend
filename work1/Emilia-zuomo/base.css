@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+body {
+    background-color: #DCF2FF;
+    color: #333;
+    line-height: 1.6;
+}
+
+.nav-bar {
+    background-color: #DCF2FF;
+    padding: 20px 100px;
+}
+.nav-bar ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+.nav-bar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.nav-bar a:hover {
+    color: #00a1ff;
+}
+
+.introduction {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+.intro-card {
+    border: 1px solid #00a1ff;
+    border-radius: 8px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.intro-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.character-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 100px;
+}
+h3{
+    text-align: center;
+}
+.card海绵宝宝 {
+    background-color: #F8CF37;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0 15px;
+    width: 250px;
+    height: 150px;
+}
+.card派大星 {
+    background-color: #D08079;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0 15px;
+    width: 250px;
+    height: 150px;
+}
+.card章鱼哥 {
+    background-color: #385F98;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0 15px;
+    width: 250px;
+    height: 150px;
+}
+.character-cards img {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    gap: 15px 100px;
+}
+
+.hover-img {
+    width:300px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+}
+
+.hover-img:hover{
+    transform:scale(0.95);
+    box-shadow:0 4px 8px rgba(0,0,0,0.3);
+}
+
+.series-works {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+th {
+    background-color: #DCF2FF;
+    font-weight: 600;
+}
+th,td {
+    text-align: center;
+}
+tr:nth-child(1) td:nth-child(1){
+    border-radius: 10px 0 0 0;
+    border-left: 1px solid transparent;
+}
+tr:nth-child(1) td:nth-child(3){
+    border-radius: 0 10px 0 0;
+    border-right:1px solid transparent;
+}
+tr:nth-child(5) td:nth-child(1){
+    border-radius: 0 0 0 10px;
+    border-bottom:1px solid transparent;
+}
+tr:nth-child(5) td:nth-child(3){
+    border-radius: 0 0 10px 0;
+    border-bottom:1px solid transparent;
+}
+td:nth-child(1) {
+    background-color: #99CDFF;
+}
+td:nth-child(2) {
+    background-color: #87CEEA;
+}
+td:nth-child(3) {
+    background-color: #669ACC;
+}
+
+.feedback {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+form textarea {
+    width: 100%;
+    height: 120px;
+    border: 1px solid #00a1ff;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #DCF2FF;
+    resize: vertical;
+}
+form button {
+    background-color: #6395EC;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+form button:hover {
+    background-color: #0088d4;
+}

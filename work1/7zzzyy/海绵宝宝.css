@@ -1,0 +1,145 @@
+/* 全局属性 */
+body {
+    font: 25px Arial, sans-serif;
+    background-color:#DCF3FF; /* 浅蓝色背景 */
+    margin: 0;
+    padding: 0; 
+}
+
+/* 导航栏 */
+.guide nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#4A90E2;
+    gap: 200px;      
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.guide nav ul li a {
+    color: #ffffff; 
+    text-decoration: none;
+    padding: 30px 50px;
+    display: block;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    font-size: px;
+}
+
+/* 人物介绍 */
+.character-introduction {
+    border: 2px solid #4A90E2;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 80px 100px ;
+    
+}
+    /* 图片格式 */
+.character-introduction img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 30px;
+}
+
+.characters{
+    display: flex;
+    gap: 200px;
+    justify-content: center;
+    align-items: flex-start; 
+    margin: 20px 30px;
+}
+
+.character .word {
+    color: #fff;
+    width: 280px;
+    height: 250px;
+    text-align: left;
+    border-radius: 25px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.character img {
+    border-radius: 25px;
+    width: 320px;
+    height: 280px;
+    margin: 20px;
+}
+
+.character1 .word {
+    background-color: rgba(255, 219, 46);
+}
+
+.character2 .word {
+    background-color: #D98B8B;
+}   
+
+.character3 .word {
+    background-color: #4666A3;
+}
+
+/* 系列作品 */
+.works {
+    margin: 0 ;
+    padding: 20px;
+    border-radius: 25px;
+    max-width: 2000px;
+}
+.works table {
+    table-layout: fixed;
+    width: 90%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.works td:nth-child(1) {
+    background: #92d0f4; 
+}
+
+.works td:nth-child(2) {
+    background: #7ac2e8; 
+}
+
+.works td:nth-child(3) {
+    background: #7082eb; 
+}
+
+/* 我们相关 */
+.related {
+    margin: 50px 10px;
+    text-align: center;
+}
+
+.related textarea {
+    width: 90%;
+    height: 200px;
+    border-radius: 25px;
+    font-size: 25px;
+    font-weight: bolder;
+    padding: 10px;
+    border-color: #4A90E2;
+    border-width: 2px;
+    background-color:#DCF3FF ;
+}   
+
+.related button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #fff;
+    background-color: #4A90E2;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    right:  calc(5% + 10px);
+    float: right;
+    margin-bottom: 50px;
+}

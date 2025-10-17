@@ -209,64 +209,59 @@ body{
 /* 人物简介end */
 
 /* 系列作品start */
-.series{
-    height:200px;
-    width:80%;
-    display: flex;
+.series {
+    height: 200px;
+    width: 80%;
     padding: 10px;
-    border: 5px;
-     margin: 80px auto;
-     border-radius: 30px;
+    margin: 80px auto;
+    border-radius: 30px;
 }
-.series .part1{
-    flex:6;
-    height:200px;
-    display: flex;
-    flex-direction: column;
+
+.series-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse; 
+    border-spacing: 0; 
 }
-.series .part1 .table1{
-    flex:8;
-    border-collapse: collapse;
-    background-color: lightskyblue;
-    border-radius: 30px 0px 0px 30px;
-}
-.series .part1 .title1{
-    flex:2;
+
+.table-header {
     text-align: center;
+    padding: 5px 0; 
+    font-weight: bold; 
 }
-.series .part2{
-    flex:3;
-    height:200px;
-    display: flex;
-    flex-direction: column;
+
+.table-data {
+    text-align: center;
+    padding: 5px 0; 
 }
-.series .part2 .table2{
-    flex:8;
-    border-collapse: collapse;
+
+.series-table td:first-child {
+    width: 54.5%; 
+    background-color: lightskyblue;
+    border-radius: 30px 0 0 30px; 
+}
+.series-table th:first-child{
+    width: 54.5%; 
+    font-size: 30px;
+    border-radius: 30px 0 0 30px; 
+}
+.series-table td:nth-child(2) {
+    width: 27.3%; 
     background-color: lightblue;
 }
-.series .part2 .title2{
-    flex:2;
-    text-align: center;
+.series-table th:nth-child(2) {
+    width: 27.3%; 
+      font-size: 30px;
 }
-.series .part3{
-    flex:1;
-    height:200px;
-    display: flex;
-    flex-direction: column;
-}
-.series .part3 .table3{
-    flex:8;
-    border-collapse: collapse;
+.series-table td:last-child {
+    width: 18.2%; 
     background-color: lightseagreen;
-    border-radius: 0px 30px 30px 0px;
+    border-radius: 0 30px 30px 0; 
 }
-.series .part3 .title3{
-    flex:2;
-    text-align: center;
-}
-table tr td{
-    text-align: center;
+.series-table th:last-child {
+    width: 18.2%; 
+      font-size: 30px;
+    border-radius: 0 30px 30px 0; 
 }
 /* 系列作品end */
 

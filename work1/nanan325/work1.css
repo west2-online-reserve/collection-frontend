@@ -1,0 +1,321 @@
+*{
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-decoration: none;
+}
+body{
+    background-color: #f0f8ff;
+}
+
+/* 顶部start */
+.header{
+    max-width:100%;
+    height:220px;
+    background-image: url("./素材/76F9586A6E8078C37836997449129B58.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+/* 顶部end */
+
+/* 导航start */
+.nav{
+    width:100%;
+    height:50px;
+    line-height:50px;
+    background-color:lightskyblue;
+    font-size:18px;
+    display: flex;
+     margin-bottom: 30px;
+    }
+.nav .wrap{
+    width:1200px;
+    margin:0 auto;
+}
+.nav .wrap .nav-content{
+    display: flex;
+    width:100%;
+}
+.nav .wrap .nav-content li a{
+    color:chocolate;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+.nav .wrap .nav-content li a:hover{
+    transform: scale(1.2);
+}
+.nav .wrap .nav-content li:nth-child(1),.nav .wrap .nav-content li:nth-child(4){
+    flex-grow: 2;
+    text-align: center;
+}
+.nav .wrap .nav-content li:nth-child(2),.nav .wrap .nav-content li:nth-child(3){
+    flex-grow: 3;
+    text-align: center;
+}
+/* 导航end */
+
+/* 作品简介start */
+.master-piece{
+    width:80%;
+    height:500px;
+    display: flex;
+    gap:20px;
+    padding: 30px;
+    border: 5px solid lightskyblue;
+     margin: 80px auto;
+     border-radius: 50px;
+}
+.card1{
+    height:500px;
+    flex:1.3;
+}
+.card1 .img{
+    height:400px;
+    width:100%;
+    margin:50px auto;
+     background-image: url("./素材/R-C.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 100%;
+}
+.card2{
+    flex:1.3;
+    height:500px;
+}
+.card2 .img{
+    height:400px;
+    width:100%;
+    margin:50px auto;
+     background-image: url("./素材/OIP-C.webp");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 100% 100%;
+}
+.master-piece .content{
+    flex:2.4;
+    height:500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: justify;
+    text-justify:inter-word;
+}
+.master-piece .content p{
+    text-indent: 2em;
+}
+/* 作品简介end */
+
+/* 人物简介start */
+.character{
+     width:80%;
+    height:600px;
+    display: flex;
+    gap:150px;
+    padding: 5px;
+    border: 5px solid lightskyblue;
+     margin:80px auto;
+}
+.character p{
+    text-indent: 2em;
+    color: white;
+}
+.character .HMBB{
+    flex:1;
+    height:600px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.character .PDX{
+    flex:1;
+    height:600px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.character .ZYG{
+    flex:1;
+    height:600px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.character .HMBB .text{
+   flex: 4;
+   height:100%;
+   overflow: auto;
+    padding: 20px;
+     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: justify;
+    background-color: #ffeb3b;
+    border-radius: 50px;
+}
+.character .HMBB .img{
+    flex:6;
+    height:100%;
+    overflow: auto;
+    background-image: url("./素材/haimianbaobao.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50px;
+}
+.character .PDX .text{
+   flex: 4;
+   height:100%;
+   overflow: auto;
+     display: flex;
+     padding: 20px;
+      justify-content: space-around;
+    flex-direction: column;
+    text-align: justify;
+    background-color: #ff7675;
+    border-radius: 50px;
+}
+.character .PDX .img{
+    flex:6;
+   height:100%;
+    overflow: auto;
+     background-image: url("./素材/paidaxing.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50px;
+}
+.character .ZYG .text{
+   flex: 4;
+   height:100%;
+   overflow: auto;
+    padding: 20px;
+     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: justify;
+    background-color: #C7E4CF;
+    border-radius: 50px;
+}
+.character .ZYG .img{
+    flex:6;
+   height:100%;
+    overflow: auto;
+     background-image: url("./素材/zhangyuge.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50px;
+}
+/* 人物简介end */
+
+/* 系列作品start */
+.series{
+    height:200px;
+    width:80%;
+    display: flex;
+    padding: 10px;
+    border: 5px;
+     margin: 80px auto;
+     border-radius: 30px;
+}
+.series .part1{
+    flex:6;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+}
+.series .part1 .table1{
+    flex:8;
+    border-collapse: collapse;
+    background-color: lightskyblue;
+    border-radius: 30px 0px 0px 30px;
+}
+.series .part1 .title1{
+    flex:2;
+    text-align: center;
+}
+.series .part2{
+    flex:3;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+}
+.series .part2 .table2{
+    flex:8;
+    border-collapse: collapse;
+    background-color: lightblue;
+}
+.series .part2 .title2{
+    flex:2;
+    text-align: center;
+}
+.series .part3{
+    flex:1;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+}
+.series .part3 .table3{
+    flex:8;
+    border-collapse: collapse;
+    background-color: lightseagreen;
+    border-radius: 0px 30px 30px 0px;
+}
+.series .part3 .title3{
+    flex:2;
+    text-align: center;
+}
+table tr td{
+    text-align: center;
+}
+/* 系列作品end */
+
+/* 关于我们start */
+.concern{
+    width:80%;
+    height:350px;
+    display: flex;
+    padding: 30px;
+    gap:50px;
+    margin: 80px auto;
+    border-radius: 50px;
+    flex-direction: column;
+}
+.concern .form{
+    flex: 8;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.concern .form .text{
+    width:100%;
+    height:100%;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border: 2px solid lightskyblue;
+    border-radius: 30px;
+}
+.concern .button{
+    flex: 2;
+    display: flex;
+    justify-content: right;
+}
+.concern .button .put{
+    width:100px;
+    height:80%;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: lightskyblue;
+    color:black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+.concern .button .put:hover{
+    transform: scale(1.2);
+    color: lightblue;
+}
+/* 关于我们end */

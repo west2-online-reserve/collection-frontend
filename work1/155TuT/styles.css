@@ -143,10 +143,9 @@ header {
 }
 
 .cardtitle {
-    color: #dcf3ff;
     width: 100%;
     text-align: center;
-    color:#fff;
+    color: #fff;
     text-shadow:
         1px 0 0 #305367,-1px 0 0 #305367,
         0 1px 0 #305367, 0 -1px 0 #305367,
@@ -155,10 +154,9 @@ header {
 }
 
 .cardtext {
-    color: #dcf3ff;
     font-size: 0.95rem;
     line-height: 1.5;
-    color:#fff;
+    color: #fff;
     text-shadow:
         1px 0 0 #305367,-1px 0 0 #305367,
         0 1px 0 #305367, 0 -1px 0 #305367,
@@ -185,13 +183,8 @@ header {
 .playlist th,
 .playlist td {
     padding: 5px 12px;
-    border-bottom: 1px solid #305367;
+    border: 1px solid #305367;
     text-align: center;
-}
-
-.playlist th:not(:last-child),
-.playlist td:not(:last-child) {
-    border-right: 1px solid #305367;
 }
 
 .playlist tbody tr:last-child td {

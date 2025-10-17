@@ -2,6 +2,10 @@
             {
                 background-color: #DCF3FF;
             }
+            a
+            {
+                text-decoration: none;
+            }
             .center
             {
                 margin: auto;
@@ -12,12 +16,22 @@
                 font-size: 19.5px;
                 text-align: left;
             }
+            .title
+            {
+                color:white;
+                text-align: center;
+            }
+            .main_text
+            {
+               color:white;
+               text-align: left;
+            }
             .begin
             {
                 word-spacing:400px;
                 line-height: 200%;
             }
-            div.border-1
+            .border-1
             {
                 width: 1000px;
                 height: 100px;
@@ -57,12 +71,14 @@
                 border-radius:25px;
                 background-color: #385F98;
             }
-            div.border-6
+            .border-6
             {
                 width: 120px;
                 height: 50px;
                 border-radius:5px;
                 background-color: #6495ED;
+                color: white;
+                border: 2px solid #DCF3FF;
             }
             img.left
             {
@@ -79,4 +95,10 @@
             {
                 width: 200px;
                 height: 200px;
+            }
+            textarea.rail
+            {
+                background-color: #DCF3FF; 
+                height: 200px;
+                margin: auto;
             }

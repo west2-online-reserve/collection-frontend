@@ -187,10 +187,6 @@ header {
     text-align: center;
 }
 
-.playlist tbody tr:last-child td {
-    border-bottom: none;
-}
-
 .playlist thead th {
     font-weight: 600;
 }

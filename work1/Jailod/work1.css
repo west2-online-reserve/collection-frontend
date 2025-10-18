@@ -155,15 +155,17 @@ tr>td:nth-child(3){
     border-radius:5px;
 }
 
+#feedback button{
+    transform:0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
 #feedback button:hover {
     background-color: #1559d8;
-    box-shadow: black;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transform: scale(1.05);
-    transition:0.5s;
 }
 
 #feedback button:active {
     transform: scale(0.95);
     box-shadow: none;
-    transition:0.05s;
 }

@@ -60,7 +60,6 @@ body{
 /* 作品简介start */
 .master-piece{
     width:80%;
-    height:500px;
     display: flex;
     gap:20px;
     padding: 30px;
@@ -69,7 +68,6 @@ body{
      border-radius: 50px;
 }
 .card1{
-    height:500px;
     flex:1.3;
 }
 .card1 .img{
@@ -96,7 +94,6 @@ body{
 }
 .master-piece .content{
     flex:2.4;
-    height:500px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

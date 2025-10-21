@@ -63,6 +63,24 @@
       /* 把章鱼哥节点从 ul 列表中删除 */
       function remove() {
         // [请在此处填写代码]
+        const sourceList = document.getElementById('octopus');
+        const targetList = document.getElementById('octopus-sort');
+        if (targetList) {
+          targetList.innerHTML = '';
+        }
+        if (!sourceList) {
+          return;
+        }
+
+        const items = Array.from(sourceList.querySelectorAll('li'));
+        const targetItem = items.find((item) => {
+          const nameEl = item.querySelector('.name');
+          return nameEl ? nameEl.textContent.trim() === '章鱼哥' : false;
+        });
+
+        if (targetItem) {
+          targetItem.remove();
+        }
       }
 
       /*
@@ -82,26 +100,72 @@
             },
           ]
         */
+        const list = document.getElementById('octopus');
+        if (!list) {
+          return [];
+        }
+
+        return Array.from(list.querySelectorAll('li'))
+          .map((item) => {
+            const nameEl = item.querySelector('.name');
+            const weightEl = item.querySelector('.weight');
+            const name = nameEl ? nameEl.textContent.trim() : '';
+            const weightText = weightEl ? weightEl.textContent.trim() : '';
+            const weightValue = parseFloat(weightText.replace(/kg/gi, ''));
+            return {
+              name,
+              weight: weightValue,
+            };
+          })
+          .filter((item) => item.name && !Number.isNaN(item.weight));
       }
 
       /* 按章鱼重量，对 data 进行从小到大的排序，返回排序后的数组 */
       function getSortedOctopus(data) {
-        return data;
+        return data.slice().sort((a, b) => a.weight - b.weight);
       }
 
       /** 将排好序的章鱼朋友输出显示到 id 为 octopus-sort 的列表中，格式见 ul 中注释 */
       function render(data) {
         // [请在此处填写代码]
+        const targetList = document.getElementById('octopus-sort');
+        if (!targetList) {
+          return;
+        }
+
+        const numerals = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+        const fragment = document.createDocumentFragment();
+
+        data.forEach((item, index) => {
+          const li = document.createElement('li');
+          const order = numerals[index] || `${index + 1}`;
+          const weightText = `${item.weight.toFixed(1)}kg`;
+          li.textContent = `第${order}只章鱼：${item.name}，${weightText}`;
+          fragment.appendChild(li);
+        });
+
+        targetList.appendChild(fragment);
       }
 
       // 按钮点击事件处理函数
       function handleButtonClick() {
         // [请在此处填写代码]
+        remove();
+        const weightData = getWeight();
+        if (!weightData.length) {
+          return;
+        }
+        const sortedData = getSortedOctopus(weightData);
+        render(sortedData);
       }
 
       // 给 sort-btn 绑定一个点击事件，点击时触发 handleButton 函数
       // 触发后在浏览器上可以看到结果
       // [请在此处填写代码]
+      const sortButton = document.getElementById('sort-btn');
+      if (sortButton) {
+        sortButton.addEventListener('click', handleButtonClick);
+      }
     </script>
   </body>
 </html>

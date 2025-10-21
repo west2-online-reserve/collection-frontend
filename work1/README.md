@@ -1,3 +1,8 @@
-# 前端第一阶段作业：网页编写基础
+<!DOCTYPE html>
+<html>
 
-<https://github.com/west2-online/learn-frontend/blob/2024/steps/1.md>
+<body>
+<p>这是第一个段落。</p>
+</body>
+
+</html>

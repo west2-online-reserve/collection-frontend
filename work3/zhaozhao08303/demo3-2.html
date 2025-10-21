@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 16px;
+      }
+      body {
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        color: #333;
+            }
+
+      #ip, #location {
+        color: #3498db;
+      }
+      @media (max-width: 768px) {
+      .container {
+        padding: 1.8rem;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      .info-box {
+        padding: 1.2rem;
+      }
+
+      .info-box p {
+        font-size: 1rem;
+      }
+    }
+
+    </style>
+    
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location"></span></p>
+
+    <script>
+      // 请在此处完成你的代码
+      fetch('https://myip.ipip.net/json')
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          document.getElementById('ip').textContent = data.data.ip;
+          document.getElementById('location').textContent =data.data.location;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          document.getElementById("ip").innerText = "Error";
+          document.getElementById("location").innerText = "Error";
+        });
+    </script>
+  </body>
+</html>
+
+<!-- 唯一性：id 属性在 HTML 文档中具有唯一性，每个 id 值只能对应一个元素。页面中用于显示 IP 地址的<span id="ip">和位置信息的<span id="location">都是唯一的目标元素，通过 id 选择器能精准定位到这两个特定元素，避免误选其他元素。
+精准性：任务需要将查询到的 IP 地址和位置信息分别插入到对应的特定元素中，id 选择器能直接指向目标元素，确保数据准确插入到预期位置，不会与页面中其他同类标签（如其他<span>）混淆。
+高效性：从查询效率来看，浏览器对 id 选择器的解析和查找速度通常比类选择器或标签选择器更快，能更高效地定位到需要操作的元素，符合页面快速响应的需求。 -->

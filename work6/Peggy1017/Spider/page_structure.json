@@ -1,0 +1,202 @@
+{
+  "structure": {
+    "title": "组织机构-福州大学通知文件系统",
+    "bodyChildren": [
+      {
+        "tagName": "DIV",
+        "id": "",
+        "className": "",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "STYLE",
+        "id": "",
+        "className": "",
+        "childrenCount": 0
+      },
+      {
+        "tagName": "DIV",
+        "id": "browser-modal",
+        "className": "",
+        "childrenCount": 3
+      },
+      {
+        "tagName": "DIV",
+        "id": "top",
+        "className": "",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "DIV",
+        "id": "",
+        "className": "logobj",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "DIV",
+        "id": "",
+        "className": "daoh",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "DIV",
+        "id": "two-banner",
+        "className": "",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "DIV",
+        "id": "",
+        "className": "sy-content",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "DIV",
+        "id": "",
+        "className": "bot footer",
+        "childrenCount": 1
+      },
+      {
+        "tagName": "SCRIPT",
+        "id": "",
+        "className": "",
+        "childrenCount": 0
+      }
+    ]
+  },
+  "possibleNoticeContainers": [
+    {
+      "tagName": "HTML",
+      "id": "",
+      "className": "",
+      "linksCount": 114,
+      "path": "body > html"
+    },
+    {
+      "tagName": "BODY",
+      "id": "",
+      "className": "",
+      "linksCount": 114,
+      "path": "body"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "daoh",
+      "linksCount": 6,
+      "path": "body > div.daoh"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "daohc",
+      "linksCount": 6,
+      "path": "body > div.daoh > div.daohc"
+    },
+    {
+      "tagName": "DIV",
+      "id": "c1069914",
+      "className": "",
+      "linksCount": 6,
+      "path": "body > div.daoh > div.daohc > div#c1069914"
+    },
+    {
+      "tagName": "UL",
+      "id": "",
+      "className": "",
+      "linksCount": 6,
+      "path": "body > div.daoh > div.daohc > div#c1069914 > ul"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "sy-content",
+      "linksCount": 98,
+      "path": "body > div.sy-content"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "content",
+      "linksCount": 98,
+      "path": "body > div.sy-content > div.content"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "left fl",
+      "linksCount": 47,
+      "path": "body > div.sy-content > div.content > div.left.fl"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "left-list fl",
+      "linksCount": 47,
+      "path": "body > div.sy-content > div.content > div.left.fl > div.left-list.fl"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "ny-menu",
+      "linksCount": 47,
+      "path": "body > div.sy-content > div.content > div.left.fl > div.left-list.fl > div.ny-menu"
+    },
+    {
+      "tagName": "UL",
+      "id": "",
+      "className": "",
+      "linksCount": 47,
+      "path": "body > div.sy-content > div.content > div.left.fl > div.left-list.fl > div.ny-menu > ul"
+    },
+    {
+      "tagName": "LI",
+      "id": "",
+      "className": "on",
+      "linksCount": 43,
+      "path": "body > div.sy-content > div.content > div.left.fl > div.left-list.fl > div.ny-menu > ul > li.on"
+    },
+    {
+      "tagName": "UL",
+      "id": "",
+      "className": "",
+      "linksCount": 42,
+      "path": "body > div.sy-content > div.content > div.left.fl > div.left-list.fl > div.ny-menu > ul > li.on > ul"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "right fr",
+      "linksCount": 51,
+      "path": "body > div.sy-content > div.content > div.right.fr"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "list fl",
+      "linksCount": 48,
+      "path": "body > div.sy-content > div.content > div.right.fr > div.list.fl"
+    },
+    {
+      "tagName": "UL",
+      "id": "",
+      "className": "",
+      "linksCount": 40,
+      "path": "body > div.sy-content > div.content > div.right.fr > div.list.fl > ul"
+    },
+    {
+      "tagName": "DIV",
+      "id": "",
+      "className": "pb_sys_common pb_sys_normal pb_sys_style1",
+      "linksCount": 8,
+      "path": "body > div.sy-content > div.content > div.right.fr > div.list.fl > div.pb_sys_common.pb_sys_normal.pb_sys_style1"
+    },
+    {
+      "tagName": "SPAN",
+      "id": "",
+      "className": "p_pages",
+      "linksCount": 7,
+      "path": "body > div.sy-content > div.content > div.right.fr > div.list.fl > div.pb_sys_common.pb_sys_normal.pb_sys_style1 > span.p_pages"
+    }
+  ]
+}

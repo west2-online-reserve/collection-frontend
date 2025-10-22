@@ -101,7 +101,7 @@
 
         /** 按章鱼重量，对 data 进行从小到大的排序，返回排序后的数组 */
         function getSortedOctopus(data) {
-            data.sort((a, b) => a.weight - b.weight);
+            data.sort((a, b) => a.weight - b.weight);/*sort结果取决于返回值的符号，负数时a在b前，反之在后，为0则顺序不变*/
             return data;
         }
 

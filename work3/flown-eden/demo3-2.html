@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>demo3-2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>What is my IP address?</h1>
+  <p>IP address: <span id="ip">Loading...</span></p>
+  <p>Location: <span id="location">Loading...</span></p>
+  <button id="btn_ip">查询IP</button>
+  <button id="btn_location">查询地址</button>
+
+  <script>
+    // 请在此处完成你的代码
+    let btn_ip = document.getElementById("btn_ip");
+    let btn_location = document.getElementById("btn_location");
+    btn_ip.onclick = getip;
+    btn_location.onclick = getlocation;
+    async function getip() {/*async表示异步函数*/
+      console.log("getip 开始", new Date().toLocaleString());
+      document.getElementById("ip").innerText = "查询中";
+      try {
+        const data = await fetch("https://myip.ipip.net/json")/*fetch默认为get方法*/
+          .then((response) => response.json())/*将fetch返回的promise转换为js可操作的json格式*/
+        await new Promise(r => setTimeout(r, 2000)); // 模拟耗时操作
+        document.getElementById("ip").innerText = data.data.ip;
+        console.log("getip 完成", new Date().toLocaleString());
+      }
+      catch (error) {
+        console.error("Error:", error);
+        document.getElementById("ip").innerText = "Error";
+      }
+    };
+    async function getlocation() {
+      console.log("getlocation 开始", new Date().toLocaleString());
+      document.getElementById("location").innerText = "查询中";
+      try {
+        const data = await fetch("https://myip.ipip.net/json")/*fetch默认为get方法*/
+          .then((response) => response.json())/*将fetch返回的promise转换为js可操作的json格式*/
+        document.getElementById("location").innerText = data.data.location;
+        console.log("getlocation 完成", new Date().toLocaleString());
+      }
+      catch (error) {
+        console.error("Error:", error);
+        document.getElementById("location").innerText = "Error";
+      }
+    }
+    /*用id选择器可以唯一指定要插入的元素位置*/
+  </script>
+</body>
+
+</html>

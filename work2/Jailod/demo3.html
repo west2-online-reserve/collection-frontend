@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <style>
+      button {
+        text-decoration: none;
+        background: #2f435e;
+        color: #f2f2f2;
+
+        padding: 10px 30px 10px 30px;
+        font-size: 16px;
+        font-family: 微软雅黑, 宋体, Arial, Helvetica, Verdana, sans-serif;
+        font-weight: bold;
+        border-radius: 3px;
+
+        -webkit-transition: all linear 0.3s;
+        -moz-transition: all linear 0.3s;
+        transition: all linear 0.3s;
+      }
+
+      .wra {
+        background-color: gray;
+        width: 190px;
+        text-align: center;
+        height: 120px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="wra">
+        <h3>你觉得你点的到我吗</h3>
+        <button class="yes">能</button>
+        <button class="no">不能</button>
+      </div>
+    </div>
+  </body>
+
+    <script>
+      let missTimes=0;
+      let clickTimes=0;
+      const approachArea = document.querySelector(".wra");
+      const yesButton=document.querySelector(".yes");
+      let timeoutId = null;//存延迟任务的id
+
+      approachArea.addEventListener("mouseover", () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+          if (approachArea.matches(":hover")) {
+            approachArea.style.left = `${Math.random() * 80 + 10}%`;
+            approachArea.style.top = `${Math.random() * 80 + 10}%`;
+          }
+          missTimes++;
+        },150);
+        if(missTimes===13){
+        alert("还没点到，别玩了");
+      }
+      });
+
+      approachArea.addEventListener("mouseleave", () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+      });
+
+      yesButton.addEventListener("click",()=>{
+        missTimes=0;
+        clickTimes++;
+        switch(clickTimes){
+          case 1:
+            alert("上次有人点到还是在上次");
+            break;
+          case 2:
+            alert("这么多次才点到，真菜");
+            break;
+          case 3:
+            alert("还挺能点的");
+            break;
+          default:
+            alert("哼，不过点到了"+clickTimes+"次");
+        }
+      })
+
+    </script>
+  </body>
+</html>

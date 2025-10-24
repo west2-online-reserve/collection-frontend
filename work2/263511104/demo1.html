@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>阿笠博士的新发明</title>
+
+  <style>
+    body {
+      padding-left: 10vw;
+    }
+
+    .question {
+      margin-top: 30px;
+      font-size: 22px;
+    }
+
+    .box {
+      margin-top: 64px;
+      width: 60%;
+      height: 200px;
+      font-size: 24px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #blue {
+      width: 46%;
+      text-align: center;
+      line-height: 200px;
+      border: 2px solid #21a4f1;
+      transition: border-width 0.2s, box-shadow 0.2s;
+    }
+
+    #red {
+      width: 46%;
+      text-align: center;
+      line-height: 200px;
+      border: 2px solid #fc4b5a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="question">
+    <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+    <p>
+      蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。
+    </p>
+    <p>点击定格按钮，红框内显示定格的时间。</p>
+  </div>
+  <div class="box">
+    <div id="blue">
+      <span id="time"></span>
+    </div>
+    <div id="red">
+      <span id="pauseTime"></span>
+    </div>
+  </div>
+  <button id="btn" style="font-size: 24px; margin-top: 48px">定格</button>
+
+  <!-- 以上代码不可修改 -->
+
+  <!--
+        要求在下列代码中实现：
+        1. 页面上的时间每秒更新一次。
+        2. 鼠标移入 #blue 的时候 暂停时间的更新，并且有边框放大效果。
+        3. 鼠标移出 #blue 的时候 继续时间的更新，CSS 样式还原。
+        4. 点击定格按钮，#red 里面显示点击时候的时间。
+    -->
+  <script>
+    // 获取DOM元素
+    const blueBox = document.getElementById('blue');
+    const redBox = document.getElementById('red');
+    const timeDisplay = document.getElementById('time');
+    const pauseTimeDisplay = document.getElementById('pauseTime');
+    const btn = document.getElementById('btn');
+
+    // 更新时间函数
+    function updateTime() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      timeDisplay.textContent = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    // 初始更新时间并设置定时器
+    updateTime();
+    let timer = setInterval(updateTime, 1000);
+
+    // 鼠标移入蓝框事件
+    blueBox.addEventListener('mouseenter', () => {
+      // 暂停时间更新
+      clearInterval(timer);
+      // 添加放大效果
+      blueBox.style.transform = 'scale(1.1)';
+      blueBox.style.transition = 'transform 0.3s ease';
+    });
+
+    // 鼠标移出蓝框事件
+    blueBox.addEventListener('mouseleave', () => {
+      // 恢复时间更新
+      timer = setInterval(updateTime, 1000);
+      // 移除放大效果
+      blueBox.style.transform = 'scale(1)';
+    });
+
+    // 点击定格按钮事件
+    btn.addEventListener('click', () => {
+      pauseTimeDisplay.textContent = timeDisplay.textContent;
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿笠博士的新发明</title>
+    
+    <style>
+        body {
+            padding-left: 10vw;
+        }
+        .question {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+
+        .box{
+            margin-top: 64px;
+            width: 60%;
+            height: 200px;
+            font-size: 24px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #blue, #red{
+            width: 46%;
+            text-align: center;
+            line-height: 200px;
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+        }
+        #blue{
+            border: 2px solid #21a4f1;
+        }
+       
+        #blue.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(33, 164, 241, 0.5);
+        }
+        #red{
+            border: 2px solid #fc4b5a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="question">
+        <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+        <p>蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。</p>
+        <p>点击定格按钮，红框内显示定格的时间。</p>
+    </div>
+    <div class="box">
+        <div id="blue">
+            <span id="time"></span>
+        </div>
+        <div id="red">
+            <!-- 🌟 优化：红框加初始提示 -->
+            <span id="pauseTime">点击「定格」显示时间</span>
+        </div>
+    </div>
+    <button id="btn" style="font-size: 24px;margin-top: 48px;">定格</button>
+
+    <!--以上代码不可修改-->
+
+   <script >
+        document.addEventListener("DOMContentLoaded", function() {
+            // 🌟 优化：缓存所有需要操作的DOM元素，避免重复查询
+            const blueBox = document.getElementById('blue');
+            const redBox = document.getElementById('red');
+            const pauseBtn = document.getElementById('btn');
+            const timeSpan = document.getElementById('time'); 
+            const pauseTimeSpan = document.getElementById('pauseTime'); 
+            
+            // 🌟 优化：用isPaused状态控制暂停，替代反复创建/清除定时器（避免定时器累积）
+            let intervalId;
+            let isPaused = false; 
+            
+            // 🌟 优化：封装时间补零工具函数，减少重复代码
+            const addZero = (num) => num.toString().padStart(2, '0');
+
+            // 🌟 优化：封装独立的时间格式化函数，便于后续修改格式（如加星期）
+            function formatDateTime(date) {
+                const year = date.getFullYear();
+                const month = addZero(date.getMonth() + 1);
+                const day = addZero(date.getDate());
+                const hours = addZero(date.getHours());
+                const minutes = addZero(date.getMinutes());
+                const seconds = addZero(date.getSeconds());
+                const week = ['日','一','二','三','四','五','六'][date.getDay()]; // 新增星期显示
+                return `${year}/${month}/${day} 周${week} ${hours}:${minutes}:${seconds}`;
+            }
+
+            function updateBlueBoxTime() {
+                // 🌟 优化：用isPaused状态跳过更新，而非清除定时器
+                if (isPaused) return; 
+                const currentDate = new Date();
+                // 调用封装的格式化函数
+                timeSpan.textContent = formatDateTime(currentDate);
+            }
+        
+            // 🌟 优化：封装定时器启动函数，防止重复启动
+            function startTimer() {
+                clearInterval(intervalId); 
+                intervalId = setInterval(updateBlueBoxTime, 1000);
+            }
+            startTimer();
+            updateBlueBoxTime();
+        
+            blueBox.addEventListener('mouseenter', function() {
+                isPaused = true; // 仅修改状态，不清除定时器
+                // 🌟 优化：用addClass替代直接操作style，实现样式与逻辑解耦
+                blueBox.classList.add('active');
+            });
+        
+            // 鼠标移出蓝框时的操作
+            blueBox.addEventListener('mouseleave', function() {
+                isPaused = false; // 恢复状态，无需重建定时器
+                // 🌟 优化：用removeClass还原样式
+                blueBox.classList.remove('active');
+            });
+        
+            // 点击定格按钮的操作
+            pauseBtn.addEventListener('click', function() {
+                // 🌟 优化：直接获取实时时间，而非蓝框文本（避免蓝框暂停时的误差）
+                const currentTime = formatDateTime(new Date());
+         pauseTimeSpan.textContent = currentTime;
+             });
+         }); 
+    </script>
+ </body>
+ </html>

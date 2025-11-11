@@ -1,0 +1,143 @@
+body{
+    background-color: #dcf3ff; /* 设置整个界面的背景色 */
+}
+.page-header{
+    height: 80px; /* 设置高度为80px */
+    width: 1000px; /* 设置宽度为1000px */
+	margin-left: auto;
+	margin-right: auto; /* 用margin实现水平居中 */
+    display: flex; /* 使用flex布局，方便导航项水平排列和对齐控制 */
+    justify-content: space-between; /* 使导航项在头部两端分布 */
+    align-items: center; /* 让导航项在垂直方向居中对齐 */
+    font-size: 20px; /* 设置字体大小为20px */
+}
+.page-header a{
+    text-decoration: none; /* 去除超链接的下划线 */
+    color: black; /* 修改超链接字体颜色为黑色 */
+    padding: 20px; /* 添加内边距，增大点击区域 */
+}
+.overall-introduction{
+    height: 200px; /* 设置高度为200px */
+    width: 1000px; /* 设置宽度为1000px */
+    display: flex; /* 使用flex布局，方便内容排列和对齐 */
+    margin-left: auto;
+    margin-right: auto; /* 用margin实现水平居中 */
+    align-items: center; /* 内容垂直居中 */
+    border-style: solid; /* 添加边框 */
+    border-radius: 15px; /* 设置边框圆角为15px */
+    border-color: #5883be; /* 边框颜色为#5883be */
+    font-size: 18px; /* 字体大小为18px */
+}
+.overall-introduction img{
+    margin-left: 10px; /* 左侧留10px间距，避免图片紧贴边框 */
+    width: 150px;
+    height: 150px; /* 设置图片宽高为150px */
+    border-radius: 50%; /* 将图片设为圆形（圆角50%） */
+    vertical-align: middle; /* 使图片与文字垂直居中对齐 */
+}
+.character-introduction{
+    margin: 20px; /* 外部留20px间距，与其他页面元素分隔 */
+    width: 1000px;
+    height: 400px; /* 设置宽1000px、高400px */
+    margin-left: auto;
+    margin-right: auto; /* 水平居中 */
+    display: flex; /* 使用flex布局，实现三个卡片水平排列 */
+    justify-content: space-between; /* 使三个卡片之间保持均匀间距，优化布局 */
+}
+.character-introductions{
+    width: 230px; /* 固定宽度230px，确保三个盒子宽度一致，均匀分布 */
+    height: 400px; /* 固定高度400px，与父容器高度匹配，统一内容区域大小 */
+    border-style: hidden; /* 隐藏边框 */
+}
+.haimianbaobao-background{
+    background-color: #f8cf37; /* 设置背景颜色为#f8cf37 */
+    border-radius: 15px; /* 设置圆角为15px */
+}
+.paidaxing-background{
+    background-color: #d08079; /* 设置背景颜色为#d08079 */
+    border-radius: 15px; /* 设置圆角为15px */
+}
+.zhangyuge-background{
+    background-color: #385f98; /* 设置背景颜色为#385f98 */
+    border-radius: 15px; /* 设置圆角为15px */
+}
+.character-introduction img{
+    width: 230px; /* 图片宽度与卡片一致（230px），保证完整展示 */
+    height: 230px; /* 固定高度230px，保持图片比例协调 */
+    border-style: hidden; /* 隐藏边框 */
+    border-radius: 15px; /* 设置圆角为15px */
+    margin-top: 20px; /* 顶部留20px间距，避免图片紧贴卡片边缘 */
+}
+.text{
+    width: 200px; /* 宽度200px（略小于卡片，形成内边距效果） */
+    justify-content: center; /* 文字内容居中对齐 */
+    height: 120px; /* 固定高度120px，确保不同卡片文字区域一致 */
+    margin-left: auto;
+    margin-right: auto; /* 水平居中 */
+    display: flex; /* 使用flex布局，方便内容居中 */
+    color: white; /* 字体颜色为白色 */
+    font-size: 18px; /* 字体大小为18px */
+}
+.name{
+    font-size: 20px; /* 字体大小为20px */
+    font-weight: bold; /* 字体加粗 */
+    text-align: center; /* 文字居中对齐 */
+    color: white; /* 字体颜色为白色 */
+}
+table{
+    width: 1000px; /* 宽度1000px（与页面其他元素一致） */
+    margin-left: auto;
+    margin-right: auto; /* 水平居中 */
+    border-collapse: collapse; /* 合并边框 */
+    text-align: center; /* 表格内容居中对齐 */
+}
+table tr td:nth-child(1) {
+    width: 56%;
+    background: #99CCFF; /* 第一列宽度56%，背景色#99CCFF */
+}
+
+table tr td:nth-child(2) {
+    width: 36%;
+    background: #87CEEB; /* 第二列宽度36%，背景色#87CEEB */
+}
+
+table tr td:nth-child(3) {
+    width: 8%;
+    background: #6699CC; /* 第三列宽度8%，背景色#6699CC */
+}
+textarea{
+    margin-top: 50px; /* 顶部留50px间距，与表格区域分隔 */
+    width: 1000px;
+    height: 200px; /* 设置宽1000px、高200px */
+    margin-left: auto;
+    margin-right: auto; /* 水平居中 */
+    display: block; /* 块级显示，确保对齐效果 */
+    border-radius: 15px; /* 设置圆角为15px */
+    background-color: #dcf3ff; /* 背景色为#dcf3ff */
+    border-color: #99CCFF; /* 边框色为#99CCFF */
+    padding: 10px; /* 内边距10px，避免文字紧贴边框 */
+}
+textarea::placeholder{
+    font-size: 18px; /* 提示文字大小为18px */
+    color: #000; /* 提示文字颜色为黑色 */
+}
+.button-container{
+    width: 1020px; /* 宽度1020px（适配文本域padding，确保按钮右对齐） */
+    margin: auto; /* 水平居中 */
+}
+button{
+    margin-top: 20px; /* 顶部留20px间距，与输入框保持距离 */
+    width: 100px;
+    height: 40px; /* 设置宽100px、高40px */
+    margin-left: auto; /* 与输入框右对齐 */
+    display: block; /* 块级显示，确保对齐效果 */
+    border-radius: 5px; /* 设置圆角为5px */
+    background-color: #5883be;
+    color: white; /* 背景色#5883be，文字白色 */
+    font-size: 18px; /* 字体大小为18px */
+    border-style: hidden; /* 隐藏边框 */
+}
+button:hover{
+    background-color: #3b5998; /* 鼠标悬停时背景色变为#3b5998 */
+    cursor: pointer; /* 鼠标变为手型 */
+}

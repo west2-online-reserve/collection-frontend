@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location"></span></p>
+
+    <script>
+      // 请在此处完成你的代码
+      fetch("https://myip.ipip.net/json")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("ip").textContent = data.data.ip;
+          document.getElementById("location").textContent = data.data.location.join(" ");
+        })
+        .catch((error) => {
+          console.error("Error fetching IP information:", error);
+          document.getElementById("ip").textContent = "Unable to fetch IP";
+          document.getElementById("location").textContent = "Unable to fetch location";
+        });
+        //为什么在这个任务中需要使用 id 选择器来查找插入查询结果的元素?
+        //上述html代码有id的是p标签中的span，可以更精确的选择到需要修改的部分，而不是p标签整体
+    </script>
+  </body>
+</html>

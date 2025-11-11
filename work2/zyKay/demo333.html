@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <style>
+      button {
+        text-decoration: none;
+        background: #2f435e;
+        color: #f2f2f2;
+
+        padding: 10px 30px 10px 30px;
+        font-size: 16px;
+        font-family: 微软雅黑, 宋体, Arial, Helvetica, Verdana, sans-serif;
+        font-weight: bold;
+        border-radius: 3px;
+
+        -webkit-transition: all linear 0.3s;
+        -moz-transition: all linear 0.3s;
+        transition: all linear 0.3s;
+      }
+
+      .wra {
+        background-color: gray;
+        width: 190px;
+        text-align: center;
+        height: 120px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="wra">
+        <h3>你觉得你点的到我吗</h3>
+        <button class="yes">能</button>
+        <button class="no">不能</button>
+      </div>
+    </div>
+
+    <script>
+      const wra = document.querySelector('.wra');
+      const yesButton = document.querySelector('.yes');
+      const noButton = document.querySelector('.no');
+      
+      let attempts = 0;
+      let gameActive = true;
+
+      const failureMessages = [
+        "你是点不到我的！",
+        "上次有人点到我还是上次！",
+        "准备好了three two one,you're too slow~",
+        "差一点点，继续努力！",
+        "娃你是不是掉线了？",
+      ];
+      
+   
+      function moveWra() {
+        if (!gameActive) return;
+        
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const wraRect = wra.getBoundingClientRect();
+
+        const maxX = windowWidth - wraRect.width - 20;
+        const maxY = windowHeight - wraRect.height - 20;
+   
+        const newX = 10 + Math.random() * maxX;
+        const newY = 10 + Math.random() * maxY;
+        
+        wra.style.left = `${newX}px`;
+        wra.style.top = `${newY}px`;
+        wra.style.transform = 'none';
+      }
+            document.addEventListener('mousemove', function(e) {
+        if (!gameActive) return;
+        
+        const wraRect = wra.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        const wraCenterX = wraRect.left + wraRect.width / 2;
+        const wraCenterY = wraRect.top + wraRect.height / 2;
+        const distance = Math.sqrt(
+          Math.pow(mouseX - wraCenterX, 2) + 
+          Math.pow(mouseY - wraCenterY, 2)
+        );
+        
+
+        if (distance < 150 && Math.random() < 0.3) {
+          moveWra();
+        }
+      });
+      
+      wra.addEventListener('mousedown', function(e) {
+        if (!gameActive) return;
+
+        if (e.target !== yesButton && e.target !== noButton) {
+          attempts++;
+          
+          if (attempts % 3 === 0) {
+            const randomMessage = failureMessages[Math.floor(Math.random() * failureMessages.length)];
+            alert(randomMessage);
+          }
+          
+          moveWra();
+        }
+      });
+      
+      noButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!gameActive) return;
+        
+        attempts++;
+        moveWra();
+        
+        if (attempts % 3 === 0) {
+          const randomMessage = failureMessages[Math.floor(Math.random() * failureMessages.length)];
+          alert(randomMessage);
+        }
+      });
+      
+
+      yesButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!gameActive) return;
+        
+        gameActive = false;
+        alert("呀！点到了！");
+ 
+        setTimeout(function() {
+          gameActive = true;
+          attempts = 0;
+          
+          wra.style.left = '50%';
+          wra.style.top = '50%';
+          wra.style.transform = 'translate(-50%, -50%)';
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

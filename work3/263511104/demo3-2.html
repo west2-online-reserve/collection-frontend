@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>demo3-2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>What is my IP address?</h1>
+  <p>IP address: <span id="ip">Loading...</span></p>
+  <p>Location: <span id="location"></span></p>
+
+  <script>
+    // 请在此处完成你的代码
+    fetch("https://myip.ipip.net/json")
+      .then((response) => response.json())
+      // 处理解析后的JSON数据
+      .then((data) => {
+        // 获取到HTML页面中ID为ip的元素（即一个<span>标签）
+        document.getElementById("ip").innerText = data.data.ip;
+        /* 然后将data.data.ip的值赋给该元素的innerText属性，
+        也就是将用户的IP地址显示在页面上。
+         接着，通过相同的方式，将data.data.location的值赋给ID为location的元素，
+         显示用户的地理位置信息*/
+        document.getElementById("location").innerText = data.data.location;
+      })
+      // 使用.catch方法处理请求过程中可能出现的错误
+      .catch((error) => {
+        console.error("Error:", error);
+        document.getElementById("ip").innerText = "Error";
+        document.getElementById("location").innerText = "Error";
+      });
+  </script>
+</body>
+
+</html>

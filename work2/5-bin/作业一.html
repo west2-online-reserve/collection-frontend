@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>阿笠博士的新发明</title>
+
+  <style>
+    body {
+      padding-left: 10vw;
+    }
+
+    .question {
+      margin-top: 30px;
+      font-size: 22px;
+    }
+
+    .box {
+      margin-top: 64px;
+      width: 60%;
+      height: 200px;
+      font-size: 24px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #blue {
+      width: 46%;
+      text-align: center;
+      line-height: 200px;
+      border: 2px solid #21a4f1;
+      transition: all 0.3s ease;
+    }
+
+    #red {
+      width: 46%;
+      text-align: center;
+      line-height: 200px;
+      border: 2px solid #fc4b5a;
+    }
+
+    .blue-hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(33, 164, 241, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="question">
+    <p>柯南的手表坏了，最近阿笠博士刚好设计了一款新型时钟（下方蓝框）。</p>
+    <p>
+      蓝框显示当前日期，当鼠标移入蓝框时，有放大效果且时间暂停；鼠标移出后时间继续更新。
+    </p>
+    <p>点击定格按钮，红框内显示定格的时间。</p>
+  </div>
+  <div class="box">
+    <div id="blue">
+      <span id="time"></span>
+    </div>
+    <div id="red">
+      <span id="pauseTime"></span>
+    </div>
+  </div>
+  <button id="btn" style="font-size: 24px; margin-top: 48px">定格</button>
+
+  <script>
+    const timeEl = document.getElementById('time');
+    const stopEl = document.getElementById('pauseTime');
+    const blueEl = document.getElementById('blue');
+    const btnEl = document.getElementById('btn');
+
+    function padZero(num) {
+      return num < 10 ? '0' + num : num;
+    }
+
+    function formatTime(date) {
+      const year = date.getFullYear();
+      const month = padZero(date.getMonth() + 1);
+      const day = padZero(date.getDate());
+      const hours = padZero(date.getHours());
+      const minutes = padZero(date.getMinutes());
+      const seconds = padZero(date.getSeconds());
+
+      return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    function updateTime() {
+      const now = new Date();
+      timeEl.textContent = formatTime(now);
+    }
+
+    updateTime();
+
+    let timer = setInterval(updateTime, 1000);
+
+    blueEl.addEventListener('mouseenter', function () {
+      clearInterval(timer);
+      blueEl.classList.add('blue-hover');
+    });
+
+    blueEl.addEventListener('mouseleave', function () {
+      timer = setInterval(updateTime, 1000);
+      blueEl.classList.remove('blue-hover');
+    });
+
+    btnEl.addEventListener('click', function () {
+      const now = new Date();
+      stopEl.textContent = formatTime(now);
+    });
+  </script>
+</body>
+
+</html>

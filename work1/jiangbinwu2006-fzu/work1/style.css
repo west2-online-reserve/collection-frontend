@@ -1,0 +1,237 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-color: #DCF3FF;
+    font-size: 14px;
+}
+.table_box, .table_box table, .table_box tbody, .table_box thead,
+.table_box tr, .table_box th, .table_box td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.table_box table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+.container .start{
+    width: 740px;
+    height: 55px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 55px;
+}
+.start a{
+    text-decoration: none;
+    padding:5px 12px;
+    color: black;
+
+}
+.start :nth-child(2){
+    margin: 0 233px 0 233px;
+}
+.start a:hover{
+    text-decoration: underline;
+    background-color: #35679D;
+    border-radius: 20px;
+}
+.container .per-nav{
+    display: flex;
+    width: 740px;
+    height: 195px;
+    border: 2px solid #A2C2E1;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    justify-self: center;
+    align-items: center;
+}
+.per-nav img{
+    float: left;
+    width: 145px;
+    height: 145px;
+    margin-right: 20px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.per-nav p{
+    font-size: 14px;
+    text-align: left;
+}
+.character_box{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    text-align: center;
+    width: 740px;
+    height: 270px;
+    margin-bottom: 20px;
+}
+/* 海绵宝宝模块 */
+.haimian_jieshao {
+    width: 155px;
+    background-color: #F8CF37;
+    border-radius: 8px;
+    padding:5px;
+}
+.haimian_jieshao p,.haimian_jieshao h1{
+    background-color: #F8CF37;
+    color: #FFF;
+    margin: 0;
+    padding-top: 2px;
+    padding-bottom: 5px;
+}
+.haimian_jieshao p{
+    text-align: left;
+    font-weight: normal;
+}
+.haimian_box .haimian_img{
+    margin-top: 10px;
+}
+.haimian_box .haimian_img img{
+    width: 165px;
+    height: 160px;
+    border-radius: 20px;
+}
+.haimian_box .haimian_img img:hover{
+    transform:scale(1.3);
+}
+
+/* 派大星模块 */
+.daxing_box .daxing_jieshao{
+    width: 155px;
+    height: 93px;
+    padding:5px;
+    background-color: #D08079;
+    border-radius: 8px;
+}
+.daxing_box .daxing_jieshao p,.daxing_box .daxing_jieshao h1{
+    background-color: #D08079;
+    color: #FFF;
+    padding-top: 2px;
+    padding-bottom: 5px;
+}
+.daxing_jieshao p{
+    text-align: left;
+}
+.daxing_box .daxing_img{
+    margin-top: 10px;
+}
+.daxing_box .daxing_img img{
+    width: 165px;
+    height: 160px;
+    border-radius: 20px;
+}
+.daxing_box .daxing_img img:hover{
+    transform:scale(1.3);
+}
+/* 章鱼哥模块 */
+.zhangyu_box .zhangyu_jieshao{
+    width: 155px;
+    height: 95px;
+    padding:5px;
+    background-color: #376098;
+    border-radius: 8px;
+}
+.zhangyu_jieshao h1,.zhangyu_jieshao p{
+    color: #fff;
+    background-color: #376098;
+    padding-top: 2px;
+    padding-bottom: 5px;
+}
+.zhangyu_jieshao p{
+    text-align: left;
+}
+.zhangyu_box .zhangyu_img{
+    margin-top: 10px;
+}
+.zhangyu_box .zhangyu_img img{
+    width: 165px;
+    height: 158px;
+    border-radius: 20px;
+}
+.zhangyu_box .zhangyu_img img:hover{
+    transform:scale(1.3);
+}
+/* 表格部分 */
+.table_box {
+    width: 740px;
+    border-collapse: collapse; /* 添加这个合并边框和间隔 */
+    border-spacing: 0; /* 确保单元格间距为0 */
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+/* 设置各列宽度 - 应用到所有行 */
+.table_box th:nth-child(1),
+.table_box td:nth-child(1) {
+    width: 430px;  /* 第一列宽度 */
+}
+
+.table_box th:nth-child(2),
+.table_box td:nth-child(2) {
+    width: 280px;  /* 第二列宽度 */
+}
+
+.table_box th:nth-child(3),
+.table_box td:nth-child(3) {
+    width: 40px;   /* 第三列宽度 */
+}
+
+/* 设置表头背景色 */
+.table_box th {
+    border: transparent;
+}
+
+/* 设置数据行样式 */
+.table_box td {
+    text-align: center;
+}
+
+/* 第一列数据行特殊背景色 */
+.table_box td:nth-child(1) {
+    background-color: #99CCFF;
+}
+.table_box td:nth-child(2){
+    background-color: #87CEEB;
+}
+.table_box td:nth-child(3){
+    background-color: #6699CC;
+}
+
+/* 意见部分 */
+.suggestions{
+    position: relative;
+    width: 740px;
+    height: 130px;
+    border: 1px solid #8CD0EE;
+    border-radius: 8px;
+    margin: 0 auto;
+    padding:10px 0 10px 0;
+}
+.suggestions .text{
+    outline: none;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: transparent;
+}
+.suggestions .text::placeholder{
+    color: black;
+}
+.suggestions .give{
+    position: absolute;
+    right:0;
+    bottom: -30px;
+    width: 90px;
+    height: 30px;
+    border: transparent;
+    background-color: #6495ED;
+}

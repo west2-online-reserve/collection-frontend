@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .box{
+          width: 400px;
+          height: 200px;
+          text-align: center;
+          color: #515a6e;
+          background-color: #5cadff;
+          border: 3px solid #dcdee2;
+          border-radius: 20px;
+          box-shadow:0 0 6px 0 rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+
+  <body>
+  <div class="box">
+      <h1>What is my IP address?</h1>
+      <p>IP address: <span id="ip">Loading...</span></p>
+      <p>Location: <span id="location"></span></p>
+  </div>
+
+
+    <script>
+        let ips=document.getElementById('ip');
+        let locations=document.getElementById('location');
+      fetch('https://myip.ipip.net/json')
+          .then(reponse=>reponse.json())
+          .then(data=>{
+              if(ips||locations) {
+                  ips.textContent=data.data.ip||data.ip;
+                  locations.textContent=data.data.location||data.location;
+              }
+          })
+          .then('error',onerror);
+    // 关于为何选用id选择器，我认为主要有两点
+    // 1.id通常在页面中每一个id都是独一无二的具有唯一性，可以避免错选其它标签而导致样式出错
+    // 2.id选择器在所有选择器中优先级最高，这同时也可以避免样式在不知情情况下被其它语句所覆盖
+    </script>
+  </body>
+</html>

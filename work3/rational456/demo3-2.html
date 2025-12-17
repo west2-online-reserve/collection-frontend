@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location"></span></p>
+
+    <script>
+      // 请在此处完成你的代码
+      async function getYourIP()
+      {
+        try
+        {
+            const response=await fetch('https://myip.ipip.net/json');
+            if(!response.ok)
+            {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data=await response.json();
+            var ip=document.getElementById('ip');
+            var location=document.getElementById('location');
+            ip.innerText=data.data.ip;
+            location.innerText=data.data.location;
+        }
+        catch (error) 
+        {
+            console.error('Error:', error);
+        }
+      }
+      getYourIP();
+    </script>
+  </body>
+</html>

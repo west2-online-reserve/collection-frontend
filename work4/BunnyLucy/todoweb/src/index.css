@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+.overdue-glow {
+  box-shadow:
+    0 0 8px #b45309;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: stonescale;
+}
+
+a {
+  font-weight: 500;
+  color: #b45309; /* amber-700 */
+  /*text-decoration: inherit;   强制none，会导致无法实现linethrough*/
+}
+a:hover {
+  color: #92400e; /* amber-800 */
+}
+
+body {
+  margin: 0;
+}
+#root {
+  width: 100%;
+}
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #fffbeb; /* amber-50 */
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  background-color: #fef3c7; /* amber-100 */
+  border-color: #fef3c7; /* amber-100 */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #57534e;/* stone-600 */
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #92400e; /* amber-800 */
+  }
+  button {
+    background-color: #fffbeb; /* amber-50 */
+  }
+}

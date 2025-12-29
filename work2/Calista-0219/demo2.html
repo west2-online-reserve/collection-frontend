@@ -101,13 +101,16 @@
 
       /** 将排好序的章鱼朋友输出显示到 id 为 octopus-sort 的列表中，格式见 ul 中注释 */
       function render(data) {
-        const list = document.getElementById("octopus-sort");
+        const list = document.getElementById("octopus"); 
+
         list.innerHTML = ""; 
 
         data.forEach((item, index) => {
-            const li = document.createElement("li");
-            li.textContent = `第${index + 1}只章鱼：${item.name}：${item.weight}kg`;
-            list.appendChild(li);
+          const li = document.createElement("li");
+
+          li.textContent = `第${index + 1}只章鱼：${item.name}：${item.weight}kg`;
+
+          list.appendChild(li);
         });
       }
 

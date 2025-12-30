@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang = "zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg,#6FB15B 100%,#d2e5ca 0%);
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 800px;
+        width: 100%;
+        background-color: rgba(255,255,255,0.95);
+        border-radius: 24px;
+        box-shadow: 15px 15px 30px rgba(0,0,0,0.2);
+        padding: 40px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+      
+      .container:hover { 
+        transform: translateY(-5px);
+      }
+
+      h1 {
+        color:#2c3e50;
+        margin-bottom:30px;
+        font-size: 2.5rem;
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      h1:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(to right, #d2e5ca, #6FB15B );
+        border-radius: 2px;
+      }
+
+      .info-card {
+        background-color: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.05);
+        text-align: left;
+        border-left: 5px solid #d2e5ca;
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover {
+         box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+         transform: translateX(5px);
+      }
+
+      .info-card i {
+        color: #6FB15B;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        width: 30px;
+        text-align: center;
+      }
+
+      .info-card h2 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        color: #2c3e50;
+        font-size: 1.3rem;
+      }
+
+      .info-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2E7519;
+        margin-left: 45px;
+        word-break: break-all;
+      }
+
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(37,117,252,0.3);
+        border-radius: 50%;
+        border-top-color: #d2e5ca;
+        animation: spin 1s ease-in-out infinite;
+        margin-right: 10px;
+      }
+
+      @keyframes spin {
+        to {transform: rotate(360deg);}
+      }
+      
+      .footer {
+        margin-top: 40px;
+        color: gray;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      .footer a {
+        color: gray;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+        color: #2E7519;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+            padding: 25px 20px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .info-value {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class = "container">
+      <h1>What is my IP address?</h1>
+      
+      <div class = "info-card"> 
+        
+        <h2> <i class = "fas fa-network-wired"></i> IP address: </h2>
+        <div class = "info-value" id = "ip">
+            <span class = "loading"></span>
+            查询中...
+        </div>
+      </div>
+      
+      <div class = "info-card">
+        <h2> <i class = "fas fa-map-marker-alt"></i> Location: </h2>
+        <div class = "info-value" id = "location">
+            <span class = "loading"></span>
+            查询中...
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>本服务由 <a href="https://www.ipip.net/" target="_blank">IPIP.net</a>提供支持</p>
+      </div>
+    </div>
+
+    <script>
+      // 请在此处完成你的代码
+      /* fetch()是浏览器内置API,用于发起网络请求，会返回一个Promise对象，表示请求的异步操作 */ 
+      fetch("https://myip.ipip.net/json") 
+        .then((response) => response.json()) // .then()为promise对象的方法 
+        .then((data) => {
+          document.getElementById("ip").innerText = data.data.ip;
+          document.getElementById("location").innerText = data.data.location;
+        })
+        .catch((error) => {
+          console.error("Error:",error);
+          document.getElementById("ip").innerText = "查询失败";
+          document.getElementById("location").innerText = "获取位置信息失败";
+        });
+    </script>
+  </body>
+</html>

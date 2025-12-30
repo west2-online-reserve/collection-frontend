@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>海绵宝宝</title>
+        <style>
+            body {
+                background-color: rgb(204, 229, 245);
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                margin-top: 25px;
+                margin-bottom: 20px;  
+                padding: 0;
+                overflow: hidden;
+                width: 100%;
+            }
+            li {
+                float: left;
+                width: calc(100%/3); /*3个导航项*/
+            }
+            a:link,a:visited {
+                display: block;
+                width: 100%;
+                font-size: 20px;
+                color: black;
+                text-align: center;
+                padding:10px 0;
+                text-decoration: none;
+
+            }
+            a:hover,a:active {
+                background-color: grey;
+            }
+            .card1 {
+                border: 1px solid rgb(27, 154, 233);
+                border-radius: 8px;
+                background-color: rgb(204, 229, 245);
+                margin: 0 calc(100%/8);
+                padding: 25px;
+                display: flex; /* 实现图文并排*/
+                align-items: center; /*图文垂直居中*/
+            }
+            .card1 img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%; /*圆形*/
+                object-fit: cover;  /*防止图像变形*/
+            }
+            .card1 p {
+                margin-left: 20px;
+                flex-grow: 1;
+                margin: 0 0 0 20px;
+                font-size: 18px;
+            }
+            .card-container {
+                margin-top: 20px;
+                display: flex; /*水平排列*/
+                flex-wrap: wrap; /*超出换行*/
+                justify-content: center;
+                margin-left: 7%;
+                margin-left: 7%;
+                width:86%;
+                gap:10%;  /*卡片间距*/
+        
+            }
+            .charecter {
+                width: 22%;
+                border-radius: 8px;
+            }
+            .text-card {
+                height: 120px;
+                border-radius: 8px;
+                text-align: center;
+                color: white;
+                margin-bottom: 20px;
+                
+            }
+            .img-card {
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .img-card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                display: block;
+                margin-bottom: 0;
+                
+            }
+            .haimian {
+                background-color: rgb(255, 215, 0);
+            }
+            .paidaxing {
+                background-color: rgb(247, 149, 129);
+            }
+            .zhangyuge {
+                background-color: rgb(4, 138, 216);
+            }
+            .card h3 {
+                padding-bottom: 10px;
+                font-size: 16px;
+            }
+            .card p {
+                margin: 0;
+                font-size: 14px;
+            }
+            .series {
+                margin:0 calc(100%/8);
+                border-collapse: collapse;
+                text-align: center;
+                color: black;
+                width: 75%;
+                font-size: 12px;
+                
+            }
+            
+            .series th,
+            .series td {
+                padding: 12px 15px;
+                
+            }
+            
+            .series td:nth-child(1) {
+                background-color: rgb(83, 163, 213);
+                width: 45%;
+            }
+            
+            .series td:nth-child(2) {
+                background-color: rgba(60, 200, 213, 0.866);
+                width: 25%;
+            }
+            
+            .series td:nth-child(3) {
+                background-color: rgb(39, 130, 184);
+                width: 5%;
+            }
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .contact-form textarea {
+                margin: 0 calc(100%/8);
+                width: 75%;
+                background-color: rgb(204, 229, 245);
+                border: 1px solid rgb(83, 163, 213);
+                border-radius: 8px;
+                padding: 10px;
+                height: 200px;
+                font-size: clamp(0.85rem, 1.2vw, 1rem);
+            }
+            .contact-form button {
+                width: 10%;
+                margin-left: 78%; 
+                
+                background-color: #67b5ec;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: clamp(0.85rem, 1.2vw, 1rem);
+                transition: background-color 0.3s;
+            }
+            .contact-form button:hover {
+                background-color: #5b9bd5;
+        }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><a href="#introduce">人物介绍</a></li>
+            <li><a href="works">系列作品</a></li>
+            <li><a href="relations">我们相关</a></li>
+        </ul>
+        <div class="card1">
+            <img src="all.jpeg" alt="《海绵宝宝》">
+            <p>海绵宝宝是一只黄色的方形海绵，住在太平洋深处风光优美无人知道的比基尼海滩水域下。那里是一个没有忧愁的时间，住着一群快乐的海洋生物。</p>
+        </div>
+        <br>
+        <div class="card-container">
+            <div class="charecter haimian">
+                <div class="text-card">
+                    <h3>海绵宝宝</h3>
+                    <p>是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐。</p>
+                </div>
+                <div class="img-card">
+                    <img src="haimianbaobao.jpeg" alt="海绵宝宝">
+                </div>
+            </div>
+            <div class="charecter paidaxing">
+                <div class="text-card">
+                    <h3>派大星</h3>
+                    <p>是粉红色的海星，很可爱，和海绵宝宝交情最好。</p>
+                </div>
+                <div class="img-card">
+                    <img src="paidaxing.jpeg" alt="派大星">
+                </div>
+            </div>
+            <div class="charecter zhangyuge">
+                <div class="text-card">
+                    <h3>章鱼哥</h3>
+                    <p>大鼻子章鱼，对艺术有执着的追求，本质上是一个善良且有正义感的章鱼。</p>
+                </div>
+                <div class="img-card">
+                    <img src="zhangyuge.jpeg" alt="章鱼哥">
+                </div>
+            </div>
+        </div>
+        <br>
+            <table class="series">
+            <tr>
+                <th>系列</th>
+                <th>日期</th>
+                <th>集数</th>
+            </tr>
+            <tr>
+                <td>海绵宝宝</td>
+                <td>2008年10月23日</td>
+                <td>60集</td>
+            </tr>
+            <tr>
+                <td>海绵宝宝</td>
+                <td>2008年10月23日</td>
+                <td>60集</td>
+            </tr>
+            <tr>
+                <td>海绵宝宝</td>
+                <td>2008年10月23日</td>
+                <td>60集</td>
+            </tr>
+            <tr>
+                <td>海绵宝宝</td>
+                <td>2008年10月23日</td>
+                <td>60集</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <form class="contact-form">
+            <textarea placeholder="对我们的建议..."></textarea>
+            <button type="submit">提交</button>
+        </form>
+        
+
+    </body>
+</html>

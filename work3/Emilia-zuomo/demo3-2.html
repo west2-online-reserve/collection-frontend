@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+         /* 新增美化样式 */
+        font-family: 'Arial', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+        padding: 20px;
+      }
+
+      /* 新增标题样式 */
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      }
+
+      /* 新增IP/位置显示区域样式 */
+      p {
+        font-size: 1.2rem;
+        color: #34495e;
+        margin: 15px 0;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 500px;
+      }
+
+      /* 新增IP/位置文本高亮样式 */
+      #ip, #location {
+        font-weight: bold;
+        color: #6c5ce7;
+      }
+
+      /* 加载/错误状态样式 */
+      .loading {
+        color: #7f8c8d;
+        font-style: italic;
+      }
+
+      .error {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location"></span></p>
+
+    <script>
+      // 请在此处完成你的代码
+      fetch("https://myip.ipip.net/json")
+        .then((response) => response.json())
+        .then((data) => {
+            document.getElementById("ip").innerText = data.data.ip;
+            document.getElementById("location").innerText = data.data.location;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("ip").innerText = "Error";
+            document.getElementById("location").innerText = "Error";
+        });
+     //HTML中id属性是全局唯一的，用id选择器能直接锁定显示ip的span，不会像clss选择器可能匹配多个元素，避免把ip错误插入到其他标签里
+     //查找速度最快，且原有HTML已有id="ip"/id="location",无需额外注释
+    </script>
+  </body>
+</html>

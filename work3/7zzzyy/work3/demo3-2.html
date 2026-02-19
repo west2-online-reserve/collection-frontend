@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>What is my IP address?</h1>
+    <p>IP address: <span id="ip">Loading...</span></p>
+    <p>Location: <span id="location"></span></p>
+
+    <script>
+      // 请在此处完成你的代码
+      fetch("https://api.ipify.org?format=json")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("ip").textContent = data.ip;
+          document.getElementById("location").textContent = data.data.location; 
+        })
+        
+        .catch((error) => {
+          console.error("Error fetching IP or location data:", error);
+          document.getElementById("ip").textContent = "Error loading IP";
+          document.getElementById("location").textContent = "Error loading location";
+        });
+
+        //使用 id 选择器原因：id 属性的值是唯一的，使查找结果唯一，不会错选到其他元素，避免了错误。
+    </script>
+  </body>
+</html>

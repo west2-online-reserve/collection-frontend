@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>海绵宝宝抓章鱼</title>
+</head>
+<style>
+    * {
+        font-size: 30px;
+    }
+</style>
+
+<body>
+    <p>
+        海绵宝宝很爱抓章鱼，可爱的学长（出题人）把章鱼哥也混在里面了，尽管他也是章鱼，但是不能抓到他。
+    </p>
+    <p>
+        现在我们要将章鱼哥先从这些章鱼中分离出来（即把这个节点从
+        <code>&lt;ul&gt;</code> 里面去掉），之后再抓章鱼。
+    </p>
+    <p>
+        海绵宝宝抓章鱼喜欢先从重量小的开始抓，请帮助可爱的海绵宝宝和可爱的学长
+    </p>
+
+    <ul id="octopus">
+        <li>
+            <span class="name">章鱼一号</span><span class="weight">30.4kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼二号</span><span class="weight">24.2kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼三号</span><span class="weight">250.3kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼四号</span><span class="weight">300.9kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼五号</span><span class="weight">120.0kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼六号</span><span class="weight">27.5kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼七号</span><span class="weight">35.4kg</span>
+        </li>
+        <li>
+            <span class="name">章鱼哥</span><span class="weight">25.5kg</span>
+        </li>
+    </ul>
+
+    <ul id="octopus-sort">
+        <!--
+        <li>第一只章鱼：章鱼六号：27.5kg</li>
+      -->
+    </ul>
+
+    <button id="sort-btn">排序</button>
+
+    <!-- 不可以修改上述代码内容，只能在 script 标签内填写代码 -->
+
+    <script>
+        const octopus = document.getElementById("octopus")
+        const names = octopus.getElementsByClassName("name");
+        /** 把章鱼哥节点从 ul 列表中删除 */
+        function remove() {
+            // [请在此处填写代码]
+            for (i = 0; i < names.length; i++) {
+                if (names[i].textContent === "章鱼哥") names[i].parentElement.remove();
+            }
+        }
+
+        /*
+         * 读取 id 为 octopus 的列表，获取其中章鱼名字和体重
+         * 返回一个 JSON 数组，格式见函数中示例
+         */
+        function getWeight() {
+            /*
+              data = [
+                {
+                  "name": "章鱼一号",
+                  "weight": 30.4
+                },
+                {
+                  "name": "章鱼二号",
+                  "weight": 24.2
+                },
+              ]
+            */
+            const data = [];
+            for (i = 0; i < names.length; i++) {
+                data.push({
+                    "name": names[i].textContent,
+                    "weight": parseFloat(names[i].nextElementSibling.textContent)
+                    //找到name类span元素的下一个兄弟元素并解析内容字符串中开头的数字部分直到遇到非法字符；
+                });
+            }
+            return data;
+        }
+
+        /** 按章鱼重量，对 data 进行从小到大的排序，返回排序后的数组 */
+        function getSortedOctopus(data) {
+            data.sort((a, b) => a.weight - b.weight);/*sort结果取决于返回值的符号，负数时a在b前，反之在后，为0则顺序不变*/
+            return data;
+        }
+
+        /** 将排好序的章鱼朋友输出显示到 id 为 octopus-sort 的列表中，格式见 ul 中注释 */
+        function render(data) {
+            // [请在此处填写代码]
+            const newlists = document.getElementById("octopus-sort");
+            newlists.innerHTML = '';//清空这个元素内部的内容,确保每次重新渲染时不会叠加旧数据
+            //forEach对数组 data 里的每一个元素（从第 0 个到最后一个）执行一次函数。
+            data.forEach((element, index) => {//第一个变量表示当前这次循环的元素内容，第二个表示当前项的索引（从 0 开始）
+                const newli = document.createElement('li');
+                newli.textContent = `第${index + 1}只章鱼：${element.name}：${element.weight}kg`;
+                newlists.appendChild(newli);//将新创建的li元素(子元素)插入newlists(父元素)中
+            });
+        }
+
+        // 按钮点击事件处理函数
+        function handleButtonClick() {
+            // [请在此处填写代码]
+            remove();//删除章鱼哥项
+            var data = getWeight();//获取列表
+            data = getSortedOctopus(data);//列表排序
+            octopus.remove();//删除原列表
+            render(data);//渲染列表
+        }
+
+        // 给 sort-btn 绑定一个点击事件，点击时触发 handleButton 函数
+        // 触发后在浏览器上可以看到结果
+        // [请在此处填写代码]
+        const btn = document.getElementById("sort-btn");
+        btn.onclick = handleButtonClick;
+    </script>
+</body>
+
+</html>

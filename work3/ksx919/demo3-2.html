@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+      }
+
+      .container {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #4a90e2;
+      }
+
+      p {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      #ip {
+        font-weight: bold;
+        color: #2ecc71;
+      }
+
+      #location {
+        font-style: italic;
+        color: #e67e22;
+      }
+
+      .loading {
+        color: #95a5a6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>What is my IP address?</h1>
+      <p>IP address: <span id="ip" class="loading">Loading...</span></p>
+      <p>Location: <span id="location" class="loading"></span></p>
+    </div>
+
+
+    <script>
+      // 请在此处完成你的代码
+      // 获取用户 IP 地址并显示在页面上
+      fetch("https://myip.ipip.net/json")
+              .then(response => response.json()) // 解析返回的 JSON 数据
+              .then(data => {
+                // 更新页面内容
+                document.getElementById("ip").textContent = data.data.ip;
+                document.getElementById("location").innerText = data.data.location;
+              })
+              .catch(error => {
+                // 错误处理
+                document.getElementById("ip").textContent = "Error fetching IP";
+                document.getElementById("location").innerText = "Unable to retrieve location";
+              });
+      //为什么要使用 id 选择器：
+      //id选择器可以唯一标识单个元素，在这个任务中ip和location使用id选择器可以直接访问这两个span元素。
+    </script>
+  </body>
+</html>

@@ -88,7 +88,7 @@
             return response.json();
           })
           .then(function (data) {
-            document.getElementById("ip").textContent = data.ip;
+            document.getElementById("ip").textContent = data.data.ip;
             document.getElementById("ip").classList.remove("loading");
 
             document.getElementById("location").textContent =

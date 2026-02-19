@@ -1,0 +1,144 @@
+ body{
+        background-color: rgb(209, 231, 250);
+    
+    }
+.flex-container{
+        display:flex;
+        justify-content:space-between;
+    }
+    .left{
+        text-align:left;
+    }
+    .center{
+        text-align:center;
+    }
+    .right{
+        text-align:right;
+    }
+.image-text {
+    position: relative;
+    width: 600px;
+    height: 150px;
+    border: 2px solid #1821d6; /* 框的边框 */
+    border-radius: 10px; /* 圆角效果 */
+    overflow: hidden; /* 确保内容不超出边框 */
+    display:flex;
+    align-items: center;
+    margin: 0; /* 移除默认边距 */
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.image-text img {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.text1{
+    width: 150px;
+    height: 200px;
+    border-radius: 10px; /* 圆角效果 */
+    overflow: hidden; /* 确保内容不超出边框 */
+    display:flex;
+    align-items: center;
+    margin: 0; /* 移除默认边距 */
+    position: absolute;  
+    top: 45%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(243, 193, 13);
+}
+.text2{
+    width: 150px;
+    height: 200px;
+    border-radius: 10px; /* 圆角效果 */
+    overflow: hidden; /* 确保内容不超出边框 */
+    display:flex;
+    align-items: center;
+    margin: 0; /* 移除默认边距 */
+    position: absolute;  
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(237, 129, 177);
+}
+.text3{
+    width: 150px;
+    height: 200px;
+    border-radius: 10px; /* 圆角效果 */
+    overflow: hidden; /* 确保内容不超出边框 */
+    display:flex;
+    align-items: center;
+    margin: 0; /* 移除默认边距 */
+    position: absolute;  
+    top: 45%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(65, 149, 239);
+}
+
+.img1{
+    position: absolute;  
+    top: 65%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+.img1 img{
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+.img2{
+    position: absolute;  
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.img3{
+    position: absolute;  
+    top: 65%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
+.t1{
+    text-align: center;
+    color:white;
+}
+.advice{
+    position: relative;
+    width: 600px;
+    height: 100px;
+    border: 1px solid #1821d6; /* 框的边框 */
+    border-radius: 10px; /* 圆角效果 */
+    overflow: hidden; /* 确保内容不超出边框 */
+    display:flex;
+    align-items: center;
+    margin: 0; /* 移除默认边距 */
+    position: absolute;  
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    position: absolute;  
+    top: 90%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+th, td {
+   border: 1px solid #ddd;
+   padding: 12px;
+   text-align: center;
+}
+.button{
+    position:absolute;
+    top:130%;
+    left:90%;
+}

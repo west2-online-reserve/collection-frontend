@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background-color: #e1f2fe; 
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .intro-card {
+            background-color: transparent;
+            border: 2px solid #a8cbe6;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .intro-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; 
+            object-fit: cover;
+            border: 4px solid #fff;
+       
+        }
+
+        .intro-text {
+            flex: 1;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+       
+        .characters {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .char-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+      
+        .char-desc-box {
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .char-desc-box h3 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .char-desc-box p {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /*主题色 人物*/
+        .bg-spongebob { background-color: #fdd85d; } 
+        .bg-patrick { background-color: #d88e86; }   
+        .bg-squidward { background-color: #5d8ab9; } 
+
+       
+        .char-face-img {
+            width: 100%;
+            aspect-ratio: 1 / 1; 
+            border-radius: 20px;
+            object-fit: cover;
+            background-color: transparent;
+        }
+
+        .table-section {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            padding: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+     
+        tbody tr {
+            border-bottom: 1px solid #8abde3;
+        }
+        
+     
+        tbody tr td {
+            padding: 8px;
+        }
+        
+       
+        .table-header-row th {
+            border-bottom: none;
+        }
+
+        .table-cell-1 { background-color: #99ccff; }
+        .table-cell-2 { background-color: #87ceeb; }
+        .table-cell-3 { background-color: #6699cc; }
+       
+        .feedback-section {
+            border: 2px solid #a8cbe6;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.2); /* 微微的白色背景 */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background-color: transparent;
+            border: none;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        textarea::placeholder {
+            color: #333;
+        }
+
+        .submit-btn {
+            align-self: flex-end;
+            background-color: #6daae3;
+            color: white;
+            border: none;
+            padding: 8px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .submit-btn:hover {
+            background-color: #5a9ad3;
+        }
+
+      
+    </style>
+<body>
+    <div class="container">
+        <header>
+            <span>人物介绍</span>
+            <span>系列作品</span>
+            <span>我们相关</span>
+        </header>
+     <section class="intro-card">
+        <img src="all.jpeg" class="intro-img">
+        <div class="intro-text">
+            海绵宝宝是一只黄色的方形海绵，住在太平洋深处风光优美无人知道的比基尼海滩水域下。那里是一个没有忧愁的世界，住着一群快乐的海洋生物。
+        </div>
+     </section>
+    
+     <section class="characters">
+            <div class="char-col">
+                <div class="char-desc-box bg-spongebob">
+                    <h3>海绵宝宝</h3>
+                    <p>是动画片《海绵宝宝》系列中的主角，超级活泼可爱，给人带来快乐。</p>
+                </div>
+                <img src="haimianbaobao.jpeg" alt="海绵宝宝" class="char-face-img">
+            </div>
+
+            <div class="char-col">
+                <div class="char-desc-box bg-patrick">
+                    <h3>派大星</h3>
+                    <p>粉红色的海星，很可爱，和海绵宝宝交情最好。</p>
+                </div>
+                <img src="paidaxing.jpeg" alt="派大星" class="char-face-img">
+            </div>
+
+            <div class="char-col">
+                <div class="char-desc-box bg-squidward">
+                    <h3>章鱼哥</h3>
+                    <p>大鼻子章鱼，对艺术有执着的追求，本质上是一个善良且有正义感的章鱼。</p>
+                </div>
+                <img src="zhangyuge.jpeg" alt="章鱼哥" class="char-face-img">
+            </div>
+        </section>
+     <section class="table-section">
+        <table>
+            <thead>
+                    <tr class="table-header-row">
+                        <th>系列</th>
+                        <th>日期</th>
+                        <th>集数</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-cell-1">海绵宝宝第一季</td>
+                    <td class="table-cell-2">1999年5月1日</td>
+                    <td class="table-cell-3">20集</td>
+                </tr>
+                <tr>
+                    <td class="table-cell-1">海绵宝宝第一季</td>
+                    <td class="table-cell-2">1999年5月1日</td>
+                    <td class="table-cell-3">20集</td>
+                </tr>
+                <tr>
+                    <td class="table-cell-1">海绵宝宝第一季</td>
+                    <td class="table-cell-2">1999年5月1日</td>
+                    <td class="table-cell-3">20集</td>
+                </tr>
+            </tbody>
+
+        </table>
+     </section>
+     <section class="feedback-section">
+            <textarea placeholder="对我们的建议"></textarea>
+            <button class="submit-btn">提交</button>
+     </section>
+    </div>
+<script>
+
+const submitBtn = document.querySelector('.submit-btn'); 
+submitBtn.addEventListener('click',()=>{
+    alert('收到你的反馈了');
+})
+</script>
+
+
+
+</body>
+</html>

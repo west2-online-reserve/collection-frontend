@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+body {
+    background-color: #E0F7FF;
+    padding: 20px;
+}
+
+/* 导航栏 */
+.nav-bar ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.nav-bar a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* 简介区域 */
+.intro {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #E0F7FF;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #38657a;
+}
+.intro-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.intro p{
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* 人物卡片 */
+.characters {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+.card {
+    width: 180px;
+    text-align: center;
+}
+.card .card-box {
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    color: #fff;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+.card .card-box h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff
+}
+.card .card-box p {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #fff
+}
+/* 卡片颜色 */
+.yellow {background: #ebe25f;}
+.pink {background: #f49375;}
+.blue {background: #5fa4dc;}
+
+.card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;
+}
+
+/* 系列作品表格 */
+.works {
+    margin-bottom: 20px;
+}
+.works table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.works th:nth-child(1) { /* 第1列（系列） */
+    background-color: #2c8a96; /* 浅青蓝 */
+    color: #000;
+}
+.works th:nth-child(2) { /* 第2列（日期） */
+    background-color: #4070e0; /* 浅草绿 */
+    color: #000;
+}
+.works th:nth-child(3) { /* 第3列（集数） */
+    background-color: #a869d2; /* 浅橙黄 */
+    color: #000;
+}
+/* 内容列配色（比表头浅一度，层次更清晰） */
+.works td:nth-child(1) { /* 第1列（系列） */
+    background-color: #b7dde1;
+    color: #000;
+}
+.works td:nth-child(2) { /* 第2列（日期） */
+    background-color: #abcee4;
+    color: #000;
+}
+.works td:nth-child(3) { /* 第3列（集数） */
+    background-color: #cfb4df;
+    color: #000;
+}
+/* 保留边框样式 */
+.works th, .works td {
+    border: 1px solid #90CAF9; /* 统一边框为浅蓝，更协调 */
+    padding: 10px 8px; /* 增加内边距，更舒展 */
+    text-align: center;
+    font-size: 14px;
+}
+/* 反馈区域 */
+.feedback {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.feedback textarea {
+    padding: 10px;
+    border: 1px solid #B3E5FC;
+    border-radius: 8px;
+    resize: none;
+    height: 100px;
+}
+.feedback button {
+    align-self: flex-end;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #42A5F5;
+    color: white;
+    cursor: pointer;
+}

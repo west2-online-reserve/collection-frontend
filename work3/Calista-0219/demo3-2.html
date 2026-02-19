@@ -1,0 +1,107 @@
+<!--832403121-work3-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>demo3-2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #7288e1, #8fd3f4);
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+
+      .container {
+        background: #ffffff;
+        width: 360px;
+        padding: 30px 40px;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        text-align: center;
+      }
+
+       h1 {
+        font-size: 22px;
+        margin-bottom: 25px;
+        color: #333;
+      }
+
+      .info {
+        margin: 15px 0;
+        font-size: 16px;
+        color: #555;
+      }
+
+      .label {
+        display: block;
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 6px;
+      }
+    
+      .value {
+        font-size: 18px;
+        font-weight: bold;
+        color: #5a67d8;
+        word-break: break-all;
+      }
+
+      .loading {
+        color: #aaa;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+        <h1>🌐 My IP Information</h1>
+        <div class="info">
+        <span class="label">IP Address</span>
+        <span id="ip" class="value loading">Loading...</span>
+      </div>
+
+      <div class="info">
+        <span class="label">Location</span>
+        <span id="location" class="value loading">Loading...</span>
+      </div>
+    </div>
+    
+
+    <script>
+      // 请在此处完成你的代码
+     window.addEventListener("load", function () {
+        fetch("https://myip.ipip.net/json")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            document.getElementById("ip").textContent = data.data.ip;
+            document.getElementById("ip").classList.remove("loading");
+
+            document.getElementById("location").textContent =
+              data.data.location.join(" ");
+            document
+              .getElementById("location")
+              .classList.remove("loading");
+          })
+          .catch(function () {
+            document.getElementById("ip").textContent = "Failed to load";
+            document.getElementById("location").textContent = "Failed to load";
+          });
+      });
+    </script>
+  </body>
+</html>

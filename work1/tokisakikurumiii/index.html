@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>狂三の博物馆</title>
+    <meta name="description" content="一位狂三厨的手办收藏展示站：藏品展区、收藏心得、关于时崎狂三，以及我的爱好与个人主页。">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <style>
+        :root{
+            --c-bg:#0d0b10;      --c-main:#8c1c2b;    --c-gold:#d4af37;
+--c-card:#16121a;    --c-line:rgba(212,175,55,.25);
+--c-text:#f2eceb;    --c-text-dim:#9ca3af; --c-white:#fff;
+/* 阶梯 */
+--fs-base:15px; --fs-lg:22px; --fs-hero:48px;
+--sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px; --sp-6:64px;
+--container:1200px; --radius-md:8px; --trans:.25s ease; --nav-h:64px;
+/* 色板 */
+        }
+        *{
+        margin:0px;
+        padding:0px;
+        box-sizing: border-box;
+    }
+    .guide{
+        position: fixed;left:0;top:0;
+        height: 64px;
+        width:100%;
+        text-align: left;
+        background-color: rgba(13,11,16,.86);
+        border-bottom: 1px solid var(--c-line);
+        
+
+        z-index:999;
+        backdrop-filter: blur(12px);
+    }
+    .guide-inner{
+        max-width: 1200px;
+        height:100%;
+        margin:0 auto;
+        padding:0 24px;
+        display:flex; align-items:center; justify-content:space-between;
+    }
+            /* 内层布局 */
+    .guide-logo{
+        letter-spacing:2px;
+        color:var(--c-gold);
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .guide-list{
+        display:flex; gap:36px; list-style:none;
+    }
+    .guide a{
+        font-size:15px;
+        color:var(--c-text-dim);
+        text-decoration:none;
+                transition: color var(--trans);
+    }
+    .guide a:hover{
+        color:var(--c-gold);
+    }
+    /* 导航栏(已完成) */
+    body{
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  padding-top: var(--nav-h);   /* 给导航让位 64px */
+}
+.hero{
+  height: calc(100vh - var(--nav-h));
+  background: linear-gradient(rgba(13,11,16,.12), rgba(13,11,16,.40)),
+            url(./images/kurumi-vs-scene-hero.jpg) center center / cover no-repeat;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.hero-title{
+  font-family: "Rajdhani", "Segoe UI", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 68px;
+  letter-spacing: 2px;      /* 拖尾去掉，只留 2px*/
+  margin-right: -2px;
+  color: var(--c-white);
+}
+.hero-sub{
+  font-size: var(--fs-lg);
+  font-family: "Segoe UI", sans-serif;
+  color: var(--c-gold);
+  letter-spacing: 4px;
+  margin-top: var(--sp-2);
+}
+/* 大标题 */
+.forms,
+.story,
+.kurumi,
+.hobby{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--sp-6) 24px;   /* 上下 64px，左右 24px */
+}
+.forms h2,
+.story h2,
+.kurumi h2,
+.hobby h2{
+  font-size: 36px;
+  color: var(--c-gold);
+  letter-spacing: 6px;
+  line-height: 1;
+  padding-left: var(--sp-2);
+  border-left: 4px solid var(--c-main);   /* 左侧色条 = 展馆标牌感 */
+  margin-bottom: var(--sp-5);             /* 48px */
+}
+/* 区块标题 */
+.form-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);            /* 32px 行列同距 */
+  align-content: flex-start;   /* ← 白杆坑的预防针，先打上 */
+}
+/* 卡片布局 */
+.form-card{
+  width: calc((100% - 2 * var(--sp-4)) / 3);   /* 三列 */
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--trans), border-color var(--trans);
+}
+.form-card:hover{
+  border-color: var(--c-gold);
+  box-shadow: 0 8px 28px rgba(212,175,55,.18);
+}
+  
+  .card-body{ padding: var(--sp-3); }              /* 24px */
+.card-body h3{
+  font-size: 18px; color: var(--c-text);
+  margin-bottom: var(--sp-1);
+}
+.card-body p{
+  font-size: 14px; color: var(--c-text-dim);
+  line-height: 1.6;        /* 行高=字号×1.6， */
+}
+/* 开关本体：藏在页面外，只当状态用 */
+.card-toggle{ display: none; }
+
+/* 封面 = 可点击区域 */
+.card-hit{ display: block; cursor: pointer; position: relative; }
+
+/* 悬停提示角标 */
+.card-hit img{
+  width:100%; height:auto;
+  aspect-ratio: 7 / 10;
+  object-fit:cover;
+  object-position:center 30%;   /* 裁切偏上，保头优先 */
+}
+.card-detail img{
+  max-height:72vh; max-width:90%;
+  object-fit:contain; border-radius:var(--radius-md);
+}
+/* 详情层里插在小段落中的配图：独占一行、水平居中，去掉行内基线缝 */
+.card-detail p img{
+  display:block;
+  margin:var(--sp-2) auto;
+  max-width:100%;
+}
+.card-hint{
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 56px var(--sp-2) 14px;    /* 顶部留 56px 给渐变过渡 */
+  text-align: center;
+  font-size: 14px; color: var(--c-gold);
+  background: linear-gradient(rgba(13,11,16,0),
+              rgba(13,11,16,.55) 45%,
+              rgba(13,11,16,.92));   /* 三段式：透明→半透→近实 */
+  opacity: 1;                        /* 改成常显 */
+  transition: opacity var(--trans);
+}
+
+
+/* 详情层：铺满全屏，默认隐形 */
+.card-detail{
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000;                      /* 全站层级表：弹层档 */
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  background: rgba(13,11,16,.94);
+  backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--trans), visibility var(--trans);
+   overflow-y: auto;
+}
+/* ★ 安全居中：内容矮时上下 margin:auto 兜底居中；内容高时自动让位，顶部不会被截 */
+.card-detail > img:first-of-type{ margin-top: auto; }
+.card-detail > :last-child{ margin-bottom: auto; }
+/* ★ 核心：勾选了开关时，显示详情层 */
+.card-toggle:checked ~ .card-detail{
+  opacity: 1; visibility: visible;
+}
+
+.card-detail h3{ font-size: var(--fs-lg); color: var(--c-gold); letter-spacing: 2px; }
+.card-detail p{ max-width: 640px; font-size: 15px; line-height: 1.8; color: var(--c-text); }
+
+/* 关闭按钮 */
+.detail-close{
+  position: absolute; top: var(--sp-3); right: var(--sp-4);
+  font-size: 40px; line-height: 1;
+  color: var(--c-text-dim); cursor: pointer;
+  transition: color var(--trans);
+}
+.detail-close:hover{ color: var(--c-gold); }
+
+
+.card-detail a{
+    color: var(--c-gold);  
+}
+
+/* 卡片本体 */
+.zone > h2{
+  font-size: 26px;
+  color: var(--c-gold);
+  letter-spacing: 4px;
+  padding-left: var(--sp-2);
+  border-left: 3px solid var(--c-main);
+  margin-bottom: var(--sp-4);
+}
+.zone + .zone{ margin-top: var(--sp-6); }   /* 两展区之间留 64px */
+html{
+  scroll-behavior: smooth;      /* 平滑滚动，可选但有质感 */
+  scroll-padding-top: var(--nav-h);   /* 跳转时留出 64px 给导航 */
+}
+/* 表情包装饰带：小动图并排居中，轻微歪头，悬停放大归正 */
+.sticker-strip{
+  display:flex; flex-wrap:wrap;
+  justify-content:center; align-items:center;
+  gap:var(--sp-3);
+  margin:var(--sp-5) 0;         /* 上下 48px，别贴住两边的展区 */
+}
+.sticker-strip img{
+  width:132px; height:132px;
+  object-fit:contain;
+  cursor:pointer;
+  transition:transform var(--trans);
+}
+.sticker-strip img:nth-child(odd){ transform:rotate(-4deg); }
+.sticker-strip img:nth-child(even){ transform:rotate(4deg); }
+.sticker-strip img:hover{ transform:scale(1.18) rotate(0deg); }
+.sticker-strip a{
+  color:var(--c-gold);
+}
+/* 展区间装饰横幅（大图角色，区别于 sticker-strip 小表情包） */
+.zone-banner{
+  margin: var(--sp-6) 0;        /* 上下各 64px，跟两边的展区隔开呼吸 */
+}
+.zone-banner img{
+  display:block;                /* 干掉 img 底部基线缝 */
+  width:100%;
+  border-radius:var(--radius-md);
+  border:1px solid var(--c-line);
+}
+.zone-banner p{
+  margin-top: var(--sp-1);      /* 署名行跟图留 8px */
+  font-size:12px;
+  color:var(--c-text-dim);
+  text-align:right;
+}
+.zone-banner a{
+  color:var(--c-gold);
+}
+/* 藏品区已完成 */
+/* 散文正文：收藏心得的手记 / 关于三三的感受段，同一角色 → 共用一份样式 */
+.story-body,
+.feel{
+  max-width:70ch;  margin:0 auto;      /* 新知识点：窄栏居中，一行 35~40 字最好读 */
+  font-size:16px; line-height:2; color:var(--c-text);
+}
+.feel p{ margin:0 0 var(--sp-3); }
+/* 感受段的引导注释：居中小灰字，字距拉开才有"题记"感 */
+.feel-note{
+  max-width:70ch; margin:0 auto var(--sp-2);
+  text-align:center;
+  font-size:14px; letter-spacing:4px;
+  color:var(--c-text-dim);
+}
+
+/* ── 板块四「关于三三」 ───────────────────────── */
+.sub{
+  font-size:22px; color:var(--c-gold);
+  border-left:3px solid var(--c-main);
+  padding-left:var(--sp-2);
+  margin:0 0 var(--sp-3);
+}
+/* 爱好清单：分组之间留呼吸，第一组顶部不空 */
+/* 卡片内小标题：不再需要组间距（网格 gap 负责），改成紧凑标题 */
+.hobby .sub{ margin:0 0 var(--sp-3); }
+.reason-grid{
+  display:flex; flex-wrap:wrap; gap:var(--sp-4);
+  align-content:flex-start;              /* 老配方：防白杆 */
+  margin-bottom:var(--sp-6);
+}
+.reason{
+  position:relative;                     /* 给右上角大编号当坐标原点 */
+  width:calc((100% - 2 * var(--sp-4)) / 3);
+  background:var(--c-card); border:1px solid var(--c-line);
+  border-radius:var(--radius-md);
+  padding:var(--sp-5) var(--sp-4) var(--sp-4);
+  transition:transform var(--trans), border-color var(--trans);
+}
+.reason:hover{ transform:translateY(-6px); border-color:var(--c-gold); }  /* 本块无 fixed 弹层，transform 放心用 */
+.reason-num{
+  position:absolute; top:var(--sp-2); right:var(--sp-3);   /* 绝对定位脱离文档流，不占位不压标题 */
+  font-family:"Rajdhani", sans-serif; font-size:46px; line-height:1;
+  color:var(--c-main); opacity:.55;
+}
+.reason h3{ font-size:19px; color:var(--c-gold); margin:0 0 var(--sp-2); }
+.reason p{ font-size:15px; line-height:1.9; color:var(--c-text-dim); margin:0; }
+
+.quote{
+  position:relative;
+  max-width:760px; margin:var(--sp-6) auto;
+  padding:var(--sp-5) var(--sp-6) var(--sp-4) 88px;   /* 左边留 88px 给大引号 */
+  background:var(--c-card); border:1px solid var(--c-line);
+  border-radius:var(--radius-md);
+}
+.quote::before{
+  content:"“";                           /* 必须写 content，漏了整条静默失效 */
+  position:absolute; left:var(--sp-4); top:var(--sp-2);
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:96px; line-height:1;
+  color:var(--c-main); opacity:.85;
+}
+.quote-text{ margin:0; font-size:20px; line-height:1.9; letter-spacing:1px; color:var(--c-text); }
+.quote-from{ display:block; margin-top:var(--sp-3); font-size:13px; font-style:normal; color:var(--c-text-dim); text-align:right; }
+
+.hobby-list{
+  list-style:none; padding:0;            /* ul 自带圆点 + 40px 左缩进，做胶囊必须清掉 */
+  display:flex; flex-wrap:wrap; gap:var(--sp-2);
+  margin:0 0 var(--sp-6);
+}
+.hobby-list li{
+  background:var(--c-card); border:1px solid var(--c-line);
+  border-radius:999px; padding:6px 16px;
+  font-size:14px; color:var(--c-text);
+  transition:border-color var(--trans), color var(--trans);
+}
+.hobby-list li:hover{ border-color:var(--c-gold); color:var(--c-gold); }
+/* 长内容行卡：类别胶囊 + 正文，占满整行（对比短项的小胶囊） */
+.hobby-list li.row{
+  width:100%;
+  border-radius:var(--radius-md);
+  padding:8px 12px;
+  line-height:1.8;
+  color:var(--c-text-dim);
+}
+.hobby-list li.row .cat{
+  display:inline-block;
+  white-space:nowrap;              /* 四字标签不在窄行里折行 */
+  background:rgba(140,28,43,.35);
+  color:var(--c-gold);
+  border-radius:999px;
+  padding:0 10px;
+  margin-right:8px;
+  font-size:13px;
+}
+.hobby-list li.row:hover{ color:var(--c-text); }
+
+/* ===== 第五块：爱好清单（图文卡版式，2026-10-09 重排） ===== */
+.hobby-grid{
+  display:flex; flex-wrap:wrap; gap:var(--sp-4);
+  align-content:flex-start;                    /* 老配方：防白杆 */
+}
+.hobby-card{
+  width:calc((100% - 2 * var(--sp-4)) / 3);    /* 三列等宽，和藏品区同一套 */
+  background:var(--c-card); border:1px solid var(--c-line);
+  border-radius:var(--radius-md);
+  overflow:hidden;                             /* 图片自己贴圆角，不用给 img 单独写 */
+  transition:border-color var(--trans);
+}
+.hobby-card:hover{ border-color:var(--c-gold); }
+.hobby-pic{
+  display:flex; flex-wrap:wrap;                /* 多张图自动并排 */
+  background:linear-gradient(160deg, rgba(140,28,43,.28), rgba(13,11,16,0));
+}
+.hobby-pic:empty{ display:none; }              /* ★ 还没放图时整块隐形，卡片自动退回纯文字卡 */
+.hobby-pic img{
+  display:block; flex:1 1 50%;                 /* 一张撑满 / 两张各半 / 更多自动换行 */
+  min-width:0; height:220px; object-fit:cover;
+}
+.hobby-body{ padding:var(--sp-4); }
+.hobby-card .hobby-list{ margin:0; }           /* 卡片内清单不要底部那 64px */
+
+.hobby-note{                                   /* 卡里的自由文字位：不写就自动隐形 */
+  font-size:14px; line-height:1.9; color:var(--c-text-dim);
+  margin:0 0 var(--sp-3);
+}
+.hobby-note:empty{ display:none; }
+
+/* ===== 第六块：个人（页脚签名档） ===== */
+.me{
+  max-width:var(--container); margin:0 auto;
+  padding:var(--sp-6) 24px;
+  border-top:1px solid var(--c-line);   /* 页脚上方一条细线，收住整页 */
+}
+.me-card{
+  display:flex; align-items:center; gap:var(--sp-4);
+  background:var(--c-card); border:1px solid var(--c-line);
+  border-radius:var(--radius-md);
+  padding:var(--sp-5);
+  transition:border-color var(--trans);
+}
+.me-card:hover{ border-color:var(--c-gold); }
+.me-avatar{
+  width:96px; height:96px;
+  border-radius:50%;                    /* ★ 正方形 + 50% 圆角 = 正圆 */
+  object-fit:cover;                     /* ★ 按短边裁切填满，头像不拉变形 */
+  border:2px solid var(--c-main);
+  flex-shrink:0;                        /* ★ 不许被右边的文字挤扁 */
+}
+.me-info{ flex:1; }
+.me-name{
+  font-family:"Rajdhani", sans-serif; font-size:24px;
+  color:var(--c-gold); letter-spacing:2px;
+  margin:0 0 var(--sp-1);
+}
+.me-desc{ font-size:14px; color:var(--c-text-dim); line-height:1.9; margin:0 0 var(--sp-2); }
+.me-link{
+  color:var(--c-gold); font-size:14px; text-decoration:none;
+  border-bottom:1px dashed var(--c-line);
+}
+.me-link:hover{ border-bottom-color:var(--c-gold); }
+
+/* 关于三三板块里的插图：单张自动居中 + 圆角描边（插入 img 即生效） */
+.kurumi img{
+  display:block;                 /* 干掉行内元素底部的基线缝 */
+  width:auto; max-width:100%;
+  max-height:72vh;               /* 高度封顶：细长竖图不会顶满整屏 */
+  margin:var(--sp-5) auto;
+  border-radius:var(--radius-md);
+  border:1px solid var(--c-line);
+}
+/* 想两张并排：把 img 包进 <div class="img-row"> 即可 */
+.img-row{
+  display:flex; flex-wrap:wrap; gap:var(--sp-4);
+  justify-content:center; align-content:flex-start;
+  margin:var(--sp-5) 0;
+}
+.img-row img{ margin:0; width:calc((100% - var(--sp-4)) / 2); height:auto; }
+/* 正文段落：段间距（不缩进，中文网页惯例用段距代替首行缩进） */
+.story-body p{
+  margin: 0 0 var(--sp-3);
+}
+/* 正文配图：浮动环绕。他没给 img 写 class，所以直接命中 body 里的图 */
+.story-body img{
+  float: left;                         /* ★ 本块主菜：浮动，文字绕图走 */
+  width: 150px;
+  margin: var(--sp-1) var(--sp-3) var(--sp-2) 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-line);
+}
+.story-body img:nth-of-type(even){     /* 第 2、4… 张自动换到右侧，版面错落 */
+  float: right;
+  margin: var(--sp-1) 0 var(--sp-2) var(--sp-3);
+}
+.story-body::after{ content:""; display:block; clear:both; }  /* 清浮动三件套：不写图会压穿板块底 */
+/* 正文里的链接（b 站跳转那处）统一金色 */
+.story-body a{ color: var(--c-gold); }
+
+/* 建议条目：小标签 + 正文 的卡片结构（让六条建议一眼分得开） */
+.tip{
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-left: 3px solid var(--c-main);   /* 左侧酒红条 = 条目感，跟展区标题呼应 */
+  border-radius: var(--radius-md);
+  padding: var(--sp-3) var(--sp-4);
+  margin: 0 0 var(--sp-3);
+}
+.tip-tag{
+  display: inline-block;                  /* 行内元素加 padding 必须转 inline-block，否则上下 padding 不生效 */
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--c-gold);
+  border: 1px solid var(--c-line);
+  border-radius: 999px;                   /* 胶囊圆角 */
+  padding: 2px 12px;
+  margin-bottom: var(--sp-2);             /* 标签与正文留 8px */
+}
+.tip p{ margin: 0; }                      /* 卡片内不再需要段间距（覆盖上面的 .story-body p） */
+
+/* ===== 移动端适配（≤768px 才生效，桌面端完全不受影响） ===== */
+@media (max-width: 768px){
+  .hero-title{ font-size: 40px; }
+  .hero-sub{ font-size: 15px; letter-spacing: 2px; }
+
+  .guide-logo{ font-size: 17px; }
+  .guide-list{ gap: 16px; }
+  .guide a{ font-size: 13px; }
+
+  .form-card,                          /* 三列网格 → 单列竖排 */
+  .reason,
+  .hobby-card{ width: 100%; }
+
+  .img-row img{ width: 100%; }         /* 两张并排 → 上下各占一行 */
+
+  .quote{ max-width: 100%; padding: var(--sp-4) var(--sp-4) var(--sp-4) 64px; }
+  .quote::before{ font-size: 72px; }
+
+  .card-detail{ padding: var(--sp-4); }
+  .story-gif{ width: 110px; }
+
+  .me-card{ flex-direction: column; text-align: center; }
+  .me-link{ word-break: break-all; }
+}
+
+
+    </style>
+    <link href="https://fonts.loli.net/css2?family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="guide">
+        <div class="guide-inner">
+        <div class="guide-logo">狂三の博物馆</div>
+        <ul class="guide-list">
+            <li><a href="#top">首页</a></li>
+            <li><a href="#forms">藏品</a></li>
+            <li><a href="#story">收藏心得</a></li>
+            <li><a href="#kurumi">关于三三</a></li>
+            <li><a href="#hobby">爱好</a></li>
+            <li><a href="#me">个人</a></li>
+        </ul>
+        </div>
+    </div>
+    <section class="hero" id="top">
+  <h1 class="hero-title">Tokisaki Kurumi</h1>
+  <p class="hero-sub">一位狂三厨的收藏展示</p>
+</section>
+<section class="forms" id="forms">
+    <h2>藏品</h2>
+    <section class="zone">
+  <h2>狂三藏品展区</h2>
+  <div class="form-grid">
+    <!-- 藏品1 -->
+  <article class="form-card">
+  <input type="checkbox" id="card-1" class="card-toggle">
+  <label class="card-hit" for="card-1">
+    <img src="./images/kimono.jpg" alt="和服狂三">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>吉德大光日本人形x时崎狂三</h3>
+    <p>镇站之宝</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="card-1">×</label>
+    <img src="./images/2ddb74a1878c4982897f051afa5f1067.webp" alt="和服狂三">
+    <h3>吉德大光日本人形</h3>
+    <p>由日本著名人形设计老字号吉德大光（<a href="https://www.yoshitoku.co.jp/shop_01">官网在这</a>）制作,全高41cm（含底座）全身的和服是其亮点,由人形职人二代目津田蓬生设计
+    ,和服总体纹样表现为：纱绫形地纹 + 深浅樱花 + 鼓形纹，红黑对撞。官方定价为： 168,300 日元（约 ¥7,200rmb）全球限量，目前闲鱼二级市场普遍在1w～2w之间不容易买到，这是我最喜欢也是最奢华的藏品，纯手工制作的和服为狂三大人增添了高贵感。
+    对我个人而言这款手办有独特的意义，获得它的路也是经历了曲折。对于手办收藏者来说这一生如果能拥有几件这样优秀的收藏品是极其幸福的，镇站之宝无疑
+    </p>
+    <p>更多详情点这：<a href="https://www.hpoi.net/hobby/71999">Hpoi手办维基</a></p>
+
+  </div>
+</article>
+<!-- 藏品2 -->
+<article class="form-card">
+  <input type="checkbox" id="card-2" class="card-toggle">
+  <label class="card-hit" for="card-2">
+    <img src="./images/kurumi-shiromuku.jpg" alt="白无垢狂三">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>时崎狂三白无垢</h3>
+    <p>纯白之下是深邃的心</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="card-2">×</label>
+    <img src="./images/kurumi-shiromuku.jpg" alt="和服狂三">
+    <h3>时崎狂三白无垢</h3>
+    <p>由手办制作大厂 F:nex（<a href="https://furyu-hm.com/collections/fnex">官网在这</a>）制作是我收藏的最早的一批手办，制作精细，白无垢的每一出纹理都处理得相当仔细，这一款白无垢可以说是我入坑手办收藏的一个入口（败家的开始）
+        。这一款手办性价比较高，全高约22.5cm（含底座）官方定价28,380日元（约1200rmb）</p>
+        <p>更多详情点这：<a href="https://www.hpoi.net/hobby/73190">Hpoi手办维基</a></p>
+  </div>
+</article>
+<!-- 藏品3 -->
+ <article class="form-card">
+  <input type="checkbox" id="card-3" class="card-toggle">
+  <label class="card-hit" for="card-3">
+    <img src="./images/kurumi-vs-scene.jpg" alt="黑白对决">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>时崎狂三vs白之女皇</h3>
+    <p>极致的张力</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="card-3">×</label>
+    <img src="./images/4a5fcedab5f95a30235420effc107548.jpg" alt="黑白对决">
+    <h3>时崎狂三vs白之女皇</h3>
+    <p>这款是gk手办，由imagination工作室制作，出的比较晚2026年刚发售的，尺寸相当大几乎可以占满一整层，为了还原战斗的场面工作室加了很多火焰的元素让整个手办
+        非常具有张力，这是所有产品中规模最大的，闲鱼价格3500rmb上下（ps：这款手办配件非常多很难装）
+        </p><p>这款是gk手办所以hpoi上也找不到，这边也是给个b站开箱视频水盒子：<a href="https://www.bilibili.com/video/BV1oBTv6UEX1?t=2.9">点击查看</a></p>
+        <p>黑白对决番外篇点这边：<a href="https://www.bilibili.com/video/BV1Jk4y1C7xi?t=0.6">约战狂三外传</a></p>
+        <p><img alt="藏品相关配图" src="./images/4c8402d24945780d72b2958344cac569.jpg" ></p>
+
+  </div>
+  </article>
+  <!-- 藏品4 -->
+   <article class="form-card">
+  <input type="checkbox" id="card-4" class="card-toggle">
+  <label class="card-hit" for="card-4">
+    <img src="./images/shelf-kurumi-a.jpg" alt="综合1">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>狂三手办综合展区1</h3>
+    <p>好多三三（嘻嘻）</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="card-4">×</label>
+    <img src="./images/kurumi1.jpg" alt="综合1">
+    <h3>狂三手办综合展区1</h3>
+    <p>对的这边是我懒得一个个打代码了所以弄了一个综合一号展区（偷笑），全部是三三小规格手办或者景品</p>
+  </div>
+  </article>
+    <!-- 藏品5 -->
+     <article class="form-card">
+  <input type="checkbox" id="card-5" class="card-toggle">
+  <label class="card-hit" for="card-5">
+    <img src="./images/kurumi2.jpg" alt="综合2">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>狂三手办综合展区2</h3>
+    <p>这里是天堂吗</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="card-5">×</label>
+    <img src="./images/kurumi2.jpg" alt="综合2">
+    <h3>狂三手办综合展区2</h3>
+    <p>对的这边依旧是我懒得一个个打代码了所以弄了一个综合二号展区（偷笑），二号展区展出的手办规格会稍微大一点，里面有一个手办被藏起来啦
+        不方便展示（
+    </p>
+  </div>
+    </article>
+    <!-- 藏品6 -->
+     <article class="form-card">
+  <input type="checkbox" id="card-6" class="card-toggle">
+  <label class="card-hit" for="card-6">
+    <img src="./images/kurumi-standees.jpg" alt="立牌">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>狂三立牌展区</h3>
+    <p>嘿嘿嘿嘿嘿</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="card-6">×</label>
+    <img src="./images/kurumi-standees.jpg" alt="立牌">
+    <h3>狂三立牌综合展区</h3>
+    <p>这边几乎收藏了狂三的每一期立牌，其实还有非常多的谷子但是没放在展示柜展示就是了，通常来说每一期立牌都会配上谷子，可能有几期我只买了期中一个
+        展示出来的立牌都是我觉得立绘非常之好看非常之美味的
+    </p>
+  </div>
+    </article>
+
+
+
+  </div>
+  
+  
+  </section>
+
+<div class="sticker-strip">
+    <img src="./images/gif1.GIF" alt="gif">
+</div>
+
+<!-- 明日方舟展区：卡片照狂三展区的卡片公式放这里（id 用 ak- 前缀） -->
+<section class="zone">
+  <h2>明日方舟展区</h2>
+  <div class="form-grid">
+    <!-- 藏品1 -->
+    <article class="form-card">
+  <input type="checkbox" id="ak-1" class="card-toggle">
+  <label class="card-hit" for="ak-1">
+    <img src="./images/ak1.jpg" alt="夕">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>明日方舟 夕：浮生听风</h3>
+    <p>朴素而优雅</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="ak-1">×</label>
+    <img src="./images/ak1.jpg" alt="夕">
+    <h3>夕 浮生听风</h3>
+    <p>这款手办是24年发售的由国内的手办大厂apex（<a href="https://www.apex-toy.com/home">官网在这</a>）制作的，这款手办800上下的定价符合apex这个厂商一贯的定价风格
+        ，质量上也是体现出apex较高的品控水准，服饰的设计朴素但是优雅。而我最喜欢的是下半身服饰的设计（ps：是腿控）。整个手办高26cm不算很大，喜欢夕宝的粥友可以入手。
+        </p><p><img alt="藏品相关配图" src="./images/pixiv1.jpg"></p>
+        <p>来自p站画师流雲のあ  <a href="https://www.pixiv.net/users/38382003">跳转至作者主页</a></p>
+        <p>更多手办相关详情点这里：<a href="https://www.hpoi.net/hobby/82096">hpoi手办维基</a></p>
+  </div>
+    </article>
+    <!-- 藏品2 -->
+    <article class="form-card">
+  <input type="checkbox" id="ak-2" class="card-toggle">
+  <label class="card-hit" for="ak-2">
+    <img src="./images/ak2.jpg" alt="夕旗袍">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>明日方舟 夕：染尘烟</h3>
+    <p>伟大无需多言</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="ak-2">×</label>
+    <img src="./images/ak2.jpg" alt="夕旗袍">
+    <h3>夕 染尘烟</h3>
+    <p>这款手办是25年发售的由手办大厂F:nex（<a href="https://furyu-hm.com/collections/fnex">官网在这</a>）制作的，这款手办可以排进我最喜欢手办前五名，
+        29,700日元 （约1259rmb）的定价，达到了超出其价值表现效果，面部的雕刻绝不含糊，旗袍的颜料我特别喜欢，饱和度刚刚好，还有不可不尝的光腿环节。
+        每次提到这个手办我就会喷一次那些哄抬价格品控依托的手办厂商（说的就是你gsc），质量不如景品手办却卖着比景品高10倍的价格，
+        手办圈只有多一些像apex、F:NEX、Myethos这样认真抓质量不糊弄消费者的厂商才会发展的越来越好，才会有更多优秀的作品。
+   
+
+        </p><p><img alt="藏品相关配图" src="./images/pixiv2.jpg"></p>
+        <p>来自p站画师eternray.  <a href="https://www.pixiv.net/users/119185541">跳转至作者主页</a></p>
+        <p>更多详情点这里：<a href="https://www.hpoi.net/hobby/89655">hpoi手办维基</a></p>
+  </div>
+    </article>
+    <!-- 藏品3 -->
+     <article class="form-card">
+  <input type="checkbox" id="ak-3" class="card-toggle">
+  <label class="card-hit" for="ak-3">
+    <img src="./images/ak3.jpg" alt="浊心">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>明日方舟浊心斯卡蒂</h3>
+    <p>“我们什么都保护不了。我们只能寄望于那个和谐的未来”</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="ak-3">×</label>
+    <img src="./images/ak3.jpg" alt="浊心">
+    <h3>浊心斯卡蒂</h3>
+    <p>这款依旧是一个大件加上背景全高可以达到32cm 宽38cm 长38cm，23年发售的由高质量手办厂商Myethos（<a href="http://www.myethos.cn/">官网在这</a>）
+    制作，官方定价是普通版800左右，豪华版1700左右，但是这个手办溢价很厉害具体的价格可能要参考二级市场的说。总体规模当时是震惊到我了，后面的背景可能展示图没办法完全展示，它其实超级大一个
+  浊蒂也算是我明日方舟里很喜欢的一个形象了，这款手办在面雕和服饰上处理的相当到位，这边不得不说还得是Myethos。</p>
+   
+
+        <p><img alt="藏品相关配图" src="./images/gif2.GIF"></p>
+        <p>更多详情点这里：<a href="https://www.hpoi.net/hobby/78647">hpoi手办维基</a></p>
+  </div>
+    </article>
+    <!-- 藏品4 -->
+     <article class="form-card">
+  <input type="checkbox" id="ak-4" class="card-toggle">
+  <label class="card-hit" for="ak-4">
+    <img src="./images/ak4.jpg" alt="狼">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>缄默德克萨斯x荒芜拉普兰德</h3>
+    <p>她们是女同事吗</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="ak-4">×</label>
+    <img src="./images/ak4.jpg" alt="狼">
+    <h3>狼狼组合</h3>
+    <p>我只是觉得女孩子之间真的好啊（欣慰）这两只放在一起算是我的一点小巧思特别好的一对，两款手办均由高质量手办厂Myethos（<a href="http://www.myethos.cn/">官网在这</a>）制作
+    缄默德克萨斯多了一个背景官方定价1000左右，性价比很高，芜湖拉布拉多定价是800左右，性价比也蛮不错的，喜欢双狼组合的别错过。
+  美食家点评环节：我最喜欢的是德克萨斯那件衣服真的好华丽好威严的感觉，就那种少女暴君有感觉吗，拉普兰德的西装也是和她的性格有一点碰撞，两款手办依旧是腿控福音（</p>
+   
+
+        <p><img alt="藏品相关配图" src="./images/wolf.jpg"></p>
+        <p>来自p站画师伽傌  <a href="https://www.pixiv.net/users/65093902">跳转至作者主页</a></p>
+        <p>荒芜拉普兰德详情点这里：<a href="https://www.hpoi.net/hobby/115375">hpoi手办维基</a></p>
+        <p>缄默德克萨斯详情点这里：<a href="https://www.hpoi.net/hobby/109991">hpoi手办维基</a></p>
+  </div>
+    </article>
+
+  </div>
+</section>
+<div class="zone-banner">
+    <img src="./images/Texas.jpg" alt="gif">
+    <p>来自p站画师Freed0m-  <a href="https://www.pixiv.net/users/16824251">跳转至作者主页</a></p>
+</div>
+
+<section class="zone">
+  <h2>其他游戏/动漫展区</h2>
+  <div class="form-grid">
+  <!-- 藏品1 -->
+   <article class="form-card">
+  <input type="checkbox" id="a1" class="card-toggle">
+  <label class="card-hit" for="a1">
+    <img src="./images/mihoyo.jpg" alt="狼">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>米游展区</h3>
+    <p>原来你也玩（）</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a1">×</label>
+    <img src="./images/mihoyo.jpg" alt="米游">
+    <h3>米游展区</h3>
+    
+    <p>说来奇怪，其实我米游里面玩的最多的是原神和绝区零但是手办买的最多的是崩铁的，这个展区看上去就是前面一排崩铁角色后面一个胡桃
+      显得格格不入（
+    </p>
+
+
+  </div>
+    </article>
+    <article class="form-card">
+  <input type="checkbox" id="a2" class="card-toggle">
+  <label class="card-hit" for="a2">
+    <img src="./images/zzz-miyabi-merch.jpg" alt="星见雅">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>星见雅专区</h3>
+    <p>我的天哪170大人</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a2">×</label>
+    <img src="./images/zzz-miyabi-merch.jpg" alt="星见雅">
+    <h3>星见雅专区</h3>
+    
+    <p>我的天哪是六豆三蓄大人，是身高170（含耳朵）大人，是高耳姬大人，是蜜瓜享受者大人。当时绝区零刚刚发pv的时候就被雅小姐吸引了
+        本人对黑长直太刀大姐姐0抵抗力，真的很帅（王姐声线）。不过这个专区目前只有雅小姐的一些徽章立牌啥的，老米出的三个雅小姐手办目前都是只付了定金
+        希望快点补尾款，这样这个区域会热闹点。</p>
+        <p><img alt="藏品相关配图" src="./images/miyabi.png"></p>
+        <p>六命雅小姐享受者</p>
+        <p><img alt="藏品相关配图" src="./images/miyabi2.jpg"></p>
+        <p>来自p站画师CAISENA  <a href="https://www.pixiv.net/users/15611520">跳转至作者主页</a></p>
+      
+
+
+  </div>
+    </article>
+    <article class="form-card">
+  <input type="checkbox" id="a3" class="card-toggle">
+  <label class="card-hit" for="a3">
+    <img src="./images/band.jpg" alt="乐队番">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>乐队番专区</h3>
+    <p>我自认为布置最好的区域</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a3">×</label>
+    <img src="./images/band.jpg" alt="乐队番">
+    <h3>乐队番专区</h3>
+    
+    <p>
+      这个区域主要包含了mygo和gbc两个乐队番的周边，mygo刚出是我中考刚考完的暑假，这个番激发了我看乐队番的兴趣
+      然后到了之前mujica的究极大暴雷我才看的少了。再往前推一点有看过k-on，云过京吹和lovelive
+      ，总的来说不是什么乐队番老资历。这个区域不知道为何布置完我看着特舒服，就是感觉高饱和，元素多
+      所以是我认为最满意的一个区域。</p>
+      <p>点击这个前往快乐之地：<a href="https://www.bilibili.com/video/BV1wz6uYzEFY?t=0.8">点击此处</a></p>
+  </div>
+    </article>
+    <!-- 藏品4 -->
+    <article class="form-card">
+  <input type="checkbox" id="a4" class="card-toggle">
+  <label class="card-hit" for="a4">
+    <img src="./images/yoru.jpg" alt="战争">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>战争恶魔三鹰夜</h3>
+    <p>最强gk手办</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a4">×</label>
+    <img src="./images/yoru3.jpg" alt="战争">
+    <h3>战争恶魔</h3>
+    
+    <p>三鹰夜在展柜里的图我没来得及拍，所以用了之前还在高中时候拍的照片，后面会找机会补一张展柜照片。这款手办也是可以排进最喜欢手办前五名
+        作为gk手办它对面部的处理比很多量产手办要细致的多，由赫拉工作室制作，官方定价是三鹰夜或者三鹰朝单体2000左右，两只一起应该是3500上下，这边空间有限所以就买了三鹰夜的
+        。手办高约42cm（含底座），用的料子很足，能明显感觉到它的重量感。电锯人的漫画我两季都只是云一点点，然后tv版是追完了，蕾赛剧场版是高考前给看完了。
+        目前更新到哪里了也还没关注，上次看应该还是战争和黑锯打来打去那边。只能说第二季藤本树处理的完全不如第一季，现在在等tv的第二季出。</p>
+        <p><img alt="藏品相关配图" src="./images/yoru5.webp"></p>
+        <p>面部细节</p>
+        <p><img alt="藏品相关配图" src="./images/reze.jpg"></p>
+        <p>JaneDoe实体专辑</p>
+        <p><img alt="藏品相关配图" src="./images/yoru4.jpg"></p>
+        <p>来自p站画师ピス  <a href="https://www.pixiv.net/users/23823521">跳转至作者主页</a></p>
+
+  </div>
+    </article>
+    <!-- 藏品5 -->
+    <article class="form-card">
+  <input type="checkbox" id="a5" class="card-toggle">
+  <label class="card-hit" for="a5">
+    <img src="./images/figure-school-cat.jpg" alt="风纪">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>大凤风纪委员</h3>
+    <p>冷眼萌是世间珍宝</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a5">×</label>
+    <img src="./images/figure-school-cat.jpg" alt="风纪">
+    <h3>大凤风纪委员</h3>
+    
+    <p>这款手办的面雕也是相当之美味，我说眼镜加冷眼萌是仙品有感觉吗。手办由知名制作商ALTER（<a href="https://www.alter-shanghai.cn/">官网在这</a>）制作，
+      大a的品控时好时坏，定价也很飘忽不定，这款手办表现是相当好的就是价格偏贵了一点，官方定价33,880日元（约1438rmb）而且一直在溢价，我入手的时候已经到1600左右了。
+    但是贵虽然是贵了点，这个面雕是真好吧。不过其实我没怎么玩过碧蓝航线，认识的角色也都是刷到就认识了。</p>
+    <p><img alt="藏品相关配图" src="./images/taiho.jpg"></p>
+    <p>更多详情点这里：<a href="https://www.hpoi.net/hobby/88399">hpoi手办维基</a></p></div></article>
+      <!-- 藏品6 -->
+       <article class="form-card">
+  <input type="checkbox" id="a6" class="card-toggle">
+  <label class="card-hit" for="a6">
+    <img src="./images/arknights-w-01.jpg" alt="小红帽">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>妮姬小红帽 荒诞红</h3>
+    <p>腿控福音</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a6">×</label>
+    <img src="./images/arknights-w-01.jpg" alt="小红帽">
+    <h3>小红帽 荒诞红</h3>
+    
+    <p>一次朋友推荐了小红帽的高质量景品手办，我被这个角色吸引了，之后就买了这个大型的1/4手办，也是因为小红帽入坑了妮姬胜利女神
+        ，这款手办1/4的大小加上小红帽那把超大狙击枪，使得画面极具张力。手办由制作商Hobby sakura（<a href="https://hobby-sakura.com/products/">官网在这</a>）制作，
+        官方定价1900rmb左右，作为1/4高复杂度手办我觉得价格还是可以接受的。下半身的处理是我最喜欢的（腿控狂喜）
+      </p>
+      <p><img alt="藏品相关配图" src="./images/red.webp"></p>
+      <p>图片来自hpoi手办维基</p>
+    
+    <p>更多详情点这里：<a href="https://www.hpoi.net/hobby/104271">hpoi手办维基</a></p></div></article>
+        <!-- 藏品7 -->
+         <article class="form-card">
+  <input type="checkbox" id="a7" class="card-toggle">
+  <label class="card-hit" for="a7">
+    <img src="./images/haiyin.jpg" alt="骸音">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>石灰诗绘美 骸音SHIE 水手服</h3>
+    <p>身腿比例如何展现怪诞感</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a7">×</label>
+    <img src="./images/haiyin.jpg" alt="骸音">
+    <h3>石灰诗绘美</h3>
+    
+    <p>这款手办是全场最老的，第一版发售于2016年，我买的这个是再版的与第一版相比会更精细一点。手办由union creative（<a href="https://union-creative.jp/">官网在这</a>）制作，
+        高度20cm算小型手办，第一版定价15,120日元（约640rmb）再版的定价是18,150日元（约769rmb）。这款手办最大的特色就是修长的腿，设计师故意选择不太协调的身体腿部比例
+        来展现怪诞感，这个也很符合骸音整个主题的风格。这边可以展开来聊一下，骸音其实出的最多的是蟹形手办模型，那个超级帅也是骸音完全形态
+        ，有好几个版本（初音色、石灰诗绘美配色、镜音配色等）其中有几款限量版在闲鱼上价格高达3000rmb。这一类手办量很少加上骸音的热度在现在其实不是很高所以
+        这些手办都不太好买到，我也是因为渠道少加上价格昂贵没有买过蟹形，家里就这一个正常形态的（正常形态的还有一个初音版本可以在购物网站上找到）。
+      </p>
+      <p><img alt="藏品相关配图" src="./images/haiyin2.webp"></p>
+      <p>图片来自hpoi手办维基</p>
+      <p>想要了解骸音点这边（恐虫怕猎奇的慎入）：<a href="https://www.bilibili.com/video/BV1BT411Z7rW?t=2.0">细菌污染</a>（超级老的mv）</p>
+    
+    <p>更多详情点这里：<a href="https://www.hpoi.net/hobby/19322">hpoi手办维基</a></p></div></article>
+        <!-- 藏品8 -->
+         <article class="form-card">
+  <input type="checkbox" id="a8" class="card-toggle">
+  <label class="card-hit" for="a8">
+    <img src="./images/painting1.jpg" alt="paint">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>画作《Bibliomania》</h3>
+    <p>白羽苏芳这个端庄</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a8">×</label>
+    <img src="./images/painting1.jpg" alt="paint">
+    <h3>版画《藏书痴》</h3>
+    
+    <p>这是一件比较特别的藏品，这幅版画由<a href="https://baike.baidu.com/item/Innocent%20Grey/2979010">innocent grey</a>社长<a href="https://baike.baidu.com/item/%E6%9D%89%E8%8F%9C%E6%B0%B4%E5%A7%AC?fromModule=lemma_search-box">杉菜水姬（スギナミキ）</a>老师绘制，
+        尺寸41cm*31.8cm，二级市场定价约10w日元（约5000rmb）。版画在flowers10周年画展上订购，限量83幅，内容是白羽苏芳长大时端庄阅读的模样。
+        杉菜水姬老师是画黑长直的高手，他最著名的作品是《花葬》，那幅画是相当之好看，可惜我没买到正版的只有仿品。flowers系列虽然我没有玩过，但是有玩过《壳之少女》，也是相当优秀的galgame，推荐游玩。
+
+      </p>
+      <p><img alt="藏品相关配图" src="./images/painting2.jpg"></p>
+      <p>亲签证书</p>
+      <p><img alt="藏品相关配图" src="./images/paint3.jpg"></p>
+      <p>画作《花葬》</p></div></article>
+        <!-- 藏品9 -->
+         <article class="form-card">
+  <input type="checkbox" id="a9" class="card-toggle">
+  <label class="card-hit" for="a9">
+    <img src="./images/shelf-miku.jpg" alt="miku">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>miku展区</h3>
+    <p>世界第一的公主殿下</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a9">×</label>
+    <img src="./images/shelf-miku.jpg" alt="miku">
+    <h3>Miku展区</h3>
+    
+    <p>
+      这边没有太多需多需要介绍的，主要是初音未来各种景品手办的综合展览，初音未来出的手办非常之多，我只收集了一点点景品，欢迎初音厨晒出你的
+      收藏。
+      
+      
+    
+    
+        </p></div></article>
+        <article class="form-card">
+  <input type="checkbox" id="a10" class="card-toggle">
+  <label class="card-hit" for="a10">
+    <img src="./images/shelf-mixed.jpg" alt="sum">
+    <span class="card-hint">查看档案</span>
+  </label>
+  <div class="card-body">
+    <h3>综合展区</h3>
+    <p>多ip混合</p>
+  </div>
+
+  <!-- 详情层：平时藏着，点上面任何地方展开 -->
+  <div class="card-detail">
+    <label class="detail-close" for="a10">×</label>
+    <img src="./images/shelf-mixed.jpg" alt="sum">
+    <h3>综合展区</h3>
+    
+    <p>好几个ip混在一起的展区，好像是喜多川海梦和雅儿贝德的会多一点因为有一段时间蛮喜欢她们的手办的，也有凌波丽、满穗啥的
+      
+      
+      
+    
+    
+        </p></div></article>
+
+
+</div>
+</section>
+
+<section class="zone">
+  <h2>大合照</h2>
+  <div class="zone-banner">
+      <img src="./images/sum.jpg" alt="大合照">
+  </div>
+</section>
+
+</section>
+<section class="story" id="story">
+  <h2>收藏的心路历程</h2>
+  <div class="story-body">
+  <p>主播中考完的那个暑假买了人生中第一个狂三手办，从此一发不可收拾。收集手办的过程是幸福的，预售的手办就像是在做一笔投资，天天盼着补款就像在等待返利的那一天。
+    收集手办中最幸福的事情莫过于等待了一年的预售手办在一个平静闲暇的午后突然弹短信说要补款了，手里刚好有充足的资金，收到手办发现实物比官图好看。
+    老实说收藏手办确实是一个卡经济的爱好，但我一直觉得只要你喜欢二次元喜欢手办，即使买的景品手办也很好啊，就之前有一些优越狗觉得买手办比买景品的高贵，
+    如果连爱好都要拿来和消费力挂钩，这些优越狗现实中的生活是有多无趣。如果经济上确实限制了那买祖国版也没什么丢人的（不过这边要说一句祖国版的手办质量拿不准，稍微热一点的天气可能就会掉色什么的）。
+    从小到大我就喜欢收集东西，之前小学收藏笔记本，长大了玩二游收藏角色收藏武器，steam里收集游戏，手办的收藏更是这个爱好的具象化。
+    那种亲手打理手办，把她们一个个归类，一个个分区的心流体验是独一无二的，对每个人都是独特的。
+  </p>
+  <img alt="藏品相关配图" src="./images/gif5.GIF">
+  <p>作为不算那么老但略微有点资历的手办收藏爱好者，这边给圈外人想要入坑手办收藏一些建议以及说一些要注意的事情（满满干货）：</p>
+  <div class="tip">
+    <span class="tip-tag">普通的量产型手办</span>
+    <p>刚刚入坑时候不建议直接买预售手办，可以先买点便宜的现货手办试一下
+，如果说确实有特别喜欢的角色的手办在预售阶段，可以先等他转现货但是那个一般比较久估摸着也得有个一年了，比较急的话就看一下评论区这个厂商风评如何。
+F：NEX、Apex（不是游戏那个apex）、Myethos（镜叔）、alter（大a）、FuRyu（妇幼）Taito（眼镜厂）这些都是品控相当可以本人有买过好几次的大厂子，其中FuRyu是做景品手办金字塔件的那一部分，而F:nex是FuRyu创办的一个专做高端手办的
+厂子。apex和Myethos这两个厂主要做的是国内二游会多一点，经常逛米游铺或者买方舟手办的可能对这两个厂不陌生。</p>
+  </div>
+  <div class="tip">
+    <span class="tip-tag">御三家</span>
+    <p>通常指的是三个手办界元老级的厂商：寿屋、gsc（良笑社）、alter。但是其实在现在我只有感觉alter还能算是御三家了，其他两家多多少少品控上比以前降低了一些
+尤其是这个gsc，你就惦记着你那b粘土人吧，手办不好好做就捣鼓粘土人了。</p>
+  </div>
+  <div class="tip">
+    <span class="tip-tag">gk手办</span>
+    <p>上限很高下限很低的一类手办，在手办产业蓬勃发展的如今，gk手办不再小众，越来越多优秀的gk手办小作坊开始出现，
+gk手办通常价格会比量产型手办要贵，他能实现量产型手办无法实现的效果，用料也一般会更足一些。由于gk手办的管理没有非常严格所以里面也会有那种r18手办（</p>
+  </div>
+  <div class="tip">
+    <span class="tip-tag">高达模型类型的手办</span>
+    <p>这个算我的研究范畴之外了，主要做一个区分，因为这类高达模型通常是那种要自己拼，零件很多的一类手办，他和我目前主要收藏的这一类以静态人物为主的手办模型都称作手办，
+但其实两者受众还是有点区别。具体详情可以问一下身边的胶佬（</p>
+  </div>
+  <div class="tip">
+    <span class="tip-tag">等身手办</span>
+    <p>比较烧钱很占地方的一种手办，这里的等身一般有两种，第一种是等身雕像，像漫威的钢铁侠，dc小丑都有等身的手办，但是这类价格非常的昂贵至少是上万级别的
+另一种就是阿宅喜欢的硅胶的定制的等身手办，这类手办价格通常在4000~1w不等,好的妆造好的衣服也可以让价格起飞。然后我不建议买等身手办是为了那一种用途，
+现在大部分定制这个的商家都会提前问有没有那方面的用途，价格没什么区别，只是这一类等身手办很难洗，洗完也不好晾干，如果只是做展示的话就擦一下就可以了，加上这类手办内部是有做仿真骨骼的
+通常都很脆弱，你也不忍心自己喜欢的角色磕了碰了然后整个骨折啥的吧。（想多了解等身手办的看这位b站up主的视频：<a href="https://www.bilibili.com/video/BV1S64y1B7SW?t=0.9">点击跳转</a>）</p>
+  </div>
+  <div class="tip">
+    <span class="tip-tag">祖国版</span>
+    <p>祖国版手办通常是指低价仿品，这一类手办通常可以比正版便宜个十倍，质量上就没法保证了，有的祖国版仿的挺像那么回事，有的就是制造混沌之物了。
+当时一个10多块的祖国版雪乃真的震惊到我了，我十分好奇他是怎么盈利的。这一类祖国版手办价格都低的夸张，基本上一眼可以区分哪个是正版哪个是祖国版了。
+得益于正规交易平台的管理，现在很难出现那种盗版手办挂正版价格的情况，大部分都是主动承认这就是祖国版的。</p>
+  </div>
+  <img alt="藏品相关配图" src="./images/gif6.GIF">
+   
+  </div>
+  
+</section>
+<section class="kurumi" id="kurumi">
+  <h2>关于狂三</h2>
+
+  <!-- A. 为什么推她：三条理由（原句切分，文字不改） -->
+  <div class="reason-grid">
+    <article class="reason">
+      <span class="reason-num">01</span>
+      <h3>一刻沦陷</h3>
+      <p>时崎狂三强大的时间系能力和她表面上坏坏的实际内心温柔的性格以及哥特风的立绘让那时的我瞬间沦陷了。我一向对这类城府比较深，大姐姐类型的角色没有抵抗力。</p>
+    </article>
+    <article class="reason">
+      <span class="reason-num">02</span>
+      <h3>精神的庇护所</h3>
+      <p>如果从个人的经历来说的话，我最失意的一段时间狂三陪在我身边，羁绊在挫折中得以加深，她像是我精神上的庇护所，可以在累的时候停下来喘口气。</p>
+    </article>
+    <article class="reason">
+      <span class="reason-num">03</span>
+      <h3>幼稚的证明</h3>
+      <p>说点中二的，狂三就是那个年少幼稚的我的象征，而我始终认为成长不意味着要和过去幼稚的自己切割，狂三代表的那个不坦率，不敢把想说的话说出来，不够自信的我一样也是我性格的一部分。</p>
+    </article>
+  </div>
+
+  <!-- D. 感受 -->
+  <p class="feel-note">为什么如此深爱着狂三</p>
+  <div class="feel">
+    <p>几乎没有人能做到百分之百只关注现实的生活，人需要感性和理性有机结合才算是人格健全，而我是一个极其容易焦虑，想象力过度丰富的人，狂三的出现减轻了我的精神内耗，让我无处利用的想象力得以释放。狂三是我生命中一位重要的人，是那个幼稚的我存在的证明。</p>
+  </div>
+  <img alt="藏品相关配图" src="./images/kurumi-gothic-art.jpg">
+</section>
+
+<!-- 第五块：爱好清单（内容先给候选，随你删改） -->
+<section class="hobby" id="hobby">
+  <h2>收藏手办之外我还喜欢</h2>
+
+  <div class="hobby-grid">
+
+    <!-- 爱好卡 1 -->
+    <article class="hobby-card">
+      <div class="hobby-pic">
+        <!-- 放图口：<img src="./images/xxx.jpg" alt="">（一张撑满 / 两张各半 / 三张换行） -->
+      </div>
+      <div class="hobby-body">
+        <h3 class="sub">听音乐</h3>
+        <!-- 想对这项爱好说点什么，就写在下面这行 p 标签里；不写就自动隐形 -->
+        <p class="hobby-note">听歌范围非常的广泛</p>
+        <ul class="hobby-list">
+          <li class="row"><span class="cat">华语流行</span>周杰伦、陈奕迅、林俊杰、薛之谦</li>
+          <li class="row"><span class="cat">欧美流行</span>the weekend、TaylorSwift、ladygaga</li>
+          <li class="row"><span class="cat">中文说唱</span>Asen艾志恒、sasioverlxrd、王以太</li>
+          <li class="row"><span class="cat">英文说唱</span>Kanye West、Travis Scott、Frank Ocean</li>
+          <li class="row"><span class="cat">摇滚</span>草东、回春丹、刘森</li>
+          <li class="row"><span class="cat">r&b</span>方大同、陶喆</li>
+          <li class="row"><span class="cat">jpop</span>椎名林檎、宇多田光、夜鹿、真夜中、米津玄师</li>
+          <li class="row"><span class="cat">偶尔kpop</span>BIGBANG、少女时代</li>
+          <li class="row"><span class="cat">术力口</span>初音、重音、kafu、匹诺曹p、gumi</li>
+        </ul>
+        
+      </div>
+    </article>
+
+    <!-- 爱好卡 2 -->
+    <article class="hobby-card">
+      <div class="hobby-pic">
+        <!-- 放图口 -->
+      </div>
+      <div class="hobby-body">
+        <h3 class="sub">打游戏</h3>
+        <!-- 想对这项爱好说点什么，就写在下面这行 p 标签里；不写就自动隐形 -->
+        <p class="hobby-note"></p>
+        <ul class="hobby-list">
+          <li class="row"><span class="cat">二游</span>原神、绝区零、鸣潮、明日方舟、战双、妮姬胜利女神、玩过一个多月的无期迷途和少女前线</li>
+          <li class="row"><span class="cat">jrpg</span>p3、p5、ff14、只玩了3h的尼尔</li>
+          <li class="row"><span class="cat">魂游</span>只狼</li>
+          <li class="row"><span class="cat">卡牌肉鸽</span>杀戮尖塔2，我是高贵的猎手玩家&邪恶冥刻</li>
+          <li class="row"><span class="cat">fps</span>apex玩的不好、left4dead2</li>
+          <li class="row"><span class="cat">生存建造</span>僵尸毁灭工程、非常早期玩过mc</li>
+          <li class="row"><span class="cat">视觉小说</span>饿殍、壳之少女、命运石之门、魔裁</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- 爱好卡 3 -->
+    <article class="hobby-card">
+      <div class="hobby-pic">
+        <!-- 放图口 -->
+      </div>
+      <div class="hobby-body">
+        <h3 class="sub">看番</h3>
+        <!-- 想对这项爱好说点什么，就写在下面这行 p 标签里；不写就自动隐形 -->
+        <p class="hobby-note"></p>
+        <ul class="hobby-list">
+          <li class="row"><span class="cat">乐队番</span>略微涉猎</li>
+          <li class="row"><span class="cat">恋爱番</span>看过比较多，给我留下最深印象的是辉夜大小姐</li>
+          <li class="row"><span class="cat">智斗</span>看的不多，夏日重现、命运石之门</li>
+          <li class="row"><span class="cat">后宫番</span>看的很少，应该只有五等分和约战</li>
+          <li class="row"><span class="cat">国漫</span>非常非常早期有看过《天官赐福》但是当时没有往那方面想后面知道他是BL，再早一点看过尸兄和十冷，后面看了《狐妖小红娘》和时光代理人（别看第二三季）</li>
+          <li class="row"><span class="cat">热血少年漫</span>如果海贼是热血少年漫的话海贼王应该算一个，热血少年漫看的真的少</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 第六块：个人（页脚签名档） -->
+<footer class="me" id="me">
+  <div class="me-card">
+    <img class="me-avatar" src="./images/character.jpg" alt="头像">
+    <div class="me-info">
+      <p class="me-name">Tokisaki Kurumiii</p>
+      <p class="me-desc">感谢光顾狂三の博物馆，做这个网页的目的是想检验一下学习的成果同时展现一下更深层自己。</p>
+      <a class="me-link" href="https://github.com/tokisakikurumiii" target="_blank" rel="noopener">github.com/tokisakikurumiii</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
